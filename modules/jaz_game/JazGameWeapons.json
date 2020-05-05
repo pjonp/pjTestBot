@@ -1,0 +1,18 @@
+[
+    {
+      "id": "01",
+      "name": "tree branch",
+      "rarity": 1,
+      "maxDamage": 7,
+      "minDamage": 4,
+      "type": "stabby"
+    },
+    {
+      "id": "02",
+      "name": "rock",
+      "rarity": 1,
+      "maxDamage": 10,
+      "minDamage": 7,
+      "type": "blunt"
+    }
+]

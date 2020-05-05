@@ -1,0 +1,62 @@
+{
+  "running": false,
+  "gameNumber": 7,
+  "gameStart": "Sat, 02 May 2020 03:45:14 GMT",
+  "inGamePlayers": [],
+  "players": [
+    {
+      "userID": "229122038294380545",
+      "userName": "pjonp",
+      "joinDate": "Thu, 12 Mar 2020 04:01:14 GMT",
+      "active": true,
+      "inBattle": false,
+      "lastBattle": "Sat, 02 May 2020 03:43:17 GMT",
+      "wins": 3
+    },
+    {
+      "userID": "294317222841548802",
+      "userName": "notaPJBOT",
+      "joinDate": "Thu, 12 Mar 2020 04:01:23 GMT",
+      "active": true,
+      "inBattle": false,
+      "lastBattle": "Sat, 02 May 2020 03:43:17 GMT",
+      "wins": 3
+    },
+    {
+      "userID": "242730576195354624",
+      "userName": "Auttaja",
+      "joinDate": "Thu, 12 Mar 2020 04:01:34 GMT",
+      "active": true,
+      "inBattle": false,
+      "lastBattle": "Sat, 02 May 2020 03:45:14 GMT",
+      "wins": 2
+    },
+    {
+      "userID": "676333410939174914",
+      "userName": "pjTestBot",
+      "joinDate": "Thu, 12 Mar 2020 04:01:49 GMT",
+      "active": true,
+      "inBattle": false,
+      "lastBattle": "Sat, 02 May 2020 03:45:14 GMT",
+      "wins": 2
+    },
+    {
+      "userID": "303339086515535882",
+      "userName": "pjonp2",
+      "joinDate": "Thu, 12 Mar 2020 05:32:02 GMT",
+      "active": true,
+      "inBattle": false,
+      "lastBattle": "Sat, 02 May 2020 03:45:14 GMT",
+      "wins": 1
+    },
+    {
+      "userID": "303363667242778635",
+      "userName": "pjonp3",
+      "joinDate": "Thu, 12 Mar 2020 05:32:10 GMT",
+      "active": true,
+      "inBattle": false,
+      "lastBattle": "Sat, 02 May 2020 03:45:14 GMT",
+      "wins": 3
+    }
+  ]
+}

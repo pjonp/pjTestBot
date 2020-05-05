@@ -1,0 +1,16 @@
+{
+  "name": "pjtestbot",
+  "version": "1.0.0",
+  "description": "pj's test bot",
+  "main": "pjtestbot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "pjonp",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12",
+    "node-fetch": "^2.6.0",
+    "tmi.js": "^1.5.0"
+  }
+}

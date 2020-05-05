@@ -1,0 +1,9 @@
+{
+"chatCommand": "!SG",
+"enabled": true,
+"numberOfPlayers": 4,
+"roundMinutes": 0.5,
+"roundDecreaseFactor": 0.75,
+"roundDelay": 5000,
+"baseHealth": 10
+}
