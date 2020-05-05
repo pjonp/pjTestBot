@@ -3,29 +3,26 @@ const fs = require('fs'),
   SettingsFile = path.resolve(__dirname, './SecretWordSettings.json'),
   SEAPI = require('../../util/StreamElementsAPI.js');
 let settings = JSON.parse(fs.readFileSync(SettingsFile)),
-    regexCheck,
-    regexBuild = (secretword) => regexCheck = new RegExp(`((?<=\\s|^))(${secretword})(?!\\w)`, "i");
+  regexCheck,
+  regexBuild = (secretword) => regexCheck = new RegExp(`((?<=\\s|^))(${secretword})(?!\\w)`, "i"); //regex filter
 
-    regexBuild(settings.word);
+regexBuild(settings.word);
 
 module.exports = {
   settings: settings,
   main: async (TWITCHBOT, room, user, message) => {
-    if(settings.subMode && !user.subscriber) return; //subMode
-    console.log('reg', regexCheck);
+    if (settings.subMode && !user.subscriber) return; //subMode
     if (regexCheck.test(message) === false) return;
-    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points)
+    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points),
+        res;
     if (!updateSEPoints) { //error saving points
-      let res = {
-        "type": 'whisper',
-        "msg": `ERROR: Could not add ${settings.points} points to ${user.username}'s StreamElements account.`
-      };
+      res.type = 'whisper';
+      res.msg = `ERROR (${settings.chatCommand}): Could not add ${settings.points} points to ${user.username}'s StreamElements account.`;
+      console.log(res.msg);
       return BotResponse(TWITCHBOT, room, settings.editors[0], res);
     } else {
-      let res = {
-        "type": 'action',
-        "msg": `${user.username} has found ${settings.points} points by unlocking the secret "${settings.word}" word chest!`
-      };
+      res.type = 'action';
+      res.msg = `${user.username} has found ${settings.points} points by unlocking the secret "${settings.word}" word chest!`;
       settings.enabled = false;
       BotResponse(TWITCHBOT, room, user.username, res);
       return SaveSettings(TWITCHBOT, room, user.username);
@@ -48,7 +45,6 @@ module.exports = {
         } else {
           settings.word = msgA[1];
           regexBuild(settings.word);
-      //    regexCheck = new RegExp(`(?<=\\s)(${settings.word})(?!\\w)`, "i");
           res.msg = `Secret word has been set to: ${settings.word}`
         }
         break;
@@ -97,15 +93,15 @@ module.exports = {
           res.error = true;
           break;
         }
-        let target = settings.editors.findIndex(i => i === msgA[1])
-        if (target < 0) {
+        let targetEditor = settings.editors.findIndex(i => i === msgA[1])
+        if (targetEditor < 0) {
           res.msg = `Error: ${msgA[1]} is not an editor! Current editors are: ${settings.editors}`;
           res.error = true;
-        } else if (target === 0) {
+        } else if (targetEditor === 0) {
           res.msg = `Error: ${msgA[1]} is the OWNER and cannot be removed! Current editors are: ${settings.editors}`;
           res.error = true;
         } else {
-          settings.editors.splice(target, 1)
+          settings.editors.splice(targetEditor, 1)
           res.msg = `${msgA[1]} was removed as an editor! Current editors are: ${settings.editors}`;
         }
         break;

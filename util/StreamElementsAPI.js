@@ -1,5 +1,5 @@
 const path = require("path"),
-  fetch = require('node-fetch'), //Webcall
+  fetch = require('node-fetch'),
   setup = require('../.hidden/settings.json');
 
   module.exports = {
@@ -65,7 +65,7 @@ const path = require("path"),
             throw new Error();
           }
           console.log('Successfully Bulk Updated Leaderboard')
-    //    return response.json();
+    //    return response.text();
           return true;
         })
         .catch(error => {
@@ -73,4 +73,4 @@ const path = require("path"),
           return false;
         });
     }
-  }; //END EXPORTS OBJECT
+  };

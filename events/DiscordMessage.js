@@ -15,12 +15,10 @@ let myName = 'pjtestbot', //lowercase
 
 module.exports = (DISCORDBOT, message) => {
   if (message.author.bot) return;
-
   //Jaz Game
   if (message.content.startsWith(JazGame.settings.chatCommand)) { //from JazGameSettings.json
     JazGame.gameCommands(message)
   };
-
   /*
     console.log('D:', message.content);
     message.channel.send(`${message.content}`).catch(err => {

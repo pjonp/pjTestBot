@@ -1,0 +1,17 @@
+{
+  "chatCommand": "!defuse",
+  "channel": "#pjonp",
+  "enabled": true,
+  "subMode": false,
+  "pointsAdd": 123,
+  "pointsRemove": -123,
+  "editors": [
+    "pjonp",
+    "user2"
+  ],
+  "wires": [
+    "red",
+    "blue",
+    "green"
+  ]
+}

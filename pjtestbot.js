@@ -10,6 +10,7 @@ DISCORDBOT.login(SETTINGS.D_TOKEN).catch(err => {
     console.log('****Discord Connection Error:', err);
 });
 //START TWITCH
+
 const TWITCHBOT = new Twitch.client(
   {
   options: { debug: false }, //see info/chat in console. true to enable.
@@ -20,9 +21,11 @@ const TWITCHBOT = new Twitch.client(
   },
   channels: SETTINGS.T_CHANNELNAME
 });
+
 TWITCHBOT.connect().catch((err) => {
     console.log('****Twitch Connection Error:', err);
 });
+
 
 require('./util/DiscordEventLoader')(DISCORDBOT);
 require('./util/TwitchEventLoader')(TWITCHBOT);
