@@ -3,12 +3,14 @@ const fs = require('fs'),
   SettingsFile = path.resolve(__dirname, './DefuseGameSettings.json'), //EDIT FOR SETTINGS FILE
   SEAPI = require('../../util/StreamElementsAPI.js'); //IMPORT S.E. FUNCTIONS
 let settings = JSON.parse(fs.readFileSync(SettingsFile)), //LOAD SETTINGS
+  onCooldown = false, //not used
   cooldownUsers = []; //not used
 
 module.exports = {
   settings: settings,
   main: async (TWITCHBOT, room, user, message) => { //MAIN GAME LOGIC
     if (settings.subMode && !user.subscriber) return; //subMode
+    if (onCooldown) return; //cooldown
 
     //LOGIC HERE
     let msgA = message.toLowerCase().split(' '), //message to array
@@ -29,10 +31,12 @@ module.exports = {
         res.msg = `ERROR (${settings.chatCommand}): Could not add/remove ${points} points to ${user.username}'s StreamElements account.`;
         res.error = true;
       } else { //POINTS SAVED SUCCESSFULLY
+        onCooldown = true; //enable cooldown
+        setTimeout(() => { onCooldown = false }, 5000) //5 second cooldown
         if (winner) { //if winner
           res.type = 'action';
           res.msg = `You cut the correct wire ${user.username}! You've gained ${points} points!`;
-        } else { // if loser
+        } else { // if lost
           res.type = 'action';
           res.msg = `You cut the wrong wire ${user.username} :( You've lost ${Math.abs(points)} points!`;
         };
@@ -43,7 +47,7 @@ module.exports = {
     };
     return BotResponse(TWITCHBOT, room, settings.editors[0], res); //SEND WHSIPER TO OWNER ON ERROR
   },
-  
+
   update: async (TWITCHBOT, room, user, message) => { //GAME UPDATE COMMANDS
     if (!settings.editors.some(i => i === user.username)) return; //MUST BE A GAME EDITOR
     let msgA = message.toLowerCase().split(' '), //message to array
@@ -90,7 +94,6 @@ module.exports = {
           res.error = true;
         }
         break;
-        //LEAVE FOR EDITORS
       case 'editoradd':
         if (!msgA[1]) {
           res.msg = `Error: ${settings.chatCommand} editoradd <USERNAME>`;

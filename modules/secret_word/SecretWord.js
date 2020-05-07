@@ -14,7 +14,7 @@ module.exports = {
     if (settings.subMode && !user.subscriber) return; //subMode
     if (regexCheck.test(message) === false) return;
     let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points),
-        res;
+        res = {};
     if (!updateSEPoints) { //error saving points
       res.type = 'whisper';
       res.msg = `ERROR (${settings.chatCommand}): Could not add ${settings.points} points to ${user.username}'s StreamElements account.`;

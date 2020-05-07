@@ -11,8 +11,9 @@ const path = require("path"),
             'Authorization': `Bearer ${setup.SE_JWTTOKEN}`
           },
         })
-        .then(response => {
+        .then(async response => {
           if (!response.ok) {
+            console.log(await response.json());
             throw new Error();
           };
           return response.json();
@@ -30,9 +31,10 @@ const path = require("path"),
             'Authorization': `Bearer ${setup.SE_JWTTOKEN}`
           },
         })
-        .then(response => {
+        .then(async response => {
           if (!response.ok) {
-            throw new Error();
+            console.log(await response.json());
+            throw new Error()
           };
           return response.json();
         })
@@ -60,13 +62,14 @@ const path = require("path"),
             'Authorization': `Bearer ${setup.SE_JWTTOKEN}`
           },
         })
-        .then(response => {
+        .then(async response => {
           if (!response.ok) {
+            console.log(await response.text());
             throw new Error();
           }
           console.log('Successfully Bulk Updated Leaderboard')
-    //    return response.text();
-          return true;
+          return response.text();
+      //    return true;
         })
         .catch(error => {
           console.error('Error Saving Bulk Points:', error)
