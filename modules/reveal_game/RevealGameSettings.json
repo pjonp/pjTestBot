@@ -1,0 +1,14 @@
+{
+  "chatCommand": "!guess",
+  "channel": "#pjonp",
+  "running": false,
+  "gridSize": 4,
+  "gameStartDelay": 7,
+  "roundDelay": 1,
+  "subMode": false,
+  "points": 123,
+  "editors": [
+    "pjonp",
+    "user2"
+  ]
+}

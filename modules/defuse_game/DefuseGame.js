@@ -81,7 +81,7 @@ module.exports = {
           settings.pointsAdd = parseInt(msgA[1]);
           res.msg = `Defuse Game POINT BONUS has been set to: ${settings.pointsAdd}`
         } else {
-          res.msg = `Error: ${settings.chatCommand} points <NUMBER>`;
+          res.msg = `Error: ${settings.chatCommand} pointsadd <NUMBER>`;
           res.error = true;
         }
         break;
@@ -90,7 +90,7 @@ module.exports = {
           settings.pointsRemove = parseInt(msgA[1]);
           res.msg = `Defuse Game POINT REMOVAL has been set to: ${settings.pointsRemove}`
         } else {
-          res.msg = `Error: ${settings.chatCommand} points <NUMBER>`;
+          res.msg = `Error: ${settings.chatCommand} pointsremove <NUMBER>`;
           res.error = true;
         }
         break;
