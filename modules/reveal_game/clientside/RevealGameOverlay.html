@@ -6,7 +6,7 @@
   <script>
     let socket = io("http://localhost:7654");
     socket.on("revealGameStart", (data) => {
-      buildGame(data.gridSize, data.gameStartDelay, data.roundDelay, `https://github.com/fanzeyi/pokemon.json/blob/master/images/${data.num}.png?raw=true`);
+      buildGame(data.gridSize, data.gameStartDelay, data.roundDelay, `./assets/pokemon.json-master/images/${data.num}.png`);
       console.log('game has been started');
 
     });
@@ -179,4 +179,7 @@
     }, 10000);
     return;
   };
+
+//testgame on load
+  buildGame(4,5,1,'./assets/pokemon.json-master/images/001.png');
 </script>

@@ -1,0 +1,53 @@
+#main{
+  margin: 100px auto;
+  width: 800px;
+  height: 800px;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: space-between;
+  justify-content: space-between;
+  background-size: 100%;
+  box-shadow: 0 0 100px rgba(0, 0, 0, 0.5), inset 0px 0px 100px 150px rgba(0, 0, 0, 0.5);
+  border-radius: 80px;
+  opacity: 0;
+  color: white;
+}
+#status{
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  left: 0px;
+  top: 350px;
+  height: 100px;
+  width: 800px;
+  background-color: {{bgColor}};
+  border-top: 5px solid black;
+  border-bottom: 5px solid black;
+  box-sizing: border-box;
+  font-size: 40px;
+  text-align: center;
+  color: {{fontColor}};
+}
+.coverBox{
+  background-size: 800px 800px;
+  margin: 0px;
+  background-color: black;
+}
+
+.show {
+    animation: fadein 1s forwards;
+}
+.hide {
+    animation: fadeout 1s forwards;
+}
+
+@keyframes fadein {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes fadeout {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}

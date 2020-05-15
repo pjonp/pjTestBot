@@ -41,6 +41,12 @@ SE_OVERLAYS.on('connection', socket => {
   socket.on('overlayLoaded', overlay => {
     console.log(`***Overlay Loaded: ${overlay}`);
   });
+
+  
+  socket.on('saveSEPoints', (username) => {
+    console.log(`***saving points for: ${username}`);
+  });
+
 })
 module.exports = {
   SE_OVERLAYS: SE_OVERLAYS

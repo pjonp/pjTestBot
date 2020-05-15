@@ -26,6 +26,9 @@ module.exports = (TWITCHBOT, room, user, message, self) => {
   // -----End Defuse Game----
 
   // -----Reveal Game--------
+
+  /* Moved to STREAM ELEMENTS OVERLAY!!
+
   if (message.startsWith(RevealGame.settings.chatCommand)) {
       if (user['message-type'] === 'whisper') {
       RevealGame.update(TWITCHBOT, room, user, message);
@@ -33,6 +36,8 @@ module.exports = (TWITCHBOT, room, user, message, self) => {
       RevealGame.main(TWITCHBOT, room, user, message);
     };
   };
+  */
+
   // -----End Defuse Game----
 
 
