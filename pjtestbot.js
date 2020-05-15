@@ -42,15 +42,17 @@ SE_OVERLAYS.on('connection', socket => {
     console.log(`***Overlay Loaded: ${overlay}`);
   });
 
-  
+
   socket.on('saveSEPoints', (username) => {
     console.log(`***saving points for: ${username}`);
   });
 
-})
+});
+
 module.exports = {
   SE_OVERLAYS: SE_OVERLAYS
-}
+};
+
 /*
 let names = require('./modules/pokedex.json');
 let longName = 'd'

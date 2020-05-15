@@ -19,7 +19,7 @@ let main = document.getElementById("main"),
   gameNumber = 0,
   jebaitedAPIToken = 'noTokenSupplied';
 
-const GAMEDATAURL = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json';
+const GAMEDATAURL = 'https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json';
 
 const GetData = () => {
   return fetch(GAMEDATAURL)
@@ -117,10 +117,9 @@ let buildGame = () => {
 
   let startDelay = gameStartDelay,
     randAnswer = GAMEDATA[Math.floor(Math.random() * GAMEDATA.length)] || 150,
-    num = randAnswer.id < 10 ? '00' + randAnswer.id : randAnswer.id < 100 ? '0' + randAnswer.id : randAnswer.id,
-    bgImage = `https://github.com/fanzeyi/pokemon.json/blob/master/images/${num}.png?raw=true`;
+    bgImage = randAnswer.image;
 
-  answer = randAnswer.name.english;
+  answer = randAnswer.name;
   gameRunning = true;
 
   console.log('cheat mode:', answer.toLowerCase());

@@ -196,3 +196,40 @@ const BotResponse = (TWITCHBOT, room, username, res) => { //BOT RESPONSE. Don't 
   };
   return res;
 };
+
+
+/*
+
+let fetch = require('node-fetch'),
+ DBFile = path.resolve(__dirname, './DBfile.json'),
+ DBDATA = [],
+ dataObject = [],
+ DBDATAURL = 'https://raw.githubusercontent.com/fanzeyi/pokemon.json/master/pokedex.json';
+const GetData = () => {
+  return fetch(DBURL)
+    .then(response => response.json())
+    .then(data => {
+      DBDATA = data;
+      dataObject = DBDATA.map(i => {
+
+        let num = i.id < 10 ? '00' + i.id : i.id < 100 ? '0' + i.id : i.id,
+        bgImage = `https://github.com/fanzeyi/pokemon.json/blob/master/images/${num}.png?raw=true`;
+
+        return {
+          name: i.name.english,
+          image: bgImage
+         }
+      });
+      SaveDB(dataObject);
+    })
+    .catch(error => {
+      console.error(`Error Reading JSON file`)
+    });
+};
+
+const SaveDB = (dataObject) => {
+    fs.writeFileSync(DBFile, JSON.stringify(dataObject, null, 2), "utf8");
+};
+
+GetData()
+*/
