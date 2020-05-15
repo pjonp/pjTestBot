@@ -15,17 +15,16 @@ let main = document.getElementById("main"),
   gameTimeout = 1,
   gameEndDelay = 1,
   answer = '',
-  GAMEDATA = [],
+  gameData = [],
   gameNumber = 0,
-  jebaitedAPIToken = 'noTokenSupplied';
+  jebaitedAPIToken = 'noTokenSupplied',
+  gameDataURL = 'https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json';
 
-const GAMEDATAURL = 'https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json';
-
-const GetData = () => {
-  return fetch(GAMEDATAURL)
+const GetData = (dbURL) => {
+  return fetch(dbURL)
     .then(response => response.json())
     .then(data => {
-      GAMEDATA = data;
+      gameData = data;
     })
     .catch(error => {
       console.error(`Error Reading JSON file`)
@@ -59,9 +58,10 @@ window.addEventListener('onWidgetLoad', async (obj) => {
   gameTimeout = fieldData.gameTimeout;
   gameEndDelay = fieldData.gameEndDelay;
   jebaitedAPIToken = fieldData.jebaitedToken;
+  gameDataURL = fieldData.databaseURL || gameDataURL;
 
   console.log(logoImage);
-  await GetData();
+  await GetData(gameDataURL);
 
   //on load for sizing
   buildGame()
@@ -89,6 +89,7 @@ let onMessage = (msg) => {
 
   if (msgA[0] === 'start') {
     if (isBroadcaster || canEdit) {
+      if(gameRunning) return;
       buildGame();
       res = `Game started: use {chatCommand} <answer>`
       sayMessage(res);
@@ -96,6 +97,7 @@ let onMessage = (msg) => {
     };
   } else if (msgA[0] === 'stop') {
     if (isBroadcaster || canEdit) {
+      if(!gameRunning) return;
       gameOver();
       res = `{chatCommand} Game has been stopped.`
       sayMessage(res);
@@ -112,11 +114,8 @@ let onMessage = (msg) => {
 
 //OVERLAY LOGIC
 let buildGame = () => {
-
-  if (gameRunning) return;
-
   let startDelay = gameStartDelay,
-    randAnswer = GAMEDATA[Math.floor(Math.random() * GAMEDATA.length)] || 150,
+    randAnswer = gameData[Math.floor(Math.random() * gameData.length)] || 150,
     bgImage = randAnswer.image;
 
   answer = randAnswer.name;

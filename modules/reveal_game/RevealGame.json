@@ -13,6 +13,11 @@
 		"label": "Chat Command:",
 		"value": "!guess"
 	},
+  	"databaseURL": {
+		"type": "text",
+		"label": "Database file:",
+		"value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json"
+	},
 	"modControl": {
 		"type": "dropdown",
 		"label": "Mods can start/stop games:",
