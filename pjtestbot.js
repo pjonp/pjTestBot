@@ -54,22 +54,9 @@ module.exports = {
 };
 
 /*
-let names = require('./modules/pokedex.json');
-let longName = 'd'
-for(let i = 0; i < names.length; i++) {
-  if(names[i].name.english.length > longName.length) {
-    longName = names[i].name.english
-  }
-}
-console.log(longName);
-//12 characters
-
-
-
 const fetch = require('node-fetch'),
 setup = require('./.hidden/settings.json');
 let test = () => {
-//return fetch(`https://tmi.twitch.tv/group/user/maxmagus/chatters`, {
   return fetch(`https://api.twitch.tv/helix/streams?user_login=maxmagus`, {
     method: 'GET',
     headers: {

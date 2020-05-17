@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
 #main{
   margin: 100px auto;
   width: 800px;
@@ -12,6 +13,7 @@
   border-radius: 80px;
   opacity: 0;
   color: white;
+  font-family: 'Bangers', cursive;
 }
 #status{
   position: absolute;
@@ -26,7 +28,7 @@
   border-top: 5px solid black;
   border-bottom: 5px solid black;
   box-sizing: border-box;
-  font-size: 40px;
+  font-size: 55px;
   text-align: center;
   color: {{fontColor}};
 }

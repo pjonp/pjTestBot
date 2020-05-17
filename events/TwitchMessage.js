@@ -1,7 +1,8 @@
 const setup = require('../.hidden/settings.json'),
   SecretWord = require('../modules/secret_word/SecretWord.js'),
-  DefuseGame = require('../modules/defuse_game/DefuseGame.js'),
-  RevealGame = require('../modules/reveal_game/RevealGame.js');
+  DefuseGame = require('../modules/defuse_game/DefuseGame.js');
+// moved to StreamElements  Overlay  
+//  RevealGame = require('../modules/reveal_game/RevealGame.js')
 
 
 module.exports = (TWITCHBOT, room, user, message, self) => {

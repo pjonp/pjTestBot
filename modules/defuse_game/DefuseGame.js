@@ -12,33 +12,41 @@ module.exports = {
     if (settings.subMode && !user.subscriber) return; //subMode
     if (onCooldown) return; //cooldown
 
-    //LOGIC HERE
     let msgA = message.toLowerCase().split(' '), //message to array
       res = {};
     msgA.shift(); //REMOVE COMMAND FROM MESSAGE
     if (!settings.wires.some(i => i === msgA[0])) { //if INVALID wire
       res.type = 'action';
-      res.msg = `There is no ${msgA[0]} wire ${user.username} :thinking: Wires are: ${settings.wires}`
+      res.msg = msgA[0] ? `There is no ${msgA[0]} wire ${user.username} :thinking: Wires are: ${settings.wires}` : `Pick a wire ${user.username}:thinking: Wires options are: ${settings.wires}`
     } else {
-      let randomWire = settings.wires[Math.floor(Math.random() * settings.wires.length)], //pick a random wire from the settings
-        winner = msgA[0] === randomWire, //true/false; does the randomWire = the users guess?
-        points = winner ? settings.pointsAdd : settings.pointsRemove, //if user is a winner set points to add, if lost set to remove
-        updateSEPoints = await SEAPI.PutPointsToSE(user.username, points); //TRY TO SAVE POINTS
-      //END LOGIC
-
-      if (!updateSEPoints) { //IF THERE WAS AN ERROR SAVING POINTS
-        res.type = 'whisper'; //TYPE: say/action/whisper: set to whsip owner on error
-        res.msg = `ERROR (${settings.chatCommand}): Could not add/remove ${points} points to ${user.username}'s StreamElements account.`;
+      //start cooldown
+      onCooldown = true; //enable cooldown
+      setTimeout(() => {
+        onCooldown = false
+      }, 5000) //5 second cooldown
+      //check if user has enough points to play (lose)
+      let userPoints = await SEAPI.GetPointsFromSE(user.username)
+      if (userPoints.points < settings.pointsRemove*-1 ) {
+        res.type = 'action'; //TYPE: say/action/whisper: set to whisp owner on error
+        res.msg = `You do not have enough points to play this game ${user.username}. A minimum of ${settings.pointsRemove*-1} points are required!`;
         res.error = true;
-      } else { //POINTS SAVED SUCCESSFULLY
-        onCooldown = true; //enable cooldown
-        setTimeout(() => { onCooldown = false }, 5000) //5 second cooldown
-        if (winner) { //if winner
-          res.type = 'action';
-          res.msg = `You cut the correct wire ${user.username}! You've gained ${points} points!`;
-        } else { // if lost
-          res.type = 'action';
-          res.msg = `You cut the wrong wire ${user.username} :( You've lost ${Math.abs(points)} points!`;
+      } else {
+        let randomWire = settings.wires[Math.floor(Math.random() * settings.wires.length)], //pick a random wire from the settings
+          winner = msgA[0] === randomWire, //true/false; does the randomWire = the users guess?
+          points = winner ? settings.pointsAdd : settings.pointsRemove, //if user is a winner set points to add, if lost set to remove
+          updateSEPoints = await SEAPI.PutPointsToSE(user.username, points); //TRY TO SAVE POINTS
+        if (!updateSEPoints) { //IF THERE WAS AN ERROR SAVING POINTS
+          res.type = 'whisper'; //TYPE: say/action/whisper: set to whisp owner on error
+          res.msg = `ERROR (${settings.chatCommand}): Could not add/remove ${points} points to ${user.username}'s StreamElements account.`;
+          res.error = true;
+        } else { //POINTS SAVED SUCCESSFULLY
+          if (winner) { //if winner
+            res.type = 'action';
+            res.msg = `You cut the correct wire ${user.username}! You've gained ${points} points!`;
+          } else { // if lost
+            res.type = 'action';
+            res.msg = `You cut the wrong wire ${user.username} :( You've lost ${Math.abs(points)} points!`;
+          };
         };
       };
     };
