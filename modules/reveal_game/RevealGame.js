@@ -1,5 +1,7 @@
 let main = document.getElementById("main"),
   chatCommand = '!guess',
+  chatCommandStartLC = 'start',
+  chatCommandStopLC = 'stop',
   modControl = false,
   subMode = false,
   points = 97,
@@ -18,7 +20,12 @@ let main = document.getElementById("main"),
   gameData = [],
   gameNumber = 0,
   jebaitedAPIToken = 'noTokenSupplied',
-  gameDataURL = 'https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json';
+  gameDataURL = 'https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json',
+  isBroadcaster,
+  isMod,
+  isSub,
+  canEdit,
+  subCheck;
 
 const GetData = (dbURL) => {
   return fetch(dbURL)
@@ -42,12 +49,13 @@ window.addEventListener('onEventReceived', (obj) => {
   return;
 });
 
-
 window.addEventListener('onWidgetLoad', async (obj) => {
 
   const fieldData = obj.detail.fieldData;
 
-  chatCommand = fieldData.chatCommand;
+  chatCommand = fieldData.chatCommand || chatCommand;
+  chatCommandStartLC = fieldData.chatCommandStart.toLowerCase() || chatCommandStartLC;
+  chatCommandStopLC = fieldData.chatCommandStop.toLowerCase() || chatCommandStopLC;
   modControl = fieldData.modControl === 'Yes';
   subMode = fieldData.subMode === 'Yes';
   points = fieldData.points;
@@ -60,7 +68,6 @@ window.addEventListener('onWidgetLoad', async (obj) => {
   jebaitedAPIToken = fieldData.jebaitedToken;
   gameDataURL = fieldData.databaseURL || gameDataURL;
 
-  console.log(logoImage);
   await GetData(gameDataURL);
 
   //on load for sizing
@@ -70,46 +77,48 @@ window.addEventListener('onWidgetLoad', async (obj) => {
   }, 10000);
 });
 
-
 //SERVER LOGIC
 let onMessage = (msg) => {
-  let msgA = msg.text.toLowerCase().split(' '),
-    res = '';
-
-  if (msgA[0] !== chatCommand) return;
-
-  msgA.shift(); //REMOVE COMMAND FROM MESSAGE
-
-  let isBroadcaster = msg.badges.some(i => i.type === 'broadcaster'),
-    isMod = msg.badges.some(i => i.type === 'mod'),
+  let res = '';
+  if (!gameRunning && msg.text.toLowerCase().startsWith(`{chatCommand} ${chatCommandStartLC}`)) {
+    isBroadcaster = msg.badges.some(i => i.type === 'broadcaster');
+    isMod = msg.badges.some(i => i.type === 'mod');
     isSub = msg.tags.subscriber !== '0';
-
-  let canEdit = modControl && isMod,
+    canEdit = modControl && isMod;
     subCheck = subMode === isSub;
 
-  if (msgA[0] === 'start') {
     if (isBroadcaster || canEdit) {
-      if(gameRunning) return;
       buildGame();
-      res = `Game started: use {chatCommand} <answer>`
+      res = `Game started! what is the hidden image?!`
       sayMessage(res);
-      return;
     };
-  } else if (msgA[0] === 'stop') {
+    return;
+  } else if (gameRunning && msg.text.toLowerCase().startsWith(`{chatCommand} ${chatCommandStopLC}`)) {
+    isBroadcaster = msg.badges.some(i => i.type === 'broadcaster');
+    isMod = msg.badges.some(i => i.type === 'mod');
+    isSub = msg.tags.subscriber !== '0';
+    canEdit = modControl && isMod;
+    subCheck = subMode === isSub;
+
     if (isBroadcaster || canEdit) {
-      if(!gameRunning) return;
       gameOver();
       res = `{chatCommand} Game has been stopped.`
+      console.log(res);
       sayMessage(res);
-      return;
     };
-  } else if (msgA[0] === answer.toLowerCase()) {
+    return;
+  } else if (gameRunning && msg.text.includes(answer.toLowerCase())) {
+    isBroadcaster = msg.badges.some(i => i.type === 'broadcaster');
+    isSub = msg.tags.subscriber !== '0';
+    subCheck = subMode === isSub;
+
     if (isBroadcaster || isSub || subCheck) {
       gameOver(msg.displayName);
-      return;
     };
+    return;
+  } else {
+    return;
   };
-  return;
 };
 
 //OVERLAY LOGIC
@@ -200,8 +209,8 @@ let gameOver = (winner) => {
     if (gameRunning) return;
     main.classList.add("hide");
   }, gameEndDelay * 1000);
-  if(gameNumber) {
-  sayMessage(res);
+  if (gameNumber) {
+    sayMessage(res);
   };
   gameNumber++
   return;

@@ -1,97 +1,107 @@
 {
-  	"jebaitedToken": {
-		"type": "text",
-		"label": "https://jebaited.net/tokens/ ->",
-		"value": "need: addPoints + botMsg"
-	},
-	"coverImageUpload": {
-		"type": "image-input",
-		"label": "Cover Image:"
-	},
-	"chatCommand": {
-		"type": "text",
-		"label": "Chat Command:",
-		"value": "!guess"
-	},
-  	"databaseURL": {
-		"type": "text",
-		"label": "Database file:",
-		"value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json"
-	},
-	"modControl": {
-		"type": "dropdown",
-		"label": "Mods can start/stop games:",
-		"value": "yes",
-		"options": {
-			"yes": "Yes",
-			"no": "No"
-		}
-	},
-	"subMode": {
-		"type": "dropdown",
-		"label": "Sub only mode:",
-		"value": "no",
-		"options": {
-			"yes": "Yes",
-			"no": "No"
-		}
-	},
-	"points": {
-      "type": "slider",
-  	  "label": "Winner Points:",
- 	  "value": 100,
-  	  "min": 0,
- 	  "max": 500,
- 	  "step": 1
-	},
-	"gridSize": {
-      "type": "slider",
-  	  "label": "Grid size (# x #)",
- 	  "value": 5,
-  	  "min": 2,
- 	  "max": 50,
- 	  "step": 1
-	},
-	"gameStartDelay": {
-      "type": "slider",
-  	  "label": "Countdown to start the game:",
- 	  "value": 5,
-  	  "min": 1,
- 	  "max": 60,
- 	  "step": 1
-	},
-	"roundDelay": {
-      "type": "slider",
-  	  "label": "Delay between reveals:",
- 	  "value": 1.5,
-  	  "min": 0.1,
- 	  "max": 15,
- 	  "step": 0.1
-	},
-	"gameTimeout": {
-      "type": "slider",
-  	  "label": "Time allowed when full image is shown:",
- 	  "value": 10,
-  	  "min": 1,
- 	  "max": 60,
- 	  "step": 1
-	},
-	"gameEndDelay": {
-      "type": "slider",
-  	  "label": "Gameover screen timeout:",
- 	  "value": 10,
-  	  "min": 1,
- 	  "max": 60,
- 	  "step": 1
-	},
-	"fontColor": {
-		"type": "colorpicker",
-		"label": "Font color",
-		"value": "rgba(60, 215, 30, 0.8)"
-	},
-  		"bgColor": {
-		"type": "colorpicker",
-		"label": "Font color",
-		"value": "rgba(40, 40, 65, 0.8)"
-	}
+  "jebaitedToken": {
+    "type": "text",
+    "label": "https://jebaited.net/tokens/ ->",
+    "value": "need: addPoints + botMsg"
+  },
+  "coverImageUpload": {
+    "type": "image-input",
+    "label": "Cover Image:"
+  },
+  "chatCommand": {
+    "type": "text",
+    "label": "Chat Command:",
+    "value": "!guess"
+  },
+  "chatCommandStart": {
+    "type": "text",
+    "label": "Chat Command Arg to Start:",
+    "value": "start"
+  },
+  "chatCommandStop": {
+    "type": "text",
+    "label": "Chat Command Arg to Stop:",
+    "value": "stop"
+  },
+  "databaseURL": {
+    "type": "text",
+    "label": "Database file:",
+    "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json"
+  },
+  "modControl": {
+    "type": "dropdown",
+    "label": "Mods can start/stop games:",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
+  "subMode": {
+    "type": "dropdown",
+    "label": "Sub only mode:",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
+  "points": {
+    "type": "slider",
+    "label": "Winner Points:",
+    "value": 100,
+    "min": 0,
+    "max": 500,
+    "step": 1
+  },
+  "gridSize": {
+    "type": "slider",
+    "label": "Grid size (# x #)",
+    "value": 5,
+    "min": 2,
+    "max": 50,
+    "step": 1
+  },
+  "gameStartDelay": {
+    "type": "slider",
+    "label": "Countdown to start the game:",
+    "value": 5,
+    "min": 1,
+    "max": 60,
+    "step": 1
+  },
+  "roundDelay": {
+    "type": "slider",
+    "label": "Delay between reveals:",
+    "value": 1.5,
+    "min": 0.1,
+    "max": 15,
+    "step": 0.1
+  },
+  "gameTimeout": {
+    "type": "slider",
+    "label": "Time allowed when full image is shown:",
+    "value": 10,
+    "min": 1,
+    "max": 60,
+    "step": 1
+  },
+  "gameEndDelay": {
+    "type": "slider",
+    "label": "Gameover screen timeout:",
+    "value": 10,
+    "min": 1,
+    "max": 60,
+    "step": 1
+  },
+  "fontColor": {
+    "type": "colorpicker",
+    "label": "Font color",
+    "value": "rgba(60, 215, 30, 0.8)"
+  },
+  "bgColor": {
+    "type": "colorpicker",
+    "label": "Font color",
+    "value": "rgba(40, 40, 65, 0.8)"
+  }
 }
