@@ -107,7 +107,7 @@ let onMessage = (msg) => {
       sayMessage(res);
     };
     return;
-  } else if (gameRunning && msg.text.includes(answer.toLowerCase())) {
+  } else if (gameRunning && msg.text.toLowerCase().includes(answer)) {
     isBroadcaster = msg.badges.some(i => i.type === 'broadcaster');
     isSub = msg.tags.subscriber !== '0';
     subCheck = subMode === isSub;
@@ -127,10 +127,10 @@ let buildGame = () => {
     randAnswer = gameData[Math.floor(Math.random() * gameData.length)] || 150,
     bgImage = randAnswer.image;
 
-  answer = randAnswer.name;
+  answer = randAnswer.name.toLowerCase();
   gameRunning = true;
 
-  console.log('cheat mode:', answer.toLowerCase());
+  console.log('cheat mode:', answer);
 
   gameTimeLimitTimer = setTimeout(() => {
     gameOver();
@@ -201,7 +201,7 @@ let gameOver = (winner) => {
 
   let res = winner ? `${winner} caught ${answer}!` : `${answer} has escaped!`;
 
-  main.innerHTML = `<span id='status'>${res}</span>`
+  main.innerHTML = `<span id='status'>${res.toUpperCase()}</span>`
   if (winner) {
     savePoints(winner);
   };
