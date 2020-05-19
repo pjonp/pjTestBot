@@ -1,6 +1,5 @@
 {
   "chatCommand": "!guess",
-  "channel": "#pjonp",
   "running": false,
   "gridSize": 4,
   "gameStartDelay": 7,

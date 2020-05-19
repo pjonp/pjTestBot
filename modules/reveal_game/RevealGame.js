@@ -1,4 +1,6 @@
 let main = document.getElementById("main"),
+  autoStart = false,
+  autoLoop = false,
   chatCommand = '!guess',
   chatCommandStartLC = 'start',
   chatCommandStopLC = 'stop',
@@ -18,7 +20,7 @@ let main = document.getElementById("main"),
   gameEndDelay = 1,
   answer = '',
   gameData = [],
-  gameNumber = 0,
+  manuallyStopped = false,
   jebaitedAPIToken = 'noTokenSupplied',
   gameDataURL = 'https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json',
   isBroadcaster,
@@ -53,11 +55,13 @@ window.addEventListener('onWidgetLoad', async (obj) => {
 
   const fieldData = obj.detail.fieldData;
 
+  autoStart = fieldData.autoStartField === 'yes';
+  autoLoop = fieldData.autoLoopField === 'yes';
   chatCommand = fieldData.chatCommand || chatCommand;
   chatCommandStartLC = fieldData.chatCommandStart.toLowerCase() || chatCommandStartLC;
   chatCommandStopLC = fieldData.chatCommandStop.toLowerCase() || chatCommandStopLC;
-  modControl = fieldData.modControl === 'Yes';
-  subMode = fieldData.subMode === 'Yes';
+  modControl = fieldData.modControl === 'yes';
+  subMode = fieldData.subMode === 'yes';
   points = fieldData.points;
   logoImage = fieldData.coverImageUpload;
   gridSize = fieldData.gridSize;
@@ -70,11 +74,10 @@ window.addEventListener('onWidgetLoad', async (obj) => {
 
   await GetData(gameDataURL);
 
-  //on load for sizing
-  buildGame()
-  setTimeout(() => {
-    gameOver();
-  }, 10000);
+  //run on load?
+  if(autoStart) {
+  	buildGame();
+  };
 });
 
 //SERVER LOGIC
@@ -82,29 +85,33 @@ let onMessage = (msg) => {
   let res = '';
   if (!gameRunning && msg.text.toLowerCase().startsWith(`{chatCommand} ${chatCommandStartLC}`)) {
     isBroadcaster = msg.badges.some(i => i.type === 'broadcaster');
-    isMod = msg.badges.some(i => i.type === 'mod');
+    isMod = msg.badges.some(i => i.type === 'moderator');
     isSub = msg.tags.subscriber !== '0';
     canEdit = modControl && isMod;
     subCheck = subMode === isSub;
 
     if (isBroadcaster || canEdit) {
+      manuallyStopped = false;
       buildGame();
       res = `Game started! what is the hidden image?!`
       sayMessage(res);
     };
     return;
-  } else if (gameRunning && msg.text.toLowerCase().startsWith(`{chatCommand} ${chatCommandStopLC}`)) {
+  } else if (msg.text.toLowerCase().startsWith(`{chatCommand} ${chatCommandStopLC}`)) {
     isBroadcaster = msg.badges.some(i => i.type === 'broadcaster');
-    isMod = msg.badges.some(i => i.type === 'mod');
+    isMod = msg.badges.some(i => i.type === 'moderator');
     isSub = msg.tags.subscriber !== '0';
     canEdit = modControl && isMod;
     subCheck = subMode === isSub;
 
     if (isBroadcaster || canEdit) {
-      gameOver();
-      res = `{chatCommand} Game has been stopped.`
-      console.log(res);
-      sayMessage(res);
+      manuallyStopped = true;
+      if(gameRunning) {
+        gameOver();
+      };
+   	    res = `{chatCommand} Game has been stopped.`
+     	console.log(res);
+        sayMessage(res);
     };
     return;
   } else if (gameRunning && msg.text.toLowerCase().includes(answer)) {
@@ -199,20 +206,24 @@ let gameOver = (winner) => {
 
   gameRunning = false;
 
-  let res = winner ? `${winner} caught ${answer}!` : `${answer} has escaped!`;
+  let res = winner ? `${winner}WITHLONGNAME caught ${answer}EXTRA for {points}HP!` : `${answer} has escaped!`;
 
   main.innerHTML = `<span id='status'>${res.toUpperCase()}</span>`
   if (winner) {
     savePoints(winner);
   };
+
+  sayMessage(res);
+
   setTimeout(() => {
     if (gameRunning) return;
-    main.classList.add("hide");
+    if (!autoLoop || manuallyStopped) {
+   		main.classList.add("hide");
+    } else {
+      buildGame();
+    };
   }, gameEndDelay * 1000);
-  if (gameNumber) {
-    sayMessage(res);
-  };
-  gameNumber++
+
   return;
 };
 

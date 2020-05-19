@@ -1,0 +1,10 @@
+{
+  "chatCommand": "%clip",
+  "discordClipChannel": "1234567890123456789",
+  "enabled": true,
+  "subMode": false,
+  "users": [
+    {"name": "user1", "id": "230-49324-09"},
+    {"name": "user2", "id": "203-40923-03"}
+  ]
+}

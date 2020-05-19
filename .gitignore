@@ -2,3 +2,6 @@
 .hidden/settings.json
 
 /node_modules
+modules/twitch_clips/TwitchClipSettings.json
+modules/secret_word/SecretWordSettings.json
+modules/defuse_game/DefuseGameSettings.json

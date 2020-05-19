@@ -1,5 +1,5 @@
 
-//https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=czrx5slyrz4827q9hj48x7vky5lh58&redirect_uri=https://twitchapps.com/tmi/&scope=chat:read+chat:edit+channel:moderate+whispers:read+whispers:edit+channel_editor+clips:edit
+//https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=czrx5slyrz4827q9hj48x7vky5lh58&redirect_uri=https://twitchapps.com/tmi/&scope=chat:read+chat:edit+whispers:read+whispers:edit+clips:edit
 
 const Discord = require('discord.js'),
   Twitch = require('tmi.js'),
@@ -50,7 +50,8 @@ SE_OVERLAYS.on('connection', socket => {
 });
 
 module.exports = {
-  SE_OVERLAYS: SE_OVERLAYS
+  SE_OVERLAYS: SE_OVERLAYS,
+  DISCORDBOT: DISCORDBOT
 };
 
 /*

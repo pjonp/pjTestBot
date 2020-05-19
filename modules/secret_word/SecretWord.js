@@ -14,7 +14,7 @@ module.exports = {
     if (settings.subMode && !user.subscriber) return; //subMode
     if (regexCheck.test(message) === false) return;
     let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points),
-        res = {};
+      res = {};
     if (!updateSEPoints) { //error saving points
       res.type = 'whisper';
       res.msg = `ERROR (${settings.chatCommand}): Could not add ${settings.points} points to ${user.username}'s StreamElements account.`;
@@ -22,10 +22,10 @@ module.exports = {
       return BotResponse(TWITCHBOT, room, settings.editors[0], res);
     } else {
       res.type = 'action';
-      res.msg = `${user.username} has found ${settings.points} points by unlocking the secret "${settings.word}" word chest!`;
+      res.msg = `${user.username} has found ${settings.points}HP by unlocking the secret "${settings.word}" word chest!`;
       settings.enabled = false;
       BotResponse(TWITCHBOT, room, user.username, res);
-      return SaveSettings(TWITCHBOT, room, user.username);
+      return SaveSettings(TWITCHBOT, room, settings.editors[0]);
     };
   },
   update: async (TWITCHBOT, room, user, message) => {
@@ -45,7 +45,12 @@ module.exports = {
         } else {
           settings.word = msgA[1];
           regexBuild(settings.word);
-          res.msg = `Secret word has been set to: ${settings.word}`
+          if (msgA[2] === 'enabled') {
+              settings.enabled = true;
+              res.msg = `Secret word has been set to: ${settings.word} | GAME STARTED!`;
+          } else {
+            res.msg = `Secret word has been set to: ${settings.word}`;
+          };
         }
         break;
       case 'enabled':

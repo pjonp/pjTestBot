@@ -8,6 +8,24 @@
     "type": "image-input",
     "label": "Cover Image:"
   },
+    "autoStartField": {
+    "type": "dropdown",
+    "label": "Auto start on overlay load:",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
+    "autoLoopField": {
+    "type": "dropdown",
+    "label": "Loop game untill manually ended:",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
   "chatCommand": {
     "type": "text",
     "label": "Chat Command:",

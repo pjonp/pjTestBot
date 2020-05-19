@@ -4,10 +4,12 @@
   "D_PREFIX": "%",
   "D_TOKEN": "dflkj39sdlkj_DISCORDTOKEN_odf_sdfkljsdfj3wvvkd9o49ndkaipmf0",
   "D_BOTSTATUS": "online",
-  "D_BOTGAME": "testing mode...",
+  "D_BOTACTIVITY": "testing mode...",
   "T_BOTUSERNAME": "TWITCH_BOT_USERNAME",
   "T_OAUTHTOKEN": "oauth:dfklj_TWITCH_BOT_TOKEN_sdfkj39",
   "T_CHANNELNAME": ["youTWITCHCHANNEL"],
+  "T_CHANNELID": "##########",
+  "T_CLIENTID": "sdfkjhsdkfjlhsfdkljh",
   "SE_ACCOUNTID": "stream_elements_auccount_id",
   "SE_JWTTOKEN": "Stream Elements JW TOKEN sdfkjhsdlf;kjksl;dfjlks;jdgkjhsdkfjhkjsdfhkjsdhfkjlsdhfkjlsdhfkjlshfdkjlhslsdfuhsdufhsdkjfnksjdhfkjdshfkjlasdhfkjhsdkajfhskdjhfkjasdhfkjsdhfkjhsdkjfhksjdhfkjsdhfkjhskfjh"
 }

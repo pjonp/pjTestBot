@@ -28,7 +28,7 @@ module.exports = {
       let userPoints = await SEAPI.GetPointsFromSE(user.username)
       if (userPoints.points < settings.pointsRemove*-1 ) {
         res.type = 'action'; //TYPE: say/action/whisper: set to whisp owner on error
-        res.msg = `You do not have enough points to play this game ${user.username}. A minimum of ${settings.pointsRemove*-1} points are required!`;
+        res.msg = `You do not have enough HP to play this game ${user.username}. A minimum of ${settings.pointsRemove*-1}HP is required!`;
         res.error = true;
       } else {
         let randomWire = settings.wires[Math.floor(Math.random() * settings.wires.length)], //pick a random wire from the settings
@@ -42,10 +42,10 @@ module.exports = {
         } else { //POINTS SAVED SUCCESSFULLY
           if (winner) { //if winner
             res.type = 'action';
-            res.msg = `You cut the correct wire ${user.username}! You've gained ${points} points!`;
+            res.msg = `You cut the correct wire ${user.username}! You've gained ${points}HP!`;
           } else { // if lost
             res.type = 'action';
-            res.msg = `You cut the wrong wire ${user.username} :( You've lost ${Math.abs(points)} points!`;
+            res.msg = `You cut the wrong wire ${user.username} :( You've lost ${Math.abs(points)}HP!`;
           };
         };
       };

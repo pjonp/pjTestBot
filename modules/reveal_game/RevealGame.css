@@ -21,8 +21,8 @@
   align-items: center;
   justify-content: center;
   left: 0px;
-  top: 350px;
-  height: 100px;
+  top: 330px;
+  height: 140px;
   width: 800px;
   background-color: {{bgColor}};
   border-top: 5px solid black;
