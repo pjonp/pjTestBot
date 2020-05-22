@@ -43,14 +43,11 @@ module.exports = {
           res.msg = `Error: ${settings.chatCommand} word <TRIGGERWORD>`;
           res.error = true;
         } else {
-          settings.word = msgA[1];
+          msgA.shift();
+          settings.word = msgA.join(' ');
+          settings.enabled = true;
           regexBuild(settings.word);
-          if (msgA[2] === 'enabled') {
-              settings.enabled = true;
-              res.msg = `Secret word has been set to: ${settings.word} | GAME STARTED!`;
-          } else {
-            res.msg = `Secret word has been set to: ${settings.word}`;
-          };
+          res.msg = `Secret word has been set to: ${settings.word} | GAME STARTED!`;
         }
         break;
       case 'enabled':

@@ -206,7 +206,7 @@ let gameOver = (winner) => {
 
   gameRunning = false;
 
-  let res = winner ? `${winner}WITHLONGNAME caught ${answer}EXTRA for {points}HP!` : `${answer} has escaped!`;
+  let res = winner ? `${winner} caught ${answer} for {points}HP!` : `${answer} has escaped!`;
 
   main.innerHTML = `<span id='status'>${res.toUpperCase()}</span>`
   if (winner) {
@@ -217,10 +217,9 @@ let gameOver = (winner) => {
 
   setTimeout(() => {
     if (gameRunning) return;
-    if (!autoLoop || manuallyStopped) {
-   		main.classList.add("hide");
-    } else {
-      buildGame();
+    	main.classList.add("hide");
+    if (autoLoop && !manuallyStopped) {
+   		setTimeout( () => buildGame(), 1000);
     };
   }, gameEndDelay * 1000);
 

@@ -17,7 +17,7 @@ module.exports = {
     msgA.shift(); //REMOVE COMMAND FROM MESSAGE
     if (!settings.wires.some(i => i === msgA[0])) { //if INVALID wire
       res.type = 'action';
-      res.msg = msgA[0] ? `There is no ${msgA[0]} wire ${user.username} :thinking: Wires are: ${settings.wires}` : `Pick a wire ${user.username}:thinking: Wires options are: ${settings.wires}`
+      res.msg = msgA[0] ? `There is no ${msgA[0]} wire ${user.username} :thinking: Wires are: ${settings.wires}` : `Pick a wire ${user.username} :thinking: Wires options are: ${settings.wires}`
     } else {
       //start cooldown
       onCooldown = true; //enable cooldown

@@ -34,7 +34,7 @@ const path = require("path"),
         .then(async response => {
           if (!response.ok) {
             console.log(await response.json());
-            throw new Error()
+            throw new Error();
           };
           return response.json();
         })
@@ -69,7 +69,6 @@ const path = require("path"),
           }
           console.log('Successfully Bulk Updated Leaderboard')
           return response.text();
-      //    return true;
         })
         .catch(error => {
           console.error('Error Saving Bulk Points:', error)

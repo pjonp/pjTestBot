@@ -1,8 +1,9 @@
 
-//https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=czrx5slyrz4827q9hj48x7vky5lh58&redirect_uri=https://twitchapps.com/tmi/&scope=chat:read+chat:edit+whispers:read+whispers:edit+clips:edit
-
+// BOT OAUTH LINK https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=   CLIENTID   &redirect_uri=https://twitchapps.com/tmi/&scope=chat:read+chat:edit+whispers:read+whispers:edit+clips:edit+channel:moderate
+// YOUR OAUTH LINK BOT OAUTH LINK https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=   CLIENTID   &redirect_uri=https://twitchapps.com/tmi/&scope=clips:edit+channel:read:redemptions
 const Discord = require('discord.js'),
   Twitch = require('tmi.js'),
+  TwitchPS = require('twitchps'),
   SETTINGS = require('./.hidden/settings.json'),
   DISCORDBOT = new Discord.Client(),
   D_OWNERNAME = SETTINGS.D_OWNERNAME, //lowercase
@@ -22,18 +23,19 @@ const TWITCHBOT = new Twitch.client(
   connection: { reconnect: true },
   identity: {
     username: SETTINGS.T_BOTUSERNAME,
-    password: SETTINGS.T_OAUTHTOKEN
+    password: `oauth:${SETTINGS.T_BOTOAUTHTOKEN}`
   },
-  channels: SETTINGS.T_CHANNELNAME
+  channels: [SETTINGS.T_CHANNELNAME]
 });
 
 TWITCHBOT.connect().catch((err) => {
     console.log('****Twitch Connection Error:', err);
 });
 
-
-require('./util/DiscordEventLoader')(DISCORDBOT);
-require('./util/TwitchEventLoader')(TWITCHBOT);
+//Twitch PubSub
+//Initial topics are required
+const init_topics = [{topic: `video-playback.${SETTINGS.T_CHANNELNAME}`}, {topic: `channel-points-channel-v1.${SETTINGS.T_CHANNELID}`, token: ${SETTINGS.T_OAUTHTOKEN}} /*, {topic: `whispers.${SETTINGS.T_BOTCHANNELID}`, token: SETTINGS.T_BOTOAUTHTOKEN} */  ],
+  TWITCHPUBSUB = new TwitchPS({init_topics: init_topics, reconnect: true, debug: true});
 
 //Stream Elements overlays
 SE_OVERLAYS.on('connection', socket => {
@@ -41,43 +43,16 @@ SE_OVERLAYS.on('connection', socket => {
   socket.on('overlayLoaded', overlay => {
     console.log(`***Overlay Loaded: ${overlay}`);
   });
-
-
   socket.on('saveSEPoints', (username) => {
     console.log(`***saving points for: ${username}`);
   });
-
 });
+
+require('./util/DiscordEventLoader')(DISCORDBOT);
+require('./util/TwitchEventLoader')(TWITCHBOT);
+require('./util/TwitchPubSubEventLoader')(TWITCHPUBSUB, TWITCHBOT, SETTINGS.T_CHANNELNAME);
 
 module.exports = {
   SE_OVERLAYS: SE_OVERLAYS,
   DISCORDBOT: DISCORDBOT
 };
-
-/*
-const fetch = require('node-fetch'),
-setup = require('./.hidden/settings.json');
-let test = () => {
-  return fetch(`https://api.twitch.tv/helix/streams?user_login=maxmagus`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${setup.T_OAUTHTOKEN.replace('oauth:', '')}`,
-      'Client-ID': setup.T_CLIENTID
-   },
-  })
-  .then(async response => {
-    if (!response.ok) {
-      console.log(await response.json());
-      throw new Error();
-    };
-    console.log(await response.json());
-  })
-  .catch(error => {
-    console.error(`Error`)
-    return false;
-  });
-};
-setTimeout( () => test(), 3000);
-
-*/

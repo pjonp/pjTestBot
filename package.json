@@ -1,6 +1,6 @@
 {
   "name": "pjtestbot",
-  "version": "1.0.1",
+  "version": "2.0.1",
   "description": "pj's test bot",
   "main": "pjtestbot.js",
   "scripts": {
@@ -12,6 +12,7 @@
     "discord.js": "^12",
     "node-fetch": "^2.6.0",
     "socket.io": "^2.3.0",
-    "tmi.js": "^1.5.0"
+    "tmi.js": "^1.5.0",
+    "twitchps": "^1.5.0"
   }
 }

@@ -5,7 +5,7 @@
   "pointsAdd": 123,
   "pointsRemove": -97,
   "editors": [
-    "YOURNAME",
+    "your_twitch_name",
     "user2"
   ],
   "wires": [
