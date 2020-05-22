@@ -1,11 +1,15 @@
 const fs = require('fs'),
   path = require("path"),
   SettingsFile = path.resolve(__dirname, './WordLadderSettings.json'),
-  SEAPI = require('../../util/StreamElementsAPI.js');
+  SEAPI = require('../../util/StreamElementsAPI.js'),
+  Words = require('./WordLadderDatabase.json');
 let settings = JSON.parse(fs.readFileSync(SettingsFile)),
   regexCheck,
   regexBuild = (word) => regexCheck = new RegExp(`((?<=\\s|^))(${word})(?!\\w)`, "i"), //regex filter
-  userObj = {};
+  userObj = {},
+  randomTime = () => Math.floor((Math.random()*(settings.randomTimeMax-settings.randomTimeMin) + settings.randomTimeMin)),
+  randomGameTimer;
+
 regexBuild(settings.word);
 
 module.exports = {
@@ -17,6 +21,10 @@ module.exports = {
       return;
     }
     userObj[user.username] ? userObj[user.username] += message : userObj[user.username] = message;
+    if(!settings.word.startsWith(userObj[user.username])) {
+      userObj[user.username] = ''
+      return;
+    }
     if (regexCheck.test(userObj[user.username]) === false) return;
     let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points),
       res = {};
@@ -31,6 +39,7 @@ module.exports = {
       settings.enabled = false;
       userObj = {};
       BotResponse(TWITCHBOT, room, user.username, res);
+      randomGame(TWITCHBOT, room);
       return SaveSettings(TWITCHBOT, room, settings.editors[0]);
     };
   },
@@ -51,14 +60,20 @@ module.exports = {
         } else {
           settings.word = msgA[1];
           settings.enabled = true;
+          clearTimeout(randomGameTimer);
           regexBuild(settings.word);
           res.msg = `Word Ladder has been set to: ${settings.word} | GAME STARTED!`;
+          BotResponse(TWITCHBOT, room, user.username, {type: 'action', msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn 200 HP! The Word is ${settings.word.toUpperCase()} PogChamp`});
         }
         break;
       case 'enabled':
         if (msgA[1] === 'true' || msgA[1] === 'false') {
           settings.enabled = (msgA[1] === 'true');
+          clearTimeout(randomGameTimer);
           res.msg = `Word Ladder has been: ${settings.enabled ? 'ENABLED!' : 'DISABLED!'}`;
+          if(settings.enabled){
+            BotResponse(TWITCHBOT, room, user.username, {type: 'action', msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn 200 HP! The Word is ${settings.word.toUpperCase()} PogChamp`});
+          };
         } else {
           res.msg = `Error: ${settings.chatCommand} enabled < true | false >`;
           res.error = true;
@@ -158,4 +173,13 @@ const BotResponse = (TWITCHBOT, room, username, res) => {
     });
   };
   return res;
+};
+
+let randomGame = (TWITCHBOT, room) => {
+  randomGameTimer = setTimeout( () => {
+    let randWord = Words[Math.floor(Math.random()*Words.length)],
+      message = `${settings.chatCommand} word ${randWord}`,
+      user = {username: settings.editors[0]}
+    module.exports.update(TWITCHBOT, room, user, message);
+  }, randomTime()*1000);
 };

@@ -48,6 +48,7 @@ module.exports = {
           settings.enabled = true;
           regexBuild(settings.word);
           res.msg = `Secret word has been set to: ${settings.word} | GAME STARTED!`;
+          BotResponse(TWITCHBOT, room, user.username, {type: 'action', msg: `PogChamp Theres a secret word thats hiding in the chat! This HP Box is hidden really well! Can Anyone find it? PogChamp`});
         }
         break;
       case 'enabled':
