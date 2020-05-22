@@ -34,7 +34,7 @@ TWITCHBOT.connect().catch((err) => {
 
 //Twitch PubSub
 //Initial topics are required
-const init_topics = [{topic: `video-playback.${SETTINGS.T_CHANNELNAME}`}, {topic: `channel-points-channel-v1.${SETTINGS.T_CHANNELID}`, token: ${SETTINGS.T_OAUTHTOKEN}} /*, {topic: `whispers.${SETTINGS.T_BOTCHANNELID}`, token: SETTINGS.T_BOTOAUTHTOKEN} */  ],
+const init_topics = [{topic: `video-playback.${SETTINGS.T_CHANNELNAME}`}, {topic: `channel-points-channel-v1.${SETTINGS.T_CHANNELID}`, token: SETTINGS.T_OAUTHTOKEN} /*, {topic: `whispers.${SETTINGS.T_BOTCHANNELID}`, token: SETTINGS.T_BOTOAUTHTOKEN} */  ],
   TWITCHPUBSUB = new TwitchPS({init_topics: init_topics, reconnect: true, debug: true});
 
 //Stream Elements overlays

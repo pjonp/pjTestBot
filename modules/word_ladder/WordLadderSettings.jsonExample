@@ -1,5 +1,5 @@
 {
-  "chatCommand": "!secretword",
+  "chatCommand": "!wordladder",
   "word": "testword",
   "enabled": false,
   "subMode": false,

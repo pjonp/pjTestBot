@@ -6,3 +6,4 @@ modules/twitch_clips/TwitchClipSettings.json
 modules/secret_word/SecretWordSettings.json
 modules/defuse_game/DefuseGameSettings.json
 events/logFile.json
+modules/word_ladder/WordLadderSettings.json
