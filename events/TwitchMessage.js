@@ -37,9 +37,7 @@ module.exports = (TWITCHBOT, room, user, message, self) => {
   // -----End WordLadder-----
 
   // -----Reveal Game--------
-
   /* Moved to STREAM ELEMENTS OVERLAY!!
-
   if (message.startsWith(RevealGame.settings.chatCommand)) {
       if (user['message-type'] === 'whisper') {
       RevealGame.update(TWITCHBOT, room, user, message);
@@ -48,7 +46,6 @@ module.exports = (TWITCHBOT, room, user, message, self) => {
     };
   };
   */
-
   // -----End Reveal Game----
 
   // -----Twitch Clips -----
@@ -100,3 +97,10 @@ module.exports = (TWITCHBOT, room, user, message, self) => {
   };
 
 };
+
+/*
+let canEdit = WordLadder.settings.modControl && user.mod;
+if (user.badges.broadcaster || canEdit) {
+  WordLadder.update(TWITCHBOT, room, user, message);
+};
+*/

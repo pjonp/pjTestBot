@@ -5,9 +5,11 @@ const fs = require('fs'),
   Words = require('./WordLadderDatabase.json');
 let settings = JSON.parse(fs.readFileSync(SettingsFile)),
   regexCheck,
-  regexBuild = (word) => regexCheck = new RegExp(`((?<=\\s|^))(${word})(?!\\w)`, "i"), //regex filter
-  userObj = {},
-  randomTime = () => Math.floor((Math.random()*(settings.randomTimeMax-settings.randomTimeMin) + settings.randomTimeMin)),
+  regexBuild = (word) => regexCheck = new RegExp(`((?<=\\s|^))(${word})(?!\\w)`, "i"),
+  wordProgress = '',
+  newGame = true,
+  lastChatter,
+  randomTime = () => Math.floor((Math.random() * (settings.randomTimeMax - settings.randomTimeMin) + settings.randomTimeMin)),
   randomGameTimer;
 
 regexBuild(settings.word);
@@ -16,16 +18,20 @@ module.exports = {
   settings: settings,
   main: async (TWITCHBOT, room, user, message) => {
     if (settings.subMode && !user.subscriber) return; //subMode
-    if(message.length > 1) {
-      userObj[user.username] = ''
+    if (message.length > 1 || lastChatter !== user.username) {
+      wordProgress = '';
+      lastChatter = user.username;
+      if (!newGame) {
+        newGame = false;
+        return;
+      };
+    }
+    wordProgress += message;
+    if (!settings.word.startsWith(wordProgress)) {
+      wordProgress = '';
       return;
     }
-    userObj[user.username] ? userObj[user.username] += message : userObj[user.username] = message;
-    if(!settings.word.startsWith(userObj[user.username])) {
-      userObj[user.username] = ''
-      return;
-    }
-    if (regexCheck.test(userObj[user.username]) === false) return;
+    if (regexCheck.test(wordProgress) === false) return;
     let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points),
       res = {};
     if (!updateSEPoints) { //error saving points
@@ -37,7 +43,7 @@ module.exports = {
       res.type = 'action';
       res.msg = `${user.username} has built the "${settings.word}" ladder for ${settings.points}HP!`;
       settings.enabled = false;
-      userObj = {};
+      wordProgress = '';
       BotResponse(TWITCHBOT, room, user.username, res);
       randomGame(TWITCHBOT, room);
       return SaveSettings(TWITCHBOT, room, settings.editors[0]);
@@ -60,19 +66,29 @@ module.exports = {
         } else {
           settings.word = msgA[1];
           settings.enabled = true;
+          wordProgress = '';
+          newGame = true;
           clearTimeout(randomGameTimer);
           regexBuild(settings.word);
           res.msg = `Word Ladder has been set to: ${settings.word} | GAME STARTED!`;
-          BotResponse(TWITCHBOT, room, user.username, {type: 'action', msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn 200 HP! The Word is ${settings.word.toUpperCase()} PogChamp`});
+          BotResponse(TWITCHBOT, room, user.username, {
+            type: 'action',
+            msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn ${settings.points} HP! The Word is ${settings.word.toUpperCase()} PogChamp`
+          });
         }
         break;
       case 'enabled':
         if (msgA[1] === 'true' || msgA[1] === 'false') {
           settings.enabled = (msgA[1] === 'true');
+          wordProgress = '';
+          newGame = true;
           clearTimeout(randomGameTimer);
           res.msg = `Word Ladder has been: ${settings.enabled ? 'ENABLED!' : 'DISABLED!'}`;
-          if(settings.enabled){
-            BotResponse(TWITCHBOT, room, user.username, {type: 'action', msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn 200 HP! The Word is ${settings.word.toUpperCase()} PogChamp`});
+          if (settings.enabled) {
+            BotResponse(TWITCHBOT, room, user.username, {
+              type: 'action',
+              msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn ${settings.points} HP! The Word is ${settings.word.toUpperCase()} PogChamp`
+            });
           };
         } else {
           res.msg = `Error: ${settings.chatCommand} enabled < true | false >`;
@@ -155,7 +171,8 @@ const SaveSettings = (TWITCHBOT, room, username) => {
     console.error(res.msg);
     res.error = true;
   };
-  return BotResponse(TWITCHBOT, room, username, res);
+  if (res.error) BotResponse(TWITCHBOT, room, username, res);
+  return;
 };
 
 const BotResponse = (TWITCHBOT, room, username, res) => {
@@ -176,10 +193,12 @@ const BotResponse = (TWITCHBOT, room, username, res) => {
 };
 
 let randomGame = (TWITCHBOT, room) => {
-  randomGameTimer = setTimeout( () => {
-    let randWord = Words[Math.floor(Math.random()*Words.length)],
+  randomGameTimer = setTimeout(() => {
+    let randWord = Words[Math.floor(Math.random() * Words.length)],
       message = `${settings.chatCommand} word ${randWord}`,
-      user = {username: settings.editors[0]}
+      user = {
+        username: settings.editors[0]
+      }
     module.exports.update(TWITCHBOT, room, user, message);
-  }, randomTime()*1000);
+  }, randomTime() * 1000);
 };

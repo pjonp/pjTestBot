@@ -136,7 +136,8 @@ const SaveSettings = (TWITCHBOT, room, username) => {
     console.error(res.msg);
     res.error = true;
   };
-  return BotResponse(TWITCHBOT, room, username, res);
+  if (res.error) BotResponse(TWITCHBOT, room, username, res);
+  return;
 };
 
 const BotResponse = (TWITCHBOT, room, username, res) => {
