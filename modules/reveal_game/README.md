@@ -51,6 +51,10 @@
 ###### Winner Points:
 - Stream Element points given to winner
 
+###### Announce Messages to Chat:
+- Yes: Bot will send messages to chatroom
+- No: Bot will **not** send messages to chatroom
+
 ###### Chat Winner Text:
 - Text bot will send to chat with a winner:
 -- {user}, {points}, & {answer} are variables
