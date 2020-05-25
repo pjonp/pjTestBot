@@ -1,50 +1,113 @@
 {
-  "jebaitedToken": {
-    "type": "text",
-    "label": "https://jebaited.net/tokens/ ->",
-    "value": "need: addPoints + botMsg"
-  },
   "coverImageUpload": {
     "type": "image-input",
-    "label": "Cover Image:"
+    "label": "Cover Image:",
+    "group": "Basic Setup"
   },
-    "autoStartField": {
+  "fontColor": {
+    "type": "colorpicker",
+    "label": "Font color",
+    "value": "rgba(60, 215, 30, 0.8)",
+    "group": "Basic Setup"
+  },
+  "bgColor": {
+    "type": "colorpicker",
+    "label": "Background color",
+    "value": "rgba(40, 40, 65, 0.8)",
+    "group": "Basic Setup"
+  },
+  "databaseURL": {
+    "type": "text",
+    "label": "Database file:",
+    "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json",
+    "group": "Basic Setup"
+  },
+  "chatCommand": {
+    "type": "text",
+    "label": "Chat Command:",
+    "value": "!guess",
+    "group": "Basic Setup"
+  },
+  "chatCommandStart": {
+    "type": "text",
+    "label": "Chat Command Arg to Start:",
+    "value": "start",
+    "group": "Basic Setup"
+  },
+  "chatCommandStop": {
+    "type": "text",
+    "label": "Chat Command Arg to Stop:",
+    "value": "stop",
+    "group": "Basic Setup"
+  },
+  "overlayWinner": {
+    "type": "text",
+    "label": "Overlay Winner Text:",
+    "value": "{user} caught {answer} for {points} points!",
+    "group": "Basic Setup"
+  },
+  "overlayTimeout": {
+    "type": "text",
+    "label": "Overlay Timeout Text:",
+    "value": "{answer} escaped!",
+    "group": "Basic Setup"
+  },
+    "jebaitedToken": {
+    "type": "text",
+    "label": "https://jebaited.net/tokens/ ->",
+    "value": "need: addPoints + botMsg",
+    "group": "Middleware Setup"
+  },
+  "reward": {
+    "type": "slider",
+    "label": "Winner Points:",
+    "value": 100,
+    "min": 0,
+    "max": 500,
+    "step": 1,
+    "group": "Middleware Setup"
+  },
+  "chatAnnounce": {
+    "type": "dropdown",
+    "label": "Announce message to chat:",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Middleware Setup"
+  },
+  "responseWinner": {
+    "type": "text",
+    "label": "Chat Winner Text:",
+    "value": "{user} caught {answer} PorscheWIN",
+    "group": "Middleware Setup"
+  },
+  "responseTimeout": {
+    "type": "text",
+    "label": "Chat Timeout Text:",
+    "value": "No one in caht was able to catch {answer}! NotLikeThis",
+    "group": "Middleware Setup"
+  },
+  "autoStartField": {
     "type": "dropdown",
     "label": "Auto start on overlay load:",
     "value": "yes",
     "options": {
       "yes": "Yes",
       "no": "No"
-    }
+    },
+    "group": "Gameplay Settings"
   },
-    "autoLoopField": {
+  "autoLoopField": {
     "type": "dropdown",
     "label": "Loop game untill manually ended:",
     "value": "no",
     "options": {
       "yes": "Yes",
       "no": "No"
-    }
-  },
-  "chatCommand": {
-    "type": "text",
-    "label": "Chat Command:",
-    "value": "!guess"
-  },
-  "chatCommandStart": {
-    "type": "text",
-    "label": "Chat Command Arg to Start:",
-    "value": "start"
-  },
-  "chatCommandStop": {
-    "type": "text",
-    "label": "Chat Command Arg to Stop:",
-    "value": "stop"
-  },
-  "databaseURL": {
-    "type": "text",
-    "label": "Database file:",
-    "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json"
+    },
+    "group": "Gameplay Settings"
   },
   "modControl": {
     "type": "dropdown",
@@ -53,7 +116,8 @@
     "options": {
       "yes": "Yes",
       "no": "No"
-    }
+    },
+    "group": "Gameplay Settings"
   },
   "subMode": {
     "type": "dropdown",
@@ -62,64 +126,52 @@
     "options": {
       "yes": "Yes",
       "no": "No"
-    }
-  },
-  "points": {
-    "type": "slider",
-    "label": "Winner Points:",
-    "value": 100,
-    "min": 0,
-    "max": 500,
-    "step": 1
+    },
+    "group": "Gameplay Settings"
   },
   "gridSize": {
     "type": "slider",
     "label": "Grid size (# x #)",
     "value": 5,
     "min": 2,
-    "max": 50,
-    "step": 1
+    "max": 25,
+    "step": 1,
+    "group": "Gameplay Settings"
   },
   "gameStartDelay": {
     "type": "slider",
     "label": "Countdown to start the game:",
-    "value": 5,
+    "value": 10,
     "min": 1,
-    "max": 60,
-    "step": 1
+    "max": 30,
+    "step": 1,
+    "group": "Gameplay Settings"
   },
   "roundDelay": {
     "type": "slider",
     "label": "Delay between reveals:",
     "value": 1.5,
     "min": 0.1,
-    "max": 15,
-    "step": 0.1
+    "max": 10,
+    "step": 0.1,
+    "group": "Gameplay Settings"
   },
   "gameTimeout": {
     "type": "slider",
     "label": "Time allowed when full image is shown:",
     "value": 10,
     "min": 1,
-    "max": 60,
-    "step": 1
+    "max": 30,
+    "step": 1,
+    "group": "Gameplay Settings"
   },
   "gameEndDelay": {
     "type": "slider",
-    "label": "Gameover screen timeout:",
+    "label": "Gameover display time:",
     "value": 10,
     "min": 1,
-    "max": 60,
-    "step": 1
-  },
-  "fontColor": {
-    "type": "colorpicker",
-    "label": "Font color",
-    "value": "rgba(60, 215, 30, 0.8)"
-  },
-  "bgColor": {
-    "type": "colorpicker",
-    "label": "Font color",
-    "value": "rgba(40, 40, 65, 0.8)"
+    "max": 30,
+    "step": 1,
+    "group": "Gameplay Settings"
   }
 }

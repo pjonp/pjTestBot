@@ -1,33 +1,19 @@
 let main = document.getElementById("main"),
-  autoStart = false,
-  autoLoop = false,
+  logoImage,
+  gameDataURL = 'https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json',
   chatCommand = '!guess',
   chatCommandStartLC = 'start',
   chatCommandStopLC = 'stop',
-  modControl = false,
-  subMode = false,
-  points = 97,
-  roundTimer,
-  countdownInterval,
-  startGameTimer,
-  gameTimeLimitTimer,
-  gameRunning = false,
-  logoImage = `https://cdn.streamelements.com/uploads/02176cd6-828a-4fb9-8b25-cf0c34967f50.jpg`,
-  gridSize = 6,
-  gameStartDelay = 30,
-  roundDelay = 1,
-  gameTimeout = 1,
-  gameEndDelay = 1,
   answer = '',
   gameData = [],
+  gameRunning = false,
   manuallyStopped = false,
-  jebaitedAPIToken = 'noTokenSupplied',
-  gameDataURL = 'https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/RevealGameDataBase.json',
-  isBroadcaster,
-  isMod,
-  isSub,
-  canEdit,
-  subCheck;
+  isBroadcaster, isMod, isSub, canEdit, subCheck,
+  roundTimer, countdownInterval, startGameTimer, gameTimeLimitTimer,
+  autoStart, autoLoop, modControl, subMode,
+  overlayWin, overlayFail,
+  gridSize, gameStartDelay, roundDelay, gameTimeout, gameEndDelay,
+  jebaitedAPIToken, points, sayToChat, responseWin, responseFail;
 
 const GetData = (dbURL) => {
   return fetch(dbURL)
@@ -41,7 +27,6 @@ const GetData = (dbURL) => {
 };
 
 //EVENTS
-
 window.addEventListener('onEventReceived', (obj) => {
   const event = obj.detail.listener;
   if (event !== 'message') {
@@ -55,28 +40,35 @@ window.addEventListener('onWidgetLoad', async (obj) => {
 
   const fieldData = obj.detail.fieldData;
 
-  autoStart = fieldData.autoStartField === 'yes';
-  autoLoop = fieldData.autoLoopField === 'yes';
+  logoImage = fieldData.coverImageUpload;
+  gameDataURL = fieldData.databaseURL || gameDataURL;
   chatCommand = fieldData.chatCommand || chatCommand;
   chatCommandStartLC = fieldData.chatCommandStart.toLowerCase() || chatCommandStartLC;
   chatCommandStopLC = fieldData.chatCommandStop.toLowerCase() || chatCommandStopLC;
+  overlayWin = fieldData.overlayWinner;
+  overlayFail = fieldData.overlayTimeout;
+
+  jebaitedAPIToken = fieldData.jebaitedToken;
+  points = fieldData.reward;
+  responseWin = fieldData.responseWinner;
+  responseFail = fieldData.responseTimeout;
+  sayToChat = fieldData.chatAnnounce === 'yes';
+
+  autoStart = fieldData.autoStartField === 'yes';
+  autoLoop = fieldData.autoLoopField === 'yes';
   modControl = fieldData.modControl === 'yes';
   subMode = fieldData.subMode === 'yes';
-  points = fieldData.points;
-  logoImage = fieldData.coverImageUpload;
   gridSize = fieldData.gridSize;
   gameStartDelay = fieldData.gameStartDelay;
   roundDelay = fieldData.roundDelay;
   gameTimeout = fieldData.gameTimeout;
   gameEndDelay = fieldData.gameEndDelay;
-  jebaitedAPIToken = fieldData.jebaitedToken;
-  gameDataURL = fieldData.databaseURL || gameDataURL;
 
   await GetData(gameDataURL);
 
   //run on load?
-  if(autoStart) {
-  	buildGame();
+  if (autoStart) {
+    buildGame();
   };
 });
 
@@ -106,12 +98,12 @@ let onMessage = (msg) => {
 
     if (isBroadcaster || canEdit) {
       manuallyStopped = true;
-      if(gameRunning) {
+      if (gameRunning) {
         gameOver();
       };
-   	    res = `{chatCommand} Game has been stopped.`
-     	console.log(res);
-        sayMessage(res);
+      res = `{chatCommand} Game has been stopped.`
+      console.log(res);
+      sayMessage(res);
     };
     return;
   } else if (gameRunning && msg.text.toLowerCase().includes(answer)) {
@@ -205,21 +197,21 @@ let gameOver = (winner) => {
   clearTimeout(gameTimeLimitTimer);
 
   gameRunning = false;
-
-  let res = winner ? `${winner} caught ${answer} for {points}HP!` : `${answer} has escaped!`;
-
+  let res = winner ? overlayWin.replace("{user}", winner).replace("{answer}", answer).replace("{points}", points) : overlayFail.replace("{answer}", answer).replace("{points}", points)
   main.innerHTML = `<span id='status'>${res.toUpperCase()}</span>`
+  if (sayToChat) {
+    res = winner ? responseWin.replace("{user}", winner).replace("{answer}", answer).replace("{points}", points) : responseFail.replace("{answer}", answer).replace("{points}", points)
+    sayMessage(res);
+  };
   if (winner) {
     savePoints(winner);
   };
 
-  sayMessage(res);
-
   setTimeout(() => {
     if (gameRunning) return;
-    	main.classList.add("hide");
+    main.classList.add("hide");
     if (autoLoop && !manuallyStopped) {
-   		setTimeout( () => buildGame(), 1000);
+      setTimeout(() => buildGame(), 1000);
     };
   }, gameEndDelay * 1000);
 
@@ -228,21 +220,13 @@ let gameOver = (winner) => {
 
 //lx API
 const savePoints = (username) => {
-  /*
-  socket.emit('saveSEPoints',
-              {
-    			'username': username,
-    			'points': points
- 			 }
-   );
-   */
-  fetch(`https://api.jebaited.net/addPoints/${jebaitedAPIToken}/${username}/{points}`)
+  fetch(`https://api.jebaited.net/addPoints/${jebaitedAPIToken}/${username}/${points}`)
     .catch(error => {
       console.error(`Error saving points`)
     });
 };
-
 const sayMessage = (message) => {
+  if (!sayToChat) return;
   message = encodeURIComponent(message);
   fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/${message}`)
     .catch(error => {
