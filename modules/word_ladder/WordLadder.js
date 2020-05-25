@@ -19,39 +19,36 @@ module.exports = {
   main: async (TWITCHBOT, room, user, message) => {
     if (settings.subMode && !user.subscriber) { //subMode
       return;
-    } else if( lastChatter === '') {
+    } else if (lastChatter === '') {
       lastChatter = user.username;
     };
-
     if (message.length > 1 || lastChatter !== user.username) {
       wordProgress = '';
       lastChatter = user.username;
       return;
     };
-
     wordProgress += message;
     if (!settings.word.startsWith(wordProgress)) {
       wordProgress = '';
       return;
     }
     if (regexCheck.test(wordProgress) === false) return;
-    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points),
-      res = {};
+    let res = {
+      type: 'action',
+      msg: `${user.username} has built the "${settings.word}" ladder for ${settings.points}HP!`
+    };
+    settings.enabled = false;
+    wordProgress = '';
+    lastChatter = '';
+    BotResponse(TWITCHBOT, room, user.username, res);
+    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points);
     if (!updateSEPoints) { //error saving points
       res.type = 'whisper';
-      res.msg = `ERROR (${settings.chatCommand}): Could not add ${settings.points} points to ${user.username}'s StreamElements account.`;
+      res.msg = `***ERROR: (${settings.chatCommand}): Could not add ${settings.points} points to ${user.username}'s StreamElements account.`;
       console.log(res.msg);
-      return BotResponse(TWITCHBOT, room, settings.editors[0], res);
-    } else {
-      res.type = 'action';
-      res.msg = `${user.username} has built the "${settings.word}" ladder for ${settings.points}HP!`;
-      settings.enabled = false;
-      wordProgress = '';
-      lastChatter = '';
-      BotResponse(TWITCHBOT, room, user.username, res);
-      randomGame(TWITCHBOT, room);
-      return SaveSettings(TWITCHBOT, room, settings.editors[0]);
+      BotResponse(TWITCHBOT, room, settings.editors[0], res);
     };
+    return randomGame(TWITCHBOT, room);
   },
   update: async (TWITCHBOT, room, user, message) => {
     if (!settings.editors.some(i => i === user.username)) return;

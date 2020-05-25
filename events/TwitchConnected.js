@@ -1,5 +1,5 @@
 module.exports = TWITCHBOT => {
   setTimeout(() => {
-  console.log('+++PJ TEST BOT CONNECTED TO TWITCH CHANNELS', TWITCHBOT.getChannels());
-},1500)
+  console.log('+++PJ TEST BOT CONNECTED TO TWITCH CHANNEL:', TWITCHBOT.getChannels());
+},1000)
 }

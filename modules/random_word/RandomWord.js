@@ -15,26 +15,21 @@ module.exports = {
   settings: settings,
   main: async (TWITCHBOT, room, user, message) => {
     if (settings.subMode && !user.subscriber) return; //subMode
-
     if (regexCheck.test(message) === false) return;
-    console.log('a');
-    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points),
-      res = {};
+    let res = {
+      type: 'action',
+      msg: `${user.username} is quick! GivePLZ ${settings.points}HP for typing ${settings.word} first!`
+    };
+    settings.enabled = false;
+    BotResponse(TWITCHBOT, room, user.username, res);
+    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points);
     if (!updateSEPoints) { //error saving points
       res.type = 'whisper';
-      res.msg = `ERROR (${settings.chatCommand}): Could not add ${settings.points} points to ${user.username}'s StreamElements account.`;
+      res.msg = `***ERROR: (${settings.chatCommand}): Could not add ${settings.points} points to ${user.username}'s StreamElements account.`;
       console.log(res.msg);
-      return BotResponse(TWITCHBOT, room, settings.editors[0], res);
-    } else {
-      res.type = 'action';
-      res.msg = `${user.username} is quick! GivePLZ ${settings.points}HP for typing ${settings.word} first!`;
-      settings.enabled = false;
-      console.log('b');
-      BotResponse(TWITCHBOT, room, user.username, res);
-      console.log('c');
-      randomGame(TWITCHBOT, room);
-      return SaveSettings(TWITCHBOT, room, settings.editors[0]);
+      BotResponse(TWITCHBOT, room, settings.editors[0], res);
     };
+    return randomGame(TWITCHBOT, room);
   },
   update: async (TWITCHBOT, room, user, message) => {
     if (!settings.editors.some(i => i === user.username)) return;

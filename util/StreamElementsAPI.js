@@ -39,7 +39,7 @@ const path = require("path"),
           return response.json();
         })
         .catch(error => {
-          console.error(`Error Saving/Removing Points for ${username}`)
+          console.error(`Error Saving/Removing ${points} Points for ${username}`)
           return false;
         });
     },
