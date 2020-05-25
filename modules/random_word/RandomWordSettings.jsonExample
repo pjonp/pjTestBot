@@ -1,0 +1,13 @@
+{
+  "chatCommand": "!randomword",
+  "word": "testword",
+  "enabled": false,
+  "subMode": false,
+  "points": 123,
+  "randomTimeMin": 1200,
+  "randomTimeMax": 1800,
+  "editors": [
+    "your_twitch_name",
+    "user2"
+  ]
+}

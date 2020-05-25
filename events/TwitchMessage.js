@@ -2,6 +2,7 @@ const setup = require('../.hidden/settings.json'),
   SecretWord = require('../modules/secret_word/SecretWord.js'),
   DefuseGame = require('../modules/defuse_game/DefuseGame.js'),
   WordLadder = require('../modules/word_ladder/WordLadder.js'),
+  RandomWord = require('../modules/random_word/RandomWord.js'),
   // moved to StreamElements  Overlay
   //  RevealGame = require('../modules/reveal_game/RevealGame.js'),
   TwitchClips = require('../modules/twitch_clips/TwitchClips.js'),
@@ -35,6 +36,14 @@ module.exports = (TWITCHBOT, room, user, message, self) => {
     WordLadder.main(TWITCHBOT, room, user, message);
   };
   // -----End WordLadder-----
+
+  // -----RandomWord---------
+  if (user['message-type'] === 'whisper' && message.startsWith(RandomWord.settings.chatCommand)) {
+    RandomWord.update(TWITCHBOT, room, user, message);
+  } else if (RandomWord.settings.enabled && user['message-type'] !== 'whisper') {
+    RandomWord.main(TWITCHBOT, room, user, message);
+  };
+  // -----End RandomWord-----
 
   // -----Reveal Game--------
   /* Moved to STREAM ELEMENTS OVERLAY!!
