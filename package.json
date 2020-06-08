@@ -1,6 +1,6 @@
 {
   "name": "pjtestbot",
-  "version": "2.0.2",
+  "version": "3.0.0",
   "description": "pj's test bot",
   "main": "pjtestbot.js",
   "scripts": {
@@ -9,7 +9,9 @@
   "author": "pjonp",
   "license": "MIT",
   "dependencies": {
+    "cryptr": "^6.0.2",
     "discord.js": "^12",
+    "dotenv": "^8.2.0",
     "node-fetch": "^2.6.0",
     "socket.io": "^2.3.0",
     "tmi.js": "^1.5.0",

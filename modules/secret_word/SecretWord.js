@@ -11,7 +11,7 @@ regexBuild(settings.word);
 module.exports = {
   settings: settings,
   main: async (TWITCHBOT, room, user, message) => {
-    if (settings.subMode && !user.subscriber) return; //subMode
+    if (settings.enabled === false || (settings.subMode && !user.subscriber)) return;
     if (regexCheck.test(message) === false) return;
 
     let res = {
@@ -49,13 +49,19 @@ module.exports = {
           settings.enabled = true;
           regexBuild(settings.word);
           res.msg = `Secret word has been set to: ${settings.word} | GAME STARTED!`;
-          BotResponse(TWITCHBOT, room, user.username, {type: 'action', msg: `PogChamp Theres a secret word thats hiding in the chat! This HP Box is hidden really well! Can Anyone find it? PogChamp`});
+          BotResponse(TWITCHBOT, room, settings.editors[0], {type: 'action', msg: `PogChamp Theres a secret word thats hiding in the chat! This HP Box is hidden really well! Can Anyone find it? PogChamp`});
         }
         break;
       case 'enabled':
         if (msgA[1] === 'true' || msgA[1] === 'false') {
           settings.enabled = (msgA[1] === 'true');
           res.msg = `Secret Word has been: ${settings.enabled ? 'ENABLED!' : 'DISABLED!'}`;
+          if (settings.enabled) {
+            BotResponse(TWITCHBOT, settings.editors[0], user.username, {
+              type: 'action',
+              msg: `PogChamp Theres a secret word thats hiding in the chat! This HP Box is hidden really well! Can Anyone find it? PogChamp`
+            });
+          };
         } else {
           res.msg = `Error: ${settings.chatCommand} enabled < true | false >`;
           res.error = true;

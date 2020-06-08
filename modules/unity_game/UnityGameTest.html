@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <script src="http://localhost:7654/socket.io/socket.io.js"></script>
+  <script>
+    let socket = io("http://localhost:7654");
+    socket.on("gameMovement", (data) => {
+      logMovement(data.direction, data.user);
+      console.log(data.direction, data.user);
+    });
+    socket.emit('overlayLoaded', 'Unity Test Overlay');
+  </script>
+
+  <style>
+    #main {
+
+    }
+  </style>
+</head>
+
+<body>
+  <div id='main'>
+  </div>
+</body>
+
+</html>
+
+<script>
+  let main = document.getElementById("main");
+  let htmlString = '';
+
+  let logMovement = (direction,user) => {
+      htmlString += `<p>${user} moves: ${direction}</p>`;
+
+      main.innerHTML = htmlString;
+    };
+
+</script>

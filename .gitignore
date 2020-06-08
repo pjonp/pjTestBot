@@ -8,3 +8,7 @@ modules/defuse_game/DefuseGameSettings.json
 events/logFile.json
 modules/word_ladder/WordLadderSettings.json
 modules/random_word/RandomWordSettings.json
+.hidden/.env
+modules/discord_roles/DiscordWatchRolesSettings.json
+modules/discord_roles/DiscordTopRolesSettings.json
+modules/unity_game/WordLadderSettings.json

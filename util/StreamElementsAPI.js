@@ -1,14 +1,12 @@
-const path = require("path"),
-  fetch = require('node-fetch'),
-  setup = require('../.hidden/settings.json');
+const fetch = require('node-fetch');
 
   module.exports = {
     GetPointsFromSE: (username) => {
-      return fetch(`https://api.streamelements.com/kappa/v2/points/${setup.SE_ACCOUNTID}/${username}`, {
+      return fetch(`https://api.streamelements.com/kappa/v2/points/${process.env.SE_ACCOUNTID}/${username}`, {
           method: 'GET',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${setup.SE_JWTTOKEN}`
+            'Authorization': `Bearer ${process.env.SE_JWTTOKEN}`
           },
         })
         .then(async response => {
@@ -24,11 +22,11 @@ const path = require("path"),
         });
     },
     PutPointsToSE: (username, points) => {
-      return fetch(`https://api.streamelements.com/kappa/v2/points/${setup.SE_ACCOUNTID}/${username}/${points}`, {
+      return fetch(`https://api.streamelements.com/kappa/v2/points/${process.env.SE_ACCOUNTID}/${username}/${points}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${setup.SE_JWTTOKEN}`
+            'Authorization': `Bearer ${process.env.SE_JWTTOKEN}`
           },
         })
         .then(async response => {
@@ -54,12 +52,12 @@ const path = require("path"),
           "mode": "add",
           "users": SEUserObject
         };
-      return fetch(`https://api.streamelements.com/kappa/v2/points/${setup.SE_ACCOUNTID}/`, {
+      return fetch(`https://api.streamelements.com/kappa/v2/points/${process.env.SE_ACCOUNTID}/`, {
           method: 'PUT',
           body: JSON.stringify(SEDataObject),
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${setup.SE_JWTTOKEN}`
+            'Authorization': `Bearer ${process.env.SE_JWTTOKEN}`
           },
         })
         .then(async response => {
@@ -74,5 +72,47 @@ const path = require("path"),
           console.error('Error Saving Bulk Points:', error)
           return false;
         });
+    },
+    GetTopPointsFromSE: (num) => {
+      return fetch(`https://api.streamelements.com/kappa/v2/points/${process.env.SE_ACCOUNTID}/top${num > 0 ? '?limit=' + num : ''}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.SE_JWTTOKEN}`
+          },
+        })
+        .then(async response => {
+          if (!response.ok) {
+            console.log(await response.json());
+            throw new Error();
+          };
+          return response.json();
+        })
+        .catch(error => {
+          console.error(`Cannot Get Top Points For ${num} Users!`)
+          return false;
+        });
+    },
+    GetMinutesFromSE: (num) => {
+      return fetch(`https://api.streamelements.com/kappa/v2/points/${process.env.SE_ACCOUNTID}/watchtime${num > 0 ? '?limit=' + num : ''}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.SE_JWTTOKEN}`
+          },
+        })
+        .then(async response => {
+          if (!response.ok) {
+            console.log(await response.json());
+            throw new Error();
+          };
+          return response.json();
+        })
+        .catch(error => {
+          console.error(`Cannot Get Top Watch Time For ${num} Users!`)
+          return false;
+        });
     }
+
+
   };

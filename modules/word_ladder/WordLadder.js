@@ -17,13 +17,10 @@ regexBuild(settings.word);
 module.exports = {
   settings: settings,
   main: async (TWITCHBOT, room, user, message) => {
-    if (settings.subMode && !user.subscriber) { //subMode
-      return;
-    } else if (lastChatter === '') {
-      lastChatter = user.username;
-    };
+    if (settings.enabled === false || (settings.subMode && !user.subscriber)) return;
+    message = message.toLowerCase();
     if (message.length > 1 || lastChatter !== user.username) {
-      wordProgress = '';
+      wordProgress = message.length > 1 || !settings.word.startsWith(message) ? '' : message;
       lastChatter = user.username;
       return;
     };
@@ -48,7 +45,8 @@ module.exports = {
       console.log(res.msg);
       BotResponse(TWITCHBOT, room, settings.editors[0], res);
     };
-    return randomGame(TWITCHBOT, room);
+    if(settings.loopGames) randomGame(TWITCHBOT, room);
+    return;
   },
   update: async (TWITCHBOT, room, user, message) => {
     if (!settings.editors.some(i => i === user.username)) return;
@@ -73,7 +71,7 @@ module.exports = {
           clearTimeout(randomGameTimer);
           regexBuild(settings.word);
           res.msg = `Word Ladder has been set to: ${settings.word} | GAME STARTED!`;
-          BotResponse(TWITCHBOT, room, user.username, {
+          BotResponse(TWITCHBOT, settings.editors[0], user.username, {
             type: 'action',
             msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn ${settings.points} HP! The Word is ${settings.word.toUpperCase()} PogChamp`
           });
@@ -88,7 +86,7 @@ module.exports = {
           clearTimeout(randomGameTimer);
           res.msg = `Word Ladder has been: ${settings.enabled ? 'ENABLED!' : 'DISABLED!'}`;
           if (settings.enabled) {
-            BotResponse(TWITCHBOT, room, user.username, {
+            BotResponse(TWITCHBOT, settings.editors[0], user.username, {
               type: 'action',
               msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn ${settings.points} HP! The Word is ${settings.word.toUpperCase()} PogChamp`
             });
@@ -146,12 +144,21 @@ module.exports = {
           res.msg = `${msgA[1]} was removed as an editor! Current editors are: ${settings.editors}`;
         }
         break;
+    case 'loopgames':
+             if (msgA[1] === 'true' || msgA[1] === 'false') {
+               settings.loopGames = (msgA[1] === 'true');
+               res.msg = `Word Ladder LOOPGAMES has been: ${settings.loopGames ? 'ENABLED!' : 'DISABLED!'}`
+             } else {
+               res.msg = `Error: ${settings.chatCommand} submode < true | false >`;
+               res.error = true;
+             }
+             break;
       case 'settings':
-        res.msg = `word: ${settings.word} | enabled: ${settings.enabled} | submode: ${settings.subMode} | points: ${settings.points} | editors: ${settings.editors}`;
+        res.msg = `word: ${settings.word} | enabled: ${settings.enabled} | submode: ${settings.subMode} | loopgames: ${settings.loopGames} | points: ${settings.points} | editors: ${settings.editors}`;
         res.error = true
         break;
       default:
-        res.msg = `Setting Options: ${settings.chatCommand} < word | enabled | submode | points | editoradd | editorremove | settings >`;
+        res.msg = `Setting Options: ${settings.chatCommand} < word | enabled | submode | points | loopgames | editoradd | editorremove | settings >`;
         res.error = true;
     }
     BotResponse(TWITCHBOT, room, user.username, res);

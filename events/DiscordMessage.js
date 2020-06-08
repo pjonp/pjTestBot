@@ -1,5 +1,43 @@
-const setup = require('../.hidden/settings.json'),
-  JazGame = require('../modules/jaz_game/JazGameMain.js');
+const JazGame = require('../modules/jaz_game/JazGameMain.js'),
+  Commands = [
+    require('../modules/discord_help/DiscordHelp.js'),
+    require('../modules/discord_roles/DiscordTopRoles.js'),
+    require('../modules/discord_roles/DiscordWatchRoles.js')
+  ];
+
+  commandInfo = Commands.map(i => {
+    return {
+      chatCommand: i.chatCommand,
+      about: i.about
+    };
+  })
+
+
+module.exports = (DISCORDBOT, message) => {
+  if (message.author.bot || !message.member.hasPermission('MANAGE_ROLES')) return;
+
+  Commands.forEach(i => {
+    if (message.content.startsWith(i.chatCommand)) {
+      i.main(message, commandInfo);
+    };
+  });
+
+  //Jaz Game
+  if (message.content.startsWith(JazGame.settings.chatCommand)) { //from JazGameSettings.json
+    JazGame.gameCommands(message);
+  };
+}; //end Exports
+
+
+
+
+
+
+
+
+
+/*
+
 
 let myName = 'pjtestbot', //lowercase
   myID = '676333410939174914',
@@ -13,20 +51,7 @@ let myName = 'pjtestbot', //lowercase
   timeoutRooms = [],
   timeoutRoomNames = [];
 
-module.exports = (DISCORDBOT, message) => {
-  if (message.author.bot) return;
-  //Jaz Game
-  if (message.content.startsWith(JazGame.settings.chatCommand)) { //from JazGameSettings.json
-    JazGame.gameCommands(message)
-  };
-  /*
-    console.log('D:', message.content);
-    message.channel.send(`${message.content}`).catch(err => {
-      console.log(err, 'something went bad :-|')
-    });
-  */
   let msg = message.content.toLowerCase() //refactor to msg (lowercase)
-  let isMessageFromOwner = message.author.id === setup.D_OWNERID
   if (isMessageFromOwner) {
     if (sleeps.some(sleepcheck => msg.includes(sleepcheck)) &&
       message.mentions.has(myID)) { //doesn't include others name [whoIsTheTarget()]
@@ -106,3 +131,4 @@ const whoIsTargeted = (message) => { //Was this bot, Other Bot or Owner mentione
     return 'bots' //2 targets, Owner not tagged
   }
 }
+*/

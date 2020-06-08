@@ -1,5 +1,4 @@
 const fetch = require('node-fetch'),
-  botUsername = require('../../.hidden/settings.json')['T_BOTUSERNAME'],
   BulkPutPointsToSE = require('../../util/StreamElementsAPI.js').BulkPutPointsToSE;
 
 let streamOnline = true,
@@ -7,23 +6,24 @@ let streamOnline = true,
   timer,
   // **SETTINGS BELOW**
   showLog = false, //show list of users during each interval
-  timerDelay = 1800, //seconds 1800 = 30minutes
+  timerDelay = 60, //seconds 1800 = 30minutes
   points = 123,
-  ignoredChatters = [botUsername, 'commanderroot', 'streamelements'];
+  ignoredChatters = [process.env.T_BOTUSERNAME, 'commanderroot', 'streamelements'];
 // **SETTINGS ABOVE**
 
 module.exports = {
   main: (TWITCHBOT, channel, status, data) => {
+    channel = channel.replace('#', '');
+    clearInterval(timer);
     if (status === 'stream-up') {
       streamOnline = true
-      clearInterval(timer);
       res = 'Welcome to the stream!'
     } else if (status === 'stream-down') {
       streamOnline = false
       res = 'See you all soon!'
       timer = setInterval(() => buildChatterData(TWITCHBOT, channel), timerDelay * 1000);
     } else {
-      console.error('Could not determine Stream Online Status');
+      console.error('Could not determine Stream Online/Offline Status');
       return;
     }
     TWITCHBOT.say(channel, res).catch((err) => console.error(err));
@@ -32,7 +32,6 @@ module.exports = {
 
 const buildChatterData = async (TWITCHBOT, channel) => {
   let chatterList = await getChatters(channel);
-
   chatterList = chatterList.filter(i => !ignoredChatters.some(j => i === j)); //remove ignoredChatters
 
   if (chatterList.length === 0) {
@@ -42,7 +41,7 @@ const buildChatterData = async (TWITCHBOT, channel) => {
   let response = await BulkPutPointsToSE(chatterList, points);
   if (response) {
     let res = `${points}HP added to ${chatterList.length} lurkers TakeNRG`
-    TWITCHBOT.say(channel, res).catch((err) => console.error(err));
+  //  TWITCHBOT.say(channel, res).catch((err) => console.error(err));
     console.log(res);
     if(showLog) console.log(chatterList);
   };

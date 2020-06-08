@@ -1,14 +1,15 @@
-//USERS TOKEN LINK: https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=   CLIENT ID   &redirect_uri=https://twitchapps.com/tmi/&scope=clips:edit
 const DISCORDBOT = require('../../pjtestbot.js').DISCORDBOT,
   fetch = require('node-fetch'),
   settings = require('./TwitchClipSettings.json'),
-  setup = require('../../.hidden/settings.json');
+  Cryptr = require('cryptr');
 
-let streamerID = setup.T_CHANNELID,
+let streamerID = process.env.T_CHANNELID,
   command = settings.twitchChatCommand,
   discordClipChannel = settings.discordClipChannel,
   onCooldown = false,
   cooldownLength = 45;
+
+let cryptr = new Cryptr(process.env.SECRET);
 
 module.exports = {
   command: command,
@@ -24,22 +25,24 @@ module.exports = {
         msg: `Attempting to save clip. Check Discord Clip Channel!`
       },
       discordRes,
-      databaseUser;
+      clipUser,
+      clipUserToken;
 
     BotResponse(TWITCHBOT, room, user.username, res);
+    let userData = await getUserData (user['user-id']);
 
-    databaseUser = settings.users.find(i => i.name === user.username);
-    databaseUser = databaseUser ? databaseUser : {
-      "twitch_id": "",
-      "discord_id": ""
+    if(!userData || userData.error) {
+      clipUser = null;
+      clipUserToken = null;
+    } else {
+      clipUser = userData.d_id
+      clipUserToken = cryptr.decrypt(userData.t_token);
     };
-
-    let getClipLink = await CreateTwitchClip(databaseUser.twitch_id);
+    let getClipLink = await CreateTwitchClip(clipUserToken);
     if (getClipLink.status === 401) { //if invalid token
       getClipLink = await CreateTwitchClip(null); //retry with no token
     };
     if (getClipLink.error != undefined) {
-      console.log(getClipLink);
       if (getClipLink.status === 404) { //channel is offline
         res.msg = 'Channel is offline!'
         BotResponse(TWITCHBOT, room, user.username, res);
@@ -48,7 +51,7 @@ module.exports = {
         discordRes = `Error Saving Clip For ${user.username}`;
       };
     } else {
-      discordRes = databaseUser.discord_id ? `<@${databaseUser.discord_id}> Created A Clip! ${getClipLink.data[0]['edit_url']}` : `${user.username} Created A Clip! ${getClipLink.data[0]['edit_url']}`;
+      discordRes = clipUser ? `<@${clipUser}> Created A Clip! ${getClipLink.data[0]['edit_url']}` : `${user.username} Created A Clip! ${getClipLink.data[0]['edit_url']}`;
     };
     DISCORDBOT.channels.fetch(discordClipChannel).then(channel => {
         setTimeout(() => {
@@ -59,13 +62,14 @@ module.exports = {
   }
 };
 
-const CreateTwitchClip = (clipperID) => {
+const CreateTwitchClip = (clipUserToken) => {
   return fetch(`https://api.twitch.tv/helix/clips?broadcaster_id=${streamerID}`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${clipperID || setup.T_BOTOAUTHTOKEN}`,
-        'Client-ID': setup.T_BOTCLIENTID
+        'Authorization': `Bearer ${clipUserToken || process.env.T_BOTOAUTHTOKEN}`,
+        //'Client-ID': process.env.T_APPCLIENTID
+        'Client-ID': clipUserToken ? process.env.PJSAPPCLIENTID : process.env.T_APPCLIENTID //testing
       },
     })
     .then(response => response.json())
@@ -93,4 +97,24 @@ const BotResponse = (TWITCHBOT, room, username, res) => {
     });
   };
   return res;
+};
+
+const getUserData = (userid) => {
+  return fetch(`https://pjtestsite.herokuapp.com/api/clipinfo/${userid}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+    .then(async response => {
+      if (!response.ok) {
+        console.log(await response.json());
+        throw new Error();
+      };
+      return response.json();
+    })
+    .catch(error => {
+      console.error(`Error Reading External API`)
+      return false;
+    });
 };

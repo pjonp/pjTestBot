@@ -9,8 +9,7 @@ let settings = JSON.parse(fs.readFileSync(SettingsFile)), //LOAD SETTINGS
 module.exports = {
   settings: settings,
   main: async (TWITCHBOT, room, user, message) => { //MAIN GAME LOGIC
-    if (settings.subMode && !user.subscriber) return; //subMode
-    if (onCooldown) return; //cooldown
+    if (settings.enabled === false || onCooldown || !message.startsWith(settings.chatCommand) || (settings.subMode && !user.subscriber)) return;
 
     let msgA = message.toLowerCase().split(' '), //message to array
       res = {};

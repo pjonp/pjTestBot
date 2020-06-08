@@ -4,6 +4,7 @@
   "enabled": false,
   "subMode": false,
   "points": 123,
+  "loopGames": false,
   "randomTimeMin": 1200,
   "randomTimeMax": 1800,
   "editors": [

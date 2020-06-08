@@ -1,17 +1,18 @@
-// BOT OAUTH LINK https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=   CLIENTID   &redirect_uri=https://twitchapps.com/tmi/&scope=chat:read+chat:edit+whispers:read+whispers:edit+clips:edit+channel:moderate
-// YOUR OAUTH LINK BOT OAUTH LINK https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=   CLIENTID   &redirect_uri=https://twitchapps.com/tmi/&scope=clips:edit+channel:read:redemptions
+// BOT OAUTH LINK https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=   T_APPCLIENTID   &redirect_uri=https://twitchapps.com/tmi/&scope=chat:read+chat:edit+whispers:read+whispers:edit+clips:edit+channel:moderate
+// YOUR OAUTH LINK BOT OAUTH LINK https://id.twitch.tv/oauth2/authorize?response_type=token&client_id=   T_APPCLIENTID   &redirect_uri=https://twitchapps.com/tmi/&scope=clips:edit+channel:read:redemptions
 const Discord = require('discord.js'),
   Twitch = require('tmi.js'),
   TwitchPS = require('twitchps'),
-  SETTINGS = require('./.hidden/settings.json'),
+  path = require("path"),
+  envvars = require('dotenv').config({ path: path.resolve(process.cwd(), './.hidden/.env') }),
   DISCORDBOT = new Discord.Client(),
-  D_OWNERNAME = SETTINGS.D_OWNERNAME, //lowercase
-  D_OWNERID = SETTINGS.D_OWNERID,
+  D_OWNERNAME = process.env.D_OWNERNAME, //lowercase
+  D_OWNERID = process.env.D_OWNERID,
   io = require("socket.io"),
-  SE_OVERLAYS = io.listen('7654');
+  OVERLAYS = io.listen('7654');
 
 //START DISCORD
-DISCORDBOT.login(SETTINGS.D_TOKEN).catch(err => {
+DISCORDBOT.login(process.env.D_TOKEN).catch(err => {
   console.log('****Discord Connection Error:', err);
 });
 
@@ -24,10 +25,10 @@ const TWITCHBOT = new Twitch.client({
     reconnect: true
   },
   identity: {
-    username: SETTINGS.T_BOTUSERNAME,
-    password: `oauth:${SETTINGS.T_BOTOAUTHTOKEN}`
+    username: process.env.T_BOTUSERNAME,
+    password: `oauth:${process.env.T_BOTOAUTHTOKEN}`
   },
-  channels: [SETTINGS.T_CHANNELNAME]
+  channels: [process.env.T_CHANNELNAME]
 });
 
 TWITCHBOT.connect().catch((err) => {
@@ -37,11 +38,11 @@ TWITCHBOT.connect().catch((err) => {
 //Twitch PubSub
 //Initial topics are required
 const init_topics = [{
-    topic: `video-playback.${SETTINGS.T_CHANNELNAME}`
+    topic: `video-playback.${process.env.T_CHANNELNAME}`
   }, {
-    topic: `channel-points-channel-v1.${SETTINGS.T_CHANNELID}`,
-    token: SETTINGS.T_OAUTHTOKEN
-  } /*, {topic: `whispers.${SETTINGS.T_BOTCHANNELID}`, token: SETTINGS.T_BOTOAUTHTOKEN} */ ],
+    topic: `channel-points-channel-v1.${process.env.T_CHANNELID}`,
+    token: process.env.T_OAUTHTOKEN
+  } /*, {topic: `whispers.${process.env.T_BOTCHANNELID}`, token: process.env.T_BOTOAUTHTOKEN} */ ],
   TWITCHPUBSUB = new TwitchPS({
     init_topics: init_topics,
     reconnect: true,
@@ -49,7 +50,7 @@ const init_topics = [{
   });
 
 //Stream Elements overlays
-SE_OVERLAYS.on('connection', socket => {
+OVERLAYS.on('connection', socket => {
   console.log('connection made...');
   socket.on('overlayLoaded', overlay => {
     console.log(`***Overlay Loaded: ${overlay}`);
@@ -61,9 +62,12 @@ SE_OVERLAYS.on('connection', socket => {
 
 require('./util/DiscordEventLoader')(DISCORDBOT);
 require('./util/TwitchEventLoader')(TWITCHBOT);
-require('./util/TwitchPubSubEventLoader')(TWITCHPUBSUB, TWITCHBOT, SETTINGS.T_CHANNELNAME);
+require('./util/TwitchPubSubEventLoader')(TWITCHPUBSUB, TWITCHBOT, process.env.T_CHANNELNAME);
+
+// setTimeout( () => require('./events/Twitch_PubSubStreamStatusChange')(TWITCHBOT, process.env.T_CHANNELNAME, 'stream-up', {}),10000);
+// setTimeout( () => require('./events/Twitch_PubSubStreamStatusChange')(TWITCHBOT, process.env.T_CHANNELNAME, 'stream-down', {}),180000);
 
 module.exports = {
-  SE_OVERLAYS: SE_OVERLAYS,
+  OVERLAYS: OVERLAYS,
   DISCORDBOT: DISCORDBOT
 };
