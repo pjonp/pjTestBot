@@ -11,7 +11,7 @@ module.exports = {
       let imageObject = files.map(file => {
         return {
           "name": file.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').toLowerCase(),
-          "image": `https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/${file}`
+          "image": encodeURI(`https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/${file}`)
         }
       });
       console.log('!done');
