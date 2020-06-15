@@ -1,0 +1,15 @@
+{
+  "chatCommand": "!randomword",
+  "word": "testword",
+  "enabled": false,
+  "subMode": false,
+  "points": 123,
+  "autoStart": true,
+  "loopGames": false,
+  "randomTimeMin": 1200,
+  "randomTimeMax": 1800,
+  "editors": [
+    "your_twitch_name",
+    "user2"
+  ]
+}

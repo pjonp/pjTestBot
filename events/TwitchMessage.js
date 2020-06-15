@@ -6,9 +6,11 @@ const Commands = [
   ],
   UnityGame = require('../modules/unity_game/UnityGame.js'),
   TwitchClips = require('../modules/twitch_clips/TwitchClips.js'),
-  SEOfflinePoints = require('./Twitch_PubSubStreamStatusChange.js');
+  SEOfflinePoints = require('./Twitch_PubSubStreamStatusChange.js'),
+  SECommands = require('../modules/se_from_discord/seFromDiscord.js');
 
 module.exports = (TWITCHBOT, room, user, message, self) => {
+  if(process.env.WAITINGFORTWITCHCOMMAND === 'true') SECommands.response(user, message, self);
   if (self) return;
   UnityGame.main(TWITCHBOT, room, user, message);
 

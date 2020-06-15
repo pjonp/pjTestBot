@@ -1,8 +1,10 @@
 const JazGame = require('../modules/jaz_game/JazGameMain.js'),
+  SECommands = require('../modules/se_from_discord/seFromDiscord.js'),
   Commands = [
     require('../modules/discord_help/DiscordHelp.js'),
     require('../modules/discord_roles/DiscordTopRoles.js'),
-    require('../modules/discord_roles/DiscordWatchRoles.js')
+    require('../modules/discord_roles/DiscordWatchRoles.js'),
+    SECommands
   ];
 
   commandInfo = Commands.map(i => {
@@ -12,15 +14,22 @@ const JazGame = require('../modules/jaz_game/JazGameMain.js'),
     };
   })
 
-
 module.exports = (DISCORDBOT, message) => {
-  if (message.author.bot || !message.member.hasPermission('MANAGE_ROLES')) return;
+  if (message.author.bot) return;
 
   Commands.forEach(i => {
     if (message.content.startsWith(i.chatCommand)) {
       i.main(message, commandInfo);
     };
   });
+
+  //SE Commands;
+  SECommands.subCommands.forEach( i => {
+    if (message.content.startsWith(i.command)) {
+      SECommands.main(message, i)
+    };
+  });
+
 
   //Jaz Game
   if (message.content.startsWith(JazGame.settings.chatCommand)) { //from JazGameSettings.json

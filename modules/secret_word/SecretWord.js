@@ -1,6 +1,6 @@
 const fs = require('fs'),
   path = require("path"),
-  SettingsFile = path.resolve(__dirname, './SecretWordSettings.json'),
+  SettingsFile = path.resolve(process.cwd(), './.settings/SecretWordSettings.json'),
   SEAPI = require('../../util/StreamElementsAPI.js');
 let settings = JSON.parse(fs.readFileSync(SettingsFile)),
   regexCheck,

@@ -1,6 +1,6 @@
 const fs = require('fs'),
   path = require("path"),
-  SettingsFile = path.resolve(__dirname, './WordLadderSettings.json'),
+  SettingsFile = path.resolve(process.cwd(), './.settings/WordLadderSettings.json'),
   SEAPI = require('../../util/StreamElementsAPI.js'),
   Words = require('./WordLadderDatabase.json');
 let settings = JSON.parse(fs.readFileSync(SettingsFile)),

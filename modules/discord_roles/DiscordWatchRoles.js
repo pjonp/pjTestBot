@@ -1,6 +1,10 @@
-const fetch = require('node-fetch');
-  settings = require('./DiscordWatchRolesSettings.json'),
+const fetch = require('node-fetch'),
+  fs = require('fs'),
+  path = require("path"),
+  SettingsFile = path.resolve(process.cwd(), './.settings/DiscordWatchRolesSettings.json'),
+  settings = JSON.parse(fs.readFileSync(SettingsFile)),
   SEAPI = require('../../util/StreamElementsAPI.js'),
+  TwitchAPI = require('../../util/TwitchAPI.js'),
   WebsiteAPI = require('../../util/WebsiteAPI.js');
 
 let hourTier,
@@ -20,9 +24,13 @@ module.exports = {
   main: async (message) => {
     if (!message.member.hasPermission('MANAGE_ROLES') || running) return;
     running = true;
+
+    statusMsg = await discordSend(message, settings.thinkingMsg, false).catch();
+    /*
     await message.delete().then(() => {
       message.channel.send('...counting 🧮 🤔').then(msg => statusMsg = msg);
     }).catch(error => console.error(error, '!!11Error cycling Discord "Watch Roles" status message ^^^ ....'));
+    */
 
     const getUserMinutes = await SEAPI.GetMinutesFromSE(),
       userObj = settings.hourTiers.map((i, index, tiers) => {
@@ -40,7 +48,7 @@ module.exports = {
           users: i.users.map(j => j.username)
         };
       });
-      if (settings.highToLow) userObj.reverse();
+    if (settings.highToLow) userObj.reverse();
 
     if (!getUserMinutes) { //error getting points.
       BotResponse(message, "Error: I can't read StreamElements Watch Time!");
@@ -49,14 +57,15 @@ module.exports = {
     } else {
       let tierLoop = async (tier) => {
         if (userObj.length === tier) {
-          await statusMsg.delete().catch(error => console.error(error, '!!Error deleting Discord "Watch Roles" #1 message ^^^ ....'));
+          //  await statusMsg.delete().catch(error => console.error(error, '!!Error deleting Discord "Watch Roles" #1 message ^^^ ....'));
+          statusMsg = await discordSend(statusMsg, settings.doneMsg, true).catch();
           running = false;
           return;
         };
         await setWatchRoles(message, userObj[tier].users, tier).then(async res => {
           let fields = res.filter(i => i.value);
           if (fields[0]) {
-            await statusMsg.delete().catch(error => console.error(error, '!!Error deleting Discord "Watch Roles" #2 message ^^^ ....'));
+            //    await statusMsg.delete().catch(error => console.error(error, '!!Error deleting Discord "Watch Roles" #2 message ^^^ ....'));
             const embed = {
               "color": hourTier[tier].color,
               "timestamp": new Date(),
@@ -71,11 +80,13 @@ module.exports = {
               },
               "fields": fields
             };
-
             BotResponse(message, {
               embed
             });
-            await message.channel.send('...counting 🧮 🤔').then(msg => statusMsg = msg).catch(error => console.error(error, '!!Error cycling Discord "Watch Roles" status message #3 ^^^ ....'));
+            if (userObj.length !== tier - 1) {
+              statusMsg = await discordSend(statusMsg, settings.thinkingMsg, false).catch();
+            };
+            //    await message.channel.send('...counting 🧮 🤔').then(msg => statusMsg = msg).catch(error => console.error(error, '!!Error cycling Discord "Watch Roles" status message #3 ^^^ ....'));
           };
           tier++
           tierLoop(tier);
@@ -112,8 +123,8 @@ const setWatchRoles = (message, users, tier) => {
       };
       //get twitch id from username
       let username = users[index];
-      WebsiteAPI.getTwitchID(username).then(Tdata => {
-        if (Tdata) {
+      TwitchAPI.getTwitchID(username).then(Tdata => {
+        if (!Tdata.error) {
           let t_id;
           try {
             t_id = Tdata.data[0].id;
@@ -144,8 +155,16 @@ const setWatchRoles = (message, users, tier) => {
             setTimeout(() => {
               userLoop(index)
             }, 525)
-          });
+          }).catch( () => {
+            console.log('!!!Twitch Watch Points Website API Error? ^^...');
+            res[3].value += checkMaxString(res[3].value, username);
+            index++;
+            setTimeout(() => {
+              userLoop(index)
+            }, 525)
+          });;
         } else {
+          console.log('!!!Twitch Watch Time Error?: ' + Tdata.error);
           res[3].value += checkMaxString(res[3].value, username);
           index++;
           setTimeout(() => {
@@ -170,4 +189,21 @@ const checkMaxString = (resString, username) => {
 const BotResponse = (message, res) => {
   message.channel.send(res).catch(err => console.error(err, '!!!Error Sending Discord Message ^^'));
   return;
+};
+
+const discordSend = (messageObj, res, remove) => {
+  return new Promise((resolve, reject) => {
+    messageObj.delete()
+      .then(() => messageObj.channel.send(res)
+        .then(msg => {
+          if (remove) msg.delete({
+            timeout: 5000
+          });
+          resolve(msg);
+        }))
+      .catch(e => {
+        console.error(e, '!!SE From Discord: Discord send error^^^ ....')
+        reject();
+      });
+  });
 };

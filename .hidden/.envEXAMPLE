@@ -1,5 +1,6 @@
   LIVE=false
   SECRET='changethistomatchtheWebsiteSecretforencyrption'
+  WAITINGFORTWITCHCOMMAND='false'
   D_OWNERNAME='yourDiscordname'
   D_OWNERID='yourDiscordID'
   D_TOKEN='discordBotToken'
@@ -12,6 +13,8 @@
   T_CHANNELNAME='yourTwitchUsername'
   T_CHANNELID='yourTwitchID'
   T_OAUTHTOKEN='yourTwitchOauth'
+  T_ONLINEMSG='Stream has gone online'
+  T_OFFLINEMSG='Stream has gone offline'
   SE_ACCOUNTID='StreamElementsAccountID'
   SE_JWTTOKEN='StreamElementsJWTTOKEN'
   PJSAPPCLIENTID='temp place holder for testing'

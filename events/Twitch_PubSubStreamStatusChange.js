@@ -1,7 +1,11 @@
-SEOfflinePoints = require('../modules/se_offline_points/SEOfflinePoints.js');
-RandomWord = require('../modules/random_word/RandomWord.js');
+const modules = [
+  require('../modules/se_offline_points/SEOfflinePoints.js'),
+  require('../modules/random_word/RandomWord.js'),
+  require('../modules/discord_twitch_status_embed/DiscordTwitchStatusEmbed.js')
+];
 
-module.exports = (TWITCHBOT, channel, status, data) => {
+module.exports = (TWITCHBOT, room, status, data) => {
+  room = room.replace('#', '');
   //status === stream-up or stream-down
   /*
   console.log('Status: ', status);
@@ -10,12 +14,14 @@ module.exports = (TWITCHBOT, channel, status, data) => {
   */
   if (status === 'stream-up') {
     process.env.LIVE = true;
-    RandomWord.online(TWITCHBOT, channel);
+    console.log(process.env.T_ONLINEMSG);
+    TWITCHBOT.say(room, process.env.T_ONLINEMSG).catch((err) => console.error(err));
+    modules.forEach(i => i.online(TWITCHBOT, room, data) );
   } else if (status === 'stream-down') {
     process.env.LIVE = false;
-    RandomWord.offline();
+    console.log(process.env.T_OFFLINEMSG);
+    TWITCHBOT.say(room, process.env.T_OFFLINEMSG).catch((err) => console.error(err));
+    modules.forEach(i => i.offline(TWITCHBOT, room, data) );
   };
-
-  SEOfflinePoints.main(TWITCHBOT, channel, status, data);
 
 };

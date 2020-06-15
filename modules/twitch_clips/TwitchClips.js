@@ -1,18 +1,19 @@
 const DISCORDBOT = require('../../pjtestbot.js').DISCORDBOT,
   fetch = require('node-fetch'),
-  settings = require('./TwitchClipSettings.json'),
+  fs = require('fs'),
+  path = require("path"),
+  SettingsFile = path.resolve(process.cwd(), './.settings/TwitchClipSettings.json'),
+  settings = JSON.parse(fs.readFileSync(SettingsFile)),
   Cryptr = require('cryptr');
 
 let streamerID = process.env.T_CHANNELID,
-  command = settings.twitchChatCommand,
-  discordClipChannel = settings.discordClipChannel,
   onCooldown = false,
   cooldownLength = 45;
 
 let cryptr = new Cryptr(process.env.SECRET);
 
 module.exports = {
-  command: command,
+  command: settings.twitchChatCommand,
   main: async (TWITCHBOT, room, user, message) => {
     if (onCooldown) return;
     onCooldown = true
@@ -53,7 +54,7 @@ module.exports = {
     } else {
       discordRes = clipUser ? `<@${clipUser}> Created A Clip! ${getClipLink.data[0]['edit_url']}` : `${user.username} Created A Clip! ${getClipLink.data[0]['edit_url']}`;
     };
-    DISCORDBOT.channels.fetch(discordClipChannel).then(channel => {
+    DISCORDBOT.channels.fetch(settings.discordClipChannel).then(channel => {
         setTimeout(() => {
           channel.send(discordRes)
         }, 30000)

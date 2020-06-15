@@ -65,9 +65,12 @@ require('./util/TwitchEventLoader')(TWITCHBOT);
 require('./util/TwitchPubSubEventLoader')(TWITCHPUBSUB, TWITCHBOT, process.env.T_CHANNELNAME);
 
 // setTimeout( () => require('./events/Twitch_PubSubStreamStatusChange')(TWITCHBOT, process.env.T_CHANNELNAME, 'stream-up', {}),10000);
-// setTimeout( () => require('./events/Twitch_PubSubStreamStatusChange')(TWITCHBOT, process.env.T_CHANNELNAME, 'stream-down', {}),180000);
+ //setTimeout( () => require('./events/Twitch_PubSubStreamStatusChange')(TWITCHBOT, process.env.T_CHANNELNAME, 'stream-down', {}),45000);
 
 module.exports = {
+  DISCORDBOT: DISCORDBOT,
   OVERLAYS: OVERLAYS,
-  DISCORDBOT: DISCORDBOT
+  TWITCHBOT: TWITCHBOT
 };
+
+//require('./modules/reveal_game/DatabaseBuilder.js').main(); //for building reveal game Database

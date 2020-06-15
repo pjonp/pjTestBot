@@ -1,0 +1,6 @@
+{
+  "showLog": false,
+  "timerDelay": 60,
+  "points": 123,
+  "ignoredChatters": ["commanderroot", "streamelements"]
+}

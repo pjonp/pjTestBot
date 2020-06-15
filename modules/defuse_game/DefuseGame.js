@@ -1,6 +1,6 @@
 const fs = require('fs'),
   path = require("path"),
-  SettingsFile = path.resolve(__dirname, './DefuseGameSettings.json'), //EDIT FOR SETTINGS FILE
+  SettingsFile = path.resolve(process.cwd(), './.settings/DefuseGameSettings.json'), //EDIT FOR SETTINGS FILE
   SEAPI = require('../../util/StreamElementsAPI.js'); //IMPORT S.E. FUNCTIONS
 let settings = JSON.parse(fs.readFileSync(SettingsFile)), //LOAD SETTINGS
   onCooldown = false, //not used

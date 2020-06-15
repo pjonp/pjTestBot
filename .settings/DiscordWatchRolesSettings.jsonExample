@@ -1,0 +1,45 @@
+{
+  "chatCommand": "!updatewatchroles",
+  "about": "Sets Discord roles for ALL users with a minimum watch time set in the settings file. Account must be linked on the website to both Twitch and Discord to get role. (https://pjtestsite.herokuapp.com/)",
+  "discordIcon": "https://static-cdn.jtvnw.net/emoticons/v1/991108/3.0",
+  "thinkingMsg": "...counting 🧮 🤔",
+  "doneMsg": "🥳",
+  "highToLow": true,
+  "hourTiers": [
+    {
+      "minutes": 10,
+      "roleID": "718281147901018162",
+      "msg": "Jumped in",
+      "img": "https://cdn.discordapp.com/embed/avatars/0.png",
+      "color": 16768512
+    },
+    {
+      "minutes": 20,
+      "roleID": "718281148337356811",
+      "msg": "Watched a lil",
+      "img": "https://cdn.discordapp.com/embed/avatars/1.png",
+      "color": 4886754
+    },
+    {
+      "minutes": 50,
+      "roleID": "718281149243457546",
+      "msg": "Spent some time",
+      "img": "https://cdn.discordapp.com/embed/avatars/2.png",
+      "color": 16768512
+    },
+    {
+      "minutes": 70,
+      "roleID": "718281149830397994",
+      "msg": "Lurked a lot",
+      "img": "https://cdn.discordapp.com/embed/avatars/3.png",
+      "color": 4886754
+    },
+    {
+      "minutes": 90,
+      "roleID": "718281508473012335",
+      "msg": "Probably a Bot 🤔",
+      "img": "https://cdn.discordapp.com/embed/avatars/4.png",
+      "color": 16768512
+    }
+  ]
+}

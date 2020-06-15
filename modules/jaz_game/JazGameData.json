@@ -1,16 +1,41 @@
 {
-  "running": false,
+  "running": true,
   "gameNumber": 7,
-  "gameStart": "Sat, 02 May 2020 03:45:14 GMT",
-  "inGamePlayers": [],
+  "gameStart": "Sat, 13 Jun 2020 05:46:31 GMT",
+  "inGamePlayers": [
+    {
+      "userID": "676333410939174914",
+      "userName": "pjTestBot",
+      "alive": true,
+      "health": 6
+    },
+    {
+      "userID": "303363667242778635",
+      "userName": "pjonp3",
+      "alive": true,
+      "health": 2
+    },
+    {
+      "userID": "242730576195354624",
+      "userName": "Auttaja",
+      "alive": false,
+      "health": -5
+    },
+    {
+      "userID": "229122038294380545",
+      "userName": "pjonp",
+      "alive": true,
+      "health": 10
+    }
+  ],
   "players": [
     {
       "userID": "229122038294380545",
       "userName": "pjonp",
       "joinDate": "Thu, 12 Mar 2020 04:01:14 GMT",
       "active": true,
-      "inBattle": false,
-      "lastBattle": "Sat, 02 May 2020 03:43:17 GMT",
+      "inBattle": true,
+      "lastBattle": "Sat, 13 Jun 2020 05:46:31 GMT",
       "wins": 3
     },
     {
@@ -27,8 +52,8 @@
       "userName": "Auttaja",
       "joinDate": "Thu, 12 Mar 2020 04:01:34 GMT",
       "active": true,
-      "inBattle": false,
-      "lastBattle": "Sat, 02 May 2020 03:45:14 GMT",
+      "inBattle": true,
+      "lastBattle": "Sat, 13 Jun 2020 05:46:31 GMT",
       "wins": 2
     },
     {
@@ -36,8 +61,8 @@
       "userName": "pjTestBot",
       "joinDate": "Thu, 12 Mar 2020 04:01:49 GMT",
       "active": true,
-      "inBattle": false,
-      "lastBattle": "Sat, 02 May 2020 03:45:14 GMT",
+      "inBattle": true,
+      "lastBattle": "Sat, 13 Jun 2020 05:46:31 GMT",
       "wins": 2
     },
     {
@@ -54,8 +79,8 @@
       "userName": "pjonp3",
       "joinDate": "Thu, 12 Mar 2020 05:32:10 GMT",
       "active": true,
-      "inBattle": false,
-      "lastBattle": "Sat, 02 May 2020 03:45:14 GMT",
+      "inBattle": true,
+      "lastBattle": "Sat, 13 Jun 2020 05:46:31 GMT",
       "wins": 3
     }
   ]

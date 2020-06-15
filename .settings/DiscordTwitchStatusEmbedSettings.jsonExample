@@ -1,0 +1,76 @@
+{
+  "discordTwitchStatusChannel": "623051899284750356",
+  "deleteEmbedWhenOffline": false,
+  "channelIcon": "https://static-cdn.jtvnw.net/emoticons/v1/991108/3.0",
+  "EMBED OPTIONS (DO NOT EDIT)": "{{channelName}} {{channelUrl}} {{channelIcon}} {{title}} {{currentViewers}} {{streamStart}} {{uptime}} {{streamPreview}} {{game}} {{gameArt}}",
+  "embedOnlineMsg": {
+    "content": "{{channelName}} is now live on https://www.twitch.tv/{{chaNNelName}} ! Go check it out!",
+    "embed": {
+      "author": {
+        "name": "{{channelNaME}}",
+        "icon_url": "{{channelIcon}}"
+      },
+      "title": "{{title}}",
+      "url": "{{channelUrl}}",
+      "description": "```css\n{{chAnnelNaME}} just went live!```",
+      "color": 65280,
+      "thumbnail": {
+        "url": "{{gameArt}}"
+      },
+      "fields": [
+        {
+          "name": "__Game__",
+          "value": "{{Game}}"
+        }
+      ],
+      "image": {
+        "url": "{{streamPreview}}"
+      }
+    }
+  },
+  "embedUpdateMsg": {
+    "content": "",
+    "embed": {
+      "author": {
+        "name": "{{channelNaME}}",
+        "icon_url": "{{channelIcon}}"
+      },
+      "title": "{{title}}",
+      "url": "{{channelUrl}}",
+      "description": "```css\nUptime: {{uptime}}!```",
+      "color": 12118406,
+      "thumbnail": {
+        "url": "{{gameArt}}"
+      },
+      "fields": [
+        {
+          "name": "__Game__",
+          "value": "{{Game}}",
+          "inline": true
+        },
+        {
+          "name": "__Viewers__",
+          "value": "{{CurrentViewers}}",
+          "inline": true
+        }
+      ],
+      "image": {
+        "url": "{{streamPreview}}"
+      }
+    }
+  },
+  "embedOfflineMsg": {
+    "content": "",
+    "embed": {
+      "author": {
+        "name": "{{channelNaME}}",
+        "icon_url": "{{channelIcon}}"
+      },
+      "description": "```css\n{{channelName}} is now offline! Check the schedule for the next stream!```",
+      "color": 16711680,
+      "thumbnail": {
+        "url": "{{channelIcon}}"
+      }
+    }
+  }
+}

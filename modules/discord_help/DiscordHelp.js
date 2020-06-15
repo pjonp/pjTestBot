@@ -1,8 +1,9 @@
+let embedThumbnail = 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/google/40/thinking-face_1f914.png';
 module.exports = {
   chatCommand: "%help",
-  about: "List Discord Commannds",
+  about: "List Discord Commands",
   main: (message, commands) => {
-    if (!message.member.hasPermission('MANAGE_ROLES')) return;
+  //  if (!message.member.hasPermission('MANAGE_ROLES')) return;
 
     message.delete().then(() => {
       let fields = commands.map(i => {
@@ -15,10 +16,10 @@ module.exports = {
         "color": 13632027,
         "timestamp": new Date(),
         "footer": {
-          "text": '¯\\_(ツ)_/¯ | This message will delete in 30 seconds'
+          "text": '¯\\_(ツ)_/¯'
         },
         "thumbnail": {
-          "url": 'https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/160/google/40/thinking-face_1f914.png'
+          "url": embedThumbnail
         },
         "fields": fields
       };

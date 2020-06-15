@@ -12,3 +12,13 @@ modules/random_word/RandomWordSettings.json
 modules/discord_roles/DiscordWatchRolesSettings.json
 modules/discord_roles/DiscordTopRolesSettings.json
 modules/unity_game/WordLadderSettings.json
+.settings/DefuseGameSettings.json
+.settings/DiscordTopRolesSettings.json
+.settings/DiscordWatchRolesSettings.json
+.settings/RandomWordSettings.json
+.settings/SecretWordSettings.json
+.settings/SEOfflinePointsSettings.json
+.settings/TwitchClipSettings.json
+.settings/WordLadderSettings.json
+.settings/seFromDiscordSettings.json
+.settings/DiscordTwitchStatusEmbedSettings.json

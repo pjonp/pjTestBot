@@ -1,6 +1,10 @@
 const fetch = require('node-fetch'),
-  settings = require('./DiscordTopRolesSettings.json'),
+  fs = require('fs'),
+  path = require("path"),
+  SettingsFile = path.resolve(process.cwd(), './.settings/DiscordTopRolesSettings.json'),
+  settings = JSON.parse(fs.readFileSync(SettingsFile)),
   SEAPI = require('../../util/StreamElementsAPI.js'),
+  TwitchAPI = require('../../util/TwitchAPI.js'),
   WebsiteAPI = require('../../util/WebsiteAPI.js');
 
 let running = false,
@@ -10,13 +14,25 @@ module.exports = {
   chatCommand: settings.chatCommand,
   about: settings.about,
   main: async (message) => {
-    if (!message.member.hasPermission('MANAGE_ROLES') || running) return;
+    if (running) return
+    else if (!message.member.hasPermission('MANAGE_ROLES')) {
+      const embed = {
+        "description": `Error: ${settings.chatCommand} requires 'MANAGE_ROLES' Discord permission`,
+        "color": 13632027,
+        "author": {
+          "name": message.cleanContent,
+          "icon_url": settings.discordIcon
+        }
+      };
+      BotResponse(message, {
+        embed
+      }, true).catch();
+      return;
+    };
+
     running = true;
 
-    await message.delete().then(() => {
-      message.channel.send('...counting 🧮 🤔').then(msg => statusMsg = msg);
-    }).catch(error => console.error(error, '!!11Error cycling Discord "Top Roles" status message ^^^ ....'));
-
+    statusMsg = await discordSend(message, '...counting 🧮 🤔', false).catch();
     settings.pointTiers.forEach(i => {
       message.guild.roles.fetch(i.roleID)
         .then(role => role.members.each(gMember => {
@@ -77,8 +93,8 @@ const setTopPointRoles = (message, users) => {
           color: settings.pointTiers[index].color,
           status: `Twitch ID not found??!`
         };
-      WebsiteAPI.getTwitchID(user.username).then(Tdata => {
-        if (Tdata) {
+      TwitchAPI.getTwitchID(user.username).then(Tdata => {
+        if (!Tdata.error) {
           let t_id;
           try {
             t_id = Tdata.data[0].id;
@@ -102,8 +118,14 @@ const setTopPointRoles = (message, users) => {
             res.push(resObj);
             index++;
             userLoop(index);
+          }).catch( () => {
+            console.log('!!!Twitch Top Points Website API Error? ^^...');
+            res.push(resObj);
+            index++;
+            userLoop(index);
           });
         } else {
+          console.log('!!!Twitch Top Points Error?: ' + Tdata.error);
           res.push(resObj);
           index++;
           userLoop(index);
@@ -117,4 +139,22 @@ const setTopPointRoles = (message, users) => {
 const BotResponse = (message, res) => {
   message.channel.send(res).catch(err => console.error(err, '!!!Error Sending Discord Message ^^'));
   return;
+};
+
+
+const discordSend = (messageObj, res, remove) => {
+  return new Promise((resolve, reject) => {
+    messageObj.delete()
+      .then(() => messageObj.channel.send(res)
+        .then(msg => {
+          if (remove) msg.delete({
+            timeout: 10000
+          });
+          resolve(msg);
+        }))
+      .catch(e => {
+        console.error(e, '!!SE From Discord: Discord send error^^^ ....')
+        reject();
+      });
+  });
 };

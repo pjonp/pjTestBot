@@ -1,0 +1,22 @@
+{
+  "discordIcon": "https://static-cdn.jtvnw.net/emoticons/v1/991108/3.0",
+  "seCommands": [{
+      "command": "!addpoints",
+      "params": ["<user>", "<points>"],
+      "modCmd": true
+    },
+    {
+      "command": "!howlong",
+      "params": ["<user>"]
+    },
+    {
+      "command": "!points",
+      "params": ["<user>"]
+    },
+    {
+      "command": "!love",
+      "params": ["<string>"]
+    }
+  ],
+  "seNoParamNonModCommands": ["!quote","!followers","!title","!hug","!age","!recover","!respect","!vote"]
+}
