@@ -3,10 +3,11 @@ const Commands = [
     require('../modules/defuse_game/DefuseGame.js'),
     require('../modules/word_ladder/WordLadder.js'),
     require('../modules/random_word/RandomWord.js'),
+    require('../modules/twitch_clips/TwitchClips.js')
   ],
   UnityGame = require('../modules/unity_game/UnityGame.js'),
-  TwitchClips = require('../modules/twitch_clips/TwitchClips.js'),
-  SEOfflinePoints = require('./Twitch_PubSubStreamStatusChange.js'),
+//  TwitchClips = require('../modules/twitch_clips/TwitchClips.js'),
+  TwitchStreamStatus = require('./Twitch_PubSubStreamStatusChange'),
   SECommands = require('../modules/se_from_discord/seFromDiscord.js');
 
 module.exports = (TWITCHBOT, room, user, message, self) => {
@@ -22,23 +23,15 @@ module.exports = (TWITCHBOT, room, user, message, self) => {
     };
   });
 
-  // -----Twitch Clips -----
-  if (message.startsWith(TwitchClips.command)) {
-    if (user['message-type'] !== 'whisper') {
-      TwitchClips.main(TWITCHBOT, room, user, message);
-    };
-  };
-  // -----Twitch Clips -----
-
 
   //--- SE Offline Points ---
   if (user.username === process.env.T_CHANNELNAME) {
     switch (message.split(' ')[0]) {
       case '!online':
-        SEOfflinePoints(TWITCHBOT, room, 'stream-up', {});
+      TwitchStreamStatus(TWITCHBOT, process.env.T_CHANNELNAME, 'stream-up', {});
         break;
       case '!offline':
-        SEOfflinePoints(TWITCHBOT, room, 'stream-down', {});
+        TwitchStreamStatus(TWITCHBOT, process.env.T_CHANNELNAME, 'stream-down', {});
         break;
       case '%build':
         buildPyramid()

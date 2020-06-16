@@ -1,806 +1,1409 @@
-[
-    {
-        "name": "admiral razorbeard",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/admiral%20razorbeard.png"
-    },
-    {
-        "name": "adon",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/adon.png"
-    },
-    {
-        "name": "akuma",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/akuma.png"
-    },
-    {
-        "name": "alex",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/alex.png"
-    },
-    {
-        "name": "amara",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/amara.png"
-    },
-    {
-        "name": "android 16",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/android%2016.png"
-    },
-    {
-        "name": "android 17",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/android%2017.png"
-    },
-    {
-        "name": "android 18",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/android%2018.png"
-    },
-    {
-        "name": "androxus",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/androxus.png"
-    },
-    {
-        "name": "ash",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ash.png"
-    },
-    {
-        "name": "athena",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/athena.png"
-    },
-    {
-        "name": "atlas",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/atlas.png"
-    },
-    {
-        "name": "aurelia",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/aurelia.png"
-    },
-    {
-        "name": "axton",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/axton.png"
-    },
-    {
-        "name": "balrog",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/balrog.png"
-    },
-    {
-        "name": "bardock",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bardock.png"
-    },
-    {
-        "name": "barik",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/barik.png"
-    },
-    {
-        "name": "bayonetta",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bayonetta.png"
-    },
-    {
-        "name": "beerus",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/beerus.png"
-    },
-    {
-        "name": "bill",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bill.png"
-    },
-    {
-        "name": "birdie",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/birdie.png"
-    },
-    {
-        "name": "blanka",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/blanka.png"
-    },
-    {
-        "name": "bob",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bob.png"
-    },
-    {
-        "name": "bomb king",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bomb%20king.png"
-    },
-    {
-        "name": "bowser",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bowser.png"
-    },
-    {
-        "name": "brick",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/brick.png"
-    },
-    {
-        "name": "broly",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/broly.png"
-    },
-    {
-        "name": "buck",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/buck.png"
-    },
-    {
-        "name": "bulma",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bulma.png"
-    },
-    {
-        "name": "burter",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/burter.png"
-    },
-    {
-        "name": "buu",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/buu.png"
-    },
-    {
-        "name": "cammy",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/cammy.png"
-    },
-    {
-        "name": "captain falcon",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/captain%20falcon.png"
-    },
-    {
-        "name": "captain ginyu",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/captain%20ginyu.png"
-    },
-    {
-        "name": "captain olimar",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/captain%20olimar.png"
-    },
-    {
-        "name": "cassie",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/cassie.png"
-    },
-    {
-        "name": "cell",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/cell.png"
-    },
-    {
-        "name": "charlie",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/charlie.png"
-    },
-    {
-        "name": "chiaotzu",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/chiaotzu.png"
-    },
-    {
-        "name": "chichi",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/chichi.png"
-    },
-    {
-        "name": "chloe",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/chloe.png"
-    },
-    {
-        "name": "chun li",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/chun%20li.png"
-    },
-    {
-        "name": "claptrap",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/claptrap.png"
-    },
-    {
-        "name": "cloud",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/cloud.png"
-    },
-    {
-        "name": "creeper",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/creeper.png"
-    },
-    {
-        "name": "dark samus",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dark%20samus.png"
-    },
-    {
-        "name": "dhalsim",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dhalsim.png"
-    },
-    {
-        "name": "diddy kong",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/diddy%20kong.png"
-    },
-    {
-        "name": "donkey kong",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/donkey%20kong.png"
-    },
-    {
-        "name": "dovahkiin",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dovahkiin.png"
-    },
-    {
-        "name": "dredge",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dredge.png"
-    },
-    {
-        "name": "drogoz",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/drogoz.png"
-    },
-    {
-        "name": "dudley",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dudley.png"
-    },
-    {
-        "name": "edward kenway",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/edward%20kenway.png"
-    },
-    {
-        "name": "elena",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/elena.png"
-    },
-    {
-        "name": "ellie",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ellie.png"
-    },
-    {
-        "name": "ender dragon",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ender%20dragon.png"
-    },
-    {
-        "name": "enderman",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/enderman.png"
-    },
-    {
-        "name": "evie",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/evie.png"
-    },
-    {
-        "name": "falco",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/falco.png"
-    },
-    {
-        "name": "fei long",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/fei%20long.png"
-    },
-    {
-        "name": "fernando",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/fernando.png"
-    },
-    {
-        "name": "fl4k",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/fl4k.png"
-    },
-    {
-        "name": "fox",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/fox.png"
-    },
-    {
-        "name": "frieza",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/frieza.png"
-    },
-    {
-        "name": "furia",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/furia.png"
-    },
-    {
-        "name": "gaige",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/gaige.png"
-    },
-    {
-        "name": "ganon",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ganon.png"
-    },
-    {
-        "name": "gill",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/gill.png"
-    },
-    {
-        "name": "globox",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/globox.png"
-    },
-    {
-        "name": "gohan",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/gohan.png"
-    },
-    {
-        "name": "goku",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/goku.png"
-    },
-    {
-        "name": "goten",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/goten.png"
-    },
-    {
-        "name": "grohk",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/grohk.png"
-    },
-    {
-        "name": "grover",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/grover.png"
-    },
-    {
-        "name": "guile",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/guile.png"
-    },
-    {
-        "name": "guldo",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/guldo.png"
-    },
-    {
-        "name": "handsome jack",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/handsome%20jack.png"
-    },
-    {
-        "name": "harry",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/Harry.png"
-    },
-    {
-        "name": "hercules",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/hercules.png"
-    },
-    {
-        "name": "herobrine",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/herobrine.png"
-    },
-    {
-        "name": "hunter",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/hunter.png"
-    },
-    {
-        "name": "imani",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/imani.png"
-    },
-    {
-        "name": "inara",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/inara.png"
-    },
-    {
-        "name": "io",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/io.png"
-    },
-    {
-        "name": "isabelle",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/isabelle.png"
-    },
-    {
-        "name": "jebediah",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/jebediah.png"
-    },
-    {
-        "name": "jeice",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/jeice.png"
-    },
-    {
-        "name": "jenos",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/jenos.png"
-    },
-    {
-        "name": "joel",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/joel.png"
-    },
-    {
-        "name": "joker",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/joker.png"
-    },
-    {
-        "name": "juri",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/juri.png"
-    },
-    {
-        "name": "karen",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/karen.png"
-    },
-    {
-        "name": "katherine",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/katherine.png"
-    },
-    {
-        "name": "ken",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ken.png"
-    },
-    {
-        "name": "khan",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/khan.png"
-    },
-    {
-        "name": "kid buu",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/kid%20buu.png"
-    },
-    {
-        "name": "kinessa",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/kinessa.png"
-    },
-    {
-        "name": "king dedede",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/king%20dedede.png"
-    },
-    {
-        "name": "king vegeta",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/king%20vegeta.png"
-    },
-    {
-        "name": "kirby",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/kirby.png"
-    },
-    {
-        "name": "koga",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/koga.png"
-    },
-    {
-        "name": "koopalings",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/koopalings.png"
-    },
-    {
-        "name": "krieg",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/krieg.png"
-    },
-    {
-        "name": "krillin",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/krillin.png"
-    },
-    {
-        "name": "laura statue",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/laura%20statue.png"
-    },
-    {
-        "name": "lex",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/lex.png"
-    },
-    {
-        "name": "lian",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/lian.png"
-    },
-    {
-        "name": "lilith",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/lilith.png"
-    },
-    {
-        "name": "link",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/link.png"
-    },
-    {
-        "name": "little mac",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/little%20mac.png"
-    },
-    {
-        "name": "lucina",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/lucina.png"
-    },
-    {
-        "name": "luigi",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/luigi.png"
-    },
-    {
-        "name": "luma",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/luma.png"
-    },
-    {
-        "name": "m. bison",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/M.%20Bison.png"
-    },
-    {
-        "name": "maeve",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/maeve.png"
-    },
-    {
-        "name": "makoa",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/makoa.png"
-    },
-    {
-        "name": "mario",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/mario.png"
-    },
-    {
-        "name": "marth",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/marth.png"
-    },
-    {
-        "name": "master roshi",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/master%20roshi.png"
-    },
-    {
-        "name": "maya",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/maya.png"
-    },
-    {
-        "name": "megaman",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/megaman.png"
-    },
-    {
-        "name": "meta knight",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/meta%20knight.png"
-    },
-    {
-        "name": "moji",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/moji.png"
-    },
-    {
-        "name": "mordecai",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/mordecai.png"
-    },
-    {
-        "name": "moze",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/moze.png"
-    },
-    {
-        "name": "nadine",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/nadine.png"
-    },
-    {
-        "name": "nappa",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/nappa.png"
-    },
-    {
-        "name": "nathan",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/nathan.png"
-    },
-    {
-        "name": "nisha lynchwood",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/nisha%20lynchwood.png"
-    },
-    {
-        "name": "pac man",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/pac%20man.png"
-    },
-    {
-        "name": "palutena",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/palutena.png"
-    },
-    {
-        "name": "piccolo",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/piccolo.png"
-    },
-    {
-        "name": "pip",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/pip.png"
-    },
-    {
-        "name": "pit",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/pit.png"
-    },
-    {
-        "name": "princess daisy",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/princess%20daisy.png"
-    },
-    {
-        "name": "princess zelda",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/princess%20zelda.png"
-    },
-    {
-        "name": "raditz",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/raditz.png"
-    },
-    {
-        "name": "raum",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/raum.png"
-    },
-    {
-        "name": "rayman",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rayman.png"
-    },
-    {
-        "name": "recoome",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/recoome.png"
-    },
-    {
-        "name": "ridley",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ridley.png"
-    },
-    {
-        "name": "roland",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/roland.png"
-    },
-    {
-        "name": "rolento",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rolento.png"
-    },
-    {
-        "name": "rosalina",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rosalina.png"
-    },
-    {
-        "name": "rose",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rose.png"
-    },
-    {
-        "name": "ruckus",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ruckus.png"
-    },
-    {
-        "name": "rufus",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rufus.png"
-    },
-    {
-        "name": "ryu",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ryu.png"
-    },
-    {
-        "name": "sagat",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sagat.png"
-    },
-    {
-        "name": "salvador",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/salvador.png"
-    },
-    {
-        "name": "sam",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sam.png"
-    },
-    {
-        "name": "samus",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/samus.png"
-    },
-    {
-        "name": "seris",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/seris.png"
-    },
-    {
-        "name": "sha lin",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sha%20lin.png"
-    },
-    {
-        "name": "shulk",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/shulk.png"
-    },
-    {
-        "name": "simon belmont",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/simon%20belmont.png"
-    },
-    {
-        "name": "skeleton",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/skeleton.png"
-    },
-    {
-        "name": "skye",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/skye.png"
-    },
-    {
-        "name": "snake",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/snake.png"
-    },
-    {
-        "name": "snoop dogg",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/snoop%20dogg.png"
-    },
-    {
-        "name": "sodom",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sodom.png"
-    },
-    {
-        "name": "sonic",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sonic.png"
-    },
-    {
-        "name": "spider",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/spider.png"
-    },
-    {
-        "name": "steve",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/steve.png"
-    },
-    {
-        "name": "strix",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/strix.png"
-    },
-    {
-        "name": "sully",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sully.png"
-    },
-    {
-        "name": "super buu",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/super%20buu.png"
-    },
-    {
-        "name": "talus",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/talus.png"
-    },
-    {
-        "name": "tenzin",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tenzin.png"
-    },
-    {
-        "name": "terminus",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/terminus.png"
-    },
-    {
-        "name": "terry bogard",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/terry%20bogard.png"
-    },
-    {
-        "name": "tiberius",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tiberius.png"
-    },
-    {
-        "name": "tien",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tien.png"
-    },
-    {
-        "name": "tom nook",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tom%20nook.png"
-    },
-    {
-        "name": "torvald",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/torvald.png"
-    },
-    {
-        "name": "trunks",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trunks.png"
-    },
-    {
-        "name": "tyra",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tyra.png"
-    },
-    {
-        "name": "urien",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/urien.png"
-    },
-    {
-        "name": "vega",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/vega.png"
-    },
-    {
-        "name": "vegeta",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/vegeta.png"
-    },
-    {
-        "name": "viktor",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/viktor.png"
-    },
-    {
-        "name": "villager",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/villager.png"
-    },
-    {
-        "name": "waluigi",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/waluigi.png"
-    },
-    {
-        "name": "wario",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/wario.png"
-    },
-    {
-        "name": "whis",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/whis.png"
-    },
-    {
-        "name": "wii fit trainer",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/wii%20fit%20trainer.png"
-    },
-    {
-        "name": "wilhelm",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/wilhelm.png"
-    },
-    {
-        "name": "willo",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/willo.png"
-    },
-    {
-        "name": "witch",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/witch.png"
-    },
-    {
-        "name": "yamcha",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/yamcha.png"
-    },
-    {
-        "name": "ying",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ying.png"
-    },
-    {
-        "name": "yoshi",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/yoshi.png"
-    },
-    {
-        "name": "zane",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zane.png"
-    },
-    {
-        "name": "zangief",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zangief.png"
-    },
-    {
-        "name": "zarbon",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zarbon.png"
-    },
-    {
-        "name": "zero",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zero.png"
-    },
-    {
-        "name": "zhin",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zhin.png"
-    },
-    {
-        "name": "zombie pigman",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zombie%20pigman.png"
-    },
-    {
-        "name": "zombie",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zombie.png"
-    },
-    {
-        "name": "zoran",
-        "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zoran.png"
-    }
+[{
+    "name": "Bulbasaur",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/001.png?raw=true"
+  },
+  {
+    "name": "Ivysaur",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/002.png?raw=true"
+  },
+  {
+    "name": "Venusaur",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/003.png?raw=true"
+  },
+  {
+    "name": "Charmander",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/004.png?raw=true"
+  },
+  {
+    "name": "Charmeleon",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/005.png?raw=true"
+  },
+  {
+    "name": "Charizard",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/006.png?raw=true"
+  },
+  {
+    "name": "Squirtle",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/007.png?raw=true"
+  },
+  {
+    "name": "Wartortle",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/008.png?raw=true"
+  },
+  {
+    "name": "Blastoise",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/009.png?raw=true"
+  },
+  {
+    "name": "Caterpie",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/010.png?raw=true"
+  },
+  {
+    "name": "Metapod",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/011.png?raw=true"
+  },
+  {
+    "name": "Butterfree",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/012.png?raw=true"
+  },
+  {
+    "name": "Weedle",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/013.png?raw=true"
+  },
+  {
+    "name": "Kakuna",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/014.png?raw=true"
+  },
+  {
+    "name": "Beedrill",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/015.png?raw=true"
+  },
+  {
+    "name": "Pidgey",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/016.png?raw=true"
+  },
+  {
+    "name": "Pidgeotto",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/017.png?raw=true"
+  },
+  {
+    "name": "Pidgeot",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/018.png?raw=true"
+  },
+  {
+    "name": "Rattata",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/019.png?raw=true"
+  },
+  {
+    "name": "Raticate",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/020.png?raw=true"
+  },
+  {
+    "name": "Spearow",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/021.png?raw=true"
+  },
+  {
+    "name": "Fearow",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/022.png?raw=true"
+  },
+  {
+    "name": "Ekans",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/023.png?raw=true"
+  },
+  {
+    "name": "Arbok",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/024.png?raw=true"
+  },
+  {
+    "name": "Pikachu",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/025.png?raw=true"
+  },
+  {
+    "name": "Raichu",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/026.png?raw=true"
+  },
+  {
+    "name": "Sandshrew",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/027.png?raw=true"
+  },
+  {
+    "name": "Sandslash",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/028.png?raw=true"
+  },
+  {
+    "name": "Nidoran",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/029.png?raw=true"
+  },
+  {
+    "name": "Nidorina",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/030.png?raw=true"
+  },
+  {
+    "name": "Nidoqueen",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/031.png?raw=true"
+  },
+  {
+    "name": "Nidoran",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/032.png?raw=true"
+  },
+  {
+    "name": "Nidorino",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/033.png?raw=true"
+  },
+  {
+    "name": "Nidoking",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/034.png?raw=true"
+  },
+  {
+    "name": "Clefairy",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/035.png?raw=true"
+  },
+  {
+    "name": "Clefable",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/036.png?raw=true"
+  },
+  {
+    "name": "Vulpix",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/037.png?raw=true"
+  },
+  {
+    "name": "Ninetales",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/038.png?raw=true"
+  },
+  {
+    "name": "Jigglypuff",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/039.png?raw=true"
+  },
+  {
+    "name": "Wigglytuff",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/040.png?raw=true"
+  },
+  {
+    "name": "Zubat",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/041.png?raw=true"
+  },
+  {
+    "name": "Golbat",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/042.png?raw=true"
+  },
+  {
+    "name": "Oddish",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/043.png?raw=true"
+  },
+  {
+    "name": "Gloom",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/044.png?raw=true"
+  },
+  {
+    "name": "Vileplume",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/045.png?raw=true"
+  },
+  {
+    "name": "Paras",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/046.png?raw=true"
+  },
+  {
+    "name": "Parasect",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/047.png?raw=true"
+  },
+  {
+    "name": "Venonat",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/048.png?raw=true"
+  },
+  {
+    "name": "Venomoth",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/049.png?raw=true"
+  },
+  {
+    "name": "Diglett",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/050.png?raw=true"
+  },
+  {
+    "name": "Dugtrio",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/051.png?raw=true"
+  },
+  {
+    "name": "Meowth",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/052.png?raw=true"
+  },
+  {
+    "name": "Persian",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/053.png?raw=true"
+  },
+  {
+    "name": "Psyduck",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/054.png?raw=true"
+  },
+  {
+    "name": "Golduck",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/055.png?raw=true"
+  },
+  {
+    "name": "Mankey",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/056.png?raw=true"
+  },
+  {
+    "name": "Primeape",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/057.png?raw=true"
+  },
+  {
+    "name": "Growlithe",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/058.png?raw=true"
+  },
+  {
+    "name": "Arcanine",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/059.png?raw=true"
+  },
+  {
+    "name": "Poliwag",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/060.png?raw=true"
+  },
+  {
+    "name": "Poliwhirl",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/061.png?raw=true"
+  },
+  {
+    "name": "Poliwrath",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/062.png?raw=true"
+  },
+  {
+    "name": "Abra",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/063.png?raw=true"
+  },
+  {
+    "name": "Kadabra",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/064.png?raw=true"
+  },
+  {
+    "name": "Alakazam",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/065.png?raw=true"
+  },
+  {
+    "name": "Machop",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/066.png?raw=true"
+  },
+  {
+    "name": "Machoke",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/067.png?raw=true"
+  },
+  {
+    "name": "Machamp",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/068.png?raw=true"
+  },
+  {
+    "name": "Bellsprout",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/069.png?raw=true"
+  },
+  {
+    "name": "Weepinbell",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/070.png?raw=true"
+  },
+  {
+    "name": "Victreebel",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/071.png?raw=true"
+  },
+  {
+    "name": "Tentacool",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/072.png?raw=true"
+  },
+  {
+    "name": "Tentacruel",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/073.png?raw=true"
+  },
+  {
+    "name": "Geodude",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/074.png?raw=true"
+  },
+  {
+    "name": "Graveler",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/075.png?raw=true"
+  },
+  {
+    "name": "Golem",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/076.png?raw=true"
+  },
+  {
+    "name": "Ponyta",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/077.png?raw=true"
+  },
+  {
+    "name": "Rapidash",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/078.png?raw=true"
+  },
+  {
+    "name": "Slowpoke",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/079.png?raw=true"
+  },
+  {
+    "name": "Slowbro",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/080.png?raw=true"
+  },
+  {
+    "name": "Magnemite",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/081.png?raw=true"
+  },
+  {
+    "name": "Magneton",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/082.png?raw=true"
+  },
+  {
+    "name": "Farfetchd",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/083.png?raw=true"
+  },
+  {
+    "name": "Doduo",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/084.png?raw=true"
+  },
+  {
+    "name": "Dodrio",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/085.png?raw=true"
+  },
+  {
+    "name": "Seel",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/086.png?raw=true"
+  },
+  {
+    "name": "Dewgong",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/087.png?raw=true"
+  },
+  {
+    "name": "Grimer",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/088.png?raw=true"
+  },
+  {
+    "name": "Muk",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/089.png?raw=true"
+  },
+  {
+    "name": "Shellder",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/090.png?raw=true"
+  },
+  {
+    "name": "Cloyster",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/091.png?raw=true"
+  },
+  {
+    "name": "Gastly",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/092.png?raw=true"
+  },
+  {
+    "name": "Haunter",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/093.png?raw=true"
+  },
+  {
+    "name": "Gengar",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/094.png?raw=true"
+  },
+  {
+    "name": "Onix",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/095.png?raw=true"
+  },
+  {
+    "name": "Drowzee",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/096.png?raw=true"
+  },
+  {
+    "name": "Hypno",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/097.png?raw=true"
+  },
+  {
+    "name": "Krabby",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/098.png?raw=true"
+  },
+  {
+    "name": "Kingler",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/099.png?raw=true"
+  },
+  {
+    "name": "Voltorb",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/100.png?raw=true"
+  },
+  {
+    "name": "Electrode",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/101.png?raw=true"
+  },
+  {
+    "name": "Exeggcute",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/102.png?raw=true"
+  },
+  {
+    "name": "Exeggutor",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/103.png?raw=true"
+  },
+  {
+    "name": "Cubone",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/104.png?raw=true"
+  },
+  {
+    "name": "Marowak",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/105.png?raw=true"
+  },
+  {
+    "name": "Hitmonlee",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/106.png?raw=true"
+  },
+  {
+    "name": "Hitmonchan",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/107.png?raw=true"
+  },
+  {
+    "name": "Lickitung",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/108.png?raw=true"
+  },
+  {
+    "name": "Koffing",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/109.png?raw=true"
+  },
+  {
+    "name": "Weezing",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/110.png?raw=true"
+  },
+  {
+    "name": "Rhyhorn",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/111.png?raw=true"
+  },
+  {
+    "name": "Rhydon",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/112.png?raw=true"
+  },
+  {
+    "name": "Chansey",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/113.png?raw=true"
+  },
+  {
+    "name": "Tangela",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/114.png?raw=true"
+  },
+  {
+    "name": "Kangaskhan",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/115.png?raw=true"
+  },
+  {
+    "name": "Horsea",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/116.png?raw=true"
+  },
+  {
+    "name": "Seadra",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/117.png?raw=true"
+  },
+  {
+    "name": "Goldeen",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/118.png?raw=true"
+  },
+  {
+    "name": "Seaking",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/119.png?raw=true"
+  },
+  {
+    "name": "Staryu",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/120.png?raw=true"
+  },
+  {
+    "name": "Starmie",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/121.png?raw=true"
+  },
+  {
+    "name": "Mr. Mime",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/122.png?raw=true"
+  },
+  {
+    "name": "Scyther",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/123.png?raw=true"
+  },
+  {
+    "name": "Jynx",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/124.png?raw=true"
+  },
+  {
+    "name": "Electabuzz",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/125.png?raw=true"
+  },
+  {
+    "name": "Magmar",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/126.png?raw=true"
+  },
+  {
+    "name": "Pinsir",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/127.png?raw=true"
+  },
+  {
+    "name": "Tauros",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/128.png?raw=true"
+  },
+  {
+    "name": "Magikarp",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/129.png?raw=true"
+  },
+  {
+    "name": "Gyarados",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/130.png?raw=true"
+  },
+  {
+    "name": "Lapras",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/131.png?raw=true"
+  },
+  {
+    "name": "Ditto",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/132.png?raw=true"
+  },
+  {
+    "name": "Eevee",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/133.png?raw=true"
+  },
+  {
+    "name": "Vaporeon",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/134.png?raw=true"
+  },
+  {
+    "name": "Jolteon",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/135.png?raw=true"
+  },
+  {
+    "name": "Flareon",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/136.png?raw=true"
+  },
+  {
+    "name": "Porygon",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/137.png?raw=true"
+  },
+  {
+    "name": "Omanyte",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/138.png?raw=true"
+  },
+  {
+    "name": "Omastar",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/139.png?raw=true"
+  },
+  {
+    "name": "Kabuto",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/140.png?raw=true"
+  },
+  {
+    "name": "Kabutops",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/141.png?raw=true"
+  },
+  {
+    "name": "Aerodactyl",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/142.png?raw=true"
+  },
+  {
+    "name": "Snorlax",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/143.png?raw=true"
+  },
+  {
+    "name": "Articuno",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/144.png?raw=true"
+  },
+  {
+    "name": "Zapdos",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/145.png?raw=true"
+  },
+  {
+    "name": "Moltres",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/146.png?raw=true"
+  },
+  {
+    "name": "Dratini",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/147.png?raw=true"
+  },
+  {
+    "name": "Dragonair",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/148.png?raw=true"
+  },
+  {
+    "name": "Dragonite",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/149.png?raw=true"
+  },
+  {
+    "name": "Mewtwo",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/150.png?raw=true"
+  },
+  {
+    "name": "Mew",
+    "image": "https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true"
+  },
+  {
+    "name": "admiral razorbeard",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/admiral%20razorbeard.png"
+  },
+  {
+    "name": "adon",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/adon.png"
+  },
+  {
+    "name": "akuma",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/akuma.png"
+  },
+  {
+    "name": "alex",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/alex.png"
+  },
+  {
+    "name": "amara",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/amara.png"
+  },
+  {
+    "name": "android 16",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/android%2016.png"
+  },
+  {
+    "name": "android 17",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/android%2017.png"
+  },
+  {
+    "name": "android 18",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/android%2018.png"
+  },
+  {
+    "name": "androxus",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/androxus.png"
+  },
+  {
+    "name": "ash",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ash.png"
+  },
+  {
+    "name": "athena",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/athena.png"
+  },
+  {
+    "name": "atlas",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/atlas.png"
+  },
+  {
+    "name": "aurelia",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/aurelia.png"
+  },
+  {
+    "name": "axton",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/axton.png"
+  },
+  {
+    "name": "balrog",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/balrog.png"
+  },
+  {
+    "name": "bardock",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bardock.png"
+  },
+  {
+    "name": "barik",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/barik.png"
+  },
+  {
+    "name": "bayonetta",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bayonetta.png"
+  },
+  {
+    "name": "beerus",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/beerus.png"
+  },
+  {
+    "name": "bill",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bill.png"
+  },
+  {
+    "name": "birdie",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/birdie.png"
+  },
+  {
+    "name": "blanka",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/blanka.png"
+  },
+  {
+    "name": "bob",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bob.png"
+  },
+  {
+    "name": "bomb king",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bomb%20king.png"
+  },
+  {
+    "name": "bowser",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bowser.png"
+  },
+  {
+    "name": "brick",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/brick.png"
+  },
+  {
+    "name": "broly",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/broly.png"
+  },
+  {
+    "name": "buck",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/buck.png"
+  },
+  {
+    "name": "bulma",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/bulma.png"
+  },
+  {
+    "name": "burter",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/burter.png"
+  },
+  {
+    "name": "buu",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/buu.png"
+  },
+  {
+    "name": "cammy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/cammy.png"
+  },
+  {
+    "name": "captain falcon",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/captain%20falcon.png"
+  },
+  {
+    "name": "captain ginyu",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/captain%20ginyu.png"
+  },
+  {
+    "name": "captain olimar",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/captain%20olimar.png"
+  },
+  {
+    "name": "cassie",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/cassie.png"
+  },
+  {
+    "name": "cell",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/cell.png"
+  },
+  {
+    "name": "charlie",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/charlie.png"
+  },
+  {
+    "name": "chiaotzu",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/chiaotzu.png"
+  },
+  {
+    "name": "chichi",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/chichi.png"
+  },
+  {
+    "name": "chloe",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/chloe.png"
+  },
+  {
+    "name": "chun li",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/chun%20li.png"
+  },
+  {
+    "name": "claptrap",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/claptrap.png"
+  },
+  {
+    "name": "cloud",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/cloud.png"
+  },
+  {
+    "name": "creeper",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/creeper.png"
+  },
+  {
+    "name": "dark samus",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dark%20samus.png"
+  },
+  {
+    "name": "dhalsim",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dhalsim.png"
+  },
+  {
+    "name": "diddy kong",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/diddy%20kong.png"
+  },
+  {
+    "name": "donkey kong",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/donkey%20kong.png"
+  },
+  {
+    "name": "dovahkiin",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dovahkiin.png"
+  },
+  {
+    "name": "dredge",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dredge.png"
+  },
+  {
+    "name": "drogoz",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/drogoz.png"
+  },
+  {
+    "name": "dudley",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/dudley.png"
+  },
+  {
+    "name": "edward kenway",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/edward%20kenway.png"
+  },
+  {
+    "name": "elena",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/elena.png"
+  },
+  {
+    "name": "ellie",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ellie.png"
+  },
+  {
+    "name": "ender dragon",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ender%20dragon.png"
+  },
+  {
+    "name": "enderman",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/enderman.png"
+  },
+  {
+    "name": "evie",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/evie.png"
+  },
+  {
+    "name": "falco",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/falco.png"
+  },
+  {
+    "name": "fei long",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/fei%20long.png"
+  },
+  {
+    "name": "fernando",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/fernando.png"
+  },
+  {
+    "name": "fl4k",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/fl4k.png"
+  },
+  {
+    "name": "fox",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/fox.png"
+  },
+  {
+    "name": "frieza",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/frieza.png"
+  },
+  {
+    "name": "furia",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/furia.png"
+  },
+  {
+    "name": "gaige",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/gaige.png"
+  },
+  {
+    "name": "ganon",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ganon.png"
+  },
+  {
+    "name": "gill",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/gill.png"
+  },
+  {
+    "name": "globox",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/globox.png"
+  },
+  {
+    "name": "gohan",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/gohan.png"
+  },
+  {
+    "name": "goku",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/goku.png"
+  },
+  {
+    "name": "goten",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/goten.png"
+  },
+  {
+    "name": "grohk",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/grohk.png"
+  },
+  {
+    "name": "grover",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/grover.png"
+  },
+  {
+    "name": "guile",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/guile.png"
+  },
+  {
+    "name": "guldo",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/guldo.png"
+  },
+  {
+    "name": "handsome jack",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/handsome%20jack.png"
+  },
+  {
+    "name": "harry",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/Harry.png"
+  },
+  {
+    "name": "hercules",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/hercules.png"
+  },
+  {
+    "name": "herobrine",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/herobrine.png"
+  },
+  {
+    "name": "hunter",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/hunter.png"
+  },
+  {
+    "name": "imani",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/imani.png"
+  },
+  {
+    "name": "inara",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/inara.png"
+  },
+  {
+    "name": "io",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/io.png"
+  },
+  {
+    "name": "isabelle",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/isabelle.png"
+  },
+  {
+    "name": "jebediah",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/jebediah.png"
+  },
+  {
+    "name": "jeice",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/jeice.png"
+  },
+  {
+    "name": "jenos",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/jenos.png"
+  },
+  {
+    "name": "joel",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/joel.png"
+  },
+  {
+    "name": "joker",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/joker.png"
+  },
+  {
+    "name": "juri",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/juri.png"
+  },
+  {
+    "name": "karen",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/karen.png"
+  },
+  {
+    "name": "katherine",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/katherine.png"
+  },
+  {
+    "name": "ken",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ken.png"
+  },
+  {
+    "name": "khan",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/khan.png"
+  },
+  {
+    "name": "kid buu",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/kid%20buu.png"
+  },
+  {
+    "name": "kinessa",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/kinessa.png"
+  },
+  {
+    "name": "king dedede",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/king%20dedede.png"
+  },
+  {
+    "name": "king vegeta",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/king%20vegeta.png"
+  },
+  {
+    "name": "kirby",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/kirby.png"
+  },
+  {
+    "name": "koga",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/koga.png"
+  },
+  {
+    "name": "koopalings",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/koopalings.png"
+  },
+  {
+    "name": "krieg",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/krieg.png"
+  },
+  {
+    "name": "krillin",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/krillin.png"
+  },
+  {
+    "name": "laura statue",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/laura%20statue.png"
+  },
+  {
+    "name": "lex",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/lex.png"
+  },
+  {
+    "name": "lian",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/lian.png"
+  },
+  {
+    "name": "lilith",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/lilith.png"
+  },
+  {
+    "name": "link",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/link.png"
+  },
+  {
+    "name": "little mac",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/little%20mac.png"
+  },
+  {
+    "name": "lucina",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/lucina.png"
+  },
+  {
+    "name": "luigi",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/luigi.png"
+  },
+  {
+    "name": "luma",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/luma.png"
+  },
+  {
+    "name": "m. bison",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/M.%20Bison.png"
+  },
+  {
+    "name": "maeve",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/maeve.png"
+  },
+  {
+    "name": "makoa",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/makoa.png"
+  },
+  {
+    "name": "mario",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/mario.png"
+  },
+  {
+    "name": "marth",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/marth.png"
+  },
+  {
+    "name": "master roshi",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/master%20roshi.png"
+  },
+  {
+    "name": "maya",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/maya.png"
+  },
+  {
+    "name": "megaman",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/megaman.png"
+  },
+  {
+    "name": "meta knight",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/meta%20knight.png"
+  },
+  {
+    "name": "moji",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/moji.png"
+  },
+  {
+    "name": "mordecai",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/mordecai.png"
+  },
+  {
+    "name": "moze",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/moze.png"
+  },
+  {
+    "name": "nadine",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/nadine.png"
+  },
+  {
+    "name": "nappa",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/nappa.png"
+  },
+  {
+    "name": "nathan",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/nathan.png"
+  },
+  {
+    "name": "nisha lynchwood",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/nisha%20lynchwood.png"
+  },
+  {
+    "name": "pac man",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/pac%20man.png"
+  },
+  {
+    "name": "palutena",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/palutena.png"
+  },
+  {
+    "name": "piccolo",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/piccolo.png"
+  },
+  {
+    "name": "pip",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/pip.png"
+  },
+  {
+    "name": "pit",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/pit.png"
+  },
+  {
+    "name": "princess daisy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/princess%20daisy.png"
+  },
+  {
+    "name": "princess zelda",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/princess%20zelda.png"
+  },
+  {
+    "name": "raditz",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/raditz.png"
+  },
+  {
+    "name": "raum",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/raum.png"
+  },
+  {
+    "name": "rayman",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rayman.png"
+  },
+  {
+    "name": "recoome",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/recoome.png"
+  },
+  {
+    "name": "ridley",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ridley.png"
+  },
+  {
+    "name": "roland",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/roland.png"
+  },
+  {
+    "name": "rolento",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rolento.png"
+  },
+  {
+    "name": "rosalina",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rosalina.png"
+  },
+  {
+    "name": "rose",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rose.png"
+  },
+  {
+    "name": "ruckus",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ruckus.png"
+  },
+  {
+    "name": "rufus",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/rufus.png"
+  },
+  {
+    "name": "ryu",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ryu.png"
+  },
+  {
+    "name": "sagat",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sagat.png"
+  },
+  {
+    "name": "salvador",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/salvador.png"
+  },
+  {
+    "name": "sam",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sam.png"
+  },
+  {
+    "name": "samus",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/samus.png"
+  },
+  {
+    "name": "seris",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/seris.png"
+  },
+  {
+    "name": "sha lin",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sha%20lin.png"
+  },
+  {
+    "name": "shulk",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/shulk.png"
+  },
+  {
+    "name": "simon belmont",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/simon%20belmont.png"
+  },
+  {
+    "name": "skeleton",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/skeleton.png"
+  },
+  {
+    "name": "skye",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/skye.png"
+  },
+  {
+    "name": "snake",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/snake.png"
+  },
+  {
+    "name": "snoop dogg",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/snoop%20dogg.png"
+  },
+  {
+    "name": "sodom",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sodom.png"
+  },
+  {
+    "name": "sonic",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sonic.png"
+  },
+  {
+    "name": "spider",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/spider.png"
+  },
+  {
+    "name": "steve",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/steve.png"
+  },
+  {
+    "name": "strix",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/strix.png"
+  },
+  {
+    "name": "sully",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/sully.png"
+  },
+  {
+    "name": "super buu",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/super%20buu.png"
+  },
+  {
+    "name": "talus",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/talus.png"
+  },
+  {
+    "name": "tenzin",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tenzin.png"
+  },
+  {
+    "name": "terminus",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/terminus.png"
+  },
+  {
+    "name": "terry bogard",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/terry%20bogard.png"
+  },
+  {
+    "name": "tiberius",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tiberius.png"
+  },
+  {
+    "name": "tien",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tien.png"
+  },
+  {
+    "name": "tom nook",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tom%20nook.png"
+  },
+  {
+    "name": "torvald",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/torvald.png"
+  },
+  {
+    "name": "trunks",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trunks.png"
+  },
+  {
+    "name": "tyra",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/tyra.png"
+  },
+  {
+    "name": "urien",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/urien.png"
+  },
+  {
+    "name": "vega",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/vega.png"
+  },
+  {
+    "name": "vegeta",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/vegeta.png"
+  },
+  {
+    "name": "viktor",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/viktor.png"
+  },
+  {
+    "name": "villager",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/villager.png"
+  },
+  {
+    "name": "waluigi",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/waluigi.png"
+  },
+  {
+    "name": "wario",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/wario.png"
+  },
+  {
+    "name": "whis",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/whis.png"
+  },
+  {
+    "name": "wii fit trainer",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/wii%20fit%20trainer.png"
+  },
+  {
+    "name": "wilhelm",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/wilhelm.png"
+  },
+  {
+    "name": "willo",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/willo.png"
+  },
+  {
+    "name": "witch",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/witch.png"
+  },
+  {
+    "name": "yamcha",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/yamcha.png"
+  },
+  {
+    "name": "ying",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/ying.png"
+  },
+  {
+    "name": "yoshi",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/yoshi.png"
+  },
+  {
+    "name": "zane",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zane.png"
+  },
+  {
+    "name": "zangief",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zangief.png"
+  },
+  {
+    "name": "zarbon",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zarbon.png"
+  },
+  {
+    "name": "zero",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zero.png"
+  },
+  {
+    "name": "zhin",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zhin.png"
+  },
+  {
+    "name": "zombie pigman",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zombie%20pigman.png"
+  },
+  {
+    "name": "zombie",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zombie.png"
+  },
+  {
+    "name": "zoran",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/zoran.png"
+  }
 ]

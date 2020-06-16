@@ -1,5 +1,5 @@
 {
-  "twitchChatCommand": "!clip",
+  "chatCommand": "!clip",
   "discordClipChannel": "1234567890123456789",
   "enabled": true,
   "subMode": false

@@ -23,7 +23,7 @@ module.exports = {
         },
         "fields": fields
       };
-      message.channel.send({embed}).then(msg => msg.delete({timeout: 30000}));
+      message.channel.send({embed}).then(msg => msg.delete({timeout: 30000}).catch(error => console.error(`!! Couldn't Send or Delete (find) Discord Help Embed...`);
     }).catch(error => console.error(error, '!! Discord Help Command Error ^^^ ....'));
   }
 }; //end exports

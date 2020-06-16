@@ -6,16 +6,17 @@ const DISCORDBOT = require('../../pjtestbot.js').DISCORDBOT,
   settings = JSON.parse(fs.readFileSync(SettingsFile)),
   Cryptr = require('cryptr');
 
-let streamerID = process.env.T_CHANNELID,
+let streamerID = process.env.TEST_TWITCHID || process.env.T_CHANNELID,
   onCooldown = false,
-  cooldownLength = 45;
+  cooldownLength = 15;
 
 let cryptr = new Cryptr(process.env.SECRET);
 
 module.exports = {
-  command: settings.twitchChatCommand,
+  settings: settings,
   main: async (TWITCHBOT, room, user, message) => {
-    if (onCooldown) return;
+    if (onCooldown || settings.enabled === false || !message.startsWith(settings.chatCommand)) return;
+    if (settings.subMode && !user.subscriber) return;
     onCooldown = true
     setTimeout(() => {
       onCooldown = false;
@@ -23,7 +24,7 @@ module.exports = {
     //Twitch Response
     let res = {
         type: 'action',
-        msg: `Attempting to save clip. Check Discord Clip Channel!`
+        msg: `Attempting to save clip...`
       },
       discordRes,
       clipUser,
@@ -44,15 +45,13 @@ module.exports = {
       getClipLink = await CreateTwitchClip(null); //retry with no token
     };
     if (getClipLink.error != undefined) {
-      if (getClipLink.status === 404) { //channel is offline
-        res.msg = 'Channel is offline!'
+        res.msg = `Error ${getClipLink.status}: ${getClipLink.message}!`;
         BotResponse(TWITCHBOT, room, user.username, res);
         return;
-      } else {
-        discordRes = `Error Saving Clip For ${user.username}`;
-      };
     } else {
       discordRes = clipUser ? `<@${clipUser}> Created A Clip! ${getClipLink.data[0]['edit_url']}` : `${user.username} Created A Clip! ${getClipLink.data[0]['edit_url']}`;
+      res.msg = '...posting clip to Discord!';
+      BotResponse(TWITCHBOT, room, user.username, res);
     };
     DISCORDBOT.channels.fetch(settings.discordClipChannel).then(channel => {
         setTimeout(() => {

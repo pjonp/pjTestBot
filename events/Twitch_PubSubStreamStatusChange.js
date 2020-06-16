@@ -1,6 +1,7 @@
 const modules = [
   require('../modules/se_offline_points/SEOfflinePoints.js'),
   require('../modules/random_word/RandomWord.js'),
+  require('../modules/word_ladder/WordLadder.js'),
   require('../modules/discord_twitch_status_embed/DiscordTwitchStatusEmbed.js')
 ];
 

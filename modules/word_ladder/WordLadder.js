@@ -16,6 +16,15 @@ regexBuild(settings.word);
 
 module.exports = {
   settings: settings,
+  online: (TWITCHBOT, room) => {
+    if (!settings.autoStart) return;
+    clearTimeout(randomGameTimer);
+    randomGame(TWITCHBOT, room);
+  },
+  offline: () => {
+    settings.enabled = false;
+    clearTimeout(randomGameTimer);
+  },
   main: async (TWITCHBOT, room, user, message) => {
     if (settings.enabled === false || (settings.subMode && !user.subscriber)) return;
     message = message.toLowerCase();
@@ -45,7 +54,7 @@ module.exports = {
       console.log(res.msg);
       BotResponse(TWITCHBOT, room, settings.editors[0], res);
     };
-    if(settings.loopGames) randomGame(TWITCHBOT, room);
+    if (settings.loopGames) randomGame(TWITCHBOT, room);
     return;
   },
   update: async (TWITCHBOT, room, user, message) => {
@@ -144,21 +153,30 @@ module.exports = {
           res.msg = `${msgA[1]} was removed as an editor! Current editors are: ${settings.editors}`;
         }
         break;
-    case 'loopgames':
-             if (msgA[1] === 'true' || msgA[1] === 'false') {
-               settings.loopGames = (msgA[1] === 'true');
-               res.msg = `Word Ladder LOOPGAMES has been: ${settings.loopGames ? 'ENABLED!' : 'DISABLED!'}`
-             } else {
-               res.msg = `Error: ${settings.chatCommand} submode < true | false >`;
-               res.error = true;
-             }
-             break;
+      case 'loopgames':
+        if (msgA[1] === 'true' || msgA[1] === 'false') {
+          settings.loopGames = (msgA[1] === 'true');
+          res.msg = `Word Ladder LOOPGAMES has been: ${settings.loopGames ? 'ENABLED!' : 'DISABLED!'}`
+        } else {
+          res.msg = `Error: ${settings.chatCommand} loopgames < true | false >`;
+          res.error = true;
+        }
+        break;
+      case 'autostart':
+        if (msgA[1] === 'true' || msgA[1] === 'false') {
+          settings.autoStart = (msgA[1] === 'true');
+          res.msg = `Random Word AUTOSTART has been: ${settings.autoStart ? 'ENABLED!' : 'DISABLED!'}`
+        } else {
+          res.msg = `Error: ${settings.chatCommand} autostart < true | false >`;
+          res.error = true;
+        }
+        break;
       case 'settings':
-        res.msg = `word: ${settings.word} | enabled: ${settings.enabled} | submode: ${settings.subMode} | loopgames: ${settings.loopGames} | points: ${settings.points} | editors: ${settings.editors}`;
+        res.msg = `word: ${settings.word} | enabled: ${settings.enabled} | submode: ${settings.subMode} | autostart: ${settings.autoStart} | loopgames: ${settings.loopGames} | points: ${settings.points} | editors: ${settings.editors}`;
         res.error = true
         break;
       default:
-        res.msg = `Setting Options: ${settings.chatCommand} < word | enabled | submode | points | loopgames | editoradd | editorremove | settings >`;
+        res.msg = `Setting Options: ${settings.chatCommand} < word | enabled | submode | points | autostart | loopgames | editoradd | editorremove | settings >`;
         res.error = true;
     }
     BotResponse(TWITCHBOT, room, user.username, res);

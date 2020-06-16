@@ -94,7 +94,7 @@ const updateEmbed = async (settingsEmbed) => {
 const getStreamData = (userID) => {
   return new Promise((resolve, reject) => {
   //  TwitchAPI.GetStreamData(testingId).then(sData => {
-    TwitchAPI.GetStreamData(process.env.T_CHANNELID).then(sData => {
+    TwitchAPI.GetStreamData(process.env.TEST_TWITCHID || process.env.T_CHANNELID).then(sData => {
       sData = sData.data[0];
       TwitchAPI.GetGameData(sData.game_id).then(gData => {
         gData = gData.data[0];
