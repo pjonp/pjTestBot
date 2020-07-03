@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family={{fontNameFD}}&display=swap');
+* {
+margin: 0;
+padding: 0;
+}
+#container {
+  font-family: {{fontNameFD}}, sans-serif;
+  opacity: 0;
+  position: absolute;
+  left: {wheelStartingPositionX}px;
+  top: {wheelStartingPositionY}px;
+}
+#canvas{
+ position: relative;
+ left: 0px;
+ top: 0px;
+}
+#image-center-piece img{
+  width: {foregroundImageSizeFD}%;
+}
+#video-center-piece, #image-center-piece img{
+   position: absolute;
+}
+.show {
+    animation: fadein 1s forwards;
+}
+.hide {
+    animation: fadeout 1s forwards;
+}
+@keyframes fadein {
+    from {opacity: 0;left: 2000px}
+    to {opacity: 1;left: {wheelStartingPositionX}px}
+}
+@keyframes fadeout {
+    from {opacity: 1;left: {wheelStartingPositionX}px}
+    to {opacity: 0;left: 2000px}
+}

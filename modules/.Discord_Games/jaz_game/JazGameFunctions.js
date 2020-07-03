@@ -1,6 +1,10 @@
+
+
+//OLD. LEGACY GAME.
+
 const fs = require('fs');
-const GameWeapons = JSON.parse(fs.readFileSync('./modules/jaz_game/JazGameWeapons.json'));
-const GameSettings = JSON.parse(fs.readFileSync('./modules/jaz_game/JazGameSettings.json'));
+const GameWeapons = JSON.parse(fs.readFileSync('./modules/.Discord_Games/jaz_game/JazGameWeapons.json'));
+const GameSettings = JSON.parse(fs.readFileSync('./modules/.Discord_Games/jaz_game/JazGameSettings.json'));
 
 //timer setup
 let gameTime,
@@ -14,7 +18,7 @@ const JazGameBuild = async (message) => {
   gameRunning = true;
   gameTime = GameSettings.roundMinutes * 60 * 1000;
   currentRound = 1;
-  let gameData = JSON.parse(fs.readFileSync('./modules/jaz_game/JazGameData.json'));
+  let gameData = JSON.parse(fs.readFileSync('./modules/.Discord_Games/jaz_game/JazGameData.json'));
   let randPlayers = gameData.players.filter(i => i.active); //filter out ACTIVE players
   //randomize the player base for "X" times (don't randomize all)
   for (let i = randPlayers.length - 1; i >= randPlayers.length - GameSettings.numberOfPlayers; i--) {
@@ -92,7 +96,7 @@ let gameAreaResize = async (message) => {
 
 //MAIN GAME LOGIC.
 async function jazGameLogic(message, roundName, gameTime) {
-  let gameData = JSON.parse(fs.readFileSync('./modules/jaz_game/JazGameData.json'));
+  let gameData = JSON.parse(fs.readFileSync('./modules/.Discord_Games/jaz_game/JazGameData.json'));
   //randomize for priority
   let playersAlive = gameData.inGamePlayers.filter(i => i.alive) //get alive players
   for (let i = playersAlive.length - 1; i >= 0; i--) {
@@ -257,7 +261,7 @@ async function jazGameOver(message, gameData, winnerObj) {
 const JazGameReset = async (message) => {
   clearInterval(gameTimer); // clear timer
   gameRunning = false;
-  let gameData = JSON.parse(fs.readFileSync('./modules/jaz_game/JazGameData.json'));
+  let gameData = JSON.parse(fs.readFileSync('./modules/.Discord_Games/jaz_game/JazGameData.json'));
   gameData.inGamePlayers.forEach(i => {
     pos = gameData.players.findIndex(j => j.userID === i.userID);
     gameData.players[pos].inBattle = false;
@@ -288,7 +292,7 @@ const JazGameReset = async (message) => {
 const saveGameData = async (gameData) => {
   //SAVE THE NEW INFORMATION
   return new Promise((resolve, reject) => {
-    fs.writeFile('./modules/jaz_game/JazGameData.json', JSON.stringify(gameData, null, 2), (err) => {
+    fs.writeFile('./modules/.Discord_Games/jaz_game/JazGameData.json', JSON.stringify(gameData, null, 2), (err) => {
       if (err) {
         console.log(err, 'there was an error saving the JSON file! ^^'); //Game is updated but JSON is locked...
         reject(false);

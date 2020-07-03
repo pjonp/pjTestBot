@@ -1,61 +1,48 @@
 const fs = require('fs'),
   path = require("path"),
-  SettingsFile = path.resolve(process.cwd(), './.settings/WordLadderSettings.json'),
+  SettingsFile = path.resolve(process.cwd(), './.settings/ScrambleWordSettings.json'),
   SEAPI = require('../../util/StreamElementsAPI.js'),
-  Words = require('./WordLadderDatabase.json');
+  Words = require('./ScrambleWordDatabase.json');
 let settings = JSON.parse(fs.readFileSync(SettingsFile)),
   regexCheck,
   regexBuild = (word) => regexCheck = new RegExp(`((?<=\\s|^))(${word})(?!\\w)`, "i"),
-  wordProgress = '',
-  newGame = true,
-  lastChatter = '',
   randomTime = () => Math.floor((Math.random() * (settings.randomTimeMax - settings.randomTimeMin) + settings.randomTimeMin)),
-  randomGameTimer;
+  randomPoints = () => Math.floor((Math.random() * (settings.pointsMax - settings.pointsMin) + settings.pointsMin)),
+  randomGameTimer,
+  winnerPoints = randomPoints();
 
 regexBuild(settings.word);
 
 module.exports = {
   settings: settings,
+  main: async (TWITCHBOT, room, user, message) => {
+    if (settings.enabled === false || (settings.subMode && !user.subscriber)) return;
+    if (regexCheck.test(message) === false) return;
+    let res = {
+      type: 'action',
+      msg: `${user.username} PorscheWIN ${winnerPoints}HP for decoding ${settings.word}!`
+    };
+    settings.enabled = false;
+    BotResponse(TWITCHBOT, room, user.username, res);
+    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, winnerPoints);
+    if (!updateSEPoints) { //error saving points
+      res.type = 'whisper';
+      res.msg = `***ERROR: (${settings.chatCommand}): Could not add ${winnerPoints} points to ${user.username}'s StreamElements account.`;
+      console.log(res.msg);
+      BotResponse(TWITCHBOT, room, settings.editors[0], res);
+    };
+    if (settings.loopGames) randomGame(TWITCHBOT, room);
+    return;
+  },
   online: (TWITCHBOT, room) => {
     if (!settings.autoStart) return;
+    settings.enabled = true;
     clearTimeout(randomGameTimer);
     randomGame(TWITCHBOT, room);
   },
   offline: () => {
     settings.enabled = false;
     clearTimeout(randomGameTimer);
-  },
-  main: async (TWITCHBOT, room, user, message) => {
-    if (settings.enabled === false || (settings.subMode && !user.subscriber)) return;
-    message = message.toLowerCase();
-    if (message.length > 1 || lastChatter !== user.username) {
-      wordProgress = message.length > 1 || !settings.word.startsWith(message) ? '' : message;
-      lastChatter = user.username;
-      return;
-    };
-    wordProgress += message;
-    if (!settings.word.startsWith(wordProgress)) {
-      wordProgress = '';
-      return;
-    }
-    if (regexCheck.test(wordProgress) === false) return;
-    let res = {
-      type: 'action',
-      msg: `${user.username} has built the "${settings.word}" ladder for ${settings.points}HP!`
-    };
-    settings.enabled = false;
-    wordProgress = '';
-    lastChatter = '';
-    BotResponse(TWITCHBOT, room, user.username, res);
-    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points);
-    if (!updateSEPoints) { //error saving points
-      res.type = 'whisper';
-      res.msg = `***ERROR: (${settings.chatCommand}): Could not add ${settings.points} points to ${user.username}'s StreamElements account.`;
-      console.log(res.msg);
-      BotResponse(TWITCHBOT, room, settings.editors[0], res);
-    };
-    if (settings.loopGames) randomGame(TWITCHBOT, room);
-    return;
   },
   update: async (TWITCHBOT, room, user, message) => {
     if (!settings.editors.some(i => i === user.username)) return;
@@ -72,32 +59,36 @@ module.exports = {
           res.msg = `Error: ${settings.chatCommand} word <TRIGGERWORD>`;
           res.error = true;
         } else {
-          settings.word = msgA[1];
+          msgA.shift();
+          settings.word = msgA.join(' ');
           settings.enabled = true;
-          wordProgress = '';
-          lastChatter = '';
-          newGame = true;
           clearTimeout(randomGameTimer);
           regexBuild(settings.word);
-          res.msg = `Word Ladder has been set to: ${settings.word} | GAME STARTED!`;
+          winnerPoints = randomPoints();
+          res.msg = `Scramble Word has been set to: ${settings.word} | GAME STARTED!`;
           BotResponse(TWITCHBOT, settings.editors[0], user.username, {
             type: 'action',
-            msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn ${settings.points} HP! The Word is ${settings.word.toUpperCase()} PogChamp`
+            msg: `PogChamp Unscramble me:`
+          });
+          BotResponse(TWITCHBOT, settings.editors[0], user.username, {
+            type: 'action',
+            msg: `${randomizeString(settings.word.toUpperCase())}`
           });
         }
         break;
       case 'enabled':
         if (msgA[1] === 'true' || msgA[1] === 'false') {
           settings.enabled = (msgA[1] === 'true');
-          wordProgress = '';
-          lastChatter = '';
-          newGame = true;
           clearTimeout(randomGameTimer);
-          res.msg = `Word Ladder has been: ${settings.enabled ? 'ENABLED!' : 'DISABLED!'}`;
+          res.msg = `Scramble Word has been: ${settings.enabled ? 'ENABLED!' : 'DISABLED!'}`;
           if (settings.enabled) {
             BotResponse(TWITCHBOT, settings.editors[0], user.username, {
               type: 'action',
-              msg: `PogChamp Ladder Letters Time! quickly get each letter on its own line to earn ${settings.points} HP! The Word is ${settings.word.toUpperCase()} PogChamp`
+              msg: `PogChamp Unscramble me:`
+            });
+            BotResponse(TWITCHBOT, settings.editors[0], user.username, {
+              type: 'action',
+              msg: `${randomizeString(settings.word.toUpperCase())}`
             });
           };
         } else {
@@ -108,21 +99,30 @@ module.exports = {
       case 'submode':
         if (msgA[1] === 'true' || msgA[1] === 'false') {
           settings.subMode = (msgA[1] === 'true');
-          res.msg = `Word Ladder SUBMODE has been: ${settings.subMode ? 'ENABLED!' : 'DISABLED!'}`
+          res.msg = `Scramble Word SUBMODE has been: ${settings.subMode ? 'ENABLED!' : 'DISABLED!'}`
         } else {
           res.msg = `Error: ${settings.chatCommand} submode < true | false >`;
           res.error = true;
         }
         break;
-      case 'points':
-        if (parseInt(msgA[1]) > 0) {
-          settings.points = parseInt(msgA[1]);
-          res.msg = `Word Ladder POINT BONUS has been set to: ${settings.points}`
-        } else {
-          res.msg = `Error: ${settings.chatCommand} points <NUMBER>`;
-          res.error = true;
-        }
-        break;
+      case 'pointsmin':
+          if (parseInt(msgA[1]) > 0) {
+            settings.pointsMin = parseInt(msgA[1]);
+            res.msg = `Scramble Word POINT MIN has been set to: ${settings.pointsMin}`
+          } else {
+            res.msg = `Error: ${settings.chatCommand} pointsmin <NUMBER>`;
+            res.error = true;
+          }
+          break;
+          case 'pointsmax':
+            if (parseInt(msgA[1]) > 0) {
+              settings.pointsMax = parseInt(msgA[1]);
+              res.msg = `Scramble Word POINT MAX has been set to: ${settings.pointsMax}`
+            } else {
+              res.msg = `Error: ${settings.chatCommand} pointsmax <NUMBER>`;
+              res.error = true;
+            }
+            break;
       case 'editoradd':
         if (!msgA[1]) {
           res.msg = `Error: ${settings.chatCommand} editoradd <USERNAME>`;
@@ -156,7 +156,7 @@ module.exports = {
       case 'loopgames':
         if (msgA[1] === 'true' || msgA[1] === 'false') {
           settings.loopGames = (msgA[1] === 'true');
-          res.msg = `Word Ladder LOOPGAMES has been: ${settings.loopGames ? 'ENABLED!' : 'DISABLED!'}`
+          res.msg = `Scramble Word LOOPGAMES has been: ${settings.loopGames ? 'ENABLED!' : 'DISABLED!'}`
         } else {
           res.msg = `Error: ${settings.chatCommand} loopgames < true | false >`;
           res.error = true;
@@ -165,18 +165,18 @@ module.exports = {
       case 'autostart':
         if (msgA[1] === 'true' || msgA[1] === 'false') {
           settings.autoStart = (msgA[1] === 'true');
-          res.msg = `Random Word AUTOSTART has been: ${settings.autoStart ? 'ENABLED!' : 'DISABLED!'}`
+          res.msg = `Scramble Word AUTOSTART has been: ${settings.autoStart ? 'ENABLED!' : 'DISABLED!'}`
         } else {
           res.msg = `Error: ${settings.chatCommand} autostart < true | false >`;
           res.error = true;
         }
         break;
       case 'settings':
-        res.msg = `word: ${settings.word} | enabled: ${settings.enabled} | submode: ${settings.subMode} | autostart: ${settings.autoStart} | loopgames: ${settings.loopGames} | points: ${settings.points} | editors: ${settings.editors}`;
+        res.msg = `word: ${settings.word} | enabled: ${settings.enabled} | submode: ${settings.subMode} | autostart: ${settings.autoStart} | loopgames: ${settings.loopGames} | pointsmin: ${settings.pointsMin} | pointsmax: ${settings.pointsMax} | editors: ${settings.editors}`;
         res.error = true
         break;
       default:
-        res.msg = `Setting Options: ${settings.chatCommand} < word | enabled | submode | points | autostart | loopgames | editoradd | editorremove | settings >`;
+        res.msg = `Setting Options: ${settings.chatCommand} < word | enabled | submode | pointsmin | pointsmax | autostart | loopgames | editoradd | editorremove | settings >`;
         res.error = true;
     }
     BotResponse(TWITCHBOT, room, user.username, res);
@@ -192,10 +192,10 @@ const SaveSettings = (TWITCHBOT, room, username) => {
   };
   try {
     fs.writeFileSync(SettingsFile, JSON.stringify(settings, null, 2), "utf8");
-    res.msg = `Word Ladder Settings File Saved!`
+    res.msg = `Scramble Word Settings File Saved!`
     console.log(res.msg);
   } catch {
-    res.msg = `!!!! Error Saving Word Ladder Settings File`
+    res.msg = `!!!! Error Saving Scramble Word Settings File`
     console.error(res.msg);
     res.error = true;
   };
@@ -220,13 +220,29 @@ const BotResponse = (TWITCHBOT, room, username, res) => {
   return res;
 };
 
-let randomGame = (TWITCHBOT, room) => {
+const randomGame = (TWITCHBOT, room) => {
   randomGameTimer = setTimeout(() => {
     let randWord = Words[Math.floor(Math.random() * Words.length)],
       message = `${settings.chatCommand} word ${randWord}`,
       user = {
         username: settings.editors[0]
-      }
+      };
     module.exports.update(TWITCHBOT, room, user, message);
   }, randomTime() * 1000);
+
+};
+
+const randomizeString = (string) => {
+  let stringArr = string.split(' '),
+  randomResult = stringArr.map(word => {
+    stringSubArr = word.split('');
+    for(let i = stringSubArr.length-1; i > 0; i--) {
+       let j = Math.floor(Math.random() * (i + 1)),
+        tempValue = stringSubArr[i];
+       stringSubArr[i] = stringSubArr[j];
+       stringSubArr[j] = tempValue;
+   }
+   return `[${stringSubArr.join(',')}]`
+  })
+  return randomResult.join('⠀');//whitespace for Twitch!
 };

@@ -7,50 +7,44 @@ const DISCORDBOT = require('../../pjtestbot.js').DISCORDBOT,
   savedData = JSON.parse(fs.readFileSync(DataFile)),
   TwitchAPI = require('../../util/TwitchAPI.js');
 
-let timer;
-// let testingId = '31673862';
+let updateEmbedTimer, errorCount = 0;
 module.exports = {
   online: async (TWITCHBOT, room, data) => {
-    clearInterval(timer);
-    try {
-    DISCORDBOT.channels.fetch(savedData.discordTwitchStatusMessage.channelID)
-      .then(channel => {
-        channel.messages.fetch(savedData.discordTwitchStatusMessage.id)
-          .then(message => message.delete()).catch(e => console.error(`Previous Discord Status Embed doesn't exists or couldn't be deleted`));
-      })
-      .catch(e => console.error(`No Previous Twitch Embed Found`));
-    } catch {
-      console.error(`No Previous Twitch Embed Found`)
-    };
-
+    clearInterval(updateEmbedTimer);
     let embedObj = await buildEmbedObject(settings.embedOnlineMsg);
     if (!embedObj) {
+      if(errorCount < 20) { //try to get data x times
+        errorCount++;
+        console.error(`Unable to get Twitch Data after ${errorCount} attempts`);
+        setTimeout(() => {
+          module.exports.online(TWITCHBOT, room, data);
+        }, 30000) //wait 30 seconds between trys
+      } else {
+        console.error(`Unable to get Twitch Data after ${errorCount} attempts. Stopping Attempts`);
+        errorCount = 0;
+      }
       return;
     } else {
+      deleteDiscordMessage();
+      errorCount = 0;
       let embed = embedObj.embed;
       DISCORDBOT.channels.fetch(settings.discordTwitchStatusChannel).then(channel => {
           channel.send(embedObj.content || '', {
             embed
           }).then(msg => {
-            savedData.discordTwitchStatusMessage = msg;
+            savedData.discordTwitchStatusMessageID = msg.id;
             SaveSettings();
+            console.log('Stream Online Posted to Discord');
           })
         })
-        .catch(console.error, 'error 3032');
+        .catch(e => console.error(e, 'Error Posting Twitch Status Embed On Load ^^...'));
     };
-    timer = setInterval(() => updateEmbed(settings.embedUpdateMsg), 180000);
+    updateEmbedTimer = setInterval(() => updateEmbed(settings.embedUpdateMsg), 30 * 60 * 1000); //30 mintues between refresh
   },
   offline: async (TWITCHBOT, room, data) => {
-    clearInterval(timer);
+    clearInterval(updateEmbedTimer);
     if (settings.deleteEmbedWhenOffline) {
-      try {
-        savedData.discordTwitchStatusMessage.delete().then(message => {
-          savedData.discordTwitchStatusMessage = {};
-          SaveSettings();
-        }).catch(console.error);
-      } catch {
-        console.log('Discord Status Embed Not Found');
-      };
+      deleteDiscordMessage();
     } else {
       updateEmbed(settings.embedOfflineMsg);
     }
@@ -79,21 +73,23 @@ const updateEmbed = async (settingsEmbed) => {
     return;
   } else {
     let embed = embedObj.embed;
-    savedData.discordTwitchStatusMessage.edit(embedObj.content || '', {
-        embed
+    DISCORDBOT.channels.fetch(settings.discordTwitchStatusChannel)
+      .then(channel => {
+        channel.messages.fetch(savedData.discordTwitchStatusMessageID)
+          .then(message => message.edit(embedObj.content || '', {
+            embed
+          }).then(msg => {
+            savedData.discordTwitchStatusMessageID = msg.id;
+            console.log(`Twitch Status Embed Updated`);
+            SaveSettings();
+          })).catch(e => console.error(`Previous Discord Status Embed couldn't be edited`));
       })
-      .then(msg => {
-        savedData.discordTwitchStatusMessage = msg;
-        console.log(`Twitch Status Embed Updated`);
-        SaveSettings();
-      })
-      .catch(e => console.error(e, `!!! Twitch Status Embed Updating ERROR ^^...`));
+      .catch(e => console.error(`Twitch Embed Channel Not Found`));
   };
 };
 
 const getStreamData = (userID) => {
   return new Promise((resolve, reject) => {
-  //  TwitchAPI.GetStreamData(testingId).then(sData => {
     TwitchAPI.GetStreamData(process.env.TEST_TWITCHID || process.env.T_CHANNELID).then(sData => {
       sData = sData.data[0];
       TwitchAPI.GetGameData(sData.game_id).then(gData => {
@@ -123,7 +119,6 @@ const getStreamData = (userID) => {
 const SaveSettings = () => {
   try {
     fs.writeFileSync(DataFile, JSON.stringify(savedData, null, 2), "utf8");
-    console.log(`Discord Status Embed File Saved!`);
   } catch {
     console.error(`!!!! Error Saving Discord Status Embed Settings File`);
   };
@@ -146,4 +141,13 @@ const increaseImageSize = () => {
     savedData.thumbnail_urlWidth++
   };
   return;
+};
+
+const deleteDiscordMessage = () => {
+  DISCORDBOT.channels.fetch(settings.discordTwitchStatusChannel)
+    .then(channel => {
+      channel.messages.fetch(savedData.discordTwitchStatusMessageID)
+        .then(message => message.delete()).catch(e => console.error(e, `Previous Discord Status Embed doesn't exist or couldn't be deleted ^^...`));
+    })
+    .catch(e => console.error(`Discord Status Embed Channel not found`));
 };

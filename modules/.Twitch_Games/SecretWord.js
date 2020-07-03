@@ -1,13 +1,12 @@
 const fs = require('fs'),
   path = require("path"),
-  SettingsFile = path.resolve(process.cwd(), './.settings/RandomWordSettings.json'),
-  SEAPI = require('../../util/StreamElementsAPI.js'),
-  Words = require('./RandomWordDatabase.json');
+  SettingsFile = path.resolve(process.cwd(), './.settings/SecretWordSettings.json'),
+  SEAPI = require('../../util/StreamElementsAPI.js');
 let settings = JSON.parse(fs.readFileSync(SettingsFile)),
   regexCheck,
-  regexBuild = (word) => regexCheck = new RegExp(`((?<=\\s|^))(${word})(?!\\w)`, "i"),
-  randomTime = () => Math.floor((Math.random() * (settings.randomTimeMax - settings.randomTimeMin) + settings.randomTimeMin)),
-  randomGameTimer;
+  regexBuild = (secretword) => regexCheck = new RegExp(`((?<=\\s|^))(${secretword})(?!\\w)`, "i"), //regex filter
+  randomPoints = () => Math.floor((Math.random() * (settings.pointsMax - settings.pointsMin) + settings.pointsMin)),
+  winnerPoints = randomPoints();
 
 regexBuild(settings.word);
 
@@ -16,30 +15,21 @@ module.exports = {
   main: async (TWITCHBOT, room, user, message) => {
     if (settings.enabled === false || (settings.subMode && !user.subscriber)) return;
     if (regexCheck.test(message) === false) return;
+
     let res = {
       type: 'action',
-      msg: `${user.username} is quick! GivePLZ ${settings.points}HP for typing ${settings.word} first!`
+      msg: `${user.username} has found ${winnerPoints}HP by unlocking the secret "${settings.word}" word chest!`
     };
     settings.enabled = false;
     BotResponse(TWITCHBOT, room, user.username, res);
-    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, settings.points);
+    let updateSEPoints = await SEAPI.PutPointsToSE(user.username, winnerPoints);
     if (!updateSEPoints) { //error saving points
       res.type = 'whisper';
-      res.msg = `***ERROR: (${settings.chatCommand}): Could not add ${settings.points} points to ${user.username}'s StreamElements account.`;
+      res.msg = `***ERROR: (${settings.chatCommand}): Could not add ${winnerPoints} points to ${user.username}'s StreamElements account.`;
       console.log(res.msg);
       BotResponse(TWITCHBOT, room, settings.editors[0], res);
     };
-    if (settings.loopGames) randomGame(TWITCHBOT, room);
-    return;
-  },
-  online: (TWITCHBOT, room) => {
-    if (!settings.autoStart) return;
-    clearTimeout(randomGameTimer);
-    randomGame(TWITCHBOT, room);
-  },
-  offline: () => {
-    settings.enabled = false;
-    clearTimeout(randomGameTimer);
+    return SaveSettings(TWITCHBOT, room, settings.editors[0]);
   },
   update: async (TWITCHBOT, room, user, message) => {
     if (!settings.editors.some(i => i === user.username)) return;
@@ -59,24 +49,20 @@ module.exports = {
           msgA.shift();
           settings.word = msgA.join(' ');
           settings.enabled = true;
-          clearTimeout(randomGameTimer);
           regexBuild(settings.word);
-          res.msg = `Random Word has been set to: ${settings.word} | GAME STARTED!`;
-          BotResponse(TWITCHBOT, settings.editors[0], user.username, {
-            type: 'action',
-            msg: `PogChamp Word Time! quickly type ${settings.word.toUpperCase()} for ${settings.points}HP! PogChamp`
-          });
+          winnerPoints = randomPoints();
+          res.msg = `Secret word has been set to: ${settings.word} | GAME STARTED!`;
+          BotResponse(TWITCHBOT, room, settings.editors[0], {type: 'action', msg: `PogChamp Theres a secret word thats hiding in the chat! This HP Box is hidden really well! Can Anyone find it? PogChamp`});
         }
         break;
       case 'enabled':
         if (msgA[1] === 'true' || msgA[1] === 'false') {
           settings.enabled = (msgA[1] === 'true');
-          clearTimeout(randomGameTimer);
-          res.msg = `Random Word has been: ${settings.enabled ? 'ENABLED!' : 'DISABLED!'}`;
+          res.msg = `Secret Word has been: ${settings.enabled ? 'ENABLED!' : 'DISABLED!'}`;
           if (settings.enabled) {
             BotResponse(TWITCHBOT, settings.editors[0], user.username, {
               type: 'action',
-              msg: `PogChamp Word Time! quickly type ${settings.word.toUpperCase()} for ${settings.points}HP! PogChamp`
+              msg: `PogChamp Theres a secret word thats hiding in the chat! This HP Box is hidden really well! Can Anyone find it? PogChamp`
             });
           };
         } else {
@@ -87,21 +73,30 @@ module.exports = {
       case 'submode':
         if (msgA[1] === 'true' || msgA[1] === 'false') {
           settings.subMode = (msgA[1] === 'true');
-          res.msg = `Random Word SUBMODE has been: ${settings.subMode ? 'ENABLED!' : 'DISABLED!'}`
+          res.msg = `Secret Word SUBMODE has been: ${settings.subMode ? 'ENABLED!' : 'DISABLED!'}`
         } else {
           res.msg = `Error: ${settings.chatCommand} submode < true | false >`;
           res.error = true;
         }
         break;
-      case 'points':
-        if (parseInt(msgA[1]) > 0) {
-          settings.points = parseInt(msgA[1]);
-          res.msg = `Random Word POINT BONUS has been set to: ${settings.points}`
-        } else {
-          res.msg = `Error: ${settings.chatCommand} points <NUMBER>`;
-          res.error = true;
-        }
-        break;
+        case 'pointsmin':
+          if (parseInt(msgA[1]) > 0) {
+            settings.pointsMin = parseInt(msgA[1]);
+            res.msg = `Secret Word POINT MIN has been set to: ${settings.pointsMin}`
+          } else {
+            res.msg = `Error: ${settings.chatCommand} pointsmin <NUMBER>`;
+            res.error = true;
+          }
+          break;
+        case 'pointsmax':
+          if (parseInt(msgA[1]) > 0) {
+            settings.pointsMax = parseInt(msgA[1]);
+            res.msg = `Secret Word POINT MAX has been set to: ${settings.pointsMax}`
+          } else {
+            res.msg = `Error: ${settings.chatCommand} pointsmax <NUMBER>`;
+            res.error = true;
+          }
+          break;
       case 'editoradd':
         if (!msgA[1]) {
           res.msg = `Error: ${settings.chatCommand} editoradd <USERNAME>`;
@@ -132,30 +127,12 @@ module.exports = {
           res.msg = `${msgA[1]} was removed as an editor! Current editors are: ${settings.editors}`;
         }
         break;
-      case 'loopgames':
-        if (msgA[1] === 'true' || msgA[1] === 'false') {
-          settings.loopGames = (msgA[1] === 'true');
-          res.msg = `Random Word LOOPGAMES has been: ${settings.loopGames ? 'ENABLED!' : 'DISABLED!'}`
-        } else {
-          res.msg = `Error: ${settings.chatCommand} loopgames < true | false >`;
-          res.error = true;
-        }
-        break;
-      case 'autostart':
-        if (msgA[1] === 'true' || msgA[1] === 'false') {
-          settings.autoStart = (msgA[1] === 'true');
-          res.msg = `Random Word AUTOSTART has been: ${settings.autoStart ? 'ENABLED!' : 'DISABLED!'}`
-        } else {
-          res.msg = `Error: ${settings.chatCommand} autostart < true | false >`;
-          res.error = true;
-        }
-        break;
       case 'settings':
-        res.msg = `word: ${settings.word} | enabled: ${settings.enabled} | submode: ${settings.subMode} | autostart: ${settings.autoStart} | loopgames: ${settings.loopGames} | points: ${settings.points} | editors: ${settings.editors}`;
+        res.msg = `word: ${settings.word} | enabled: ${settings.enabled} | submode: ${settings.subMode} | pointsmin: ${settings.pointsMin} | pointsmax: ${settings.pointsMax} | editors: ${settings.editors}`;
         res.error = true
         break;
       default:
-        res.msg = `Setting Options: ${settings.chatCommand} < word | enabled | submode | points | autostart | loopgames | editoradd | editorremove | settings >`;
+        res.msg = `Setting Options: ${settings.chatCommand} < word | enabled | submode | pointsmin | pointsmax | editoradd | editorremove | settings >`;
         res.error = true;
     }
     BotResponse(TWITCHBOT, room, user.username, res);
@@ -171,10 +148,10 @@ const SaveSettings = (TWITCHBOT, room, username) => {
   };
   try {
     fs.writeFileSync(SettingsFile, JSON.stringify(settings, null, 2), "utf8");
-    res.msg = `Random Word Settings File Saved!`
+    res.msg = `Secret Word Settings File Saved!`
     console.log(res.msg);
   } catch {
-    res.msg = `!!!! Error Saving Random Word Settings File`
+    res.msg = `!!!! Error Saving Secret Word Settings File`
     console.error(res.msg);
     res.error = true;
   };
@@ -197,15 +174,4 @@ const BotResponse = (TWITCHBOT, room, username, res) => {
     });
   };
   return res;
-};
-
-let randomGame = (TWITCHBOT, room) => {
-  randomGameTimer = setTimeout(() => {
-    let randWord = Words[Math.floor(Math.random() * Words.length)],
-      message = `${settings.chatCommand} word ${randWord}`,
-      user = {
-        username: settings.editors[0]
-      }
-    module.exports.update(TWITCHBOT, room, user, message);
-  }, randomTime() * 1000);
 };

@@ -1,10 +1,10 @@
   LIVE=false
   SECRET='changethistomatchtheWebsiteSecretforencyrption'
   WAITINGFORTWITCHCOMMAND='false'
-  D_OWNERNAME='yourDiscordname'
   D_OWNERID='yourDiscordID'
   D_TOKEN='discordBotToken'
   D_BOTSTATUS='online'
+  D_BOTID='discordbotid'
   D_BOTACTIVITY='a game'
   T_APPCLIENTID='twitch**APP**clientID'
   T_BOTUSERNAME='TwitchBotUserName'

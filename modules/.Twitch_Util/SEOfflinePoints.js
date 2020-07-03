@@ -5,18 +5,15 @@ const fetch = require('node-fetch'),
   SettingsFile = path.resolve(process.cwd(), './.settings/SEOfflinePointsSettings.json'),
   settings = JSON.parse(fs.readFileSync(SettingsFile));
 
-let streamOnline = true,
-  res = '',
+let res = '',
   timer;
 
 module.exports = {
   online: (TWITCHBOT, channel, data) => {
     clearInterval(timer);
-    streamOnline = true;
   },
   offline: (TWITCHBOT, channel, data) => {
     clearInterval(timer);
-    streamOnline = false;
     timer = setInterval(() => buildChatterData(TWITCHBOT, channel), settings.timerDelay * 1000);
   }
 };

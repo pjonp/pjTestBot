@@ -1,0 +1,16 @@
+{
+  "chatCommand": "!passcode",
+  "word": "54398",
+  "enabled": true,
+  "subMode": false,
+  "pointsMin": 200,
+  "pointsMax": 300,
+  "autoStart": true,
+  "loopGames": true,
+  "randomTimeMin": 20,
+  "randomTimeMax": 45,
+  "editors": [
+    "your_twitch_name",
+    "user2"
+  ]
+}

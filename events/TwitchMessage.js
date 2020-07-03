@@ -1,15 +1,17 @@
 const Commands = [
-    require('../modules/secret_word/SecretWord.js'),
-    require('../modules/defuse_game/DefuseGame.js'),
-    require('../modules/word_ladder/WordLadder.js'),
-    require('../modules/random_word/RandomWord.js'),
-    require('../modules/twitch_clips/TwitchClips.js')
+    require('../modules/.Twitch_Games/SecretWord.js'),
+    require('../modules/.Twitch_Games/DefuseGame.js'),
+    require('../modules/.Twitch_Games/WordLadder.js'),
+    require('../modules/.Twitch_Games/RandomWord.js'),
+    require('../modules/.Twitch_Games/ScrambleWord.js'),
+    require('../modules/.Twitch_Games/RandomPasscode.js'),
+    require('../modules/.Twitch_Util/TwitchClips.js')
   ],
   UnityGame = require('../modules/unity_game/UnityGame.js'),
-//  TwitchClips = require('../modules/twitch_clips/TwitchClips.js'),
   TwitchStreamStatus = require('./Twitch_PubSubStreamStatusChange'),
-  SECommands = require('../modules/se_from_discord/seFromDiscord.js');
+  SECommands = require('../modules/.Discord_Util/seFromDiscord.js');
 
+//Commands = . load all JS files + ADD TwitchClips
 module.exports = (TWITCHBOT, room, user, message, self) => {
   if(process.env.WAITINGFORTWITCHCOMMAND === 'true') SECommands.response(user, message, self);
   if (self) return;

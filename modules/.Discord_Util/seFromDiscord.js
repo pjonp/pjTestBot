@@ -18,7 +18,7 @@ module.exports = {
   subCommands: settings.seCommands,
   main: (messageObj, commandObj) => {
     if (running) return;
-    discordMsg = messageObj.cleanContent;
+    discordMsg = messageObj.cleanContent.replace('@', '');
     discordMsgSender = messageObj.member.displayName;
     if (commandObj.modCmd && !messageObj.member.hasPermission('MANAGE_ROLES')) {
       const embed = {
@@ -31,7 +31,7 @@ module.exports = {
       };
       discordSend(messageObj, {
         embed
-      }, true).catch();
+      }, true).catch(e => console.error(e, '!! seFromDiscord role warning error?? ^^^....'));
       return;
     } else if (commandObj.params.length >= discordMsg.split(' ').length) {
       const embed = {
@@ -44,7 +44,7 @@ module.exports = {
       };
       discordSend(messageObj, {
         embed
-      }, true).catch();
+      }, true).catch(e => console.error(e, '!! seFromDiscord format warning error?? ^^^....'));
       return;
     } else {
 
@@ -75,7 +75,7 @@ module.exports = {
   response: (user, message, self) => {
     if (message !== discordMsg && (user.username === process.env.T_BOTUSERNAME || user.username === 'streamelements')) {
       const embed = {
-        "description": message.replace(`@${process.env.T_BOTUSERNAME}, `, '').replace(process.env.T_BOTUSERNAME, discordMsgSender),
+        "description": message.toLowerCase().replace(`@${process.env.T_BOTUSERNAME}, `, '').replace(process.env.T_BOTUSERNAME, discordMsgSender),
         "color": 4886754,
         "author": {
           "name": discordMsg,

@@ -1,8 +1,10 @@
 const modules = [
-  require('../modules/se_offline_points/SEOfflinePoints.js'),
-  require('../modules/random_word/RandomWord.js'),
-  require('../modules/word_ladder/WordLadder.js'),
-  require('../modules/discord_twitch_status_embed/DiscordTwitchStatusEmbed.js')
+  require('../modules/.Twitch_Games/RandomWord.js'),
+  require('../modules/.Twitch_Games/WordLadder.js'),
+  require('../modules/.Twitch_Games/ScrambleWord.js'),
+  require('../modules/.Twitch_Games/RandomPasscode.js'),
+  require('../modules/.Twitch_Util/SEOfflinePoints.js'),
+  require('../modules/.Discord_Util/DiscordTwitchStatusEmbed.js')
 ];
 
 module.exports = (TWITCHBOT, room, status, data) => {

@@ -1,12 +1,12 @@
 const fs = require('fs');
-let settings = JSON.parse(fs.readFileSync('./modules/jaz_game/JazGameSettings.json')); //load settings
+let settings = JSON.parse(fs.readFileSync('./modules/.Discord_Games/jaz_game/JazGameSettings.json')); //load settings
 const JazGameFunctions = require('./JazGameFunctions.js'); //import Jaz's game
 
 module.exports = { //
   settings: settings, //Only used to export command name
   gameCommands: async (message) => { //MAIN FUNCTION!
     //****************************
-    gameData = JSON.parse(fs.readFileSync('./modules/jaz_game/JazGameData.json')); //!!!!!! READ ONLY
+    gameData = JSON.parse(fs.readFileSync('./modules/.Discord_Games/jaz_game/JazGameData.json')); //!!!!!! READ ONLY
     //****************************
     console.log('....jaz game function used')
     let command = message.content.toLowerCase().split(' ')[1] //what is target word after command?
@@ -117,7 +117,7 @@ const removePlayer = async (gameData, message) => {
 const saveGameData = (gameData) => {
   //SAVE THE NEW INFORMATION
   return new Promise((resolve, reject) => {
-    fs.writeFile('./modules/jaz_game/JazGameData.json', JSON.stringify(gameData, null, 2), (err) => {
+    fs.writeFile('./modules/.Discord_Games/jaz_game/JazGameData.json', JSON.stringify(gameData, null, 2), (err) => {
       if (err) {
         console.log(err, 'Saved virtually.... but there was an error saving the JSON file! ^^'); //Game is updated but JSON is locked...
         reject(false);

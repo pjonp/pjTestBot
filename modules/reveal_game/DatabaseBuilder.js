@@ -16,6 +16,16 @@ module.exports = {
       });
       console.log('!done');
       fs.writeFileSync(path.resolve(__dirname, './testDatabase.json'), JSON.stringify(imageObject, null, 4), 'UTF-8')
-    }); //fs
+    });
+  },
+  fileNames: (message, commands) => {
+    fs.readdir(path.resolve(__dirname, './images'), (err, files) => {
+      if (err) console.error(err);
+      console.log(`Loading a total of ${files.length} images.`);
+      console.log(files);
+      let imageObject = files.map(file => file.replace('.jpg', '').replace('.png', '').replace('.jpeg', '').toLowerCase());
+      console.log('!done');
+      fs.writeFileSync(path.resolve(__dirname, './testDatabaseNames.json'), JSON.stringify(imageObject, null, 4), 'UTF-8')
+    });
   }
 }; //end exports

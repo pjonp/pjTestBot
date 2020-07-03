@@ -22,3 +22,6 @@ modules/unity_game/WordLadderSettings.json
 .settings/WordLadderSettings.json
 .settings/seFromDiscordSettings.json
 .settings/DiscordTwitchStatusEmbedSettings.json
+.hidden/M.env
+.settings/RandomPasscodeSettings.json
+.settings/ScrambleWordSettings.json

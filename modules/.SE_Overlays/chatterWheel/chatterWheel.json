@@ -1,0 +1,351 @@
+{
+  "testButton": {
+    "type": "button",
+    "label": "LOAD TEST DATA",
+    "group": "Testing"
+  },
+  "showWheelOnLoadFD": {
+    "type": "dropdown",
+    "label": "Show Wheel On Load",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Testing"
+  },
+
+  "wheelSize": {
+    "type": "number",
+    "label": "Wheel size (!900)",
+    "value": 900,
+    "group": "Visual Set Up"
+  },
+  "wheelStartingPositionX": {
+    "type": "number",
+    "label": "Starting X Position",
+    "value": 50,
+    "group": "Visual Set Up"
+  },
+  "wheelStartingPositionY": {
+    "type": "number",
+    "label": "Starting Y Position",
+    "value": 50,
+    "group": "Visual Set Up"
+  },
+  "foregroundVideo": {
+    "type": "video-input",
+    "label": "Foreground Video",
+    "value": "https://cdn.streamelements.com/uploads/41b59f3f-b8e0-4b1e-9c60-90d3641f2929.webm",
+    "group": "Visual Set Up"
+  },
+  "videoOffsetXFD": {
+    "type": "slider",
+    "label": "Video Offset X",
+    "value": 1,
+    "min": -50,
+    "max": 50,
+    "steps": 1,
+    "group": "Visual Set Up"
+  },
+  "videoOffsetYFD": {
+    "type": "slider",
+    "label": "Video Offset Y",
+    "value": 5,
+    "min": -50,
+    "max": 50,
+    "steps": 1,
+    "group": "Visual Set Up"
+  },
+  "foregroundImage": {
+    "type": "image-input",
+    "label": "Foreground image",
+    "value": "",
+    "group": "Visual Set Up"
+  },
+  "foregroundImageSizeFD": {
+    "type": "slider",
+    "label": "Image Size %",
+    "value": 15,
+    "min": 0,
+    "max": 50,
+    "steps": 5,
+    "group": "Visual Set Up"
+  },
+  "imageOffsetXFD": {
+    "type": "slider",
+    "label": "Image Offset X",
+    "value": 0,
+    "min": -50,
+    "max": 50,
+    "steps": 1,
+    "group": "Visual Set Up"
+  },
+  "imageOffsetYFD": {
+    "type": "slider",
+    "label": "Image Offset Y",
+    "value": 0,
+    "min": -50,
+    "max": 50,
+    "steps": 1,
+    "group": "Visual Set Up"
+  },
+
+  "fontNameFD": {
+    "type": "googleFont",
+    "label": "Select a font:",
+    "value": "Open Sans",
+    "group": "Visual Set Up"
+  },
+  "textSize": {
+    "type": "number",
+    "label": "Text Size",
+    "value": 20,
+    "max": 100,
+    "group": "Visual Set Up"
+  },
+  "maxChattersFD": {
+    "type": "slider",
+    "label": "Max Chatters",
+    "value": 50,
+    "min": 3,
+    "max": 100,
+    "steps": 1,
+    "group": "Visual Set Up"
+  },
+  "gameOverDelayFD": {
+    "type": "slider",
+    "label": "Spin Over Delay (s)",
+    "value": 5,
+    "min": 1,
+    "max": 30,
+    "steps": 1,
+    "group": "Visual Set Up"
+  },
+
+  "spinCommandFD": {
+    "type": "text",
+    "label": "Broadcaster Spin Command",
+    "value": "!spin",
+    "group": "Game Set Up"
+  },
+  "wheelShowCommandFD": {
+    "type": "text",
+    "label": "Broadcaster Show Wheel Command",
+    "value": "!showwheel",
+    "group": "Game Set Up"
+  },
+  "wheelHideCommandFD": {
+    "type": "text",
+    "label": "Broadcaster Hide Wheel Command",
+    "value": "!hidewheel",
+    "group": "Game Set Up"
+  },
+  "wheelClearCommandFD": {
+    "type": "text",
+    "label": "Broadcaster Clear Wheel Command",
+    "value": "!clearwheel",
+    "group": "Game Set Up"
+  },
+  "clearPreviousWinnersFD": {
+    "type": "dropdown",
+    "label": "Clear Previous Winners Too With !clearwheel Command",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Game Set Up"
+  },
+  "pointerAngleFD": {
+    "type": "slider",
+    "label": "Winner Angle",
+    "value": 0,
+    "min": 0,
+    "max": 360,
+    "steps": 15,
+    "group": "Game Set Up"
+  },
+  "spins": {
+    "type": "slider",
+    "label": "Spin speed",
+    "value": 5,
+    "min": 3,
+    "max": 50,
+    "steps": 1,
+    "group": "Game Set Up"
+  },
+  "duration": {
+    "type": "slider",
+    "label": "Duration (s)",
+    "value": 3,
+    "min": 5,
+    "max": 20,
+    "steps": 1,
+    "group": "Game Set Up"
+  },
+  "removeWinnersFD": {
+    "type": "dropdown",
+    "label": "Ignore Winners From Future Spins",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Game Set Up"
+  },
+  "clearListAfterSpinsFD": {
+    "type": "dropdown",
+    "label": "Clear Chatter List Once Complete",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Game Set Up"
+  },
+  "ignoredChattersFD": {
+    "type": "text",
+    "label": "Ignored Chatters (comma separated)",
+    "value": "streamelements,commanderroot",
+    "group": "Game Set Up"
+  },
+  "playSoundFD": {
+    "type": "dropdown",
+    "label": "Play Sound On Ticks",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Game Set Up"
+  },
+  "soundEffectFD": {
+    "type": "sound-input",
+    "label": "Sound Effect",
+    "value": "https://raw.githubusercontent.com/zarocknz/javascript-winwheel/master/examples/wheel_of_fortune/tick.mp3",
+    "group": "Game Set Up"
+  },
+  "privileges": {
+    "type": "dropdown",
+    "label": "Who is added",
+    "value": "everybody",
+    "options": {
+      "everybody": "Everybody",
+      "subs": "Subs",
+      "vips": "VIPS",
+      "mods": "Mods"
+    },
+    "group": "Game Set Up"
+  },
+  "listener": {
+    "type": "dropdown",
+    "label": "Trigger Goal Event",
+    "value": "tip-latest",
+    "options": {
+      "tip-latest": "Tips",
+      "cheer-latest": "Cheers",
+      "chatCommandOnly": "Chat Command Only"
+    },
+    "group": "Game Set Up"
+  },
+  "minAmountFD": {
+    "type": "number",
+    "label": "Minimum Goal Amount",
+    "step": 1,
+    "value": 10,
+    "group": "Game Set Up"
+  },
+  "maxAmountFD": {
+    "type": "number",
+    "label": "Maximum Goal Amount",
+    "step": 1,
+    "value": 15,
+    "group": "Game Set Up"
+  },
+  "multipleSpinsFD": {
+    "type": "dropdown",
+    "label": "Allow Multiple Spins On Large Donations",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Game Set Up"
+  },
+  "triggerToJoinCommandFDInfo1": {
+    "type": "hidden",
+    "label": "Only Add Chatters That Say \"Join\"",
+    "group": "Game Set Up"
+  },
+  "triggerToJoinFD": {
+    "type": "dropdown",
+    "label": "Require A Raffle Word To Join",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Game Set Up"
+  },
+  "triggerToJoinCommandFDInfo2": {
+    "type": "hidden",
+    "label": "e.g. !wheelword join",
+    "group": "Game Set Up"
+  },
+  "triggerToJoinCommandFD": {
+    "type": "text",
+    "label": "Command to Enable/Set Raffle Word",
+    "value": "!wheelword",
+    "group": "Game Set Up"
+  },
+
+  "jebaitedAPITokenInfoFD": {
+    "type": "hidden",
+    "label": "https://jebaited.net/tokens/ ->",
+    "group": "Middleware Setup"
+  },
+   "jebaitedAPITokenFD": {
+    "type": "text",
+    "label": "Token",
+    "value": "need: botMsg",
+    "group": "Middleware Setup"
+  },
+  "sayToChatFD": {
+    "type": "dropdown",
+    "label": "Announce winner to chat",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Middleware Setup"
+  },
+  "spinPrizeCommandFD": {
+    "type": "text",
+    "label": "Change Prize Command",
+    "value": "!spinprize",
+    "group": "Middleware Setup"
+  },
+  "spinPrizeFD": {
+    "type": "text",
+    "label": "Prize Response",
+    "value": "a shoutout",
+    "group": "Middleware Setup"
+  },
+  "chatResponseFD": {
+    "type": "text",
+    "label": "Chat Winner Text",
+    "value": "{chatter} wins {prize}! PorscheWIN",
+    "group": "Middleware Setup"
+  },
+  "chatResponseDelayFD": {
+    "type": "slider",
+    "label": "Chat Response (stream) Delay (s)",
+    "value": 5,
+    "min": 0,
+    "max": 10,
+    "steps": 1,
+    "group": "Middleware Setup"
+  }
+}

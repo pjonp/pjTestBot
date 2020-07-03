@@ -6,7 +6,6 @@ const Discord = require('discord.js'),
   path = require("path"),
   envvars = require('dotenv').config({ path: path.resolve(process.cwd(), './.hidden/.env') }),
   DISCORDBOT = new Discord.Client(),
-  D_OWNERNAME = process.env.D_OWNERNAME, //lowercase
   D_OWNERID = process.env.D_OWNERID,
   io = require("socket.io"),
   OVERLAYS = io.listen('7654');
@@ -32,7 +31,7 @@ const TWITCHBOT = new Twitch.client({
 });
 
 TWITCHBOT.connect().catch((err) => {
-  console.log('****Twitch Connection Error:', err);
+  console.error('****Twitch Connection Error:', err);
 });
 
 //Twitch PubSub
@@ -70,6 +69,13 @@ module.exports = {
   TWITCHBOT: TWITCHBOT
 };
 
+if(process.env.LIVE == 'true') {
+  console.log('!!! Bot restarted; Stream is ONLINE!');
+} else {
+  console.log('!!! Bot restarted; Stream is OFFLINE!');
+  setTimeout( () => require('./modules/.Twitch_Util/SEOfflinePoints.js').offline(TWITCHBOT, process.env.T_CHANNELNAME, {}),5000); //Start offline points
+}
 //setTimeout( () => require('./events/Twitch_PubSubStreamStatusChange')(TWITCHBOT, process.env.T_CHANNELNAME, 'stream-up', {}),10000); //Start online
 //setTimeout( () => require('./events/Twitch_PubSubStreamStatusChange')(TWITCHBOT, process.env.T_CHANNELNAME, 'stream-down', {}),45000); //go offline
 //require('./modules/reveal_game/DatabaseBuilder.js').main(); //for building reveal game Database
+//require('./modules/reveal_game/DatabaseBuilder.js').fileNames(); //for building reveal game Database

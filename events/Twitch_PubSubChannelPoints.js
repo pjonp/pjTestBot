@@ -54,11 +54,9 @@ module.exports = (TWITCHBOT, channel, data) => {
     case '8b1106f4-2603-4917-8d81-cb635c4b4a8a': //!!addhp username 10000
       res = `!addhp ${data.redemption.user['display_name']} 10000`
       break;
-  /*
     case 'a6370bda-e98b-4521-a19f-d06579c39e46': //!so @username (shoutout)
-      res = `!so @${data.redemption.user['display_name']} (shoutout)`
+      res = `!so @${data.redemption.user['display_name']}`
       break;
- */
     case '845a7cea-a803-4b35-8a91-540b5909a098': //Emotes only (5 minutes)
       res = `Talk with pictures for 5 minutes!`
       TWITCHBOT.emoteonly(channel).then((data) => console.log('!!!EMOTE ONLY MODE ENABLED')).catch((err) => console.error(err));
@@ -114,7 +112,7 @@ const nukeChat = (TWITCHBOT, channel) => {
           .then((data) => {
             setTimeout(() => {
               TWITCHBOT.action(channel, res[res.length - 1]).catch((err) => console.error(err));
-            }, 2000); // 0.5 seconds
+            }, 3000);
           }).catch((err) => {
             console.error(err, 'Could Not Nuke Chat');
           });

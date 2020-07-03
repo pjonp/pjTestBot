@@ -1,15 +1,20 @@
-const JazGame = require('../modules/jaz_game/JazGameMain.js'),
-  SECommands = require('../modules/se_from_discord/seFromDiscord.js'),
+const JazGame = require('../modules/.Discord_Games/jaz_game/JazGameMain.js'),
+  SECommands = require('../modules/.Discord_Util/seFromDiscord.js'),
   Commands = [
-    require('../modules/discord_help/DiscordHelp.js'),
-    require('../modules/discord_roles/DiscordTopRoles.js'),
-    require('../modules/discord_roles/DiscordWatchRoles.js'),
+    require('../modules/.Discord_Util/DiscordHelp.js'),
+    require('../modules/.Discord_Util/DiscordTopRoles.js'),
+    require('../modules/.Discord_Util/DiscordWatchRoles.js'),
+    //temp
+      require('../modules/.Discord_Util/DiscordSEHelp.js'),
+    //tmp
     SECommands
   ];
 
+  //Commands = . load all JS files trim those without chatCommand
+
   commandInfo = Commands.map(i => {
     return {
-      chatCommand: i.chatCommand,
+      chatCommand: i,
       about: i.about
     };
   })
