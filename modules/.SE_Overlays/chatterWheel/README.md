@@ -6,7 +6,10 @@
 - Wheel will add active chatters as segments
 - Chatter list is cleared when source is shutdown or reloaded
 - Requiring a 'trigger' word or phrase for Giveaway mode will clear the chatter list
-- Having the bot respond in chat requires a 'botMsg' token from [jebaited.net](https://jebaited.net/)  
+- Having the bot respond in chat requires a 'botMsg' token from [jebaited.net](https://jebaited.net/)
+
+***
+ ###### Settings below are for all of the **chatterWheelAdvanced.json** options. Some of these options are not available with the default install and you will need import this file information into the Field tab on the custom widget editor to unlock them.
 ***
 #### Testing
 
@@ -61,6 +64,13 @@
 - Maximum number of recent chatters on the wheel. Once this limit is reached
 - The chatter with the oldest message is removed until they are active in chat again
 
+###### Spin speed:
+- Spin intensity
+- Higher speeds may cause audio issues if using a 'tick' sound
+
+###### Duration:
+- Time in seconds that the wheel spins
+
 ###### Spin Over Delay:
 - How long the wheel will stay on the screen after spinning before starting a new spin or hiding
 
@@ -88,15 +98,12 @@
   - 180: DOWN
   - 270: LEFT
 
-###### Spin speed:
-- Spin intensity
-- Higher speeds may cause audio issues if using a 'tick' sound
-
-###### Duration:
-- Time in seconds that the wheel spins
+###### Clear Previous Winners With !clearwheel Command:
+- YES: Winners are cleared when **!clearwheel** is used in chat
+- NO: Only the chatter list is cleared with **!clearwheel** Previous winners cannot join the wheel after the clear
 
 ###### Ignore Winners From Future Spins:
-- YES: Removes winners from the wheel. They can not join the wheel again until **!clearwheel** is used or source is reloaded
+- YES: Removes winners from the wheel. They can not join the wheel again until source is reloaded or **!clearwheel** is used (with setting above as YES)
 - NO: Winners can win multiple times
 
 ###### Clear Chatter List Once Complete:

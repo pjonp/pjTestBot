@@ -113,6 +113,24 @@
     "steps": 1,
     "group": "Visual Set Up"
   },
+  "spins": {
+    "type": "slider",
+    "label": "Spin speed",
+    "value": 10,
+    "min": 3,
+    "max": 50,
+    "steps": 1,
+    "group": "Visual Set Up"
+  },
+  "duration": {
+    "type": "slider",
+    "label": "Duration (s)",
+    "value": 10,
+    "min": 5,
+    "max": 20,
+    "steps": 1,
+    "group": "Visual Set Up"
+  },
   "gameOverDelayFD": {
     "type": "slider",
     "label": "Spin Over Delay (s)",
@@ -164,24 +182,6 @@
     "min": 0,
     "max": 360,
     "steps": 15,
-    "group": "Game Set Up"
-  },
-  "spins": {
-    "type": "slider",
-    "label": "Spin speed",
-    "value": 5,
-    "min": 3,
-    "max": 50,
-    "steps": 1,
-    "group": "Game Set Up"
-  },
-  "duration": {
-    "type": "slider",
-    "label": "Duration (s)",
-    "value": 3,
-    "min": 5,
-    "max": 20,
-    "steps": 1,
     "group": "Game Set Up"
   },
   "removeWinnersFD": {

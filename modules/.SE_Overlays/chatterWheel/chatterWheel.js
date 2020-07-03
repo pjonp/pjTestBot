@@ -1,6 +1,11 @@
 /*
 Chatter Wheel by pjonp
+
 Version 1.0.0
+
+NOTE: There are (2) json files for settings: simple and advanced
+      If you are reading this to edit the code; please review the options available with the advanced field settings:
+      https://github.com/pjonp/pjTestBot/tree/master/modules/.SE_Overlays/chatterWheel
 */
 const randomInt = (min, max) => Math.floor((Math.random() * (max - min) + min));
 let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, wheelSpinning = false,
@@ -24,6 +29,7 @@ let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, whee
   triggerToJoinPhrase;
 
 window.addEventListener('onEventReceived', function(obj) {
+  //Test Button
   if (obj.detail.event.listener === 'widget-button' && obj.detail.event.field === 'testButton') {
     chatters = [...testData];
     theWheel = buildWheel();
@@ -33,6 +39,8 @@ window.addEventListener('onEventReceived', function(obj) {
   };
   const skippable = ["bot:counter", "event:test", "event:skip"]; //Array of events coming to widget that are not queued so they can come even queue is on hold
   if (skippable.indexOf(obj.detail.listener) !== -1) return;
+
+  //Broadcaster Commands
   if (obj.detail.listener === "message") {
     let data = obj.detail.event.data;
     if (!checkPrivileges(data)) {
@@ -44,6 +52,8 @@ window.addEventListener('onEventReceived', function(obj) {
             spinCommandOverrides++;
             return;
           };
+          goalProgress += goalTrigger; //free spin
+          goalTrigger = randomInt(minAmount, maxAmount);
           startSpin();
         } else if (data.text === wheelShowCommand) {
           theWheel = buildWheel();
@@ -76,10 +86,10 @@ window.addEventListener('onEventReceived', function(obj) {
         }
       };
 
+      //Build Chatter List
       if (triggerToJoin && !data.text.toLowerCase().includes(triggerToJoinPhrase.toLowerCase())) {
         return;
       }
-
 
       if (ignoredChatters.some(i => i.toLowerCase() === data.displayName.toLowerCase())) return;
       let chatterPosition = chatters.findIndex(i => i.text === data.displayName),
@@ -98,6 +108,8 @@ window.addEventListener('onEventReceived', function(obj) {
       buildWheel();
     };
     return;
+
+    //Look for tips & cheers
   } else if (obj.detail.listener === 'tip-latest' || obj.detail.listener === 'cheer-latest') {
     if (triggerToJoin || fieldData.listener === 'chatCommandOnly') {
       return;
@@ -114,7 +126,7 @@ window.addEventListener('onEventReceived', function(obj) {
 window.addEventListener('onWidgetLoad', function(obj) {
   channelName = obj["detail"]["channel"]["username"];
   fieldData = obj.detail.fieldData;
-  //
+  //Get all the field data
   jebaitedAPIToken = fieldData.jebaitedAPITokenFD;
   sayToChat = fieldData.sayToChatFD === 'yes';
   chatResponse = fieldData.chatResponseFD;
@@ -136,8 +148,8 @@ window.addEventListener('onWidgetLoad', function(obj) {
   removeWinners = fieldData.removeWinnersFD === 'yes';
   clearListAfterSpins = fieldData.clearListAfterSpinsFD === 'yes';
   textFontFamily = fieldData.fontNameFD;
-  videoOffsetX = fieldData.videoOffsetXFD || 0;
-  videoOffsetY = fieldData.videoOffsetYFD || 0;
+  videoOffsetX = fieldData.videoOffsetXFD || 1;
+  videoOffsetY = fieldData.videoOffsetYFD || 5;
   imageOffsetX = fieldData.imageOffsetXFD || 0;
   imageOffsetY = fieldData.imageOffsetYFD || 0;
 
@@ -145,21 +157,25 @@ window.addEventListener('onWidgetLoad', function(obj) {
   //  tipMultipler = fieldData.tipMultiplerFD || 100; //not used
   multipleSpins = fieldData.multipleSpinsFD === 'yes';
   playSound = fieldData.playSoundFD === 'yes';
-  soundEffect = new Audio(fieldData.soundEffectFD || `https://raw.githubusercontent.com/zarocknz/javascript-winwheel/master/examples/wheel_of_fortune/tick.mp3`);
+  soundEffect = new Audio(fieldData.soundEffectFD || '');
 
-  if (!jebaitedAPIToken || jebaitedAPIToken === 'need: botMsg') sayToChat = false; //Prevent API call with no token;
 
-  cooldown = fieldData.duration;
-  spins = fieldData.spins;
-  wheelSize = fieldData.wheelSize;
+  cooldown = fieldData.duration || 20;
+  spins = fieldData.spins || 15;
+  wheelSize = fieldData.wheelSize || 900;
   textSize = fieldData.textSize;
-  minAmount = fieldData.minAmountFD;
-  maxAmount = fieldData.maxAmountFD;
+  minAmount = fieldData.minAmountFD || 5;
+  maxAmount = fieldData.maxAmountFD || minAmount;
   goalTrigger = randomInt(minAmount, maxAmount);
-  maxChatters = fieldData.maxChattersFD;
+  maxChatters = fieldData.maxChattersFD || 25;
   clearPreviousWinners = fieldData.clearPreviousWinnersFD === 'yes';
 
+  if (!jebaitedAPIToken || jebaitedAPIToken === 'need: botMsg') sayToChat = false; //Prevent API call with no token;
+  if (!soundEffect) playSound = false; //Prevent audio call with no source;
+
   defaultIngoredChatters = [...ignoredChatters];
+
+
 
   if (fieldData.showWheelOnLoadFD === 'yes') {
     $("#container").css('opacity', '1');
@@ -229,7 +245,7 @@ const buildWheel = () => {
 
 const startSpin = () => {
   if (wheelSpinning) {
-    gameQueue += 1;
+    gameQueue++;
     return;
   } else {
     theWheel = buildWheel();
@@ -242,26 +258,11 @@ const startSpin = () => {
     wheelSpinning = true;
     setTimeout(() => endSpin(), cooldown * 1000 + 100);
   };
-  if (multipleSpins) {
-    if (spinCommandOverrides > 0) {
-      spinCommandOverrides--;
-      startSpin();
-    } else {
-      goalProgress -= goalTrigger
-      goalTrigger = randomInt(minAmount, maxAmount);
-      console.log('Goal Progress:', goalProgress);
-      console.log('Goal Trigger:', goalTrigger);
-      if (goalProgress < goalTrigger) return;
-      else startSpin();
-    };
-  } else {
-    goalProgress = 0;
-    goalTrigger = randomInt(minAmount, maxAmount);
-  };
-  return;
 };
 
 const endSpin = () => {
+
+//get winner and make wheel pretty
   let roundWinner
   try {
     let winningSegmentNumber = theWheel.getIndicatedSegmentNumber(),
@@ -282,14 +283,37 @@ const endSpin = () => {
     theWheel.draw();
   } catch {
     roundWinner = 'No one'
-  }
+  };
+
+//check for a respin
+  if (multipleSpins) {
+    if (spinCommandOverrides > 0) {
+      spinCommandOverrides--;
+      startSpin();
+    } else {
+      goalProgress -= goalTrigger;
+      goalTrigger = randomInt(minAmount, maxAmount);
+      console.log('Goal Progress:', goalProgress);
+      console.log('Goal Trigger:', goalTrigger);
+      if (goalProgress < goalTrigger) gameQueue = 0;
+      else startSpin();
+    };
+  } else {
+    goalProgress = 0;
+    goalTrigger = randomInt(minAmount, maxAmount);
+    console.log('Goal Trigger:', goalTrigger);
+  };
+
+//delay chat response
   setTimeout(() => {
-    sayMessage(`${chatResponse.replace('{chatter}', roundWinner).replace('{prize}', spinPrize)}`)
+    sayMessage(`${chatResponse.replace('{chatter}', roundWinner).replace('{user}', roundWinner).replace('{prize}', spinPrize)}`)
   }, chatResponseDelay * 1000);
+//remove winner if settting enabled
   if (removeWinners) {
     ignoredChatters.push(roundWinner);
     chatters.splice(chatters.findIndex(i => i.text === roundWinner), 1);
   };
+//check if done
   setTimeout(() => {
     wheelSpinning = false;
     if (gameQueue === 0) {
@@ -300,8 +324,8 @@ const endSpin = () => {
       wheelAngle = 0;
       triggerToJoin = false;
     } else {
-      gameQueue -= 1;
-      console.log('NEWGAME!');
+      gameQueue--;
+      console.log('New Game');
       wheelAngle = parseInt(theWheel.rotationAngle % 360);
       startSpin();
     };
