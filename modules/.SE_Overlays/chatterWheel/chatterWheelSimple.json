@@ -1,6 +1,4 @@
 {
-
-
   "testButton": {
     "type": "button",
     "label": "LOAD TEST DATA",
@@ -16,9 +14,6 @@
     },
     "group": "Testing"
   },
-
-
-
 
   "spinCommandFD": {
     "type": "text",
@@ -45,8 +40,16 @@
     "group": "Chat Commands"
   },
 
-
-
+  "foregroundVideo": {
+    "type": "dropdown",
+    "label": "Overlay Video",
+    "value": "https://cdn.streamelements.com/uploads/41b59f3f-b8e0-4b1e-9c60-90d3641f2929.webm",
+    "options": {
+      "https://cdn.streamelements.com/uploads/41b59f3f-b8e0-4b1e-9c60-90d3641f2929.webm": "Wheel Of Kappa",
+      "none": "None"
+    },
+    "group": "Visual Set Up"
+  },
   "fontNameFD": {
     "type": "googleFont",
     "label": "Select a font:",
@@ -215,11 +218,6 @@
     "group": "Middleware Setup"
   },
 
-  "foregroundVideo": {
-    "type": "hidden",
-    "value": "https://cdn.streamelements.com/uploads/41b59f3f-b8e0-4b1e-9c60-90d3641f2929.webm",
-    "group": "Middleware Setup"
-  },
   "wheelSize": {
     "type": "hidden",
     "value": 900,
