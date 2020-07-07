@@ -35,3 +35,20 @@ padding: 0;
     from {opacity: 1;left: {wheelStartingPositionX}px}
     to {opacity: 0;left: 2000px}
 }
+
+#frame {
+    position: absolute;
+    mask-position: top left;
+  	-webkit-mask-position: top left;
+  	mask-repeat: no-repeat;
+  	-webkit-mask-repeat: no-repeat;
+  	mask-size: contain;
+  	-webkit-mask-size: contain;
+}
+#spin {
+    height: 100%;
+    width: 100%;
+  	background: linear-gradient(90deg, {{firstColor}} 0%, {{secondColor}} 50%);
+    animation:spin {{frameDuration}}s linear infinite;
+}
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }}

@@ -5,6 +5,8 @@ StreamElements middleware by lx
 
 Video animation by JayniusGamingTV
 
+"Animated gradient webcam frame" by Kagrayz
+
 Winwheel.js by Douglas McKechie @ www.dougtesting.net
 
 
@@ -35,6 +37,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
 const randomInt = (min, max) => Math.floor((Math.random() * (max - min) + min));
 let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, wheelSpinning = false,
   chatters = [],
@@ -231,6 +234,13 @@ window.addEventListener('onWidgetLoad', function(obj) {
   $(() => updateCanvas()); //DOM ready
   setTimeout(() => updateCanvas(), 10000); //force update after loaded for 10 seconds
 
+  //"Animated gradient webcam frame" by Kagrayz
+  if(fieldData.showMaskFD === 'yes' && fieldData.mask !== 'none'){
+    buildGradient(obj.detail.fieldData);
+  } else {
+    $("#frame").html('');
+  };
+
 });
 
 const buildWheel = () => {
@@ -393,6 +403,19 @@ const checkPrivileges = (data) => {
   else if (required === "subs" && (userState.mod || userState.vip || userState.sub)) return true;
   else if (required === "everybody") return true;
   else return false;
+};
+
+const buildGradient = (fieldData) => { //"Animated gradient webcam frame" by Kagrayz
+  if (fieldData.mask) {
+    let maskUrl = fieldData.mask + (fieldData.cacheMask ? '' : '?_nocache=' + new Date().getTime());
+  $('#frame')
+      .css('width', `${wheelSize+fieldData.gradientOverrideFD}px`)
+      .css('height', `${wheelSize+fieldData.gradientOverrideFD}px`)
+      .css('left', `${-1*fieldData.gradientOverrideFD/2}px`)
+      .css('top', `${-1*fieldData.gradientOverrideFD/2}px`)
+      .css('mask-image', 'url(' + maskUrl + ')')
+      .css('-webkit-mask-image', 'url(' + maskUrl + ')');
+  };
 };
 
 let testData = [{

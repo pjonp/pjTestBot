@@ -43,9 +43,9 @@
   "foregroundVideo": {
     "type": "dropdown",
     "label": "Overlay Video",
-    "value": "https://cdn.streamelements.com/uploads/41b59f3f-b8e0-4b1e-9c60-90d3641f2929.webm",
+    "value": "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm",
     "options": {
-      "https://cdn.streamelements.com/uploads/41b59f3f-b8e0-4b1e-9c60-90d3641f2929.webm": "Wheel Of Kappa",
+      "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm": "Wheel Of Kappa",
       "none": "None"
     },
     "group": "Visual Set Up"
@@ -232,5 +232,77 @@
     "type": "hidden",
     "value": 50,
     "group": "Middleware Setup"
+  },
+  "middleware1": {
+    "type": "hidden",
+    "label": "Middleware provided by lx",
+    "group": "Middleware Setup"
+  },
+
+  "showMaskFD": {
+    "type": "dropdown",
+    "label": "Show gradient mask",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Animated Gradient Frame"
+  },
+  "firstColor": {
+  	"type": "colorpicker",
+    "label": "First color",
+    "value": "#00ff00",
+    "group": "Animated Gradient Frame"
+  },
+  "secondColor": {
+  	"type": "colorpicker",
+    "label": "Second color",
+    "value": "#000000",
+    "group": "Animated Gradient Frame"
+  },
+  "frameDuration": {
+	"type": "number",
+    "label": "Rotating duration, sec",
+    "value": 2.5,
+    "group": "Animated Gradient Frame"
+  },
+
+  "mask": {
+    "type": "dropdown",
+    "label": "Mask Image",
+    "value": "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png",
+    "options": {
+      "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png": "Solid Border",
+      "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/demo2.png": "Faded Border",
+      "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/demo3.png": "Faded Border With Center Plug",
+      "none": "None"
+    },
+    "group": "Animated Gradient Frame"
+  },
+   "gradientOverrideFD": {
+     "type": "slider",
+     "label": "Gradient Size Adjustment",
+     "value": 25,
+     "min": -100,
+     "max": 100,
+     "steps": 1,
+     "group": "Animated Gradient Frame"
+   },
+  "cacheMask": {
+  	"type": "checkbox",
+    "label": "Cache mask",
+    "group": "Animated Gradient Frame"
+  },
+  "frame1": {
+    "type": "hidden",
+    "label": "Animated gradient webcam frame",
+    "group": "Animated Gradient Frame"
+  },
+  "frame2": {
+    "type":"hidden",
+    "label":"by Kagrayz",
+    "group": "Animated Gradient Frame"
   }
+
 }
