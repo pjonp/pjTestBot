@@ -14,7 +14,11 @@
     },
     "group": "Testing"
   },
-
+  "showTestDataOnLoadFD": {
+    "type": "checkbox",
+    "label": "Show Test Data On Load",
+    "group": "Testing"
+  },
   "spinCommandFD": {
     "type": "text",
     "label": "Broadcaster Spin Command",
@@ -39,7 +43,7 @@
     "value": "!clearwheel",
     "group": "Chat Commands"
   },
-  
+
   "foregroundVideo": {
     "type": "dropdown",
     "label": "Overlay Video",
@@ -191,7 +195,7 @@
     "label": "https://jebaited.net/tokens/ ->",
     "group": "Middleware Setup"
   },
-   "jebaitedAPITokenFD": {
+  "jebaitedAPITokenFD": {
     "type": "text",
     "label": "Token",
     "value": "need: botMsg",
@@ -229,42 +233,14 @@
     "group": "Animated Gradient Frame"
   },
   "frame2": {
-    "type":"hidden",
-    "label":"by Kagrayz",
-    "group": "Animated Gradient Frame"
-  },
-  "showMaskFD": {
-    "type": "dropdown",
-    "label": "Show gradient mask",
-    "value": "no",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    },
-    "group": "Animated Gradient Frame"
-  },
-  "firstColor": {
-  	"type": "colorpicker",
-    "label": "First color",
-    "value": "#00ff00",
-    "group": "Animated Gradient Frame"
-  },
-  "secondColor": {
-  	"type": "colorpicker",
-    "label": "Second color",
-    "value": "#000000",
-    "group": "Animated Gradient Frame"
-  },
-  "frameDuration": {
-	"type": "number",
-    "label": "Rotating duration, sec",
-    "value": 2.5,
+    "type": "hidden",
+    "label": "by Kagrayz",
     "group": "Animated Gradient Frame"
   },
   "mask": {
     "type": "dropdown",
     "label": "Mask Image",
-    "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png",
+    "value": "none",
     "options": {
       "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png": "Solid Border",
       "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo2.png": "Faded Border",
@@ -273,18 +249,32 @@
     },
     "group": "Animated Gradient Frame"
   },
-   "gradientOverrideFD": {
-     "type": "slider",
-     "label": "Gradient Size Adjustment",
-     "value": 25,
-     "min": -100,
-     "max": 100,
-     "steps": 1,
-     "group": "Animated Gradient Frame"
-   },
+  "firstColor": {
+    "type": "colorpicker",
+    "label": "First color",
+    "value": "#00ff00",
+    "group": "Animated Gradient Frame"
+  },
+  "secondColor": {
+    "type": "colorpicker",
+    "label": "Second color",
+    "value": "#000000",
+    "group": "Animated Gradient Frame"
+  },
+  "frameDuration": {
+    "type": "number",
+    "label": "Rotating duration, sec",
+    "value": 2.5,
+    "group": "Animated Gradient Frame"
+  },
   "cacheMask": {
-  	"type": "checkbox",
+    "type": "checkbox",
     "label": "Cache mask",
+    "group": "Animated Gradient Frame"
+  },
+  "gradientOverrideFD": {
+    "type": "hidden",
+    "value": 40,
     "group": "Animated Gradient Frame"
   },
 
@@ -302,6 +292,10 @@
     "type": "hidden",
     "value": 50,
     "group": "Animated Gradient Frame"
+  },
+  "foregroundVideoSizeFD": {
+    "type": "hidden",
+    "value": 110,
+    "group": "Animated Gradient Frame"
   }
-
 }

@@ -15,11 +15,13 @@ padding: 0;
  left: 0px;
  top: 0px;
 }
-#image-center-piece img{
-  width: {foregroundImageSizeFD}%;
+#video-center-piece video{
+  position: absolute;
+  width: {foregroundVideoSizeFD}%;
 }
-#video-center-piece, #image-center-piece img{
-   position: absolute;
+#image-center-piece img{
+  position: absolute;
+  width: {foregroundImageSizeFD}%;
 }
 .show {
     animation: fadein 1s forwards;

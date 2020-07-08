@@ -204,12 +204,12 @@ window.addEventListener('onWidgetLoad', function(obj) {
 
   defaultIngoredChatters = [...ignoredChatters];
 
-
-
   if (fieldData.showWheelOnLoadFD === 'yes') {
     $("#container").css('opacity', '1');
-    //  chatters = [...testData];
-    //  theWheel = buildWheel();
+    if(fieldData.showTestDataOnLoadFD){
+        chatters = [...testData];
+        theWheel = buildWheel();
+    };
     wheelOnScreen = true;
   };
 
@@ -218,8 +218,8 @@ window.addEventListener('onWidgetLoad', function(obj) {
     if (!fieldData.foregroundVideo || fieldData.foregroundVideo === 'none') {
       $("#video-center-piece").html('');
     } else {
-      $("#video-center-piece").css('left', `${(canvas.width() - $("#video-center-piece video").width())/2 + videoOffsetX}px`);
-      $("#video-center-piece").css('top', `${(canvas.height() - $("#video-center-piece video").height())/2 + videoOffsetY}px`);
+      $("#video-center-piece video").css('left', `${(canvas.width() - $("#video-center-piece video").width())/2 + videoOffsetX}px`);
+      $("#video-center-piece video").css('top', `${(canvas.height() - $("#video-center-piece video").height())/2 + videoOffsetY}px`);
     };
     if (!fieldData.foregroundImage) {
       $("#image-center-piece").html('');
@@ -233,7 +233,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
   setTimeout(() => updateCanvas(), 10000); //force update after loaded for 10 seconds
 
   //"Animated gradient webcam frame" by Kagrayz
-  if(fieldData.showMaskFD === 'yes' && fieldData.mask !== 'none'){
+  if(fieldData.mask && fieldData.mask !== 'none'){
     buildGradient(obj.detail.fieldData);
   } else {
     $("#frame").html('');

@@ -36,6 +36,9 @@
 - Video to display on top of the wheel
 - Note: the code will try to auto-center this video over the wheel
 
+###### Video Size %:
+- Adjust video size as a percentage of the wheel, default: 110
+
 ###### Video Offset X:
 - Override the auto-center video position in the X direction
 

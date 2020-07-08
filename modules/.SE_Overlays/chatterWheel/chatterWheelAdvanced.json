@@ -14,7 +14,12 @@
     },
     "group": "Testing"
   },
-  
+  "showTestDataOnLoadFD": {
+    "type": "checkbox",
+    "label": "Show Test Data On Load",
+    "group": "Testing"
+  },
+
   "wheelSize": {
     "type": "number",
     "label": "Wheel size (!900)",
@@ -37,6 +42,15 @@
     "type": "video-input",
     "label": "Foreground Video",
     "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm",
+    "group": "Visual Set Up"
+  },
+    "foregroundVideoSizeFD": {
+    "type": "slider",
+    "label": "Video Size %",
+    "value": 110,
+    "min": 50,
+    "max": 150,
+    "steps": 1,
     "group": "Visual Set Up"
   },
   "videoOffsetXFD": {
@@ -364,16 +378,12 @@
     "label":"by Kagrayz",
     "group": "Animated Gradient Frame"
   },
-  "showMaskFD": {
-    "type": "dropdown",
-    "label": "Show gradient mask",
-    "value": "no",
-    "options": {
-      "yes": "Yes",
-      "no": "No"
-    },
-    "group": "Animated Gradient Frame"
-  },
+  "mask": {
+     "type": "image-input",
+     "label": "Mask Image",
+     "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png",
+     "group": "Animated Gradient Frame"
+   },
   "firstColor": {
     "type": "colorpicker",
     "label": "First color",
@@ -392,16 +402,10 @@
     "value": 2.5,
     "group": "Animated Gradient Frame"
   },
-  "mask": {
-     "type": "image-input",
-     "label": "Mask Image",
-     "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png",
-     "group": "Animated Gradient Frame"
-   },
    "gradientOverrideFD": {
      "type": "slider",
      "label": "Gradient Size Adjustment",
-     "value": 25,
+     "value": 40,
      "min": -100,
      "max": 100,
      "steps": 1,
