@@ -39,13 +39,13 @@
     "value": "!clearwheel",
     "group": "Chat Commands"
   },
-
+  
   "foregroundVideo": {
     "type": "dropdown",
     "label": "Overlay Video",
-    "value": "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm",
+    "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm",
     "options": {
-      "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm": "Wheel Of Kappa",
+      "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm": "Wheel Of Kappa",
       "none": "None"
     },
     "group": "Visual Set Up"
@@ -181,6 +181,11 @@
     "group": "Raffle Mode"
   },
 
+  "middleware1": {
+    "type": "hidden",
+    "label": "Middleware provided by lx",
+    "group": "Middleware Setup"
+  },
   "jebaitedAPITokenInfoFD": {
     "type": "hidden",
     "label": "https://jebaited.net/tokens/ ->",
@@ -218,27 +223,16 @@
     "group": "Middleware Setup"
   },
 
-  "wheelSize": {
+  "frame1": {
     "type": "hidden",
-    "value": 900,
-    "group": "Middleware Setup"
+    "label": "Animated gradient webcam frame",
+    "group": "Animated Gradient Frame"
   },
-  "wheelStartingPositionX": {
-    "type": "hidden",
-    "value": 50,
-    "group": "Middleware Setup"
+  "frame2": {
+    "type":"hidden",
+    "label":"by Kagrayz",
+    "group": "Animated Gradient Frame"
   },
-  "wheelStartingPositionY": {
-    "type": "hidden",
-    "value": 50,
-    "group": "Middleware Setup"
-  },
-  "middleware1": {
-    "type": "hidden",
-    "label": "Middleware provided by lx",
-    "group": "Middleware Setup"
-  },
-
   "showMaskFD": {
     "type": "dropdown",
     "label": "Show gradient mask",
@@ -267,15 +261,14 @@
     "value": 2.5,
     "group": "Animated Gradient Frame"
   },
-
   "mask": {
     "type": "dropdown",
     "label": "Mask Image",
-    "value": "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png",
+    "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png",
     "options": {
-      "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png": "Solid Border",
-      "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/demo2.png": "Faded Border",
-      "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/demo3.png": "Faded Border With Center Plug",
+      "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png": "Solid Border",
+      "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo2.png": "Faded Border",
+      "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo3.png": "Faded Border With Center Plug",
       "none": "None"
     },
     "group": "Animated Gradient Frame"
@@ -294,14 +287,20 @@
     "label": "Cache mask",
     "group": "Animated Gradient Frame"
   },
-  "frame1": {
+
+  "wheelSize": {
     "type": "hidden",
-    "label": "Animated gradient webcam frame",
+    "value": 900,
     "group": "Animated Gradient Frame"
   },
-  "frame2": {
-    "type":"hidden",
-    "label":"by Kagrayz",
+  "wheelStartingPositionX": {
+    "type": "hidden",
+    "value": 50,
+    "group": "Animated Gradient Frame"
+  },
+  "wheelStartingPositionY": {
+    "type": "hidden",
+    "value": 50,
     "group": "Animated Gradient Frame"
   }
 

@@ -14,7 +14,7 @@
     },
     "group": "Testing"
   },
-
+  
   "wheelSize": {
     "type": "number",
     "label": "Wheel size (!900)",
@@ -36,7 +36,7 @@
   "foregroundVideo": {
     "type": "video-input",
     "label": "Foreground Video",
-    "value": "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm",
+    "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm",
     "group": "Visual Set Up"
   },
   "videoOffsetXFD": {
@@ -300,6 +300,11 @@
     "group": "Game Set Up"
   },
 
+  "middleware1": {
+    "type": "hidden",
+    "label": "Middleware provided by lx",
+    "group": "Middleware Setup"
+  },
   "jebaitedAPITokenInfoFD": {
     "type": "hidden",
     "label": "https://jebaited.net/tokens/ ->",
@@ -348,12 +353,17 @@
     "steps": 1,
     "group": "Middleware Setup"
   },
-  "middleware1": {
-    "type": "hidden",
-    "label": "Middleware provided by lx",
-    "group": "Middleware Setup"
-  },
 
+  "frame1": {
+    "type": "hidden",
+    "label": "Animated gradient webcam frame",
+    "group": "Animated Gradient Frame"
+  },
+  "frame2": {
+    "type":"hidden",
+    "label":"by Kagrayz",
+    "group": "Animated Gradient Frame"
+  },
   "showMaskFD": {
     "type": "dropdown",
     "label": "Show gradient mask",
@@ -385,7 +395,7 @@
   "mask": {
      "type": "image-input",
      "label": "Mask Image",
-     "value": "http://github.com/pjonp/pjTestBot/blob/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png",
+     "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/demo1.png",
      "group": "Animated Gradient Frame"
    },
    "gradientOverrideFD": {
@@ -400,16 +410,6 @@
   "cacheMask": {
     "type": "checkbox",
     "label": "Cache mask",
-    "group": "Animated Gradient Frame"
-  },
-  "frame1": {
-    "type": "hidden",
-    "label": "Animated gradient webcam frame",
-    "group": "Animated Gradient Frame"
-  },
-  "frame2": {
-    "type":"hidden",
-    "label":"by Kagrayz",
     "group": "Animated Gradient Frame"
   }
 }

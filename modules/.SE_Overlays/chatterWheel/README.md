@@ -1,6 +1,7 @@
 # Chatter Wheel
 
 ###### Notes:
+**This widget works as an active source! All data will be reset when the source is closed or reloaded!**
 - Default setup is a 1000px X 1000px container, centered on the overlay editor
 - Overlay Video and Image attempt to center themselves on load/update and will sometimes not show correctly while adjusting the settings. They will force center after 10 seconds.
 - Wheel will add active chatters as segments
@@ -184,3 +185,11 @@
 - Adjust depending on your stream delay settings ~5 seconds
 - Review your VOD to see the viewers experience
   - If set to 0, the bot will announce in chat before the viewers see the end of the wheel spin
+
+***
+###### Credits:
+ - StreamElements middleware by lx
+ - Default video animation by JayniusGamingTV
+ - "Animated gradient webcam frame" by Kagrayz
+ - Winwheel.js by Douglas McKechie @ www.dougtesting.net
+ - Copyright (c)(MIT) 2020 pjonp

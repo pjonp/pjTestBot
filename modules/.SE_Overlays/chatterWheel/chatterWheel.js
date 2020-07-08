@@ -9,7 +9,6 @@ Video animation by JayniusGamingTV
 
 Winwheel.js by Douglas McKechie @ www.dougtesting.net
 
-
 *******
 *****
 NOTE: There are (2) json files for field settings: simple and advanced
@@ -17,7 +16,6 @@ NOTE: There are (2) json files for field settings: simple and advanced
       https://github.com/pjonp/pjTestBot/tree/master/modules/.SE_Overlays/chatterWheel
 *****
 *******
-
 
 The MIT License (MIT)
 Copyright (c) 2020 pjonp
