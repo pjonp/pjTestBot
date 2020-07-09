@@ -43,13 +43,22 @@
     "value": "!clearwheel",
     "group": "Chat Commands"
   },
-
   "foregroundVideo": {
     "type": "dropdown",
     "label": "Overlay Video",
     "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm",
     "options": {
       "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/JayniusGamingTV_demo.webm": "Wheel Of Kappa",
+      "none": "None"
+    },
+    "group": "Visual Set Up"
+  },
+  "foregroundImage": {
+    "type": "dropdown",
+    "label": "Overlay Image",
+    "value": "none",
+    "options": {
+      "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/streamElementsLogo.gif": "StreamElements Logo",
       "none": "None"
     },
     "group": "Visual Set Up"
@@ -252,13 +261,13 @@
   "firstColor": {
     "type": "colorpicker",
     "label": "First color",
-    "value": "#00ff00",
+    "value": "#00abff",
     "group": "Animated Gradient Frame"
   },
   "secondColor": {
     "type": "colorpicker",
     "label": "Second color",
-    "value": "#000000",
+    "value": "#6701a5",
     "group": "Animated Gradient Frame"
   },
   "frameDuration": {
@@ -296,6 +305,16 @@
   "foregroundVideoSizeFD": {
     "type": "hidden",
     "value": 110,
+    "group": "Animated Gradient Frame"
+  },
+  "foregroundImageSizeFD": {
+    "type": "hidden",
+    "value": 25,
+    "group": "Animated Gradient Frame"
+  },
+  "foregroundImageRadiusFD": {
+    "type": "hidden",
+    "value": 50,
     "group": "Animated Gradient Frame"
   }
 }

@@ -1,5 +1,5 @@
 /*
-Chatter Wheel 1.0.0 by pjonp
+Chatter Wheel 1.0.1 by pjonp
 
 StreamElements middleware by lx
 
@@ -221,7 +221,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
       $("#video-center-piece video").css('left', `${(canvas.width() - $("#video-center-piece video").width())/2 + videoOffsetX}px`);
       $("#video-center-piece video").css('top', `${(canvas.height() - $("#video-center-piece video").height())/2 + videoOffsetY}px`);
     };
-    if (!fieldData.foregroundImage) {
+    if (!fieldData.foregroundImage || fieldData.foregroundImage === 'none') {
       $("#image-center-piece").html('');
     } else {
       $("#image-center-piece img").css('left', `${(canvas.width() - $("#image-center-piece img").width())/2 + imageOffsetX}px`);

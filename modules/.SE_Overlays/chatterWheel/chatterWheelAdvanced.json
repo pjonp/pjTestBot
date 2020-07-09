@@ -73,17 +73,26 @@
   },
   "foregroundImage": {
     "type": "image-input",
-    "label": "Foreground image",
-    "value": "",
+    "label": "Foreground Image",
+    "value": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/.SE_Overlays/chatterWheel/assets/streamElementsLogo.gif",
     "group": "Visual Set Up"
   },
   "foregroundImageSizeFD": {
     "type": "slider",
     "label": "Image Size %",
-    "value": 15,
+    "value": 25,
     "min": 0,
     "max": 50,
-    "steps": 5,
+    "steps": 1,
+    "group": "Visual Set Up"
+  },
+  "foregroundImageRadiusFD": {
+    "type": "slider",
+    "label": "Foreground Image Radius",
+    "value": 50,
+    "min": 0,
+    "max": 50,
+    "steps": 1,
     "group": "Visual Set Up"
   },
   "imageOffsetXFD": {
@@ -387,13 +396,13 @@
   "firstColor": {
     "type": "colorpicker",
     "label": "First color",
-    "value": "#00ff00",
+    "value": "#00abff",
     "group": "Animated Gradient Frame"
   },
   "secondColor": {
     "type": "colorpicker",
     "label": "Second color",
-    "value": "#000000",
+    "value": "#6701a5",
     "group": "Animated Gradient Frame"
   },
   "frameDuration": {

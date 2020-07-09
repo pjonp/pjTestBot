@@ -52,6 +52,9 @@
 ###### Image Size %:
 - Adjust image size as a percentage of the wheel, default: 15
 
+###### Foreground Image Radius:
+- Adjust image corner radius, default: 50
+
 ###### Image Offset X:
 - Override the auto-center image position in the X direction
 

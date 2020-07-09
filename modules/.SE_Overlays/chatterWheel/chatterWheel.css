@@ -22,6 +22,7 @@ padding: 0;
 #image-center-piece img{
   position: absolute;
   width: {foregroundImageSizeFD}%;
+  border-radius: {foregroundImageRadiusFD}%;
 }
 .show {
     animation: fadein 1s forwards;
