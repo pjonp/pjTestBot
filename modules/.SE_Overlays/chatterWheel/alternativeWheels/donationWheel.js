@@ -37,12 +37,12 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-//nexxx Settings
-let wheelBot = 'nexxxbot', //Lowercase name if wanting to use a bot to call commands
+//subWheel Settings
+let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call commands
   soundEffectVolume = 0.25,
   tickSoundVolume = 0.75, //tick sound volume
-  clearDoubleUpAfterSpins = false,
-  hideWheelAfterSpin = true,
+  clearDoubleUpAfterSpins = false, //remove the bonus jackpot after spin
+  hideWheelAfterSpin = true, //hide the wheel when done spinning; default: true
   doubleUpSeconds = 30 * 60, //seconds or minutes*60
   doubleUpCommand = '!doubleup',
   doubleUpPrize = {
@@ -314,7 +314,6 @@ let prizeLists = [[...defaultPrizeList], [...defaultPrizeList], [...defaultPrize
   randomSpins,
   randomTime;
 
-
 const randomInt = (min, max) => Math.floor((Math.random() * (max - min) + min));
 let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, wheelSpinning = false,
   goalTrigger = 0,
@@ -418,6 +417,46 @@ window.addEventListener('onEventReceived', function(obj) {
   };
 });
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 window.addEventListener('onWidgetLoad', function(obj) {
   channelName = obj["detail"]["channel"]["username"];
   fieldData = obj.detail.fieldData;
@@ -439,7 +478,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
   imageOffsetX = fieldData.imageOffsetXFD || 0;
   imageOffsetY = fieldData.imageOffsetYFD || 0;
 
-  pointerAngle = fieldData.pointerAngleFD || 270;
+  pointerAngle = fieldData.pointerAngleFD || 0;
   //  tipMultipler = fieldData.tipMultiplerFD || 100; //not used
   playSound = fieldData.playSoundFD === 'yes';
   soundEffect = new Audio(fieldData.soundEffectFD || '');
@@ -551,6 +590,7 @@ const startSpin = async (spinObj) => {
     return;
   } else {
     wheelSpinning = true;
+    $('#center-text').html(spinObj.user);
     theWheel = buildWheel(spinObj.type || 0);
     $("#container").removeClass("hide").addClass("show");
     theWheel.rotationAngle = wheelAngle;
@@ -602,6 +642,7 @@ const endSpin = (spinObj) => {
     soundEffect.pause();
     soundEffect.currentTime = 0;
     wheelSpinning = false;
+    $('#center-text').html('');
     if (doubleUp && clearDoubleUpAfterSpins) {
       clearTimeout(doubleUpTimer);
       doubleUp = false;

@@ -38,7 +38,15 @@ padding: 0;
     from {opacity: 1;left: {wheelStartingPositionX}px}
     to {opacity: 0;left: 2000px}
 }
-
+#center-text{
+  color: white;
+  font-size: 50px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: 550px;
+  left: 0px;
+}
 #frame {
     position: absolute;
     mask-position: top left;

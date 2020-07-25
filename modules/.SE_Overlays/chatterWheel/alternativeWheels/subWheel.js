@@ -36,16 +36,6 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
-
-//!!!! ADD THIS INTO THE FIELD DATA IF YOU HAVE SPIN ISSUES WITH SUB BOMBS!!!
-/*
-    "widgetDuration":{
-      "type": "hidden",
-      "value": 0.5
-    }
-*/
-//!!!!! ^^^
-
 //subWheel Settings
 let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call commands
   soundEffectVolume = 0.25, //background sound level 0 mute, 1 max
@@ -53,12 +43,17 @@ let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call c
   clearDoubleUpAfterSpins = false, //remove the bonus jackpot after spin
   hideWheelAfterSpin = true, //hide the wheel when done spinning; default: true
   doubleUpSeconds = 30 * 60, //seconds or minutes*60
+  doubleUpCommand = '!doubleup',
   doubleUpPrize = {
     text: "GIVEAWAY",
     fillStyle: 'GOLD',
     res: 'GIVEAWAY'
   },
-  switchToSender = 5; //amount of sub bomb until wheel switchs to sender
+  switchToSender = 5, //amount of sub bomb until wheel switchs to sender
+  prizeAddonCommand = '!addon',
+  prizeAddonSeconds = 60 * 60, //seconds or minutes*60
+  prizeAddonRes = '{winner} just won the custom prize: {prize}!',
+  prizeAddonsClearOnCommand = false;
 
 let defaultPrizeList = [{
     text: "5X",
@@ -68,7 +63,7 @@ let defaultPrizeList = [{
   {
     text: "50x",
     fillStyle: '',
-    res: '125'
+    res: '50'
   },
   {
     text: "10x",
@@ -300,16 +295,24 @@ let prizeList3 = [{
   }
 ];
 
-let prizeLists = [defaultPrizeList, prizeList1, prizeList2, prizeList3],
-  prizeListThresholds = [0, 5, 10, 25], //Leave 0 as first number see note below
+let prizeLists = [[...defaultPrizeList], [...prizeList1], [...prizeList2], [...prizeList3]],
+  prizeListThresholds = [0, 5, 10, 25], //these values are added to the "Goal Amount Setting"
   wheelGlow = ['black', 'green', 'pink', 'gold'], //inner glow of the wheel; default wheel: white
-  wheelGlowAmount = 0.75; //default wheel 0.5
-/*
-defaultPrizeList = 0 //normal sub, single gift sub, or sub bomb < 5
-prizeList1 = 5 //sub bomb >= 5 (5 or more)
-prizeList2 = 10 //sub bomb >= 10
-prizeList3 = 25 //sub bomb >= 25
-*/
+  wheelGlowAmount = 0.75, //default wheel 0.5
+  /* If "goal amount" is set to 5, then:
+  defaultPrizeList = 5 + 0;
+  prizeList1 = 10
+  prizeList2 = 15
+  prizeList3 = 30
+  */
+  //DO NOT EDIT BELOW
+  prizeWheelSegements = [],
+  prizeAddons = [],
+  doubleUp = false,
+  doubleUpTimer,
+  prizeAddonTimer,
+  randomSpins,
+  randomTime;
 
 const randomInt = (min, max) => Math.floor((Math.random() * (max - min) + min));
 let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, wheelSpinning = false,
@@ -321,10 +324,6 @@ let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, whee
   textFontFamily, wheelShowCommand, wheelHideCommand, wheelClearCommand,
   wheelOnScreen = false,
   tickSound = new Audio('https://raw.githubusercontent.com/zarocknz/javascript-winwheel/master/examples/wheel_of_fortune/tick.mp3'),
-  doubleUp = false,
-  doubleUpTimer,
-  randomSpins,
-  randomTime,
   giftSubCount = 0;
 
   tickSound.volume = tickSoundVolume;
@@ -336,16 +335,23 @@ window.addEventListener('onEventReceived', function(obj) {
     $("#container").removeClass("hide").addClass("show");
     wheelOnScreen = true;
     return;
-  } else if (obj.detail.listener === "message") {
+  };
+  const skippable = ["bot:counter", "event:test", "event:skip"]; //Array of events coming to widget that are not queued so they can come even queue is on hold
+  if (skippable.indexOf(obj.detail.listener) !== -1) return;
+
+  //Broadcaster Commands
+  if (obj.detail.listener === "message") {
     let data = obj.detail.event.data;
     if (data.userId === data.tags['room-id'] || data.nick === wheelBot) { //Broadcaster && LOWERCASE name
       if (data.text.startsWith(spinCommand)) {
         let msg = data.text.split(' '),
-          user = typeof msg[1] === 'string' ? msg[1].replace('@', '') : 'free spin',
-          type = typeof parseInt(msg[2]) === 'number' && parseInt(msg[2]) < prizeLists.length ? parseInt(msg[2]) : 0;
+          user = typeof msg[1] === 'string' ? msg[1].replace('@', '') : 'free_spin',
+          amount = parseInt(msg[2]) >= 0 ? parseInt(msg[2]) : prizeListThresholds[0],
+          wheelTypeIndex = prizeListThresholds.indexOf(prizeListThresholds.reduce((prev, curr) => amount >= curr ? curr : prev));
         startSpin({
           user: user,
-          type: type
+          type: wheelTypeIndex,
+          amount: amount
         });
       } else if (data.text === wheelShowCommand) {
         theWheel = buildWheel();
@@ -360,8 +366,12 @@ window.addEventListener('onEventReceived', function(obj) {
           doubleUp = false;
           prizeLists.forEach(i => i.shift());
         };
+        if(prizeAddonsClearOnCommand){
+          clearTimeout(prizeAddonTimer);
+          prizeAddons = [];
+        };
         theWheel = buildWheel();
-      } else if (data.text.startsWith('!doubleup')) {
+      } else if (data.text.startsWith(doubleUpCommand)) {
         if (doubleUp) return;
         doubleUp = true;
         prizeLists.forEach(i => {
@@ -373,6 +383,19 @@ window.addEventListener('onEventReceived', function(obj) {
           prizeLists.forEach(i => i.shift());
           buildWheel();
         }, doubleUpSeconds * 1000);
+      } else if (data.text.startsWith(prizeAddonCommand)) {
+          let msg = data.text.replace(prizeAddonCommand,'').trim(),
+            prizeAddon = {
+              text: msg,
+              fillStyle: '',
+              res: prizeAddonRes.replace('{prize}',msg)
+            };
+            prizeAddons.push(prizeAddon);
+        buildWheel();
+        prizeAddonTimer = setTimeout(() => {
+          prizeAddons.shift();
+          buildWheel();
+        }, prizeAddonSeconds * 1000);
       };
     };
     SE_API.resumeQueue();
@@ -509,12 +532,21 @@ window.addEventListener('onWidgetLoad', function(obj) {
 
 const buildWheel = (prizeListNumber) => {
   prizeListNumber = typeof prizeListNumber === 'number' ? prizeListNumber : 0;
-  let wheelPrizes = prizeLists[prizeListNumber];
-  if (wheelPrizes.length < 0) return;
+  prizeWheelSegements = [...prizeLists[prizeListNumber]],
+      addonIndexMultiple = Math.floor( (prizeWheelSegements.length + prizeAddons.length)/prizeAddons.length),
+      addonIndexCounter = 1;
+  if(prizeAddons.length > 0) {
+  for(let i = 0; i < prizeAddons.length; i++) {
+    prizeWheelSegements.splice(addonIndexMultiple*addonIndexCounter,0,prizeAddons[i])
+    addonIndexCounter++
+  };
+  };
+
+  if (prizeWheelSegements.length < 0) return;
   let canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d'),
     canvasCenter = canvas.height / 2,
-    prizeSegments = wheelPrizes.map(i => {
+    prizeSegments = prizeWheelSegements.map(i => {
       let radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize),
         hexColor = i.fillStyle ? i.fillStyle : i.fillStyle = tinycolor.random().toHexString();
       radGradient.addColorStop(0, wheelGlow[prizeListNumber]);
@@ -558,6 +590,7 @@ const startSpin = async (spinObj) => {
     return;
   } else {
     wheelSpinning = true;
+    $('#center-text').html(spinObj.user);
     theWheel = buildWheel(spinObj.type || 0);
     $("#container").removeClass("hide").addClass("show");
     theWheel.rotationAngle = wheelAngle;
@@ -596,18 +629,20 @@ const endSpin = (spinObj) => {
     wheelPrize = 'Nothing'
   };
 
-  let wheelPrizeArray = typeof spinObj.type === 'number' ? prizeLists[spinObj.type] : prizeLists[0];
-  let segmentIndex = wheelPrizeArray.findIndex(i => i.text === wheelPrize),
-    prizeRes = wheelPrizeArray[segmentIndex].res || wheelPrize;
+  let segmentIndex = prizeWheelSegements.findIndex(i => i.text === wheelPrize),
+    prizeRes = prizeWheelSegements[segmentIndex].res || wheelPrize,
+    amountpoints = spinObj.amount * prizeRes,
+    chatMessage = isNaN(amountpoints) ?  prizeRes.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount) : chatResponse.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount).replace('{amountpoints}', amountpoints);
   //delay chat response
   setTimeout(() => {
-    sayMessage(`${chatResponse.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes)}`)
+    sayMessage(chatMessage);
   }, chatResponseDelay * 1000);
   //check if done
   setTimeout(() => {
     soundEffect.pause();
     soundEffect.currentTime = 0;
     wheelSpinning = false;
+    $('#center-text').html('');
     if (doubleUp && clearDoubleUpAfterSpins) {
       clearTimeout(doubleUpTimer);
       doubleUp = false;
