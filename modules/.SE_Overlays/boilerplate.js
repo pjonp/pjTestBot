@@ -25,7 +25,7 @@ window.addEventListener('onEventReceived', obj => {
       if (event.amount === 'gift') subscriberHandler('subGiftHandler', event); //single gift
       else if (event.bulkGifted) subscriberHandler('subBulkGiftSenderHandler', event); //bulk gift sender
       else if (event.isCommunityGift) subscriberHandler('subBulkGiftRecieverHandler', event); //user recieved a bulk gift
-      else subscriberHandler('subDefaultHandler', event); //other
+      else subscriberHandler('subDefaultHandler', event); //normal sub
       break;
     case 'host-latest':
       hostHandler(event);
@@ -88,6 +88,8 @@ const followerHandler = (event) => {
   console.log(res, event);
   temp(res);
   endEvent(queueTime);
+
+
 };
 const redemptionHandler = (event) => {
   let res = 'redemptionHandler',
@@ -95,6 +97,8 @@ const redemptionHandler = (event) => {
   console.log(res, event);
   temp(res);
   endEvent(queueTime);
+
+
 };
 const hostHandler = (event) => {
   let res = 'hostHandler',
@@ -103,6 +107,8 @@ const hostHandler = (event) => {
   temp(res);
   endEvent(queueTime);
 };
+
+
 const cheerHandler = (event) => {
   let res = 'cheerHandler',
     queueTime = 10;
@@ -110,13 +116,17 @@ const cheerHandler = (event) => {
   temp(res);
   endEvent(queueTime);
 };
+
+
 const tipHandler = (event) => {
-  let res = 'followerHandler',
+  let res = 'tipHandler',
     queueTime = 10;
   console.log(res, event);
   temp(res);
   endEvent(queueTime);
 };
+
+
 const raidHandler = (event) => {
   let res = 'raidHandler',
     queueTime = 10;
@@ -124,7 +134,6 @@ const raidHandler = (event) => {
   temp(res);
   endEvent(queueTime);
 };
-
 
 const temp = (i) => {
   $('.main-container').html(i);

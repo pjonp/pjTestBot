@@ -55,7 +55,8 @@ let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, whee
   spinCommandOverrides = 0,
   triggerToJoin = false,
   triggerToJoinCommand,
-  triggerToJoinPhrase;
+  triggerToJoinPhrase,
+  tickSound = new Audio('https://raw.githubusercontent.com/zarocknz/javascript-winwheel/master/examples/wheel_of_fortune/tick.mp3');
 
 window.addEventListener('onEventReceived', function(obj) {
   //Test Button
@@ -75,8 +76,8 @@ window.addEventListener('onEventReceived', function(obj) {
     if (!checkPrivileges(data)) {
       return;
     } else {
-      if (data.userId === data.tags['room-id']) { //Broadcaster
-        if (data.text === spinCommand) {
+      if (data.userId === data.tags['room-id'] || data.nick === 'nexxxbot') { //Broadcaster && LOWERCASE name
+        if (data.text.startsWith(spinCommand)) {
           if (multipleSpins && wheelSpinning) {
             spinCommandOverrides++;
             return;
@@ -84,17 +85,17 @@ window.addEventListener('onEventReceived', function(obj) {
           goalProgress += goalTrigger; //free spin
           goalTrigger = randomInt(minAmount, maxAmount);
           startSpin();
-        } else if (data.text === wheelShowCommand) {
+        } else if (data.text.startsWith(wheelShowCommand)) {
           theWheel = buildWheel();
           $("#container").removeClass("hide").addClass("show");
           wheelOnScreen = true;
-        } else if (data.text === wheelHideCommand) {
+        } else if (data.text.startsWith(wheelHideCommand)) {
           $("#container").removeClass("show").addClass("hide");
           wheelOnScreen = false;
         } else if (data.text.startsWith(spinPrizeCommand)) {
           spinPrize = data.text.replace(spinPrizeCommand, '')
           sayMessage(`Spin Wheel Prize has been set to: ${spinPrize}`);
-        } else if (data.text === wheelClearCommand) {
+        } else if (data.text.startsWith(wheelClearCommand)) {
           chatters = []
           if (clearPreviousWinners) ignoredChatters = [...defaultIngoredChatters];
           theWheel = buildWheel();
@@ -102,7 +103,7 @@ window.addEventListener('onEventReceived', function(obj) {
           let msg = data.text.split(' ');
           msg.shift();
           if (msg.length > 0) {
-            chatters = [];
+            //chatters = [];
             buildWheel();
             triggerToJoin = true;
             triggerToJoinPhrase = msg.join(' ');
@@ -111,22 +112,61 @@ window.addEventListener('onEventReceived', function(obj) {
             triggerToJoin = false;
             res = `Giveaway mode disabled! ${triggerToJoinCommand} needs a trigger! e.g. ${triggerToJoinCommand} ticket`
           }
-          sayMessage(res)
+  //        sayMessage(res)
         }
+        //removeme add
+        else if (data.text.startsWith('!Protect')) {
+          let msg = data.text.split(' '),
+            chatterIndex = chatters.findIndex(i => i.text.toLowerCase() === msg[1].toLowerCase().replace('@', ''));
+          if(chatterIndex < 0) return;
+          let chatterName = chatters[chatterIndex].text;
+          chatters.splice(chatterIndex, 1);
+          ignoredChatters.push(chatterName);
+
+          let protectionTime = 0.5*60 //seconds or minutes*60
+          setTimeout( () => {
+              let ignoredChatterIndex = ignoredChatters.findIndex(i => i === chatterName);
+              if(ignoredChatterIndex < 0) return;
+              ignoredChatters.splice(ignoredChatterIndex, 1);
+          }, protectionTime * 1000);//seconds times milliseconds(1000)
+
+          buildWheel();
+          return;
+        }
+        //immunity add
+        else if (data.text.startsWith('!immune')) {
+          let msg = data.text.split(' '),
+            chatterIndex = chatters.findIndex(i => i.text.toLowerCase() === msg[1].toLowerCase().replace('@', ''));
+          if(chatterIndex < 0) return;
+          ignoredChatters.push(msg[1].replace('@', ''));
+          chatters.splice(chatterIndex, 1);
+          buildWheel();
+          return;
+        };
       };
 
       //Build Chatter List
-      if (triggerToJoin && !data.text.toLowerCase().includes(triggerToJoinPhrase.toLowerCase())) {
+      //DOOMWHEEL START
+      if (triggerToJoin) {
+        if (data.text.toLowerCase().includes(triggerToJoinPhrase.toLowerCase())) {
+          let chatterIndex = chatters.findIndex(i => i.text === data.displayName);
+          if(chatterIndex < 0) return;
+          chatters.splice(chatterIndex, 1);
+          if (wheelOnScreen && !wheelSpinning) {
+            buildWheel();
+          };
+        };
         return;
-      }
+      };
+      //DOOM WHEEL ENDS
 
       if (ignoredChatters.some(i => i.toLowerCase() === data.displayName.toLowerCase())) return;
       let chatterPosition = chatters.findIndex(i => i.text === data.displayName),
-        hexColor = data.displayColor ? data.displayColor : tinycolor.random().toHexString(),
+        //        hexColor = 'white',
         chatterObj = {
           text: data.displayName,
-          fillStyle: hexColor,
-          time: data.time,
+          //          fillStyle: hexColor,
+          //          time: data.time,
           userID: data.userId
         };
       if (chatterPosition > -1) chatters.splice(chatterPosition, 1);
@@ -136,7 +176,9 @@ window.addEventListener('onEventReceived', function(obj) {
     if (wheelOnScreen && !wheelSpinning) {
       buildWheel();
     };
-    return;
+
+
+    return; //DOOM WHEEL IGNORE $
 
     //Look for tips & cheers
   } else if (obj.detail.listener === 'tip-latest' || obj.detail.listener === 'cheer-latest') {
@@ -182,12 +224,13 @@ window.addEventListener('onWidgetLoad', function(obj) {
   imageOffsetX = fieldData.imageOffsetXFD || 0;
   imageOffsetY = fieldData.imageOffsetYFD || 0;
 
-  pointerAngle = fieldData.pointerAngleFD || 0;
+  pointerAngle = fieldData.pointerAngleFD || 270;
   //  tipMultipler = fieldData.tipMultiplerFD || 100; //not used
   multipleSpins = fieldData.multipleSpinsFD === 'yes';
   playSound = fieldData.playSoundFD === 'yes';
   soundEffect = new Audio(fieldData.soundEffectFD || '');
 
+  soundEffect.volume = 0.25;
 
   cooldown = fieldData.duration || 20;
   spins = fieldData.spins || 15;
@@ -205,10 +248,10 @@ window.addEventListener('onWidgetLoad', function(obj) {
   defaultIngoredChatters = [...ignoredChatters];
 
   if (fieldData.showWheelOnLoadFD === 'yes') {
-    $("#container").css('opacity', '1').addClass("show");
-    if(fieldData.showTestDataOnLoadFD){
-        chatters = [...testData];
-        theWheel = buildWheel();
+    $("#container").css('opacity', '1');
+    if (fieldData.showTestDataOnLoadFD) {
+      chatters = [...testData];
+      theWheel = buildWheel();
     };
     wheelOnScreen = true;
   };
@@ -233,7 +276,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
   setTimeout(() => updateCanvas(), 10000); //force update after loaded for 10 seconds
 
   //"Animated gradient webcam frame" by Kagrayz
-  if(fieldData.mask && fieldData.mask !== 'none'){
+  if (fieldData.mask && fieldData.mask !== 'none') {
     buildGradient(obj.detail.fieldData);
   } else {
     $("#frame").html('');
@@ -246,13 +289,12 @@ const buildWheel = () => {
   let canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d'),
     canvasCenter = canvas.height / 2,
-    chatterSegments = chatters
-    .filter(i => (Date.now() - i.time) < 30*60*1000)
-    .map(i => {
+    chatterSegments = chatters.map((i, index) => { //DOOM WHEEL EDIT (index)
       let radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize),
-        hexColor = i.fillStyle ? i.fillStyle : i.fillStyle = tinycolor.random().toHexString();
-      radGradient.addColorStop(0, "white");
-      radGradient.addColorStop(0.5, i.fillStyle);
+        hexColor = index % 3 === 2 ? 'rosybrown' : index % 3 === 1 ? 'maroon' : 'black'; //DOOM WHEEL ADD
+      //   hexColor = i.fillStyle ? i.fillStyle : i.fillStyle = tinycolor.random().toHexString(); //DOOM WHEEL
+      radGradient.addColorStop(0, "black");
+      radGradient.addColorStop(0.5, hexColor); //DOOM WHEEL EDIT
       return {
         text: i.text, //.slice(0,18), //can't shorten names if removing winners
         fillStyle: radGradient,
@@ -286,7 +328,6 @@ const startSpin = async () => {
     gameQueue++;
     return;
   } else {
-    wheelSpinning = true;
     theWheel = buildWheel();
     $("#container").removeClass("hide").addClass("show");
     theWheel.rotationAngle = wheelAngle;
@@ -294,29 +335,39 @@ const startSpin = async () => {
     if (playSound) theWheel.animation.callbackSound = playSoundEffect;
     if (!wheelOnScreen) await (async () => new Promise(resolve => setTimeout(resolve, 1200)))();
     wheelOnScreen = true;
+    backgroundSound();
     theWheel.startAnimation();
+    wheelSpinning = true;
     setTimeout(() => endSpin(), cooldown * 1000 + 100);
   };
 };
 
 const endSpin = () => {
+  tickSound.pause();
+  tickSound.currentTime = 0;
 
-//get winner and make wheel pretty
+
+  //get winner and make wheel pretty
   let roundWinner
   try {
     let winningSegmentNumber = theWheel.getIndicatedSegmentNumber(),
       canvas = document.getElementById('canvas'),
       ctx = canvas.getContext('2d'),
       canvasCenter = canvas.height / 2,
-      radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize); // x0,y0,r0,x1,y1,r1
-
+      radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize), // x0,y0,r0,x1,y1,r1
+      radGradientWinner = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize);
     roundWinner = theWheel.getIndicatedSegment().text;
-    radGradient.addColorStop(0, "white");
+    radGradient.addColorStop(0, "black");
     radGradient.addColorStop(0.5, "gray");
+    radGradientWinner.addColorStop(0, "black");
+    radGradientWinner.addColorStop(0.5, "red");
     for (let i = 1; i < theWheel.segments.length; i++) {
       if (i !== winningSegmentNumber) {
         theWheel.segments[i].fillStyle = radGradient;
-        theWheel.segments[i].textFillStyle = 'black';
+        theWheel.segments[i].textFillStyle = 'white';
+      } else {
+        theWheel.segments[i].fillStyle = radGradientWinner;
+        theWheel.segments[i].textFillStyle = 'white';
       };
     }
     theWheel.draw();
@@ -324,7 +375,7 @@ const endSpin = () => {
     roundWinner = 'No one'
   };
 
-//check for a respin
+  //check for a respin
   if (multipleSpins) {
     if (spinCommandOverrides > 0) {
       spinCommandOverrides--;
@@ -343,17 +394,19 @@ const endSpin = () => {
     console.log('Goal Trigger:', goalTrigger);
   };
 
-//delay chat response
+  //delay chat response
   setTimeout(() => {
     sayMessage(`${chatResponse.replace('{chatter}', roundWinner).replace('{user}', roundWinner).replace('{prize}', spinPrize)}`)
   }, chatResponseDelay * 1000);
-//remove winner if settting enabled
+  //remove winner if settting enabled
   if (removeWinners) {
     ignoredChatters.push(roundWinner);
     chatters.splice(chatters.findIndex(i => i.text === roundWinner), 1);
   };
-//check if done
+  //check if done
   setTimeout(() => {
+    soundEffect.pause();
+    soundEffect.currentTime = 0;
     wheelSpinning = false;
     if (gameQueue === 0) {
       console.log('Games Over');
@@ -383,6 +436,11 @@ const sayMessage = (message) => {
 
 const playSoundEffect = () => {
   //  soundEffect.pause();
+  tickSound.currentTime = 0;
+  tickSound.play();
+};
+
+const backgroundSound = () => {
   soundEffect.currentTime = 0;
   soundEffect.play();
 };
@@ -408,7 +466,7 @@ const checkPrivileges = (data) => {
 const buildGradient = (fieldData) => { //"Animated gradient webcam frame" by Kagrayz
   if (fieldData.mask) {
     let maskUrl = fieldData.mask + (fieldData.cacheMask ? '' : '?_nocache=' + new Date().getTime());
-  $('#frame')
+    $('#frame')
       .css('width', `${wheelSize+fieldData.gradientOverrideFD}px`)
       .css('height', `${wheelSize+fieldData.gradientOverrideFD}px`)
       .css('left', `${-1*fieldData.gradientOverrideFD/2}px`)
