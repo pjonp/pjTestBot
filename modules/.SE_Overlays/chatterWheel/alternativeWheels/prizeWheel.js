@@ -37,327 +37,300 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-//nexxx Settings
-let wheelBot = 'nexxxbot', //Lowercase name if wanting to use a bot to call commands
-  soundEffectVolume = 0.25,
-  tickSoundVolume = 0.75, //tick sound volume
-  clearDoubleUpAfterSpins = false,
-  hideWheelAfterSpin = true,
-  doubleUpSeconds = 30 * 60, //seconds or minutes*60
-  doubleUpCommand = '!prizewheeldoubleup',
-  doubleUpPrize = {
-    text: "GIVEAWAY",
-    fillStyle: 'GOLD',
-    res: 'GIVEAWAY'
-  };
+//THIS IS A STATIC WHEEL EXAMPLE WITH 1 PRIZE SET
+//SET TO COMMAND ONLY IN THE OPTIONS
 
-let defaultPrizeList = [  {
+/* ADD THIS OBJECT INTO THE FIELD DATA FOR CUSTOM IMAGES
+"defaultForegroundImage": {
+    "type": "image-input",
+    "label": "Default List Image:",
+    "group": "Visual Set Up"
+  },
+*/
+
+//Prize Wheel Settings
+let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call commands
+  soundEffectVolume = 0.5,
+  tickSoundVolume = 0.5, //tick sound volume
+  clearDoubleUpAfterSpins = false, //remove the bonus jackpot after spin
+  hideWheelAfterSpin = true, //hide the wheel when done spinning; default: true
+  doubleUpSeconds = 30 * 60, //seconds or minutes*60
+  doubleUpCommand = '!doubleup', //This command will adjust the size of all segements with the following name:
+  doubleUpTarget = 'DonateJackpot!!', //Which segments are targeted with the command
+  doubleUpSizeAdder = 0.5, //size **add on** for the !doubleup command; 1 is default size; so a segment with deaulf size: 0.5 + an adder of 0.5 will grow from 1/2 the normal size to match the other segments
+  prizeAddonCommand = '!addon', //command to add a prize to the wheel; !addon VIP ROLE
+  prizeAddonCommand2 = '!addon2', //should start the same as `prizeAddonCommand`, alternate response; same as !addon; e.g. !addon2 1000
+  prizeAddonSeconds = 60 * 60, //seconds or minutes*60
+  prizeAddonRes = '{winner} just won {prize} for a month!', //!addon VIP ROLE -> "pjonp just won VIP ROLE for a month!"
+  prizeAddonRes2 = '{winner} just won {prize} points!', //!addon2 1000 -> "pjonp just won 1000 point!"
+  prizeAddonsClearOnCommand = false,
+  addonFontSize = 15,
+  addonFontFamily = 'Verdana';
+
+/* EXAMPLE PRIZE LIST OBJECT
+  {
+     text: 'Example' //What is shown on the Wheel
+     fillStyle: 'red', //Color of the segment; if empty it is randomized
+     fontFamily: 'webdings', //Font style of this segment; if empty use the default in the settings
+     fontSize: 20, //Font size of this segment; if empty use the default in the settings
+     res: '{winner} wins the Example!', //chat response for this segment. Overrides the default respose if not a Number,
+     size: 2, //size factor compared to a default segement. DO NOT OVERRIDE ALL SIZES. 0.5 = half the size of others, 2 = double the size
+   };
+*/
+
+//THIS IS A STATIC WHEEL EXAMPLE WITH 1 PRIZE SET
+//SET TO COMMAND ONLY IN THE OPTIONS
+
+let defaultPrizeList = [{
     text: "Game Of Choice",
-  	fillStyle: 'gold',
-  	res: 'Game Of Choice'
+    fillStyle: 'gold',
+    res: 'Game Of Choice'
   },
 
-   {
-         text: "$1 Amazon Card",
+  {
+    text: "$1 Amazon Card",
     fillStyle: 'black',
     res: '$1 Amazon Card'
   },
 
- {
-          text: "VIP GOLD(FOR 2 STREAMS)",
+  {
+    text: "VIP GOLD(FOR 2 STREAMS)",
     fillStyle: 'green',
     res: 'Vip Gold'
   },
 
-           {
-          text: "FREE Gift-A-Sub",
+  {
+    text: "FREE Gift-A-Sub",
     fillStyle: 'white',
     res: 'Gift-A-Sub'
   },
 
- {
-         text: "MINI MONEY WHEEL",
+  {
+    text: "MINI MONEY WHEEL",
     fillStyle: 'blue',
     res: 'MINI MONEYWHEEL'
   },
 
-                             {
-          text: "$5 Amazon Card",
+  {
+    text: "$5 Amazon Card",
     fillStyle: 'white',
     res: '$5 Amazon Card'
   },
- {
-            text: "50,000 Points",
+  {
+    text: "50,000 Points",
     fillStyle: 'green',
     res: '50,000 Points'
   },
 
-{
-         text: "$10 PSN/XBL CODE",
+  {
+    text: "$10 PSN/XBL CODE",
     fillStyle: 'skyblue',
     res: '$10 PSN/XBL Code'
   },
-          {
-          text: "FREE Gift-A-Sub",
+  {
+    text: "FREE Gift-A-Sub",
     fillStyle: 'white',
     res: 'Gift-A-Sub'
   },
   {
-         text: "$25 AMAZON CARD",
+    text: "$25 AMAZON CARD",
     fillStyle: 'blue',
     res: '$25 AMAZON Card'
   },
-         {
-          text: "RESPIN EVERYTHING is x2",
+  {
+    text: "RESPIN EVERYTHING is x2",
     fillStyle: 'GOLD',
     res: 'X2 WHEEL'
   },
 
   {
-         text: "$5 XBL/PSN Card",
+    text: "$5 XBL/PSN Card",
     fillStyle: 'white',
     res: '$5 PSN/XBL CODE'
   },
   {
-            text: "20,000 Points",
+    text: "20,000 Points",
     fillStyle: 'green',
     res: '20,000 Points'
   },
 
   {
-       text: "FREE GIFT-A-SUB",
+    text: "FREE GIFT-A-SUB",
     fillStyle: 'white',
     res: 'Gift-A-Sub'
   },
   {
-           text: "$5 XBL/PSN CARD",
+    text: "$5 XBL/PSN CARD",
     fillStyle: 'white',
     res: '$5 PSN/XBL CODE'
   },
   {
-        text: "50% BALANCE BOOST",
+    text: "50% BALANCE BOOST",
     fillStyle: 'green',
     res: '50% Points'
   },
-              {
+  {
     text: "$5 AMAZON CARD",
     fillStyle: 'white',
     res: '$5 Amazon Card'
   },
   {
-          text: "$10 AMAZON CARD",
+    text: "$10 AMAZON CARD",
     fillStyle: 'skyblue',
     res: '$10 Amazon Card'
   },
-                 {
-          text: "$25 Twitch Giftcard",
+  {
+    text: "$25 Twitch Giftcard",
     fillStyle: 'blue',
     res: '$25 Twitch Card'
   },
-   {
-        text: "25% BOOST & 1000 CHAT",
+  {
+    text: "25% BOOST & 1000 CHAT",
     fillStyle: 'green',
     res: '25% Points'
   },
- {
-         text: "$1 Amazon Card",
+  {
+    text: "$1 Amazon Card",
     fillStyle: 'black',
     res: '$1 Amazon Card'
   },
   {
-       text: "$50 AMAZON CARD",
+    text: "$50 AMAZON CARD",
     fillStyle: 'GOLD',
     res: '$50 Amazon Card'
   },
-      {
-         text: "$1 Amazon Card",
+  {
+    text: "$1 Amazon Card",
     fillStyle: 'black',
     res: '$1 Amazon Card'
   },
-           {
-          text: "Razer Mouse",
+  {
+    text: "Razer Mouse",
     fillStyle: 'GOLD',
     res: 'Razer Mouse'
   },
-   {
-         text: "$1 Amazon Card",
+  {
+    text: "$1 Amazon Card",
     fillStyle: 'black',
     res: '$1 Amazon Card'
   },
- {
-       text: "FREE GIFT-A-SUB",
+  {
+    text: "FREE GIFT-A-SUB",
     fillStyle: 'white',
     res: 'Gift-A-Sub'
   },
-      {
-          text: "GFUEL TUB",
+  {
+    text: "GFUEL TUB",
     fillStyle: 'blue',
     res: 'Tub of GFUEL'
   },
-                 {
-          text: "DonateJackpot!!",
+  {
+    text: "DonateJackpot!!",
     fillStyle: 'green',
     res: 'DonateJackpot!'
   },
 
-                               {
-          text: "$5 Amazon Card",
+  {
+    text: "$5 Amazon Card",
     fillStyle: 'white',
     res: '$5 Amazon Card'
   },
 
-    {
-          text: "50% POINTS BALANCE BOOST",
+  {
+    text: "50% POINTS BALANCE BOOST",
     fillStyle: 'green',
     res: '50% POINTS'
   },
 
-     {
-          text: "$10 AMAZON CARD",
+  {
+    text: "$10 AMAZON CARD",
     fillStyle: 'skyblue',
     res: '$10 Amazon Card'
   },
 
-                            {
+  {
     text: "100% POINTS BALANCE BOOST",
     fillStyle: 'green',
     res: '100% Points'
   },
 
 
-                            {
-          text: "$5 Amazon Card",
+  {
+    text: "$5 Amazon Card",
     fillStyle: 'white',
     res: '$5 Amazon Card'
   },
 
-                             {
-          text: "GFUEL TUB",
+  {
+    text: "GFUEL TUB",
     fillStyle: 'blue',
     res: 'Tub of GFUEL'
   },
-                             {
-          text: "$5 PSN/XBL CARD",
+  {
+    text: "$5 PSN/XBL CARD",
     fillStyle: 'white',
     res: '$5 PSN/XBL CODE'
   },
-                 {
-          text: "DOOM IMUNITY FOREVER",
+  {
+    text: "DOOM IMUNITY FOREVER",
     fillStyle: 'green',
     res: 'Doom Immunity'
   },
 
-            {
-          text: "$15 AMAZON CARD",
+  {
+    text: "$15 AMAZON CARD",
     fillStyle: 'skyblue',
     res: '$15 Amazon Card'
   },
-         {
-          text: "MINI MONEYWHEEL",
+  {
+    text: "MINI MONEYWHEEL",
     fillStyle: 'blue',
     res: 'MINI MONEYWHEEL'
   },
 
- {
-          text: "40% POINTS BALANCE BOOSTER",
+  {
+    text: "40% POINTS BALANCE BOOSTER",
     fillStyle: 'green',
     res: '40% POINTS'
   },
 
-                             {
-          text: "$5 Amazon Card",
+  {
+    text: "$5 Amazon Card",
     fillStyle: 'white',
     res: '$5 Amazon Card'
   },
-{
-         text: "$1 Amazon Card",
+  {
+    text: "$1 Amazon Card",
     fillStyle: 'black',
     res: '$1 Amazon Card'
   },
 
   {
-       text: "MONEYWHEEL!",
+    text: "MONEYWHEEL!",
     fillStyle: 'GOLD',
     res: 'MONEYWHEEL'
   },
-{
-         text: "$1 Amazon Card",
+  {
+    text: "$1 Amazon Card",
     fillStyle: 'black',
     res: '$1 Amazon Card'
   },
 ];
 
-let prizeList1 = [{
-    text: "A",
-    fillStyle: 'green',
-    res: 'A'
-  },
-  {
-    text: "B",
-    fillStyle: 'blue',
-    res: 'B'
-  },
-  {
-    text: "C",
-    fillStyle: '',
-    res: 'C'
-  },
-  {
-    text: "D",
-    fillStyle: '',
-    res: 'D'
-  },
-  {
-    text: "E",
-    fillStyle: '',
-    res: 'E'
-  }
-];
-
-let prizeList2 = [{
-    text: "1",
-    fillStyle: '',
-    res: '1'
-  },
-  {
-    text: "2",
-    fillStyle: '',
-    res: '2'
-  },
-  {
-    text: "3",
-    fillStyle: '',
-    res: '3'
-  }
-];
-
-let prizeList3 = [{
-    text: "a",
-    fillStyle: '',
-    res: 'a'
-  },
-  {
-    text: "b",
-    fillStyle: '',
-    res: '2'
-  },
-  {
-    text: "c",
-    fillStyle: '',
-    res: 'c'
-  }
-];
-
-let prizeLists = [[...defaultPrizeList], [...defaultPrizeList], [...defaultPrizeList], [...defaultPrizeList]],
-  prizeListThresholds = [0, 5, 10, 25], //these values are added to the "Goal Amount Setting"
-  wheelGlow = ['black', 'green', 'pink', 'gold'], //inner glow of the wheel; default wheel: white
-  wheelGlowAmount = 0.75; //default wheel 0.5
-/* If "goal amount" is set to 5, then:
-defaultPrizeList = 5 + 0;
-prizeList1 = 10
-prizeList2 = 15
-prizeList3 = 30
-*/
+let prizeLists = [
+    [...defaultPrizeList]
+  ],
+  prizeListThresholds = [0], //0
+  wheelGlow = ['black'], //inner glow of the wheel; default wheel: white
+  wheelGlowAmount = 0.45, //default wheel 0.5
+  //DO NOT EDIT BELOW
+  prizeWheelSegements = [],
+  prizeAddons = [],
+  doubleUp = false,
+  doubleUpTimer,
+  randomSpins,
+  randomTime,
+  foregroundImages = [];
 
 const randomInt = (min, max) => Math.floor((Math.random() * (max - min) + min));
 let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, wheelSpinning = false,
@@ -369,11 +342,7 @@ let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, whee
   videoOffsetX, videoOffsetY, imageOffsetX, imageOffsetY,
   textFontFamily, wheelShowCommand, wheelHideCommand, wheelClearCommand,
   wheelOnScreen = false,
-  tickSound = new Audio('https://raw.githubusercontent.com/zarocknz/javascript-winwheel/master/examples/wheel_of_fortune/tick.mp3'),
-  doubleUp = false,
-  doubleUpTimer,
-  randomSpins,
-  randomTime;
+  tickSound = new Audio('https://raw.githubusercontent.com/zarocknz/javascript-winwheel/master/examples/wheel_of_fortune/tick.mp3');
 
 tickSound.volume = tickSoundVolume;
 
@@ -413,21 +382,43 @@ window.addEventListener('onEventReceived', function(obj) {
         if (doubleUp) {
           clearTimeout(doubleUpTimer);
           doubleUp = false;
-          prizeLists.forEach(i => i.shift());
+          prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? j.size -= doubleUpSizeAdder : null));
+        };
+        if (prizeAddonsClearOnCommand) {
+          prizeAddons = [];
         };
         theWheel = buildWheel();
       } else if (data.text.startsWith(doubleUpCommand)) {
         if (doubleUp) return;
         doubleUp = true;
-        prizeLists.forEach(i => {
-          i.unshift(doubleUpPrize);
-        });
+        prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? !j.size ? j.size = 1 + doubleUpSizeAdder : j.size += doubleUpSizeAdder : null));
         buildWheel();
         doubleUpTimer = setTimeout(() => {
           doubleUp = false
-          prizeLists.forEach(i => i.shift());
+          prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? j.size -= doubleUpSizeAdder : null));
           buildWheel();
         }, doubleUpSeconds * 1000);
+      } else if (data.text.startsWith(prizeAddonCommand)) {
+        let msg = data.text.replace(prizeAddonCommand, '').trim(),
+          res = prizeAddonRes.replace('{prize}', msg);
+        if (data.text.startsWith(prizeAddonCommand2)) {
+          msg = data.text.replace(prizeAddonCommand2, '').trim();
+          res = prizeAddonRes2.replace('{prize}', msg);
+        };
+        let prizeAddon = {
+          text: msg,
+          fillStyle: '',
+          res: res,
+          fontSize: addonFontSize,
+          fontFamily: addonFontFamily
+        };
+        prizeAddons.push(prizeAddon);
+        buildWheel();
+        setTimeout(() => {
+          let addonIndex = prizeAddons.findIndex(i => i.text === msg);
+          if (addonIndex !== -1) prizeAddons.splice(addonIndex, 1);
+          buildWheel();
+        }, prizeAddonSeconds * 1000);
       };
     };
     //Look for tips & cheers
@@ -436,17 +427,18 @@ window.addEventListener('onEventReceived', function(obj) {
     if (fieldData.listener === 'chatCommandOnly') {
       return;
     } else if (fieldData.listener === 'tipsAndCheers') { //Not Used
-      //        goalProgress += obj.detail.listener === 'tip-latest' ? tipAmount * tipMultipler : tipAmount;
-    } else if (obj.detail.listener === fieldData.listener) {
-        if (tipAmount < goalTrigger) return;
-        let wheelTypeIndex = prizeListThresholds.indexOf(prizeListThresholds.reduce((prev, curr) => tipAmount >= curr ? curr : prev));
-        startSpin({
-          user: obj.detail.event.name,
-          type: wheelTypeIndex,
-          amount: tipAmount
-      });
+      if (obj.detail.listener === 'cheer-latest') tipAmount *= 0.01;
+    } else if (obj.detail.listener !== fieldData.listener) {
+      return;
     };
-  };
+    if (tipAmount < goalTrigger) return;
+    let wheelTypeIndex = prizeListThresholds.indexOf(prizeListThresholds.reduce((prev, curr) => tipAmount >= curr ? curr : prev));
+    startSpin({
+      user: obj.detail.event.name,
+      type: wheelTypeIndex,
+      amount: tipAmount
+    });
+  } else return;
 });
 
 window.addEventListener('onWidgetLoad', function(obj) {
@@ -470,7 +462,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
   imageOffsetX = fieldData.imageOffsetXFD || 0;
   imageOffsetY = fieldData.imageOffsetYFD || 0;
 
-  pointerAngle = fieldData.pointerAngleFD || 270;
+  pointerAngle = fieldData.pointerAngleFD || 0;
   //  tipMultipler = fieldData.tipMultiplerFD || 100; //not used
   playSound = fieldData.playSoundFD === 'yes';
   soundEffect = new Audio(fieldData.soundEffectFD || '');
@@ -494,6 +486,9 @@ window.addEventListener('onWidgetLoad', function(obj) {
     $("#container").css('opacity', '1').addClass("show");
     wheelOnScreen = true;
   };
+  if (!fieldData.defaultForegroundImage) fieldData.defaultForegroundImage = fieldData.foregroundImage
+  foregroundImages = [fieldData.defaultForegroundImage, fieldData.prizeList1ForegroundImage, fieldData.prizeList2ForegroundImage, fieldData.prizeList3ForegroundImage];
+  $("#image-center-piece img").attr('src', foregroundImages[0]);
 
   let updateCanvas = () => { //Set video/image position
     let canvas = $("#canvas");
@@ -503,7 +498,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
       $("#video-center-piece video").css('left', `${(canvas.width() - $("#video-center-piece video").width())/2 + videoOffsetX}px`);
       $("#video-center-piece video").css('top', `${(canvas.height() - $("#video-center-piece video").height())/2 + videoOffsetY}px`);
     };
-    if (!fieldData.foregroundImage || fieldData.foregroundImage === 'none') {
+    if (!fieldData.defaultForegroundImage || fieldData.defaultForegroundImage === 'none') {
       $("#image-center-piece").html('');
     } else {
       $("#image-center-piece img").css('left', `${(canvas.width() - $("#image-center-piece img").width())/2 + imageOffsetX}px`);
@@ -524,25 +519,39 @@ window.addEventListener('onWidgetLoad', function(obj) {
 
 const buildWheel = (prizeListNumber) => {
   prizeListNumber = typeof prizeListNumber === 'number' ? prizeListNumber : 0;
-  let wheelPrizes = prizeLists[prizeListNumber]
-  if (wheelPrizes.length < 0) return;
+  prizeWheelSegements = [...prizeLists[prizeListNumber]],
+    addonIndexMultiple = Math.floor((prizeWheelSegements.length + prizeAddons.length) / prizeAddons.length),
+    addonIndexCounter = 1;
+  if (prizeAddons.length > 0) {
+    for (let i = 0; i < prizeAddons.length; i++) {
+      prizeWheelSegements.splice(addonIndexMultiple * addonIndexCounter, 0, prizeAddons[i])
+      addonIndexCounter++
+    };
+  };
+
+  if (prizeWheelSegements.length < 0) return;
   let canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d'),
     canvasCenter = canvas.height / 2,
-    prizeSegments = wheelPrizes.map(i => {
-      let radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize),
-        hexColor = i.fillStyle ? i.fillStyle : i.fillStyle = tinycolor.random().toHexString();
-      radGradient.addColorStop(0, wheelGlow[prizeListNumber]);
-      radGradient.addColorStop(wheelGlowAmount, i.fillStyle);
-      return {
-        text: i.text, //.slice(0,18), //can't shorten names if removing winners
-        fillStyle: radGradient,
-        textFontFamily: textFontFamily,
-        textFillStyle: tinycolor.mostReadable(i.fillStyle, [i.fillStyle], {
-          includeFallbackColors: true
-        }).toHexString() // white or black
-      };
-    })
+    defaultSegSize = prizeWheelSegements.reduce((total, num) => total + (!num.size ? 1 : num.size), 0);
+
+  prizeSegments = prizeWheelSegements.map(i => {
+    let radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize),
+      hexColor = i.fillStyle ? i.fillStyle : i.fillStyle = tinycolor.random().toHexString();
+    radGradient.addColorStop(0, wheelGlow[prizeListNumber]);
+    radGradient.addColorStop(wheelGlowAmount, i.fillStyle);
+    let segementOBJ = {
+      text: i.text, //.slice(0,18), //can't shorten names if removing winners
+      fillStyle: radGradient,
+      textFontFamily: i.fontFamily || textFontFamily,
+      textFontSize: i.fontSize || textSize,
+      textFillStyle: tinycolor.mostReadable(i.fillStyle, [i.fillStyle], {
+        includeFallbackColors: true
+      }).toHexString() // white or black
+    };
+    if (i.size > 0) segementOBJ.size = 360 / defaultSegSize * i.size;
+    return segementOBJ;
+  })
   //STATIC WHEEL ADDITION
   randomSpins = randomInt((spins - 3), (spins + 4)),
     randomTime = randomInt((cooldown - 3), (cooldown + 4));
@@ -573,7 +582,10 @@ const startSpin = async (spinObj) => {
     return;
   } else {
     wheelSpinning = true;
-    theWheel = buildWheel(spinObj.type || 0);
+    let wheelType = spinObj.type || 0;
+    $('#center-text').html(spinObj.user);
+    $("#image-center-piece img").attr('src', foregroundImages[wheelType]);
+    theWheel = buildWheel(wheelType);
     $("#container").removeClass("hide").addClass("show");
     theWheel.rotationAngle = wheelAngle;
     theWheel.stopAnimation(false);
@@ -611,23 +623,29 @@ const endSpin = (spinObj) => {
     wheelPrize = 'Nothing'
   };
 
-  let wheelPrizeArray = typeof spinObj.type === 'number' ? prizeLists[spinObj.type] : prizeLists[0];
-  let segmentIndex = wheelPrizeArray.findIndex(i => i.text === wheelPrize),
-    prizeRes = wheelPrizeArray[segmentIndex].res || wheelPrize;
+  let segmentIndex = prizeWheelSegements.findIndex(i => i.text === wheelPrize),
+    prizeRes = prizeWheelSegements[segmentIndex].res || wheelPrize,
+    amountpoints = spinObj.amount * prizeRes,
+    chatMessage = isNaN(amountpoints) ? prizeRes.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount) : chatResponse.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount).replace('{amountpoints}', amountpoints);
   //delay chat response
   setTimeout(() => {
-    sayMessage(`${chatResponse.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount)}`)
+    sayMessage(chatMessage);
   }, chatResponseDelay * 1000);
   //check if done
   setTimeout(() => {
     soundEffect.pause();
     soundEffect.currentTime = 0;
     wheelSpinning = false;
+    $('#center-text').html('');
+    $("#image-center-piece img").attr('src', foregroundImages[0]);
     if (doubleUp && clearDoubleUpAfterSpins) {
       clearTimeout(doubleUpTimer);
       doubleUp = false;
-      prizeLists.forEach(i => i.shift());
+      prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? j.size -= doubleUpSizeAdder : null));
     };
+    //check if an addon
+    let addonIndex = prizeAddons.findIndex(i => i.text === wheelPrize);
+    if (addonIndex !== -1) prizeAddons.splice(addonIndex, 1);
 
     if (gameQueue.length === 0) {
       console.log('Games Over');

@@ -36,201 +36,233 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
+
+/* ADD THIS OBJECT INTO THE FIELD DATA!
+"defaultForegroundImage": {
+    "type": "image-input",
+    "label": "Default List Image:",
+    "group": "Visual Set Up"
+  },
+"prizeList1ForegroundImage": {
+    "type": "image-input",
+    "label": "Prize List 1 Image:",
+    "group": "Visual Set Up"
+  },
+"prizeList2ForegroundImage": {
+    "type": "image-input",
+    "label": "Prize List 2 Image:",
+    "group": "Visual Set Up"
+  },
+ "prizeList3ForegroundImage": {
+    "type": "image-input",
+    "label": "Prize List 3 Image:",
+    "group": "Visual Set Up"
+  },
+*/
+
 //subWheel Settings
 let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call commands
   soundEffectVolume = 0.75, //background sound level 0 mute, 1 max
   tickSoundVolume = 0.25 //tick sound volume
-  clearDoubleUpAfterSpins = false, //remove the bonus jackpot after spin
+clearDoubleUpAfterSpins = false, //remove the bonus jackpot after spin
   hideWheelAfterSpin = true, //hide the wheel when done spinning; default: true
   doubleUpSeconds = 30 * 60, //seconds or minutes*60
   doubleUpCommand = '!doubleup',
-  doubleUpPrize = {
-    text: "GIVEAWAY",
-    fillStyle: 'GOLD',
-    res: 'GIVEAWAY'
-  },
-  switchToSender = 5, //amount of sub bomb until wheel switchs to sender
+  doubleUpTarget = 'GIVEAWAY', //Which segments are targeted with the command
+  doubleUpSizeAdder = 0.5, //double the size of the Target segements
   prizeAddonCommand = '!addon',
+  prizeAddonCommand2 = '!addon2', //should start the same as `prizeAddonCommand`
   prizeAddonSeconds = 60 * 60, //seconds or minutes*60
   prizeAddonRes = '!s {winner} SubWheel just hit {prize} !',
+  prizeAddonRes2 = '!s {winner} just hit {prize} 2!',
   prizeAddonsClearOnCommand = false,
   addonFontSize = 15,
-  addonFontFamily = 'Verdana';
+  addonFontFamily = 'Verdana',
 
-let defaultPrizeList = [  {
-    text: "5X",
-    fillStyle: '',
-    res: '5'
-  },
-  {
-    text: "50x",
-    fillStyle: '',
-    res: '50'
-  },
-  {
-    text: "10x",
-    fillStyle: '',
-    res: '10'
-  },
-  {
-    text: "25x",
-    fillStyle: '',
-    res: '25'
-  },
-  {
-    text: "60X",
-    fillStyle: '',
-    res: '60'
-  },
-  {
-    text: "5X",
-    fillStyle: '',
-    res: '5'
-  },
-  {
-    text: "20X",
-    fillStyle: '',
-    res: '20'
-  },
-  {
-    text: "10X",
-    fillStyle: '',
-    res: '10'
-  },
-  {
-    text: "50X",
-    fillStyle: '',
-    res: '50'
-  },
-  {
-    text: "BOSSJACKPOT",
-    fillStyle: 'GOLD',
-    res: '!Pogg {winner} hit the BossJackpot PogChamp'
-  },
-  {
-    text: "25X",
-    fillStyle: '',
-    res: '25'
-  },
-  {
-    text: "50X",
-    fillStyle: '',
-    res: '50'
-  },
-  {
-    text: "200X",
-    fillStyle: '',
-    res: '200'
-  },
-  {
-    text: "YAGAAA",
-    fillStyle: 'BLACK',
-    res: '!Pogg {winner} hit the YAGA PogChamp'
-  },
-  {
-    text: "15X",
-    fillStyle: '',
-    res: '15'
-  },
-  {
-    text: "GIVEAWAY",
-    fillStyle: 'GOLD',
-    res: '!Pogg {winner} hit the GIVEAWAY spot PogChamp'
-  },
-  {
-    text: "75X",
-    fillStyle: '',
-    res: '75'
-  },
-  {
-    text: "25X",
-    fillStyle: '',
-    res: '25'
-  },
-  {
-    text: "20X",
-    fillStyle: '',
-    res: '20'
-  },
-  {
-    text: "30X",
-    fillStyle: '',
-    res: '30'
-  },
-  {
-    text: "15X",
-    fillStyle: '',
-    res: '15'
-  },
-  {
-    text: "35X",
-    fillStyle: '',
-    res: '35'
-  },
-  {
-    text: "20X",
-    fillStyle: '',
-    res: '20'
-  },
-  {
-    text: "YAGAAA",
-    fillStyle: 'BLACK',
-    res: '!Pogg {winner} hit the YAGA spot PogChamp'
-  },
+  switchToSender = 5; //amount of gift subs until wheel switchs to sender
+  //A gift sub of 4 or less will spin the wheel 4 times; once for each new sub
+  //at 5+ gift subs the wheel will spin 1 time for the sub sender
 
+/* EXAMPLE PRIZE LIST OBJECT
   {
-    text: "5X",
+     text: 'Example' //What is shown on the Wheel
+     fillStyle: 'red', //Color of the segment; if empty it is randomized
+     fontFamily: 'webdings', //Font style of this segment; if empty use the default in the settings
+     fontSize: 20, //Font size of this segment; if empty use the default in the settings
+     res: '{winner} wins the Example!', //chat response for this segment. Overrides the default respose if not a Number,
+     size: 2, //size factor compared to a default segement. DO NOT OVERRIDE ALL SIZES. 0.5 = half the size of others, 2 = double the size
+   };
+*/
+
+/* THIS CODE HAS 3 EXAMPLE PRIZE LISTS:
+Default: for a sub or sub gift
+Prize List 1: for a sub gift of 5 or more
+Prize List 2: for a sub gift of 10 or more
+*/
+
+let defaultPrizeList = [{
+    text: "50 POINTS",
     fillStyle: '',
-    res: '5'
+    res: '50',
+    size: 3
   },
   {
-    text: "DonateJackpot",
-    fillStyle: 'gold',
-    res: '!Pogg {winner} hit the DonateJackpot PogChamp'
-  },
-  {
-    text: "45X",
+    text: "25 POINTS",
     fillStyle: '',
-    res: '45'
+    res: '25'
   },
   {
-    text: "5X",
+    text: "1000 POINTS",
     fillStyle: '',
-    res: '5'
+    res: '1000'
   },
   {
-    text: "40X",
+    text: "250 POINTS",
     fillStyle: '',
-    res: '40'
+    res: '250'
   },
   {
-    text: "100X",
+    text: "100 POINTS",
     fillStyle: '',
     res: '100'
   },
   {
-    text: "20X",
+    text: "125 POINTS",
     fillStyle: '',
-    res: '20'
+    res: '125'
   },
   {
-    text: "10X",
+    text: "35 POINTS",
     fillStyle: '',
-    res: '10'
+    res: '35'
   },
   {
-    text: "500X",
+    text: "300 POINTS",
+    fillStyle: '',
+    res: '300'
+  },
+  {
+    text: "BOSSJACKPOT",
     fillStyle: 'GOLD',
-    res: '500'
-  }, {
-    text: "30X",
-    fillStyle: '',
-    res: '30'
+    res: '!result BOSSJACKPOT - {winner}'
   },
   {
-    text: "10X",
+    text: "10 POINTS",
     fillStyle: '',
     res: '10'
+  },
+
+  {
+    text: "250 POINTS",
+    fillStyle: '',
+    res: '200'
+  },
+  {
+    text: "45 POINTS",
+    fillStyle: '',
+    res: '45'
+  },
+  {
+    text: "800 POINTS",
+    fillStyle: '',
+    res: '800'
+  },
+  {
+    text: "110 POINTS",
+    fillStyle: '',
+    res: '110'
+  },
+  {
+    text: "500 POINTS",
+    fillStyle: '',
+    res: '500'
+  },
+  {
+    text: "750 POINTS",
+    fillStyle: '',
+    res: '750'
+  },
+  {
+    text: "250 POINTS",
+    fillStyle: '',
+    res: '250'
+  },
+  {
+    text: "1200 POINTS",
+    fillStyle: '',
+    res: '1200'
+  },
+  {
+    text: "675 POINTS",
+    fillStyle: '',
+    res: '675'
+  },
+  {
+    text: "85 POINTS",
+    fillStyle: '',
+    res: '85'
+  },
+  {
+    text: "3% BALANCE BOOST",
+    fillStyle: '',
+    res: '!result 3% - {winner}'
+  },
+  {
+    text: "YAGAAA",
+    fillStyle: 'BLACK',
+    res: '!result YAGA - {winner}'
+  },
+
+  {
+    text: "5% BALANCE BOOST",
+    fillStyle: '',
+    res: '!result 5% - {winner}'
+  },
+  {
+    text: "GIVEAWAY",
+    fillStyle: 'GOLD',
+    res: '!result GIVEAWAY - {winner}',
+    size: 0.5
+  },
+  {
+    text: "385 POINTS",
+    fillStyle: '',
+    res: '385'
+  },
+  {
+    text: "795 POINTS",
+    fillStyle: '',
+    res: '795'
+  },
+  {
+    text: "1500 POINTS",
+    fillStyle: '',
+    res: '1500'
+  },
+  {
+    text: "90 POINTS",
+    fillStyle: '',
+    res: '90'
+  },
+  {
+    text: "2% BALANCE BOOST",
+    fillStyle: '',
+    res: '!result 2% - {winner}'
+  },
+  {
+    text: "225 POINTS",
+    fillStyle: '',
+    res: '225'
+  },
+  {
+    text: "15 POINTS",
+    fillStyle: '',
+    res: '15'
+  },
+  {
+    text: "3% BALANCE BOOST",
+    fillStyle: 'GOLD',
+    res: '!result 3% - {winner}'
   },
 ];
 
@@ -296,24 +328,29 @@ let prizeList3 = [{
   }
 ];
 
-let prizeLists = [[...defaultPrizeList], [...prizeList1], [...prizeList2], [...prizeList3]],
+let prizeLists = [
+    [...defaultPrizeList],
+    [...defaultPrizeList], //note only default list is used
+    [...defaultPrizeList], //note only default list is used
+    [...defaultPrizeList] //note only default list is used
+  ],
   prizeListThresholds = [0, 5, 10, 25], //these values are added to the "Goal Amount Setting"
   wheelGlow = ['black', 'green', 'pink', 'gold'], //inner glow of the wheel; default wheel: white
-  wheelGlowAmount = 0.75, //default wheel 0.5
-  /* If "goal amount" is set to 5, then:
-  defaultPrizeList = 5 + 0;
-  prizeList1 = 10
-  prizeList2 = 15
-  prizeList3 = 30
+  wheelGlowAmount = 0.45, //default wheel 0.5
+  /* If "goal amount" is set to 0, then:
+  defaultPrizeList = 0 + 0 = 0; any single or gift sub uses default list
+  prizeList1 = 0 + 10 = 5; 5+ gift subs switches to list 1 //NOT USED
+  prizeList2 = 0 + 10 = 10; 10+ gift subs switches to list 2 //NOT USED
+  prizeList3 = 0 + 25 = 25; 25+ gift subs switches to list 3 //NOT USED
   */
   //DO NOT EDIT BELOW
   prizeWheelSegements = [],
   prizeAddons = [],
   doubleUp = false,
   doubleUpTimer,
-  prizeAddonTimer,
   randomSpins,
-  randomTime;
+  randomTime,
+  foregroundImages = [];
 
 const randomInt = (min, max) => Math.floor((Math.random() * (max - min) + min));
 let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, wheelSpinning = false,
@@ -327,17 +364,7 @@ let theWheel, channelName, fieldData, cooldown, spins, wheelSize, textSize, whee
   tickSound = new Audio('https://raw.githubusercontent.com/zarocknz/javascript-winwheel/master/examples/wheel_of_fortune/tick.mp3'),
   giftSubCount = 0;
 
-  tickSound.volume = tickSoundVolume;
-
-
-
-
-
-
-
-
-
-
+tickSound.volume = tickSoundVolume;
 
 window.addEventListener('onEventReceived', function(obj) {
   //Test Button
@@ -375,38 +402,41 @@ window.addEventListener('onEventReceived', function(obj) {
         if (doubleUp) {
           clearTimeout(doubleUpTimer);
           doubleUp = false;
-          prizeLists.forEach(i => i.shift());
+          prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? j.size -= doubleUpSizeAdder : null));
         };
-        if(prizeAddonsClearOnCommand){
-          clearTimeout(prizeAddonTimer);
+        if (prizeAddonsClearOnCommand) {
           prizeAddons = [];
         };
         theWheel = buildWheel();
       } else if (data.text.startsWith(doubleUpCommand)) {
         if (doubleUp) return;
         doubleUp = true;
-        prizeLists.forEach(i => {
-          i.unshift(doubleUpPrize);
-        });
+        prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? !j.size ? j.size = 1 + doubleUpSizeAdder : j.size += doubleUpSizeAdder : null));
         buildWheel();
         doubleUpTimer = setTimeout(() => {
           doubleUp = false
-          prizeLists.forEach(i => i.shift());
+          prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? j.size -= doubleUpSizeAdder : null));
           buildWheel();
         }, doubleUpSeconds * 1000);
       } else if (data.text.startsWith(prizeAddonCommand)) {
-          let msg = data.text.replace(prizeAddonCommand,'').trim(),
-            prizeAddon = {
-              text: msg,
-              fillStyle: '',
-              res: prizeAddonRes.replace('{prize}',msg),
-              fontSize: addonFontSize,
-              fontFamily: addonFontFamily
-            };
-            prizeAddons.push(prizeAddon);
+        let msg = data.text.replace(prizeAddonCommand, '').trim(),
+          res = prizeAddonRes.replace('{prize}', msg);
+        if (data.text.startsWith(prizeAddonCommand2)) {
+          msg = data.text.replace(prizeAddonCommand2, '').trim();
+          res = prizeAddonRes2.replace('{prize}', msg);
+        };
+        let prizeAddon = {
+          text: msg,
+          fillStyle: '',
+          res: res,
+          fontSize: addonFontSize,
+          fontFamily: addonFontFamily
+        };
+        prizeAddons.push(prizeAddon);
         buildWheel();
-        prizeAddonTimer = setTimeout(() => {
-          prizeAddons.shift();
+        setTimeout(() => {
+          let addonIndex = prizeAddons.findIndex(i => i.text === msg);
+          if (addonIndex !== -1) prizeAddons.splice(addonIndex, 1);
           buildWheel();
         }, prizeAddonSeconds * 1000);
       };
@@ -520,6 +550,9 @@ window.addEventListener('onWidgetLoad', function(obj) {
     wheelOnScreen = true;
   };
 
+  foregroundImages = [fieldData.defaultForegroundImage, fieldData.prizeList1ForegroundImage, fieldData.prizeList2ForegroundImage, fieldData.prizeList3ForegroundImage];
+  $("#image-center-piece img").attr('src', foregroundImages[0]);
+
   let updateCanvas = () => { //Set video/image position
     let canvas = $("#canvas");
     if (!fieldData.foregroundVideo || fieldData.foregroundVideo === 'none') {
@@ -528,7 +561,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
       $("#video-center-piece video").css('left', `${(canvas.width() - $("#video-center-piece video").width())/2 + videoOffsetX}px`);
       $("#video-center-piece video").css('top', `${(canvas.height() - $("#video-center-piece video").height())/2 + videoOffsetY}px`);
     };
-    if (!fieldData.foregroundImage || fieldData.foregroundImage === 'none') {
+    if (!fieldData.defaultForegroundImage || fieldData.defaultForegroundImage === 'none') {
       $("#image-center-piece").html('');
     } else {
       $("#image-center-piece img").css('left', `${(canvas.width() - $("#image-center-piece img").width())/2 + imageOffsetX}px`);
@@ -550,34 +583,38 @@ window.addEventListener('onWidgetLoad', function(obj) {
 const buildWheel = (prizeListNumber) => {
   prizeListNumber = typeof prizeListNumber === 'number' ? prizeListNumber : 0;
   prizeWheelSegements = [...prizeLists[prizeListNumber]],
-      addonIndexMultiple = Math.floor( (prizeWheelSegements.length + prizeAddons.length)/prizeAddons.length),
-      addonIndexCounter = 1;
-  if(prizeAddons.length > 0) {
-  for(let i = 0; i < prizeAddons.length; i++) {
-    prizeWheelSegements.splice(addonIndexMultiple*addonIndexCounter,0,prizeAddons[i])
-    addonIndexCounter++
-  };
+    addonIndexMultiple = Math.floor((prizeWheelSegements.length + prizeAddons.length) / prizeAddons.length),
+    addonIndexCounter = 1;
+  if (prizeAddons.length > 0) {
+    for (let i = 0; i < prizeAddons.length; i++) {
+      prizeWheelSegements.splice(addonIndexMultiple * addonIndexCounter, 0, prizeAddons[i])
+      addonIndexCounter++
+    };
   };
 
   if (prizeWheelSegements.length < 0) return;
   let canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d'),
     canvasCenter = canvas.height / 2,
-    prizeSegments = prizeWheelSegements.map(i => {
-      let radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize),
-        hexColor = i.fillStyle ? i.fillStyle : i.fillStyle = tinycolor.random().toHexString();
-      radGradient.addColorStop(0, wheelGlow[prizeListNumber]);
-      radGradient.addColorStop(wheelGlowAmount, i.fillStyle);
-      return {
-        text: i.text, //.slice(0,18), //can't shorten names if removing winners
-        fillStyle: radGradient,
-        textFontFamily: i.fontFamily || textFontFamily,
-        textFontSize : i.fontSize || textSize,
-        textFillStyle: tinycolor.mostReadable(i.fillStyle, [i.fillStyle], {
-          includeFallbackColors: true
-        }).toHexString() // white or black
-      };
-    })
+    defaultSegSize = prizeWheelSegements.reduce((total, num) => total + (!num.size ? 1 : num.size), 0);
+
+  prizeSegments = prizeWheelSegements.map(i => {
+    let radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize),
+      hexColor = i.fillStyle ? i.fillStyle : i.fillStyle = tinycolor.random().toHexString();
+    radGradient.addColorStop(0, wheelGlow[prizeListNumber]);
+    radGradient.addColorStop(wheelGlowAmount, i.fillStyle);
+    let segementOBJ = {
+      text: i.text, //.slice(0,18), //can't shorten names if removing winners
+      fillStyle: radGradient,
+      textFontFamily: i.fontFamily || textFontFamily,
+      textFontSize: i.fontSize || textSize,
+      textFillStyle: tinycolor.mostReadable(i.fillStyle, [i.fillStyle], {
+        includeFallbackColors: true
+      }).toHexString() // white or black
+    };
+    if (i.size > 0) segementOBJ.size = 360 / defaultSegSize * i.size;
+    return segementOBJ;
+  })
   //STATIC WHEEL ADDITION
   randomSpins = randomInt((spins - 3), (spins + 4)),
     randomTime = randomInt((cooldown - 3), (cooldown + 4));
@@ -610,7 +647,7 @@ const startSpin = async (spinObj) => {
     wheelSpinning = true;
     let wheelType = spinObj.type || 0;
     $('#center-text').html(spinObj.user);
-    //set WHEEL IMAGE HERE
+    $("#image-center-piece img").attr('src', foregroundImages[wheelType]);
     theWheel = buildWheel(wheelType);
     $("#container").removeClass("hide").addClass("show");
     theWheel.rotationAngle = wheelAngle;
@@ -652,7 +689,7 @@ const endSpin = (spinObj) => {
   let segmentIndex = prizeWheelSegements.findIndex(i => i.text === wheelPrize),
     prizeRes = prizeWheelSegements[segmentIndex].res || wheelPrize,
     amountpoints = prizeRes, // * spinObj.amount,
-    chatMessage = isNaN(amountpoints) ?  prizeRes.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount) : chatResponse.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount).replace('{amountpoints}', amountpoints);
+    chatMessage = isNaN(amountpoints) ? prizeRes.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount) : chatResponse.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount).replace('{amountpoints}', amountpoints);
   //delay chat response
   setTimeout(() => {
     sayMessage(chatMessage);
@@ -663,15 +700,15 @@ const endSpin = (spinObj) => {
     soundEffect.currentTime = 0;
     wheelSpinning = false;
     $('#center-text').html('');
-    //REMOVE WHEEL IMAGE HERE
+    $("#image-center-piece img").attr('src', foregroundImages[0]);
     if (doubleUp && clearDoubleUpAfterSpins) {
       clearTimeout(doubleUpTimer);
       doubleUp = false;
-      prizeLists.forEach(i => i.shift());
+      prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? j.size -= doubleUpSizeAdder : null));
     };
     //check if an addon
     let addonIndex = prizeAddons.findIndex(i => i.text === wheelPrize);
-    if(addonIndex !== -1) prizeAddons.splice(addonIndex,1);
+    if (addonIndex !== -1) prizeAddons.splice(addonIndex, 1);
 
     if (gameQueue.length === 0) {
       console.log('Games Over');
