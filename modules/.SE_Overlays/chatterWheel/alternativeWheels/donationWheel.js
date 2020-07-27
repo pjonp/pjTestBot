@@ -39,8 +39,8 @@ SOFTWARE.
 
 //subWheel Settings
 let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call commands
-  soundEffectVolume = 0.25,
-  tickSoundVolume = 0.75, //tick sound volume
+  soundEffectVolume = 0.5,
+  tickSoundVolume = 0.5, //tick sound volume
   clearDoubleUpAfterSpins = false, //remove the bonus jackpot after spin
   hideWheelAfterSpin = true, //hide the wheel when done spinning; default: true
   doubleUpSeconds = 30 * 60, //seconds or minutes*60
@@ -52,8 +52,10 @@ let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call c
   },
   prizeAddonCommand = '!addon',
   prizeAddonSeconds = 60 * 60, //seconds or minutes*60
-  prizeAddonRes = '{winner} just won the custom prize: {prize}!',
-  prizeAddonsClearOnCommand = false;
+  prizeAddonRes = '!s {winner} SubWheel just hit {prize} !',
+  prizeAddonsClearOnCommand = false,
+  addonFontSize = 15,
+  addonFontFamily = 'Verdana';
 
 let defaultPrizeList = [{
     text: "5X",
@@ -103,7 +105,7 @@ let defaultPrizeList = [{
   {
     text: "BOSSJACKPOT",
     fillStyle: 'GOLD',
-    res: 'BossJackpot'
+    res: '!Pogg {winner} hit the BossJackpot PogChamp'
   },
   {
     text: "25X",
@@ -123,7 +125,7 @@ let defaultPrizeList = [{
   {
     text: "YAGAAA",
     fillStyle: 'BLACK',
-    res: 'YAGA'
+    res: '!Pogg {winner} hit the YAGA PogChamp'
   },
   {
     text: "15X",
@@ -133,7 +135,7 @@ let defaultPrizeList = [{
   {
     text: "GIVEAWAY",
     fillStyle: 'GOLD',
-    res: '{winner} you just unlocked a GIVEAWAY for the stream. LETS GO.'
+    res: '!Pogg {winner} hit the GIVEAWAY spot PogChamp'
   },
   {
     text: "75X",
@@ -173,7 +175,7 @@ let defaultPrizeList = [{
   {
     text: "YAGAAA",
     fillStyle: 'BLACK',
-    res: 'YAGA'
+    res: '!Pogg {winner} hit the YAGA spot PogChamp'
   },
 
   {
@@ -184,7 +186,7 @@ let defaultPrizeList = [{
   {
     text: "DonateJackpot",
     fillStyle: 'gold',
-    res: 'DonateJackpot'
+    res: '!Pogg {winner} hit the DonateJackpot PogChamp'
   },
   {
     text: "45X",
@@ -220,8 +222,7 @@ let defaultPrizeList = [{
     text: "500X",
     fillStyle: 'GOLD',
     res: '500'
-  },
-  {
+  }, {
     text: "30X",
     fillStyle: '',
     res: '30'
@@ -297,8 +298,8 @@ let prizeList3 = [{
 
 let prizeLists = [[...defaultPrizeList], [...defaultPrizeList], [...defaultPrizeList], [...defaultPrizeList]],
   prizeListThresholds = [0, 5, 10, 25], //these values are added to the "Goal Amount Setting"
-  wheelGlow = ['black', 'green', 'pink', 'gold'], //inner glow of the wheel; default wheel: white
-  wheelGlowAmount = 0.75, //default wheel 0.5
+  wheelGlow = ['black', 'black', 'black', 'gold'], //inner glow of the wheel; default wheel: white
+  wheelGlowAmount = 0.45, //default wheel 0.5
   /* If "goal amount" is set to 5, then:
   defaultPrizeList = 5 + 0;
   prizeList1 = 10
@@ -388,7 +389,9 @@ window.addEventListener('onEventReceived', function(obj) {
             prizeAddon = {
               text: msg,
               fillStyle: '',
-              res: prizeAddonRes.replace('{prize}',msg)
+              res: prizeAddonRes.replace('{prize}',msg),
+              fontSize: addonFontSize,
+              fontFamily: addonFontFamily
             };
             prizeAddons.push(prizeAddon);
         buildWheel();
@@ -404,7 +407,14 @@ window.addEventListener('onEventReceived', function(obj) {
     if (fieldData.listener === 'chatCommandOnly') {
       return;
     } else if (fieldData.listener === 'tipsAndCheers') { //Not Used
-      //        goalProgress += obj.detail.listener === 'tip-latest' ? tipAmount * tipMultipler : tipAmount;
+      if(obj.detail.listener === 'cheer-latest') tipAmount *= 0.01;
+      if (tipAmount < goalTrigger) return;
+      let wheelTypeIndex = prizeListThresholds.indexOf(prizeListThresholds.reduce((prev, curr) => tipAmount >= curr ? curr : prev));
+      startSpin({
+        user: obj.detail.event.name,
+        type: wheelTypeIndex,
+        amount: tipAmount
+    });
     } else if (obj.detail.listener === fieldData.listener) {
         if (tipAmount < goalTrigger) return;
         let wheelTypeIndex = prizeListThresholds.indexOf(prizeListThresholds.reduce((prev, curr) => tipAmount >= curr ? curr : prev));
@@ -416,6 +426,13 @@ window.addEventListener('onEventReceived', function(obj) {
     };
   };
 });
+
+
+
+
+
+
+
 
 
 
@@ -554,7 +571,8 @@ const buildWheel = (prizeListNumber) => {
       return {
         text: i.text, //.slice(0,18), //can't shorten names if removing winners
         fillStyle: radGradient,
-        textFontFamily: textFontFamily,
+        textFontFamily: i.fontFamily || textFontFamily,
+        textFontSize : i.fontSize || textSize,
         textFillStyle: tinycolor.mostReadable(i.fillStyle, [i.fillStyle], {
           includeFallbackColors: true
         }).toHexString() // white or black
@@ -590,8 +608,10 @@ const startSpin = async (spinObj) => {
     return;
   } else {
     wheelSpinning = true;
+    let wheelType = spinObj.type || 0;
     $('#center-text').html(spinObj.user);
-    theWheel = buildWheel(spinObj.type || 0);
+    //set WHEEL IMAGE HERE
+    theWheel = buildWheel(wheelType);
     $("#container").removeClass("hide").addClass("show");
     theWheel.rotationAngle = wheelAngle;
     theWheel.stopAnimation(false);
@@ -643,11 +663,15 @@ const endSpin = (spinObj) => {
     soundEffect.currentTime = 0;
     wheelSpinning = false;
     $('#center-text').html('');
+    //REMOVE WHEEL IMAGE HERE
     if (doubleUp && clearDoubleUpAfterSpins) {
       clearTimeout(doubleUpTimer);
       doubleUp = false;
       prizeLists.forEach(i => i.shift());
     };
+    //check if an addon
+    let addonIndex = prizeAddons.findIndex(i => i.text === wheelPrize);
+    if(addonIndex !== -1) prizeAddons.splice(addonIndex,1);
 
     if (gameQueue.length === 0) {
       console.log('Games Over');
