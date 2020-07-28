@@ -62,7 +62,7 @@ SOFTWARE.
 
 //Donation Wheel Settings
 let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call commands
-  soundEffectVolume = 0.5,
+  soundEffectVolume = 0.5, //background sound level 0 mute, 1 max
   tickSoundVolume = 0.5, //tick sound volume
   clearDoubleUpAfterSpins = false, //remove the bonus jackpot after spin
   hideWheelAfterSpin = true, //hide the wheel when done spinning; default: true
@@ -73,8 +73,8 @@ let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call c
   prizeAddonCommand = '!addon', //command to add a prize to the wheel; !addon VIP ROLE
   prizeAddonCommand2 = '!addon2', //should start the same as `prizeAddonCommand`, alternate response; same as !addon; e.g. !addon2 1000
   prizeAddonSeconds = 60 * 60, //seconds or minutes*60
-  prizeAddonRes = '{winner} just won {prize} for a month!', //!addon VIP ROLE -> "pjonp just won VIP ROLE for a month!"
-  prizeAddonRes2 = '{winner} just won {prize} points!', //!addon2 1000 -> "pjonp just won 1000 point!"
+  prizeAddonRes = '!s {winner} SubWheel just hit {prize} !', //!addon chat response
+  prizeAddonRes2 = '!s2 {winner} SubWheel just hit {prize} !', //!addon2 chat response
   prizeAddonsClearOnCommand = false,
   addonFontSize = 15,
   addonFontFamily = 'Verdana';
@@ -673,11 +673,10 @@ let prizeList2 = [{
 let prizeLists = [
     [...defaultPrizeList],
     [...prizeList1],
-    [...prizeList2],
     [...prizeList2]
   ],
-  prizeListThresholds = [0, 10, 25, 25], //these values are added to the "Goal Amount Setting"
-  wheelGlow = ['black', 'black', 'black', 'gold'], //inner glow of the wheel; default wheel: white
+  prizeListThresholds = [0, 10, 25], //these values are added to the "Goal Amount Setting"
+  wheelGlow = ['black', 'black', 'black'], //inner glow of the wheel; default wheel: white
   wheelGlowAmount = 0.45, //default wheel 0.5
   /* If "goal amount" is set to 5, then:
   defaultPrizeList = 5 + 0 = 5; donations over $5 use the default list
@@ -734,13 +733,14 @@ window.addEventListener('onEventReceived', function(obj) {
           amount: amount
         });
       } else if (data.text === wheelShowCommand) {
-        theWheel = buildWheel();
         $("#container").removeClass("hide").addClass("show");
         wheelOnScreen = true;
+        buildWheel();
       } else if (data.text === wheelHideCommand) {
         $("#container").removeClass("show").addClass("hide");
         wheelOnScreen = false;
       } else if (data.text === wheelClearCommand) {
+        if (wheelSpinning) return;
         if (doubleUp) {
           clearTimeout(doubleUpTimer);
           doubleUp = false;
@@ -749,17 +749,17 @@ window.addEventListener('onEventReceived', function(obj) {
         if (prizeAddonsClearOnCommand) {
           prizeAddons = [];
         };
-        theWheel = buildWheel();
+        buildWheel();
       } else if (data.text.startsWith(doubleUpCommand)) {
         if (doubleUp) return;
         doubleUp = true;
         prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? !j.size ? j.size = 1 + doubleUpSizeAdder : j.size += doubleUpSizeAdder : null));
-        buildWheel();
         doubleUpTimer = setTimeout(() => {
           doubleUp = false
           prizeLists.forEach(i => i.forEach(j => j.text === doubleUpTarget ? j.size -= doubleUpSizeAdder : null));
           buildWheel();
         }, doubleUpSeconds * 1000);
+        buildWheel();
       } else if (data.text.startsWith(prizeAddonCommand)) {
         let msg = data.text.replace(prizeAddonCommand, '').trim(),
           res = prizeAddonRes.replace('{prize}', msg);
@@ -775,12 +775,12 @@ window.addEventListener('onEventReceived', function(obj) {
           fontFamily: addonFontFamily
         };
         prizeAddons.push(prizeAddon);
-        buildWheel();
         setTimeout(() => {
           let addonIndex = prizeAddons.findIndex(i => i.text === msg);
           if (addonIndex !== -1) prizeAddons.splice(addonIndex, 1);
           buildWheel();
         }, prizeAddonSeconds * 1000);
+        buildWheel();
       };
     };
     //Look for tips & cheers
@@ -880,6 +880,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
 });
 
 const buildWheel = (prizeListNumber) => {
+  if(wheelSpinning) return;
   prizeListNumber = typeof prizeListNumber === 'number' ? prizeListNumber : 0;
   prizeWheelSegements = [...prizeLists[prizeListNumber]],
     addonIndexMultiple = Math.floor((prizeWheelSegements.length + prizeAddons.length) / prizeAddons.length),
@@ -943,11 +944,11 @@ const startSpin = async (spinObj) => {
     gameQueue.push(spinObj);
     return;
   } else {
-    wheelSpinning = true;
     let wheelType = spinObj.type || 0;
+    theWheel = buildWheel(wheelType);
+    wheelSpinning = true;
     $('#center-text').html(spinObj.user);
     $("#image-center-piece img").attr('src', foregroundImages[wheelType]);
-    theWheel = buildWheel(wheelType);
     $("#container").removeClass("hide").addClass("show");
     theWheel.rotationAngle = wheelAngle;
     theWheel.stopAnimation(false);
