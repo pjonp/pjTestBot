@@ -76,7 +76,7 @@ window.addEventListener('onEventReceived', function(obj) {
     if (!checkPrivileges(data)) {
       return;
     } else {
-      if (data.userId === data.tags['room-id'] || data.nick === 'nexxxbot') { //Broadcaster && LOWERCASE name
+      if (data.userId === data.tags['room-id'] || data.nick === 'yourbotname') { //Broadcaster && LOWERCASE name
         if (data.text.startsWith(spinCommand)) {
           if (multipleSpins && wheelSpinning) {
             spinCommandOverrides++;
@@ -224,7 +224,7 @@ window.addEventListener('onWidgetLoad', function(obj) {
   imageOffsetX = fieldData.imageOffsetXFD || 0;
   imageOffsetY = fieldData.imageOffsetYFD || 0;
 
-  pointerAngle = fieldData.pointerAngleFD || 270;
+  pointerAngle = fieldData.pointerAngleFD || 0;
   //  tipMultipler = fieldData.tipMultiplerFD || 100; //not used
   multipleSpins = fieldData.multipleSpinsFD === 'yes';
   playSound = fieldData.playSoundFD === 'yes';
@@ -427,6 +427,10 @@ const endSpin = () => {
 const sayMessage = (message) => {
   console.log(message);
   if (!sayToChat) return;
+  if (jebaitedAPIToken.length !== 24) {
+    console.log('API Token is not correct')
+    return;
+  };
   message = encodeURIComponent(message);
   fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/${message}`)
     .catch(error => {

@@ -220,12 +220,20 @@ let gameOver = (winner) => {
 
 //lx API
 const savePoints = (username) => {
+  if (jebaitedAPIToken.length !== 24) {
+    console.log('API Token is not correct')
+    return;
+  };
   fetch(`https://api.jebaited.net/addPoints/${jebaitedAPIToken}/${username}/${points}`)
     .catch(error => {
       console.error(`Error saving points`)
     });
 };
 const sayMessage = (message) => {
+  if (jebaitedAPIToken.length !== 24) {
+    console.log('API Token is not correct')
+    return;
+  };
   if (!sayToChat) return;
   message = encodeURIComponent(message);
   fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/${message}`)

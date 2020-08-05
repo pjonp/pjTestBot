@@ -69,12 +69,12 @@ let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call c
   doubleUpSeconds = 30 * 60, //seconds or minutes*60
   doubleUpCommand = '!doubleup', //This command will adjust the size of all segements with the following name:
   doubleUpTarget = 'GIVEAWAY', //Which segments are targeted with the command
-  doubleUpSizeAdder = 0.5, //size **add on** for the !doubleup command; 1 is default size; so a segment with deaulf size: 0.5 + an adder of 0.5 will grow from 1/2 the normal size to match the other segments
+  doubleUpSizeAdder = 1.5, //size **add on** for the !doubleup command; 1 is default size; so a segment with deaulf size: 0.5 + an adder of 0.5 will grow from 1/2 the normal size to match the other segments
   prizeAddonCommand = '!addon', //command to add a prize to the wheel; !addon VIP ROLE
   prizeAddonCommand2 = '!addon2',//should start the same as `prizeAddonCommand`, alternate response; same as !addon; e.g. !addon2 1000
   prizeAddonSeconds = 60 * 60, //seconds or minutes*60
-  prizeAddonRes = '!s {winner} SubWheel just hit {prize} !', //!addon chat response
-  prizeAddonRes2 = '!s2 {winner} SubWheel just hit {prize} !', //!addon2 chat response
+  prizeAddonRes = '!s {winner} SubWheel just hit {prize} !',
+  prizeAddonRes2 = '!s {winner} just hit {prize} 2!',
   prizeAddonsClearOnCommand = false,
   addonFontSize = 15,
   addonFontFamily = 'Verdana',
@@ -104,7 +104,6 @@ let defaultPrizeList = [{
     text: "50 POINTS",
     fillStyle: '',
     res: '50',
-    size: 3
   },
   {
     text: "25 POINTS",
@@ -122,6 +121,12 @@ let defaultPrizeList = [{
     res: '250'
   },
   {
+    text: "YAGAAA",
+    fillStyle: 'BLACK',
+    res: '!result YAGA - {winner}',
+    size: 1.25
+  },
+  {
     text: "100 POINTS",
     fillStyle: '',
     res: '100'
@@ -132,24 +137,28 @@ let defaultPrizeList = [{
     res: '125'
   },
   {
+    text: "BOSSJACKPOT",
+    fillStyle: 'GOLD',
+    res: '!result BOSSJACKPOT - {winner}',
+    size: 0.5
+  },
+  {
     text: "35 POINTS",
     fillStyle: '',
     res: '35'
   },
+
   {
     text: "300 POINTS",
     fillStyle: '',
     res: '300'
   },
+
   {
-    text: "BOSSJACKPOT",
-    fillStyle: 'GOLD',
-    res: '!result BOSSJACKPOT - {winner}'
-  },
-  {
-    text: "10 POINTS",
+    text: "3% BALANCE BOOST",
     fillStyle: '',
-    res: '10'
+    res: '!result 3% - {winner}',
+    size: 0.75
   },
 
   {
@@ -173,9 +182,27 @@ let defaultPrizeList = [{
     res: '110'
   },
   {
+    text: "Top 14 Point Steal!",
+    fillStyle: 'GOLD',
+    res: '!result PointSteal - {winner}',
+  },
+
+  {
+    text: "10 POINTS",
+    fillStyle: '',
+    res: '10'
+  },
+  {
     text: "500 POINTS",
     fillStyle: '',
     res: '500'
+  },
+
+  {
+    text: "3% BALANCE BOOST",
+    fillStyle: '',
+    res: '!result 3% - {winner}',
+    size: 0.75
   },
   {
     text: "750 POINTS",
@@ -201,22 +228,6 @@ let defaultPrizeList = [{
     text: "85 POINTS",
     fillStyle: '',
     res: '85'
-  },
-  {
-    text: "3% BALANCE BOOST",
-    fillStyle: '',
-    res: '!result 3% - {winner}'
-  },
-  {
-    text: "YAGAAA",
-    fillStyle: 'BLACK',
-    res: '!result YAGA - {winner}'
-  },
-
-  {
-    text: "5% BALANCE BOOST",
-    fillStyle: '',
-    res: '!result 5% - {winner}'
   },
   {
     text: "GIVEAWAY",
@@ -247,7 +258,8 @@ let defaultPrizeList = [{
   {
     text: "2% BALANCE BOOST",
     fillStyle: '',
-    res: '!result 2% - {winner}'
+    res: '!result 2% - {winner}',
+    size: 0.75
   },
   {
     text: "225 POINTS",
@@ -260,9 +272,10 @@ let defaultPrizeList = [{
     res: '15'
   },
   {
-    text: "3% BALANCE BOOST",
+    text: "5% BALANCE BOOST",
     fillStyle: 'GOLD',
-    res: '!result 3% - {winner}'
+    res: '!result 5% - {winner}',
+    size: 0.5
   },
 ];
 
@@ -311,31 +324,13 @@ let prizeList2 = [{
   }
 ];
 
-let prizeList3 = [{
-    text: "a",
-    fillStyle: '',
-    res: 'a'
-  },
-  {
-    text: "GIVEAWAY",
-    fillStyle: '',
-    res: '2'
-  },
-  {
-    text: "c",
-    fillStyle: '',
-    res: 'c'
-  }
-];
-
 let prizeLists = [
     [...defaultPrizeList],
     [...prizeList1], //remove if not used
     [...prizeList2], //remove if not used
-    [...prizeList3] //remove if not used
   ],
-  prizeListThresholds = [0, 5, 10, 25], //these values are added to the "Goal Amount Setting"
-  wheelGlow = ['black', 'green', 'pink', 'gold'], //inner glow of the wheel; default wheel: white
+  prizeListThresholds = [0, 10, 25], //these values are added to the "Goal Amount Setting"
+  wheelGlow = ['black', 'green', 'pink'], //inner glow of the wheel; default wheel: white
   wheelGlowAmount = 0.45, //default wheel 0.5
   /* If "goal amount" is set to 0, then:
   defaultPrizeList = 0 + 0 = 0; any single or gift sub uses default list
@@ -729,6 +724,10 @@ const endSpin = (spinObj) => {
 const sayMessage = (message) => {
   console.log(message);
   if (!sayToChat) return;
+  if (jebaitedAPIToken.length !== 24) {
+    console.log('API Token is not correct')
+    return;
+  };
   message = encodeURIComponent(message);
   fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/${message}`)
     .catch(error => {

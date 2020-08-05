@@ -1027,6 +1027,10 @@ const endSpin = (spinObj) => {
 const sayMessage = (message) => {
   console.log(message);
   if (!sayToChat) return;
+  if (jebaitedAPIToken.length !== 24) {
+    console.log('API Token is not correct')
+    return;
+  };
   message = encodeURIComponent(message);
   fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/${message}`)
     .catch(error => {
