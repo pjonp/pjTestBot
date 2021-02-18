@@ -1,0 +1,129 @@
+{
+  "ignoredChattersFD": {
+    "type": "text",
+    "label": "Ignored Chatters (comma separated)",
+    "value": "streamelements,commanderroot",
+    "group": "Main Set Up"
+  },
+  "fontNameFD": {
+    "type": "googleFont",
+    "label": "Select a font:",
+    "value": "Roboto",
+    "group": "Main Set Up"
+  },
+  "FDfontColor": {
+    "type": "colorpicker",
+    "label": "Font Color",
+    "value": "#fff",
+    "group": "Main Set Up"
+  },
+  "FDbgColor": {
+    "type": "colorpicker",
+    "label": "Background Color",
+    "value": "#000",
+    "group": "Main Set Up"
+  },
+  "FDbgAltColor": {
+    "type": "colorpicker",
+    "label": "Alt Background Color",
+    "value": "#191919",
+    "group": "Main Set Up"
+  },
+  "FDmaxLines": {
+    "type": "slider",
+    "label": "Max Lines",
+    "value": 10,
+    "min": 3,
+    "max": 25,
+    "steps": 1,
+    "group": "Main Set Up"
+  },
+  "FDenableVip": {
+    "type": "dropdown",
+    "label": "Show VIPs",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "VIP Set Up"
+  },
+  "FDvipColor": {
+    "type": "colorpicker",
+    "label": "VIP Color",
+    "value": "rgb(255, 212, 0)",
+    "group": "VIP Set Up"
+  },
+  "FDvipFontColor": {
+    "type": "colorpicker",
+    "label": "VIP Font Color",
+    "value": "#fff",
+    "group": "VIP Set Up"
+  },
+  "FDenableMod": {
+    "type": "dropdown",
+    "label": "Show Mods",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Mod Set Up"
+  },
+  "FDmodColor": {
+    "type": "colorpicker",
+    "label": "Mod Color",
+    "value": "rgb(255, 128, 0)",
+    "group": "Mod Set Up"
+  },
+  "FDmodFontColor": {
+    "type": "colorpicker",
+    "label": "Mod Font Color",
+    "value": "#fff",
+    "group": "Mod Set Up"
+  },
+  "FDenableSub": {
+    "type": "dropdown",
+    "label": "Show Subs",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Sub Set Up"
+  },
+  "FDsubColor": {
+    "type": "colorpicker",
+    "label": "Sub Color",
+    "value": "rgb(49, 122, 194)",
+    "group": "Sub Set Up"
+  },
+  "FDsubFontColor": {
+    "type": "colorpicker",
+    "label": "Sub Font Color",
+    "value": "#fff",
+    "group": "Sub Set Up"
+  },
+  "FDenableOther": {
+    "type": "dropdown",
+    "label": "Show Others",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Others Set Up"
+  },
+  "FDotherColor": {
+    "type": "colorpicker",
+    "label": "Other Color",
+    "value": "#ff0100",
+    "group": "Others Set Up"
+  },
+  "FDotherFontColor": {
+    "type": "colorpicker",
+    "label": "Other Font Color",
+    "value": "#fff",
+    "group": "Others Set Up"
+  }
+}

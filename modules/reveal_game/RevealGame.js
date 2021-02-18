@@ -236,8 +236,11 @@ const sayMessage = (message) => {
   };
   if (!sayToChat) return;
   message = encodeURIComponent(message);
-  fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/${message}`)
-    .catch(error => {
-      console.error(`Error sending message to chat`)
-    });
+  fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/`,
+  {
+    method: 'post',
+    body: JSON.stringify({"message": message})
+  })
+    .catch(e => console.error(`Error sending message to chat`));
+  };
 };

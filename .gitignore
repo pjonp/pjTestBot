@@ -25,3 +25,5 @@ modules/unity_game/WordLadderSettings.json
 .hidden/M.env
 .settings/RandomPasscodeSettings.json
 .settings/ScrambleWordSettings.json
+jTest.js
+fetchTest.js

@@ -1,6 +1,6 @@
 /*
 ~~Chatter Wheel 1.0.1 by pjonp~~
-Prize Wheel. ***THIS CODE IS NOT OFFICALLY SUPPORTED***
+Respin Wheel. ***THIS CODE IS NOT OFFICALLY SUPPORTED***
 
 StreamElements middleware by lx
 
@@ -81,247 +81,86 @@ let wheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call c
 //THIS IS A STATIC WHEEL EXAMPLE WITH 1 PRIZE SET
 //SET TO COMMAND ONLY IN THE OPTIONS
 
-let defaultPrizeList = [{
-    text: "Game Of Choice",
+let defaultList = [{
+    text: "ONE",
     fillStyle: 'gold',
-    res: 'Game Of Choice'
+    res: ':(',
+    respin: 1
   },
-
   {
-    text: "$1 Amazon Card",
+    text: "TWO",
     fillStyle: 'black',
-    res: '$1 Amazon Card'
+    res: ':-{',
+    respin: 2
   },
-
   {
-    text: "VIP GOLD(FOR 2 STREAMS)",
+    text: "THREE",
     fillStyle: 'green',
-    res: 'Vip Gold'
-  },
+    res: ':-[',
+    respin: 3
+  }
+];
 
-  {
-    text: "FREE Gift-A-Sub",
-    fillStyle: 'white',
-    res: 'Gift-A-Sub'
-  },
 
-  {
-    text: "MINI MONEY WHEEL",
-    fillStyle: 'blue',
-    res: 'MINI MONEYWHEEL'
-  },
-
-  {
-    text: "$5 Amazon Card",
-    fillStyle: 'white',
-    res: '$5 Amazon Card'
+let respinList1 = [{
+    text: "ONE",
+    fillStyle: 'yellow',
+    res: '!ONE!'
   },
   {
-    text: "50,000 Points",
-    fillStyle: 'green',
-    res: '50,000 Points'
-  },
-
-  {
-    text: "$10 PSN/XBL CODE",
-    fillStyle: 'skyblue',
-    res: '$10 PSN/XBL Code'
-  },
-  {
-    text: "FREE Gift-A-Sub",
-    fillStyle: 'white',
-    res: 'Gift-A-Sub'
-  },
-  {
-    text: "$25 AMAZON CARD",
-    fillStyle: 'blue',
-    res: '$25 AMAZON Card'
-  },
-  {
-    text: "RESPIN EVERYTHING is x2",
-    fillStyle: 'GOLD',
-    res: 'X2 WHEEL'
-  },
-
-  {
-    text: "$5 XBL/PSN Card",
-    fillStyle: 'white',
-    res: '$5 PSN/XBL CODE'
-  },
-  {
-    text: "20,000 Points",
-    fillStyle: 'green',
-    res: '20,000 Points'
-  },
-
-  {
-    text: "FREE GIFT-A-SUB",
-    fillStyle: 'white',
-    res: 'Gift-A-Sub'
-  },
-  {
-    text: "$5 XBL/PSN CARD",
-    fillStyle: 'white',
-    res: '$5 PSN/XBL CODE'
-  },
-  {
-    text: "50% BALANCE BOOST",
-    fillStyle: 'green',
-    res: '50% Points'
-  },
-  {
-    text: "$5 AMAZON CARD",
-    fillStyle: 'white',
-    res: '$5 Amazon Card'
-  },
-  {
-    text: "$10 AMAZON CARD",
-    fillStyle: 'skyblue',
-    res: '$10 Amazon Card'
-  },
-  {
-    text: "$25 Twitch Giftcard",
-    fillStyle: 'blue',
-    res: '$25 Twitch Card'
-  },
-  {
-    text: "25% BOOST & 1000 CHAT",
-    fillStyle: 'green',
-    res: '25% Points'
-  },
-  {
-    text: "$1 Amazon Card",
+    text: "1",
     fillStyle: 'black',
-    res: '$1 Amazon Card'
+    res: '12343532'
   },
   {
-    text: "$50 AMAZON CARD",
-    fillStyle: 'GOLD',
-    res: '$50 Amazon Card'
+    text: "text",
+    fillStyle: 'green',
+    res: '!text'
+  }
+];
+
+let respinList2 = [{
+    text: "TWO",
+    fillStyle: 'gold',
+    res: '!!TWO'
   },
   {
-    text: "$1 Amazon Card",
-    fillStyle: 'black',
-    res: '$1 Amazon Card'
+    text: "2",
+    fillStyle: 'red',
+    res: '22222222'
   },
   {
-    text: "Razer Mouse",
-    fillStyle: 'GOLD',
-    res: 'Razer Mouse'
-  },
-  {
-    text: "$1 Amazon Card",
-    fillStyle: 'black',
-    res: '$1 Amazon Card'
-  },
-  {
-    text: "FREE GIFT-A-SUB",
+    text: "222222",
+    fillStyle: 'orange',
+    res: '!!!!!22222222'
+  }
+];
+
+let respinList3 = [{
+    text: "THREE",
     fillStyle: 'white',
-    res: 'Gift-A-Sub'
+    res: '!dsfklj THREE'
   },
   {
-    text: "GFUEL TUB",
+    text: "3",
+    fillStyle: 'black',
+    res: '!sdhre 3'
+  },
+  {
+    text: "33333",
     fillStyle: 'blue',
-    res: 'Tub of GFUEL'
-  },
-  {
-    text: "DonateJackpot!!",
-    fillStyle: 'green',
-    res: 'DonateJackpot!'
-  },
-
-  {
-    text: "$5 Amazon Card",
-    fillStyle: 'white',
-    res: '$5 Amazon Card'
-  },
-
-  {
-    text: "50% POINTS BALANCE BOOST",
-    fillStyle: 'green',
-    res: '50% POINTS'
-  },
-
-  {
-    text: "$10 AMAZON CARD",
-    fillStyle: 'skyblue',
-    res: '$10 Amazon Card'
-  },
-
-  {
-    text: "100% POINTS BALANCE BOOST",
-    fillStyle: 'green',
-    res: '100% Points'
-  },
-
-
-  {
-    text: "$5 Amazon Card",
-    fillStyle: 'white',
-    res: '$5 Amazon Card'
-  },
-
-  {
-    text: "GFUEL TUB",
-    fillStyle: 'blue',
-    res: 'Tub of GFUEL'
-  },
-  {
-    text: "$5 PSN/XBL CARD",
-    fillStyle: 'white',
-    res: '$5 PSN/XBL CODE'
-  },
-  {
-    text: "DOOM IMUNITY FOREVER",
-    fillStyle: 'green',
-    res: 'Doom Immunity'
-  },
-
-  {
-    text: "$15 AMAZON CARD",
-    fillStyle: 'skyblue',
-    res: '$15 Amazon Card'
-  },
-  {
-    text: "MINI MONEYWHEEL",
-    fillStyle: 'blue',
-    res: 'MINI MONEYWHEEL'
-  },
-
-  {
-    text: "40% POINTS BALANCE BOOSTER",
-    fillStyle: 'green',
-    res: '40% POINTS'
-  },
-
-  {
-    text: "$5 Amazon Card",
-    fillStyle: 'white',
-    res: '$5 Amazon Card'
-  },
-  {
-    text: "$1 Amazon Card",
-    fillStyle: 'black',
-    res: '$1 Amazon Card'
-  },
-
-  {
-    text: "MONEYWHEEL!",
-    fillStyle: 'GOLD',
-    res: 'MONEYWHEEL'
-  },
-  {
-    text: "$1 Amazon Card",
-    fillStyle: 'black',
-    res: '$1 Amazon Card'
-  },
+    res: ' fgdsdf !3333'
+  }
 ];
 
 let prizeLists = [
-    [...defaultPrizeList]
+    [...defaultList],
+    [...respinList1],
+    [...respinList2],
+    [...respinList3]
   ],
   prizeListThresholds = [0], //0
-  wheelGlow = ['black'], //inner glow of the wheel; default wheel: white
+  wheelGlow = ['black','black','black','black','black'], //inner glow of the wheel; default wheel: white
   wheelGlowAmount = 0.45, //default wheel 0.5
   //DO NOT EDIT BELOW
   prizeWheelSegements = [],
@@ -630,9 +469,23 @@ const endSpin = (spinObj) => {
     amountpoints = spinObj.amount * prizeRes,
     chatMessage = isNaN(amountpoints) ? prizeRes.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount) : chatResponse.replace('{winner}', spinObj.user).replace('{user}', spinObj.user).replace('{prize}', prizeRes).replace('{amount}', spinObj.amount).replace('{amountpoints}', amountpoints);
   //delay chat response
+
+
+
+  //RESPIN ADD
+if(!spinObj.type) {
+  startSpin({
+    type: prizeWheelSegements[segmentIndex].respin
+  });
+} else {
+
   setTimeout(() => {
     sayMessage(chatMessage);
   }, chatResponseDelay * 1000);
+
+};
+  ///RESPIN ADD
+
   //check if done
   setTimeout(() => {
     soundEffect.pause();
@@ -664,18 +517,17 @@ const endSpin = (spinObj) => {
 };
 
 const sayMessage = (message) => {
-  console.log(message);
+  console.log('CHAT MSG:', message);
   if (!sayToChat) return;
   if (jebaitedAPIToken.length !== 24) {
     console.log('API Token is not correct')
     return;
   };
-  fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/`,
-  {
-    method: 'post',
-    body: JSON.stringify({"message": message})
-  })
-    .catch(e => console.error(`Error sending message to chat`));
+  message = encodeURIComponent(message);
+  fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/${message}`)
+    .catch(error => {
+      console.error(`Error sending message to chat`)
+    });
 };
 
 const playSoundEffect = () => {
