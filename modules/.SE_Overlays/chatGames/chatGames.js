@@ -1,5 +1,5 @@
 /*
-New Chatter Dock 2.0.0 by pjonp
+New Chatter Dock 2.0.2 by pjonp
 
 Made pretty with help from JayniusGamingTV
 
@@ -19,7 +19,9 @@ let clearAllData = false,
   chatActivityMaxPoints = 150, //Maximum Points on the slider for bonus points
   chatQuestionEasyPoints = 50,
   chatQuestionMedPoints = 75,
-  chatQuestionHardPoints = 100;
+  chatQuestionHardPoints = 100,
+  chatterByPassName = 'user name', //allows a user to post to HUD multiple times (IE everytime a bot command is called) !LOWERCASE!
+  chatterByPassTrigger = '#'; //message from above must start with this
 
 //*************************
 
@@ -259,6 +261,7 @@ window.addEventListener('onEventReceived', obj => {
     chatters[data.userId].message = obj.detail.event.renderedText;
     chatters[data.userId].activity.unshift(Date.now()); //secrets
     if (chatters[data.userId].activity.length > maxChatHistoryLength) chatters[data.userId].activity.pop();
+    if(data.nick === chatterByPassName && obj.detail.event.renderedText.startsWith(chatterByPassTrigger)) updateDisplay(data.userId, false);
   };
 });
 
@@ -267,12 +270,14 @@ window.addEventListener('onEventReceived', obj => {
 CHATTER DOCK
 ***********************
 */
-const updateDisplay = (userId) => { //update based on username "key"
+const updateDisplay = (userId, updateCount = true) => { //update based on username "key"
   let chatData = chatters[userId]; //get Chatter object
-  chatterSettings.totalCount++; //add 1 to the total count
-  chatterSettings[chatData.level].count++; //add 1 to the sub-stat (mod/vip/sub)
+  if(updateCount) {
+    chatterSettings.totalCount++; //add 1 to the total count
+    chatterSettings[chatData.level].count++; //add 1 to the sub-stat (mod/vip/sub)
   $(`#totalChatters`).text(chatterSettings.totalCount); //update total HTML
   $(`#${chatData.level}Chatters`).text(chatterSettings[chatData.level].count); //update sub-stat HTML
+};
   if (chatterSettings[chatData.level].enabled) { //if display this type (vip/mod)
     //************************
     //HTML STRING
@@ -311,12 +316,13 @@ const GAMES_LOGIC = {
     runningTimer: null,
     onLoad: (game) => {
       Builders.buildHtml(game); //build HTML
-      if (GAMES_SETTINGS[game].autoPlay) loadQuestionsDatabase()
+      if (chatQuestionGameSetup.gAPI.length > 1) loadQuestionsDatabase()
         .catch(e => {
           GAMES_SETTINGS[game].autoPlay = false;
           displayError(`Chat Question Sheet Data:<br>${e}`, false);
         })
         .finally(() => GAMES_LOGIC[game].startButton(game))
+      else GAMES_LOGIC[game].startButton(game);
     },
     startButton: (game) => {
 
@@ -356,7 +362,7 @@ const GAMES_LOGIC = {
         $('#chatQQuestion').val(GAMES_LOGIC[game].question);
         $('#chatQAnswer').val(GAMES_LOGIC[game].answer);
 
-        GAMES_LOGIC[game].startGame(game); //if autoPlay, start the game not used for this game
+        GAMES_LOGIC[game].startGame(game); //if autoPlay
       };
 
 
@@ -369,7 +375,7 @@ const GAMES_LOGIC = {
         }, 1000)
       };
 
-      if (GAMES_SETTINGS[game].autoPlay) {
+      if (GAMES_SETTINGS[game].autoPlay || Questions) {
 
         $(`#${game}Menu`).prepend(`
         <div class='text' id='${game}CDTimerContainer'>Auto Start: <span id="${game}CDTimer">Disabled</span></div>
@@ -392,7 +398,7 @@ const GAMES_LOGIC = {
             e.preventDefault();
             startRandomQuestion();
           });
-          cqTimeUpdate(Builders.randomNumber(GameDB[game].gameDelay, GameDB[game].gameDelay + GameDB[game].gameDelayAdder));
+        if (GAMES_SETTINGS[game].autoPlay) cqTimeUpdate(Builders.randomNumber(GameDB[game].gameDelay, GameDB[game].gameDelay + GameDB[game].gameDelayAdder));
         };
       };
 
@@ -1306,4 +1312,4 @@ const Words = [
   "Mew"
 ];
 
-let Questions = [];
+let Questions;

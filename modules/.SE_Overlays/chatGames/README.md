@@ -6,7 +6,7 @@
 ***
 
 ###### Installation:
-In OBS.Live click the VEIW menu -> DOCKS -> CUSTOM BROWSER DOCK
+In OBS.Live click the VIEW menu -> DOCKS -> CUSTOM BROWSER DOCK
 paste this overlay's URL
 
 ***
