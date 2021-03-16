@@ -1,4 +1,4 @@
-# Roar-A-Tator-Saurus
+# AiO RotatoGoal
 ###
 
 ## Main Settings

@@ -1,4 +1,14 @@
-console.log('load');
+/*
+RotatorS AKA Rotator-a-Saurus AKA Roar-A-Tator-Saurus AKA Goals-R-Saur-Us AKA Ruben's Rotating Thingy AKA
+
+AiO RotatoGoal 1.0.0 by pjonp
+
+inspired by RubenSaurus
+with help from JayniusGamingTV
+
+The MIT License (MIT)
+Copyright (c) 2021 pjonp
+*/
 const currencySetting = ['{{FD_currencyLocale}}', 'Set_OnWidgetLoad', {{FD_currencyDecimals}}]; //example: ['en-US', 'USD', decimals] / ['de-DE', 'EUR', 2] / ['ja-JP', 'JPY', 2]
 
 /*
