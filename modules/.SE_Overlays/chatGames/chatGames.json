@@ -181,7 +181,7 @@
   "FDchatQuestionSheetID": {
     "type": "text",
     "label": "Google Sheet ID #",
-    "value": "abcdefg.......",
+    "value": "",
     "group": "Chat Triva"
   },
   "FDchatQuestionSheetName": {
@@ -193,7 +193,7 @@
   "FDchatQuestionGAPIKey": {
     "type": "text",
     "label": "Google API Key",
-    "value": "xxxxxx",
+    "value": "",
     "group": "Chat Triva"
   },
   "FDrandomPinStartTrigger": {

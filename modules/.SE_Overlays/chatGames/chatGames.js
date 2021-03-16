@@ -105,7 +105,7 @@ let Game = {
   wait: (ms) => new Promise(r => setTimeout(r, ms)),
   verifyLoad: () => Promise.all([jebaitedAPI.checkScope('botMsg'), jebaitedAPI.checkScope('addPoints'), Game.getDB()]).then(loadGames).catch(displayError),
   say: (msg) => { //say to chat
-    jebaitedAPI.sayMessage(msg).catch(e => console.log('jebaited.sayMessage: ', e));
+    jebaitedAPI.sayMessage(`/me ${msg}`).catch(e => console.log('jebaited.sayMessage: ', e));
   },
   givePoints: (user, points) => { //give points
     jebaitedAPI.addPoints(user, points).then(d => console.log(`${points} points added to ${user}`)).catch(e => console.log('jebaited.addPoints: ', e));
