@@ -1,3 +1,8 @@
+:root{
+  --mainHeight: 92vh; /* adjust chat scroll size as needed */
+  --msgHeight: 85vh; /* adjust chat scroll size as needed */
+}
+
 *{
   margin: auto;
   padding: 0;
@@ -101,4 +106,22 @@
 .other {
   background-color: {{FDotherColor}};
   color: {{FDotherFontColor}};
+}
+
+/* adjust chat scroll size as needed */
+#chattersMain{
+overflow: hidden;
+max-height: var(--mainHeight); /* adjust chat scroll size as needed */
+}
+#msgContainer {
+overflow-x: hidden;
+overflow-y: scroll;
+max-height: var(--msgHeight); /* adjust chat scroll size as needed */
+}
+::-webkit-scrollbar {
+ width: 5px;
+ background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #0dcaf0;
 }

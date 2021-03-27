@@ -77,6 +77,26 @@ window.addEventListener('onWidgetLoad', obj => {
     maxFontSize = fieldData[`FD_maxFontSize`] || 100;
     vertBar = fieldData[`FD_vertBar`] === 'yes';
 
+    platformCheck(data,fieldData).then( () => buildHTML(data, fieldData)).catch( (e) => visualError(e));
+});
+
+function platformCheck(data, fieldData) {
+    return new Promise((resolve,reject) => {
+        let platformFilter = { //platform specific filter; i.e. only facebook has a 'stars' goal;
+          Facebook: 'stars-goal',
+          Twitch: 'cheer-goal',
+          Youtube: 'superchat-goal'
+        },
+        fieldDataPlatform = fieldData[`FD_platform`]; //get expected platform from field data.
+        currentPlatform = Object.keys(platformFilter).filter(i => data[platformFilter[i]] )[0]; //Check each of the platformFilter goal against the goals that loaded into the data on widget load; and return the first element (platform or undefined)
+
+        if(!fieldDataPlatform) reject('No Platform Set In Field Data. See Docs.') //error if no platform set in field data
+        else if(currentPlatform && fieldDataPlatform === currentPlatform) resolve() //if match build the widget
+        else reject(`The field data settings are for ${fieldDataPlatform} and you are logged into a ${currentPlatform} account`) //error if mismatch
+    });
+};
+
+function buildHTML(data, fieldData) {
   Object.keys(data).forEach(i => { //get Goals based on session (only load platform goals, Twitch/fB/yT)
     if (i.includes('goal') && fieldData[`FD_${i}_enabled`] === 'yes') { //filter info for 'goal' & check if enabled
 
@@ -102,7 +122,7 @@ window.addEventListener('onWidgetLoad', obj => {
   console.log('allGoals', allGoals);
   //build HTML for each
   buildBarHTML();
-});
+};
 
 //when something
 window.addEventListener('onSessionUpdate', obj => {

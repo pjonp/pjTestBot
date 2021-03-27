@@ -1,5 +1,5 @@
 /*
-New Chatter Dock 2.0.2 by pjonp
+New Chatter Dock 2.1.0 by pjonp
 
 Made pretty with help from JayniusGamingTV
 
@@ -33,7 +33,7 @@ let ignoredChatters = [],
   chatterSettings = { //master settings object for chat tracking
     totalCount: 0,
     lineCount: 0,
-    maxLines: 10,
+    maxLines: 12,
     getLevel: (a) => a.tags.badges.indexOf("vip") !== -1 ? 'vip' : a.tags.mod === '1' ? 'mod' : a.tags.subscriber === '1' ? 'sub' : 'other', //in order -> VIP > MOD > SUB > OTHER (chatter only gets 1 tag)
     vip: {
       enabled: true,
@@ -100,7 +100,6 @@ userID: {
         }
 }
 */
-
 let Game = {
   wait: (ms) => new Promise(r => setTimeout(r, ms)),
   verifyLoad: () => Promise.all([jebaitedAPI.checkScope('botMsg'), jebaitedAPI.checkScope('addPoints'), Game.getDB()]).then(loadGames).catch(displayError),
@@ -168,7 +167,7 @@ function loadGames() {
 };
 
 function displayError(e, critical = true) {
-  console.log('Lodaing Error: ', e);
+  console.log('Loading Error: ', e);
   if (critical) {
     $('#navBar').html(`<div class='text-danger' style='font-size:11px margin:auto'>${e.error ? e.error : e}.<br>Game disabled.</div>`);
     Game.wait(60000).then(() => $('#navBar').html(''));
@@ -176,6 +175,12 @@ function displayError(e, critical = true) {
     $('#navBar').prepend(`<div id='errorText' class='text-danger' style='font-size:11px margin:auto'>${e.error ? e.error : e}.<br>Game disabled.</div>`);
     Game.wait(60000).then(() => $('#errorText').remove());
   }
+};
+
+function displayNote(msg) {
+  console.log('Loading Note: ', msg);
+    $('#navBar').prepend(`<div id='loadingNote' class='text-success' style='font-size:11px margin:auto'>${msg}`);
+    Game.wait(60000).then(() => $('#loadingNote').remove());
 };
 
 window.addEventListener('onWidgetLoad', obj => {
@@ -294,7 +299,6 @@ const updateDisplay = (userId, updateCount = true) => { //update based on userna
   } else return;
 };
 
-
 /*
 ***********************
 GAMES
@@ -316,7 +320,10 @@ const GAMES_LOGIC = {
     runningTimer: null,
     onLoad: (game) => {
       Builders.buildHtml(game); //build HTML
-      if (chatQuestionGameSetup.gAPI.length > 1) loadQuestionsDatabase()
+      if (chatQuestionGameSetup.gAPI.length > 1 && chatQuestionGameSetup.gSheetId.length > 1) loadQuestionsDatabase()
+        .then( () => {
+          displayNote(`${Questions.length} Trivia questions loaded!`)
+        })
         .catch(e => {
           GAMES_SETTINGS[game].autoPlay = false;
           displayError(`Chat Question Sheet Data:<br>${e}`, false);
@@ -355,7 +362,7 @@ const GAMES_LOGIC = {
         GAMES_LOGIC[game].questionIndex = randQuestionIndex;
         GAMES_LOGIC[game].question = randQuestionObject[0];
         GAMES_LOGIC[game].answer = randQuestionObject[1];
-        let points = randQuestionObject[2].toLowerCase();
+        let points = randQuestionObject[2] ? randQuestionObject[2].toLowerCase() : 'easy';
         points = parseInt(points) ? parseInt(points) : points === 'easy' ? chatQuestionEasyPoints : points === 'medium' ? chatQuestionMedPoints : points === 'hard' ? chatQuestionHardPoints : chatQuestionEasyPoints; //set points
         GAMES_LOGIC[game].points = points;
 

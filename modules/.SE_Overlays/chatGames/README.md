@@ -1,4 +1,4 @@
-# ChatGame Dock 2.0.0
+# ChatGame Dock 2.1.0
 
 ###### Notes:
 **This is widget is NOT intended to be shown on screen but added as an OBS.Live dock!**
@@ -12,7 +12,7 @@ paste this overlay's URL
 ***
 
 ###### Settings:
-- Size: 285px min width x 1000px tall
+- Size: 285px min width x 1080px tall
 - Position: (0,0)
 
 **Token from jebaited.net with "botSay" & "addPoints" scopes req'd for games.**
@@ -51,8 +51,10 @@ Chat Games (only enabled if jebaited.net token is correct and has the req'd scop
 
 - Create API Token for Google: https://console.cloud.google.com/apis/credentials
 ![Create API Key](./gApi1.png)
+- Enable Sheets From The Library: https://console.cloud.google.com/apis/library/sheets.googleapis.com
+![Enable Sheets](./gApi2.png)
 - Restrict API Token for Sheets only:
-![Restrict API Key](./gApi2.png)
+![Restrict API Key](./gApi3.png)
 - Paste this API Key into the Widget Setup
 
 - Create your question & answer database sheet on Google Sheets. **Row 1 is ignored!**
@@ -60,7 +62,14 @@ Chat Games (only enabled if jebaited.net token is correct and has the req'd scop
   - Column B: Answer
   - Column C: Points (can be a number, "easy", "medium", or "hard". If not one of these/empty will default to 'easy')
 - Get the ID from your link and paste into the Widget Setup
-![Create API Key](./sheetsID.png)
+![Sheet ID](./sheetsID.png)
+
+- Paste into Widget Setup along with "Sheet Name" (Default "Sheet1")
+  - Example Id: 16RWxWumklcgju2FRkpqeaTWO-iYqFUMopfCKWGqpDNo
+  - Example Sheet Name: Sheet1
+  - Example API Key: AIwaSeD_RSWWb_XQOj2pQ34LW4p-ExrQ5zrGo5e
+
+
 
 ***
 

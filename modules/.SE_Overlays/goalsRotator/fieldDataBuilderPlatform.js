@@ -1,12 +1,28 @@
 const fs = require('fs'),
   path = require("path");
 
-let fieldString = `
+let platforms = ['Facebook','Twitch','Youtube'],
+  goals = [
+    ["follower-goal", "Followers", "Facebook Twitch"],
+    ["tip-goal", "Tips"],
+    ["cheer-goal", "Cheers", "Twitch"],
+    ["subscriber-goal", "Subscribers", "Twitch Youtube"],
+    ["merch-goal-items", "Merch. Items"],
+    ["merch-goal-orders", "Merch Orders"],
+    ["merch-goal-total", "Merch Total"],
+    ["share-goal", "Shares", "Facebook"],
+    ["stars-goal", "Stars", "Facebook"],
+    ["supporter-goal", "Supporters","Facebook"],
+    ["videolike-goal", "Video Likes", "Facebook"],
+    ["sponsor-goal", "Sponsor","Youtube"],
+    ["superchat-goal", "Superchats", "Youtube"]
+  ],
+fieldStringAll = `
 {
   "FD_platform": {
     "type": "hidden",
-    "label": "AiO RotatoGoal for Twitch",
-    "value": "Twitch",
+    "label": "AiO RotatoGoal for {{PLATFORM}}",
+    "value": "{{PLATFORM}}",
     "group": "Main"
   },
   "FD_cardBgColor1": {
@@ -300,113 +316,104 @@ let fieldString = `
 },
 
 
-`,
-
-  goals = [
-    ["follower-goal", "Followers [Twitch/fB]"],
-    ["tip-goal", "Tips [All]"],
-    ["cheer-goal", "Cheers [Twitch]"],
-    ["subscriber-goal", "Subscribers [Twitch/yT]"],
-    ["merch-goal-items", "Merch. Items [All]"],
-    ["merch-goal-orders", "Merch Orders [All]"],
-    ["merch-goal-total", "Merch Total [All]"],
-    ["share-goal", "Shares [fB]"],
-    ["stars-goal", "Stars [fB]"],
-    ["supporter-goal", "Supporters [fB]"],
-    ["videolike-goal", "Video Likes [fB]"],
-    ["sponsor-goal", "Sponsor [yT]"],
-    ["superchat-goal", "Superchats [yT]"]
-  ];
+`;
 
 
+platforms.forEach(p => {
+  let fieldString = fieldStringAll
 
-goals.map(i => {
-  let formatName = i[0].replace('-goal', '').replace('-', ' ').toUpperCase();
-  fieldString += `
+  goals.map(i => {
 
-  "_FD_${i[0]}_hidden": {
-    "type": "hidden",
-    "label": "${formatName} Options",
-    "group": "${i[1]}"
-  },
-  "FD_${i[0]}_enabled": {
-      "type": "dropdown",
-      "label": "${formatName} Enabled",
-      "value": "yes",
-      "options": {
-        "yes": "Yes",
-        "no": "No"
-      },
+    console.log(p , i , !i[2] || i[2].includes(p));
+    if( !i[2] || i[2].includes(p)) { //check if the goal has a platform restriction; if it does; check if matches.
+
+    let formatName = i[0].replace('-goal', '').replace('-', ' ').toUpperCase();
+    fieldString += `
+
+    "_FD_${i[0]}_hidden": {
+      "type": "hidden",
+      "label": "${formatName} Options",
       "group": "${i[1]}"
-  },
-  "FD_${i[0]}_target": {
-    "type": "number",
-    "label": "${formatName} Target Goal",
-    "step": 1,
-    "value": 100,
-    "min": 10,
-    "group": "${i[1]}"
-  },
-
-  "FD_${i[0]}_icon": {
-      "type": "dropdown",
-      "label": "${formatName} Icon",
-      "value": "other",
-      "options": {
-        "none": "NONE",
-        "fab fa-twitch": "TWITCH",
-        "fab fa-youtube": "YOUTUBE",
-        "fab fa-facebook-f": "FACEBOOK",
-        "fas fa-crown": "CROWN",
-        "fas fa-chess-queen": "CHESS QUEEN",
-        "fas fa-donate": "DONATE",
-        "fas fa-coins": "COINS",
-        "fas fa-gem": "GEM SOLID",
-        "far fa-gem": "GEM",
-        "fas fa-tshirt": "TSHIRT",
-        "fas fa-puzzle-piece": "PUZZLE PIECE",
-        "fas fa-star": "STAR SOLID",
-        "far fa-star": "STAR",
-        "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
-      },
+    },
+    "FD_${i[0]}_enabled": {
+        "type": "dropdown",
+        "label": "${formatName} Enabled",
+        "value": "yes",
+        "options": {
+          "yes": "Yes",
+          "no": "No"
+        },
+        "group": "${i[1]}"
+    },
+    "FD_${i[0]}_target": {
+      "type": "number",
+      "label": "${formatName} Target Goal",
+      "step": 1,
+      "value": 100,
+      "min": 10,
       "group": "${i[1]}"
-  },
-  "_FD_${i[0]}_hidden2": {
-    "type": "hidden",
-    "label": "Enter Icon Class Or Text",
-    "group": "${i[1]}"
-  },
-  "FD_${i[0]}_iconOther": {
-    "type": "text",
-    "label": "Icons: fontawesome.com/icons?m=free",
-    "value": "fas fa-code",
-    "group": "${i[1]}"
-  },
-  "FD_${i[0]}_label": {
-    "type": "text",
-    "label": "${formatName} Label",
-    "value": "${formatName}",
-    "group": "${i[1]}"
-  },
-  "FD_${i[0]}_barColor1": {
-    "type": "colorpicker",
-    "label": "${formatName} Bar Color 1",
-    "value": "rgba(0, 0, 0, 0.25)",
-    "group": "${i[1]}"
-  },
-  "FD_${i[0]}_barColor2": {
-    "type": "colorpicker",
-    "label": "${formatName} Bar Color 2",
-    "value": "rgba(0, 195, 255, 0.3)",
-    "group": "${i[1]}"
-  },`
-}),
-removeLastComma = fieldString.slice(0, -1);
-fs.writeFileSync(path.resolve(__dirname, './fieldDataMaster.json'),  removeLastComma + '}', 'UTF-8')
+    },
+
+    "FD_${i[0]}_icon": {
+        "type": "dropdown",
+        "label": "${formatName} Icon",
+        "value": "other",
+        "options": {
+          "none": "NONE",
+          "fab fa-twitch": "TWITCH",
+          "fab fa-youtube": "YOUTUBE",
+          "fab fa-facebook-f": "FACEBOOK",
+          "fas fa-crown": "CROWN",
+          "fas fa-chess-queen": "CHESS QUEEN",
+          "fas fa-donate": "DONATE",
+          "fas fa-coins": "COINS",
+          "fas fa-gem": "GEM SOLID",
+          "far fa-gem": "GEM",
+          "fas fa-tshirt": "TSHIRT",
+          "fas fa-puzzle-piece": "PUZZLE PIECE",
+          "fas fa-star": "STAR SOLID",
+          "far fa-star": "STAR",
+          "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+        },
+        "group": "${i[1]}"
+    },
+    "_FD_${i[0]}_hidden2": {
+      "type": "hidden",
+      "label": "Enter Icon Class Or Text",
+      "group": "${i[1]}"
+    },
+    "FD_${i[0]}_iconOther": {
+      "type": "text",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "value": "fas fa-code",
+      "group": "${i[1]}"
+    },
+    "FD_${i[0]}_label": {
+      "type": "text",
+      "label": "${formatName} Label",
+      "value": "${formatName}",
+      "group": "${i[1]}"
+    },
+    "FD_${i[0]}_barColor1": {
+      "type": "colorpicker",
+      "label": "${formatName} Bar Color 1",
+      "value": "rgba(0, 0, 0, 0.25)",
+      "group": "${i[1]}"
+    },
+    "FD_${i[0]}_barColor2": {
+      "type": "colorpicker",
+      "label": "${formatName} Bar Color 2",
+      "value": "rgba(0, 195, 255, 0.3)",
+      "group": "${i[1]}"
+    },`
+
+  } else return;
+  }),
+  finalString = fieldString.slice(0, -1).replace(/{{PLATFORM}}/g, p).concat('}'); //remove last comma in object, add end bracket and set platform
+
+  fs.writeFileSync(path.resolve(__dirname, `./fieldData_${p}.json`),  finalString, 'UTF-8')
 
 
-
-let getLabels = JSON.parse(`${removeLastComma} }`);
-console.log('LABELS: ', Object.keys(getLabels).map(i => `| ${getLabels[i].label} | ??? |`));
+});
 
 console.log('done')
