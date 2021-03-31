@@ -1,6 +1,8 @@
 # AiO RotatoGoal
 ###
 
+![RotatoGoal Example](./public/defaultHor.png)
+
 ## Main Settings
 | Setting | Value |
 | ------ | ------ |
