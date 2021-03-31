@@ -1,4 +1,5 @@
 # AiO RotatoGoal
+#### [Watch Set Up Guide](https://www.youtube.com/watch?v=60YVuDeCBBY)
 ###
 
 ![RotatoGoal Example](./public/defaultHor.png)
