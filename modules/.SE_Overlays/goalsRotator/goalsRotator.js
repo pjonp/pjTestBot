@@ -1,7 +1,7 @@
 /*
 RotatorS AKA Rotator-a-Saurus AKA Roar-A-Tator-Saurus AKA Goals-R-Saur-Us AKA Ruben's Rotating Thingy AKA
 
-AiO RotatoGoal 1.0.0 by pjonp
+AiO RotatoGoal 1.0.1 by pjonp
 
 inspired by RubenSaurus
 with help from JayniusGamingTV
@@ -41,7 +41,8 @@ const card = document.getElementById('card'),
 //goalIndex[0] & [1] are prebuilt by buildBarHTML();
 function flip(goalIndex = 2, side = 1) {
 //if there is only 1 or 2 sides; there is no need to move things around... just flip.
-  if (goalList.length > 2) {
+  if (goalList.length < 2) return
+  else if (goalList.length > 2) {
 
     let hiddenSide = document.getElementById(`${sides[side]}`),
       newGoal = document.getElementById(`${goalList[goalIndex]}`);
