@@ -306,20 +306,17 @@
     },
     "FD_tip-goal_enabled": {
         "type": "dropdown",
-        "label": "TIP Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "TIP Type",
+        "value": "off",
+        "options": {"off":"Off","tip-goal":"Goal","tip-session":"Session","tip-week":"Week","tip-month":"Month","tip-total":"Total"},
         "group": "Tips"
     },
     "FD_tip-goal_target": {
       "type": "number",
       "label": "TIP Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Tips"
     },
 
@@ -383,20 +380,17 @@
     },
     "FD_subscriber-goal_enabled": {
         "type": "dropdown",
-        "label": "SUBSCRIBER Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "SUBSCRIBER Type",
+        "value": "off",
+        "options": {"off":"Off","subscriber-goal":"Goal","subscriber-session":"Session","subscriber-week":"Week","subscriber-month":"Month","subscriber-total":"Total"},
         "group": "Subscribers"
     },
     "FD_subscriber-goal_target": {
       "type": "number",
       "label": "SUBSCRIBER Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Subscribers"
     },
 
@@ -456,25 +450,22 @@
     "_FD_merch-goal-items_hidden": {
       "type": "hidden",
       "label": "MERCH ITEMS Options",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_enabled": {
         "type": "dropdown",
-        "label": "MERCH ITEMS Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
-        "group": "Merch. Items"
+        "label": "MERCH ITEMS Type",
+        "value": "off",
+        "options": {"off":"Disabled","merch-goal-items":"Goal"},
+        "group": "Merch Items"
     },
     "FD_merch-goal-items_target": {
       "type": "number",
       "label": "MERCH ITEMS Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
-      "group": "Merch. Items"
+      "value": 10,
+      "min": 1,
+      "group": "Merch Items"
     },
 
     "FD_merch-goal-items_icon": {
@@ -498,36 +489,36 @@
           "far fa-star": "STAR",
           "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
         },
-        "group": "Merch. Items"
+        "group": "Merch Items"
     },
     "_FD_merch-goal-items_hidden2": {
       "type": "hidden",
       "label": "Enter Icon Class Or Text",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_iconOther": {
       "type": "text",
       "label": "Icons: fontawesome.com/icons?m=free",
       "value": "fas fa-code",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_label": {
       "type": "text",
       "label": "MERCH ITEMS Label",
       "value": "MERCH ITEMS",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_barColor1": {
       "type": "colorpicker",
       "label": "MERCH ITEMS Bar Color 1",
       "value": "rgba(0, 0, 0, 0.25)",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_barColor2": {
       "type": "colorpicker",
       "label": "MERCH ITEMS Bar Color 2",
       "value": "rgba(0, 195, 255, 0.3)",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
 
     "_FD_merch-goal-orders_hidden": {
@@ -537,20 +528,17 @@
     },
     "FD_merch-goal-orders_enabled": {
         "type": "dropdown",
-        "label": "MERCH ORDERS Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "MERCH ORDERS Type",
+        "value": "off",
+        "options": {"off":"Disabled","merch-goal-orders":"Goal"},
         "group": "Merch Orders"
     },
     "FD_merch-goal-orders_target": {
       "type": "number",
       "label": "MERCH ORDERS Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Merch Orders"
     },
 
@@ -614,20 +602,17 @@
     },
     "FD_merch-goal-total_enabled": {
         "type": "dropdown",
-        "label": "MERCH TOTAL Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "MERCH TOTAL Type",
+        "value": "off",
+        "options": {"off":"Disabled","merch-goal-total":"Goal"},
         "group": "Merch Total"
     },
     "FD_merch-goal-total_target": {
       "type": "number",
       "label": "MERCH TOTAL Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Merch Total"
     },
 
@@ -691,20 +676,17 @@
     },
     "FD_sponsor-goal_enabled": {
         "type": "dropdown",
-        "label": "SPONSOR Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "SPONSOR Type",
+        "value": "off",
+        "options": {"off":"Off","sponsor-goal":"Goal","sponsor-session":"Session","sponsor-week":"Week","sponsor-month":"Month","sponsor-total":"Total"},
         "group": "Sponsor"
     },
     "FD_sponsor-goal_target": {
       "type": "number",
       "label": "SPONSOR Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Sponsor"
     },
 
@@ -768,20 +750,17 @@
     },
     "FD_superchat-goal_enabled": {
         "type": "dropdown",
-        "label": "SUPERCHAT Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "SUPERCHAT Type",
+        "value": "off",
+        "options": {"off":"Off","superchat-goal":"Goal","superchat-session":"Session","superchat-week":"Week","superchat-month":"Month","superchat-total":"Total"},
         "group": "Superchats"
     },
     "FD_superchat-goal_target": {
       "type": "number",
       "label": "SUPERCHAT Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Superchats"
     },
 

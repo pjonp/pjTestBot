@@ -1,7 +1,7 @@
 /*
 RotatorS AKA Rotator-a-Saurus AKA Roar-A-Tator-Saurus AKA Goals-R-Saur-Us AKA Ruben's Rotating Thingy AKA
 
-AiO RotatoGoal 1.0.1 by pjonp
+AiO RotatoGoal 2.0.0 by pjonp
 
 inspired by RubenSaurus
 with help from JayniusGamingTV
@@ -99,24 +99,27 @@ function platformCheck(data, fieldData) {
 
 function buildHTML(data, fieldData) {
   Object.keys(data).forEach(i => { //get Goals based on session (only load platform goals, Twitch/fB/yT)
-    if (i.includes('goal') && fieldData[`FD_${i}_enabled`] === 'yes') { //filter info for 'goal' & check if enabled
+    if (i.includes('goal') && fieldData[`FD_${i}_enabled`] !== 'off') { //filter info for 'goal' & check if enabled
+
+
+      let goalType = fieldData[`FD_${i}_enabled`]; //Redefine "GOAL" type to option in GUI
 
       const getIcon = selected => {
         if(selected === 'none') return ''
         else if(selected === 'other') return fieldData[`FD_${i}_iconOther`] || ''
         else return selected
-      }
+      };
 
-      allGoals[i] = { //build goal object with key name of goal i.e. 'tip-goal'
-        progress: data[i].amount, //progress on load
+      allGoals[goalType] = { //build goal object with key name of goal i.e. 'tip-goal'
+        progress: data[goalType].hasOwnProperty('amount') ? data[goalType].amount : data[goalType].count, //progress on load
         target: fieldData[`FD_${i}_target`] || 1000, //default 1000; get target goal amount from field data (use common FD names 'FD_tip-goal_target')
         label: fieldData[`FD_${i}_label`] || '', //default empty
         icon: getIcon(fieldData[`FD_${i}_icon`]),
-        currency: i.includes('tip'),
+        currency: goalType.includes('tip'),
         barColor1: fieldData[`FD_${i}_barColor1`],
         barColor2: fieldData[`FD_${i}_barColor2`],
       };
-      goalList.push(i);
+      goalList.push(goalType);
     };
   });
   if (goalList.length === 0) return visualError('NO GOALS SET'); //end if no goals to build.
@@ -130,10 +133,11 @@ window.addEventListener('onSessionUpdate', obj => {
   if (goalList.length === 0) return; //end if no goals to check. to-do: visual error
   let data = obj.detail.session;
   Object.keys(data).forEach(i => { //check session data for the change
-    if (i.includes('goal') && allGoals.hasOwnProperty(i)) { //filter info for 'goal' & see if it is in master object (enabled)
-      if (allGoals[i].progress === data[i].amount) return; //stop if not changed
-      console.log("PROGRESS AMOUNT: ", data[i].amount);
-      allGoals[i].progress = data[i].amount; //update local Object value
+    if (allGoals.hasOwnProperty(i)) { //filter info for 'goal' & see if it is in master object (enabled)
+      goalAmount = data[i].hasOwnProperty('amount') ? data[i].amount : data[i].count
+      if (allGoals[i].progress === goalAmount) return; //stop if not changed
+      console.log("PROGRESS AMOUNT: ", goalAmount);
+      allGoals[i].progress = goalAmount; //update local Object value
       let barTarget = document.getElementById(`${i}_bar`);
       barTarget.style.width = `${(allGoals[i].progress/allGoals[i].target)*100}%`;
       setTimeout( () => {

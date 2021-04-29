@@ -306,20 +306,17 @@
     },
     "FD_follower-goal_enabled": {
         "type": "dropdown",
-        "label": "FOLLOWER Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "FOLLOWER Type",
+        "value": "off",
+        "options": {"off":"Off","follower-goal":"Goal","follower-session":"Session","follower-week":"Week","follower-month":"Month","follower-total":"Total"},
         "group": "Followers"
     },
     "FD_follower-goal_target": {
       "type": "number",
       "label": "FOLLOWER Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Followers"
     },
 
@@ -383,20 +380,17 @@
     },
     "FD_tip-goal_enabled": {
         "type": "dropdown",
-        "label": "TIP Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "TIP Type",
+        "value": "off",
+        "options": {"off":"Off","tip-goal":"Goal","tip-session":"Session","tip-week":"Week","tip-month":"Month","tip-total":"Total"},
         "group": "Tips"
     },
     "FD_tip-goal_target": {
       "type": "number",
       "label": "TIP Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Tips"
     },
 
@@ -456,25 +450,22 @@
     "_FD_merch-goal-items_hidden": {
       "type": "hidden",
       "label": "MERCH ITEMS Options",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_enabled": {
         "type": "dropdown",
-        "label": "MERCH ITEMS Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
-        "group": "Merch. Items"
+        "label": "MERCH ITEMS Type",
+        "value": "off",
+        "options": {"off":"Disabled","merch-goal-items":"Goal"},
+        "group": "Merch Items"
     },
     "FD_merch-goal-items_target": {
       "type": "number",
       "label": "MERCH ITEMS Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
-      "group": "Merch. Items"
+      "value": 10,
+      "min": 1,
+      "group": "Merch Items"
     },
 
     "FD_merch-goal-items_icon": {
@@ -498,36 +489,36 @@
           "far fa-star": "STAR",
           "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
         },
-        "group": "Merch. Items"
+        "group": "Merch Items"
     },
     "_FD_merch-goal-items_hidden2": {
       "type": "hidden",
       "label": "Enter Icon Class Or Text",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_iconOther": {
       "type": "text",
       "label": "Icons: fontawesome.com/icons?m=free",
       "value": "fas fa-code",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_label": {
       "type": "text",
       "label": "MERCH ITEMS Label",
       "value": "MERCH ITEMS",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_barColor1": {
       "type": "colorpicker",
       "label": "MERCH ITEMS Bar Color 1",
       "value": "rgba(0, 0, 0, 0.25)",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
     "FD_merch-goal-items_barColor2": {
       "type": "colorpicker",
       "label": "MERCH ITEMS Bar Color 2",
       "value": "rgba(0, 195, 255, 0.3)",
-      "group": "Merch. Items"
+      "group": "Merch Items"
     },
 
     "_FD_merch-goal-orders_hidden": {
@@ -537,20 +528,17 @@
     },
     "FD_merch-goal-orders_enabled": {
         "type": "dropdown",
-        "label": "MERCH ORDERS Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "MERCH ORDERS Type",
+        "value": "off",
+        "options": {"off":"Disabled","merch-goal-orders":"Goal"},
         "group": "Merch Orders"
     },
     "FD_merch-goal-orders_target": {
       "type": "number",
       "label": "MERCH ORDERS Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Merch Orders"
     },
 
@@ -614,20 +602,17 @@
     },
     "FD_merch-goal-total_enabled": {
         "type": "dropdown",
-        "label": "MERCH TOTAL Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "MERCH TOTAL Type",
+        "value": "off",
+        "options": {"off":"Disabled","merch-goal-total":"Goal"},
         "group": "Merch Total"
     },
     "FD_merch-goal-total_target": {
       "type": "number",
       "label": "MERCH TOTAL Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Merch Total"
     },
 
@@ -691,20 +676,17 @@
     },
     "FD_share-goal_enabled": {
         "type": "dropdown",
-        "label": "SHARE Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "SHARE Type",
+        "value": "off",
+        "options": {"off":"Off","share-goal":"Goal","share-session":"Session","share-week":"Week","share-month":"Month","share-total":"Total"},
         "group": "Shares"
     },
     "FD_share-goal_target": {
       "type": "number",
       "label": "SHARE Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Shares"
     },
 
@@ -768,20 +750,17 @@
     },
     "FD_stars-goal_enabled": {
         "type": "dropdown",
-        "label": "STARS Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "STARS Type",
+        "value": "off",
+        "options": {"off":"Off","stars-goal":"Goal","stars-session":"Session","stars-week":"Week","stars-month":"Month","stars-total":"Total"},
         "group": "Stars"
     },
     "FD_stars-goal_target": {
       "type": "number",
       "label": "STARS Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Stars"
     },
 
@@ -845,20 +824,17 @@
     },
     "FD_supporter-goal_enabled": {
         "type": "dropdown",
-        "label": "SUPPORTER Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "SUPPORTER Type",
+        "value": "off",
+        "options": {"off":"Off","supporter-goal":"Goal","supporter-session":"Session","supporter-week":"Week","supporter-month":"Month","supporter-total":"Total"},
         "group": "Supporters"
     },
     "FD_supporter-goal_target": {
       "type": "number",
       "label": "SUPPORTER Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Supporters"
     },
 
@@ -922,20 +898,17 @@
     },
     "FD_videolike-goal_enabled": {
         "type": "dropdown",
-        "label": "VIDEOLIKE Enabled",
-        "value": "yes",
-        "options": {
-          "yes": "Yes",
-          "no": "No"
-        },
+        "label": "VIDEOLIKE Type",
+        "value": "off",
+        "options": {"off":"Off","videolike-goal":"Goal","videolike-session":"Session","videolike-week":"Week","videolike-month":"Month","videolike-total":"Total"},
         "group": "Video Likes"
     },
     "FD_videolike-goal_target": {
       "type": "number",
       "label": "VIDEOLIKE Target Goal",
       "step": 1,
-      "value": 100,
-      "min": 10,
+      "value": 10,
+      "min": 1,
       "group": "Video Likes"
     },
 

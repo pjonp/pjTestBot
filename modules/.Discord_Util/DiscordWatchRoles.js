@@ -32,7 +32,7 @@ module.exports = {
     }).catch(error => console.error(error, '!!11Error cycling Discord "Watch Roles" status message ^^^ ....'));
     */
 
-    const getUserMinutes = await SEAPI.GetMinutesFromSE(),
+    const getUserMinutes = await SEAPI.GetMinutesFromSE(100),
       userObj = settings.hourTiers.map((i, index, tiers) => {
         return {
           tier: index,
