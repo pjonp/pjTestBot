@@ -308,7 +308,7 @@
         "type": "dropdown",
         "label": "TIP Type",
         "value": "off",
-        "options": {"off":"Off","tip-goal":"Goal","tip-session":"Session","tip-week":"Week","tip-month":"Month","tip-total":"Total"},
+        "options": {"off":"Off","tip-goal":"Goal","tip-session":"Session","tip-week":"Week","tip-month":"Month","tip-total":"Total","tip-count":"Count"},
         "group": "Tips"
     },
     "FD_tip-goal_target": {

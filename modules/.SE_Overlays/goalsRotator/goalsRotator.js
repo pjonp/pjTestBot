@@ -1,7 +1,7 @@
 /*
 RotatorS AKA Rotator-a-Saurus AKA Roar-A-Tator-Saurus AKA Goals-R-Saur-Us AKA Ruben's Rotating Thingy AKA
 
-AiO RotatoGoal 2.0.0 by pjonp
+AiO RotatoGoal 2.3.0 by pjonp
 
 inspired by RubenSaurus
 with help from JayniusGamingTV
@@ -23,7 +23,8 @@ i.e LOCALE: 'en-CA' for English Canada CURRECNY: 'CAD' for Canadian Dollar
 let allGoals = {}, //set empty goal object. KEYs: goal names; VALUES: progress, goal, label, currency (true/false)
   goalList = [], //KEYs for above allGoals Object to rotate through
   maxFontSize = 100,
-  vertBar = false;
+  vertBar = false,
+  tipCount = 0;
 
 //move to FIELDS
 let time = 10; //seconds
@@ -86,7 +87,8 @@ function platformCheck(data, fieldData) {
         let platformFilter = { //platform specific filter; i.e. only facebook has a 'stars' goal;
           Facebook: 'stars-goal',
           Twitch: 'cheer-goal',
-          Youtube: 'superchat-goal'
+          Youtube: 'superchat-goal',
+          Trovo: 'elixir-goal'
         },
         fieldDataPlatform = fieldData[`FD_platform`]; //get expected platform from field data.
         currentPlatform = Object.keys(platformFilter).filter(i => data[platformFilter[i]] )[0]; //Check each of the platformFilter goal against the goals that loaded into the data on widget load; and return the first element (platform or undefined)
@@ -115,10 +117,18 @@ function buildHTML(data, fieldData) {
         target: fieldData[`FD_${i}_target`] || 1000, //default 1000; get target goal amount from field data (use common FD names 'FD_tip-goal_target')
         label: fieldData[`FD_${i}_label`] || '', //default empty
         icon: getIcon(fieldData[`FD_${i}_icon`]),
-        currency: goalType.includes('tip'),
+        currency: goalType.includes('tip') && goalType !== 'tip-count',
         barColor1: fieldData[`FD_${i}_barColor1`],
         barColor2: fieldData[`FD_${i}_barColor2`],
       };
+
+/*DELETE THIS LINE
+      if(goalType === 'tip-count') {
+      	allGoals[goalType].currency = false;
+        allGoals[goalType].progress = tipCount;
+      };
+DELETE THIS LINE */
+
       goalList.push(goalType);
     };
   });
@@ -132,9 +142,18 @@ function buildHTML(data, fieldData) {
 window.addEventListener('onSessionUpdate', obj => {
   if (goalList.length === 0) return; //end if no goals to check. to-do: visual error
   let data = obj.detail.session;
+
   Object.keys(data).forEach(i => { //check session data for the change
     if (allGoals.hasOwnProperty(i)) { //filter info for 'goal' & see if it is in master object (enabled)
       goalAmount = data[i].hasOwnProperty('amount') ? data[i].amount : data[i].count
+
+/*DELETE THIS LINE
+      if(i === 'tip-count') {
+      	tipCount++;
+        goalAmount = tipCount;
+      };
+DELETE THIS LINE */
+
       if (allGoals[i].progress === goalAmount) return; //stop if not changed
       console.log("PROGRESS AMOUNT: ", goalAmount);
       allGoals[i].progress = goalAmount; //update local Object value
@@ -194,7 +213,12 @@ function buildBarHTML() {
 //set values from settings/progress
     a.innerText = goalAmountString; //set the amount to max goal to match size;
     //check if icon input is valid fontAweome or switch to text
+    let textFitIcon = true;
     if(allGoals[goal].icon.includes('fa-')) b.innerHTML = `<i class="${allGoals[goal].icon.replace(/<i class=\"/g, '').replace(/\">/g, '').replace(/<\/i>/g, '')}"></i>`
+    else if(allGoals[goal].icon.includes('https://static-cdn.jtvnw.net/emoticons/')) {
+      b.innerHTML = `<img style="height:var(--iconSize);" src="${allGoals[goal].icon}">`
+      textFitIcon = false;
+    }
     else b.innerText = allGoals[goal].icon;
     c.innerText = goalAmountString;
     d.innerText = allGoals[goal].label;
@@ -209,7 +233,7 @@ if(vertBar) {
 //
 //fit values using textFit CDN (imported in HTML)
     textFit(a, fontOptions);
-    textFit(b, fontOptions);
+    if(textFitIcon) textFit(b, fontOptions);
     textFit(c, fontOptions);
     textFit(d, fontOptions);
 //update goal progress after sizing to max

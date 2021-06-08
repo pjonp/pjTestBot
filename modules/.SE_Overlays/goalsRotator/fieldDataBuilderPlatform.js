@@ -1,12 +1,12 @@
 const fs = require('fs'),
   path = require("path");
 
-let platforms = ['Facebook','Twitch','Youtube'],
+let platforms = ['Facebook','Twitch','Youtube', 'Trovo'],
   goals = [
-    ["follower-goal", "Followers", "Facebook Twitch"],
+    ["follower-goal", "Followers", "Facebook Twitch Trovo"],
     ["tip-goal", "Tips"],
     ["cheer-goal", "Cheers", "Twitch"],
-    ["subscriber-goal", "Subscribers", "Twitch Youtube"],
+    ["subscriber-goal", "Subscribers", "Twitch Youtube Trovo"],
     ["merch-goal-items", "Merch Items"],
     ["merch-goal-orders", "Merch Orders"],
     ["merch-goal-total", "Merch Total"],
@@ -15,7 +15,8 @@ let platforms = ['Facebook','Twitch','Youtube'],
     ["supporter-goal", "Supporters","Facebook"],
     ["videolike-goal", "Video Likes", "Facebook"],
     ["sponsor-goal", "Sponsor","Youtube"],
-    ["superchat-goal", "Superchats", "Youtube"]
+    ["superchat-goal", "Superchats", "Youtube"],
+    ["elixir-goal", "Elixir", "Trovo"],
   ],
 fieldStringAll = `
 {
@@ -346,6 +347,11 @@ platforms.forEach(p => {
     };
   };
   console.log(`${JSON.stringify(optionsObj)}`);
+
+//TIP COUNT ADD IN
+      if(formatName === 'tip') optionsObj[`${formatName}-count`] = "Count";
+//
+
 
     formatName = formatName.replace('-', ' ').toUpperCase();
     fieldString += `

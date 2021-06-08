@@ -2,8 +2,8 @@
 {
   "FD_platform": {
     "type": "hidden",
-    "label": "AiO RotatoGoal for Facebook",
-    "value": "Facebook",
+    "label": "AiO RotatoGoal for Trovo",
+    "value": "Trovo",
     "group": "Main"
   },
   "FD_cardBgColor1": {
@@ -447,6 +447,80 @@
       "group": "Tips"
     },
 
+    "_FD_subscriber-goal_hidden": {
+      "type": "hidden",
+      "label": "SUBSCRIBER Options",
+      "group": "Subscribers"
+    },
+    "FD_subscriber-goal_enabled": {
+        "type": "dropdown",
+        "label": "SUBSCRIBER Type",
+        "value": "off",
+        "options": {"off":"Off","subscriber-goal":"Goal","subscriber-session":"Session","subscriber-week":"Week","subscriber-month":"Month","subscriber-total":"Total"},
+        "group": "Subscribers"
+    },
+    "FD_subscriber-goal_target": {
+      "type": "number",
+      "label": "SUBSCRIBER Target Goal",
+      "step": 1,
+      "value": 10,
+      "min": 1,
+      "group": "Subscribers"
+    },
+
+    "FD_subscriber-goal_icon": {
+        "type": "dropdown",
+        "label": "SUBSCRIBER Icon",
+        "value": "other",
+        "options": {
+          "none": "NONE",
+          "fab fa-twitch": "TWITCH",
+          "fab fa-youtube": "YOUTUBE",
+          "fab fa-facebook-f": "FACEBOOK",
+          "fas fa-crown": "CROWN",
+          "fas fa-chess-queen": "CHESS QUEEN",
+          "fas fa-donate": "DONATE",
+          "fas fa-coins": "COINS",
+          "fas fa-gem": "GEM SOLID",
+          "far fa-gem": "GEM",
+          "fas fa-tshirt": "TSHIRT",
+          "fas fa-puzzle-piece": "PUZZLE PIECE",
+          "fas fa-star": "STAR SOLID",
+          "far fa-star": "STAR",
+          "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+        },
+        "group": "Subscribers"
+    },
+    "_FD_subscriber-goal_hidden2": {
+      "type": "hidden",
+      "label": "Enter Icon Class Or Text",
+      "group": "Subscribers"
+    },
+    "FD_subscriber-goal_iconOther": {
+      "type": "text",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "value": "fas fa-code",
+      "group": "Subscribers"
+    },
+    "FD_subscriber-goal_label": {
+      "type": "text",
+      "label": "SUBSCRIBER Label",
+      "value": "SUBSCRIBER",
+      "group": "Subscribers"
+    },
+    "FD_subscriber-goal_barColor1": {
+      "type": "colorpicker",
+      "label": "SUBSCRIBER Bar Color 1",
+      "value": "rgba(0, 0, 0, 0.25)",
+      "group": "Subscribers"
+    },
+    "FD_subscriber-goal_barColor2": {
+      "type": "colorpicker",
+      "label": "SUBSCRIBER Bar Color 2",
+      "value": "rgba(0, 195, 255, 0.3)",
+      "group": "Subscribers"
+    },
+
     "_FD_merch-goal-items_hidden": {
       "type": "hidden",
       "label": "MERCH ITEMS Options",
@@ -669,30 +743,30 @@
       "group": "Merch Total"
     },
 
-    "_FD_share-goal_hidden": {
+    "_FD_elixir-goal_hidden": {
       "type": "hidden",
-      "label": "SHARE Options",
-      "group": "Shares"
+      "label": "ELIXIR Options",
+      "group": "Elixir"
     },
-    "FD_share-goal_enabled": {
+    "FD_elixir-goal_enabled": {
         "type": "dropdown",
-        "label": "SHARE Type",
+        "label": "ELIXIR Type",
         "value": "off",
-        "options": {"off":"Off","share-goal":"Goal","share-session":"Session","share-week":"Week","share-month":"Month","share-total":"Total"},
-        "group": "Shares"
+        "options": {"off":"Off","elixir-goal":"Goal","elixir-session":"Session","elixir-week":"Week","elixir-month":"Month","elixir-total":"Total"},
+        "group": "Elixir"
     },
-    "FD_share-goal_target": {
+    "FD_elixir-goal_target": {
       "type": "number",
-      "label": "SHARE Target Goal",
+      "label": "ELIXIR Target Goal",
       "step": 1,
       "value": 10,
       "min": 1,
-      "group": "Shares"
+      "group": "Elixir"
     },
 
-    "FD_share-goal_icon": {
+    "FD_elixir-goal_icon": {
         "type": "dropdown",
-        "label": "SHARE Icon",
+        "label": "ELIXIR Icon",
         "value": "other",
         "options": {
           "none": "NONE",
@@ -711,256 +785,34 @@
           "far fa-star": "STAR",
           "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
         },
-        "group": "Shares"
+        "group": "Elixir"
     },
-    "_FD_share-goal_hidden2": {
+    "_FD_elixir-goal_hidden2": {
       "type": "hidden",
       "label": "Enter Icon Class Or Text",
-      "group": "Shares"
+      "group": "Elixir"
     },
-    "FD_share-goal_iconOther": {
+    "FD_elixir-goal_iconOther": {
       "type": "text",
       "label": "Icons: fontawesome.com/icons?m=free",
       "value": "fas fa-code",
-      "group": "Shares"
+      "group": "Elixir"
     },
-    "FD_share-goal_label": {
+    "FD_elixir-goal_label": {
       "type": "text",
-      "label": "SHARE Label",
-      "value": "SHARE",
-      "group": "Shares"
+      "label": "ELIXIR Label",
+      "value": "ELIXIR",
+      "group": "Elixir"
     },
-    "FD_share-goal_barColor1": {
+    "FD_elixir-goal_barColor1": {
       "type": "colorpicker",
-      "label": "SHARE Bar Color 1",
+      "label": "ELIXIR Bar Color 1",
       "value": "rgba(0, 0, 0, 0.25)",
-      "group": "Shares"
+      "group": "Elixir"
     },
-    "FD_share-goal_barColor2": {
+    "FD_elixir-goal_barColor2": {
       "type": "colorpicker",
-      "label": "SHARE Bar Color 2",
+      "label": "ELIXIR Bar Color 2",
       "value": "rgba(0, 195, 255, 0.3)",
-      "group": "Shares"
-    },
-
-    "_FD_stars-goal_hidden": {
-      "type": "hidden",
-      "label": "STARS Options",
-      "group": "Stars"
-    },
-    "FD_stars-goal_enabled": {
-        "type": "dropdown",
-        "label": "STARS Type",
-        "value": "off",
-        "options": {"off":"Off","stars-goal":"Goal","stars-session":"Session","stars-week":"Week","stars-month":"Month","stars-total":"Total"},
-        "group": "Stars"
-    },
-    "FD_stars-goal_target": {
-      "type": "number",
-      "label": "STARS Target Goal",
-      "step": 1,
-      "value": 10,
-      "min": 1,
-      "group": "Stars"
-    },
-
-    "FD_stars-goal_icon": {
-        "type": "dropdown",
-        "label": "STARS Icon",
-        "value": "other",
-        "options": {
-          "none": "NONE",
-          "fab fa-twitch": "TWITCH",
-          "fab fa-youtube": "YOUTUBE",
-          "fab fa-facebook-f": "FACEBOOK",
-          "fas fa-crown": "CROWN",
-          "fas fa-chess-queen": "CHESS QUEEN",
-          "fas fa-donate": "DONATE",
-          "fas fa-coins": "COINS",
-          "fas fa-gem": "GEM SOLID",
-          "far fa-gem": "GEM",
-          "fas fa-tshirt": "TSHIRT",
-          "fas fa-puzzle-piece": "PUZZLE PIECE",
-          "fas fa-star": "STAR SOLID",
-          "far fa-star": "STAR",
-          "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
-        },
-        "group": "Stars"
-    },
-    "_FD_stars-goal_hidden2": {
-      "type": "hidden",
-      "label": "Enter Icon Class Or Text",
-      "group": "Stars"
-    },
-    "FD_stars-goal_iconOther": {
-      "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
-      "value": "fas fa-code",
-      "group": "Stars"
-    },
-    "FD_stars-goal_label": {
-      "type": "text",
-      "label": "STARS Label",
-      "value": "STARS",
-      "group": "Stars"
-    },
-    "FD_stars-goal_barColor1": {
-      "type": "colorpicker",
-      "label": "STARS Bar Color 1",
-      "value": "rgba(0, 0, 0, 0.25)",
-      "group": "Stars"
-    },
-    "FD_stars-goal_barColor2": {
-      "type": "colorpicker",
-      "label": "STARS Bar Color 2",
-      "value": "rgba(0, 195, 255, 0.3)",
-      "group": "Stars"
-    },
-
-    "_FD_supporter-goal_hidden": {
-      "type": "hidden",
-      "label": "SUPPORTER Options",
-      "group": "Supporters"
-    },
-    "FD_supporter-goal_enabled": {
-        "type": "dropdown",
-        "label": "SUPPORTER Type",
-        "value": "off",
-        "options": {"off":"Off","supporter-goal":"Goal","supporter-session":"Session","supporter-week":"Week","supporter-month":"Month","supporter-total":"Total"},
-        "group": "Supporters"
-    },
-    "FD_supporter-goal_target": {
-      "type": "number",
-      "label": "SUPPORTER Target Goal",
-      "step": 1,
-      "value": 10,
-      "min": 1,
-      "group": "Supporters"
-    },
-
-    "FD_supporter-goal_icon": {
-        "type": "dropdown",
-        "label": "SUPPORTER Icon",
-        "value": "other",
-        "options": {
-          "none": "NONE",
-          "fab fa-twitch": "TWITCH",
-          "fab fa-youtube": "YOUTUBE",
-          "fab fa-facebook-f": "FACEBOOK",
-          "fas fa-crown": "CROWN",
-          "fas fa-chess-queen": "CHESS QUEEN",
-          "fas fa-donate": "DONATE",
-          "fas fa-coins": "COINS",
-          "fas fa-gem": "GEM SOLID",
-          "far fa-gem": "GEM",
-          "fas fa-tshirt": "TSHIRT",
-          "fas fa-puzzle-piece": "PUZZLE PIECE",
-          "fas fa-star": "STAR SOLID",
-          "far fa-star": "STAR",
-          "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
-        },
-        "group": "Supporters"
-    },
-    "_FD_supporter-goal_hidden2": {
-      "type": "hidden",
-      "label": "Enter Icon Class Or Text",
-      "group": "Supporters"
-    },
-    "FD_supporter-goal_iconOther": {
-      "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
-      "value": "fas fa-code",
-      "group": "Supporters"
-    },
-    "FD_supporter-goal_label": {
-      "type": "text",
-      "label": "SUPPORTER Label",
-      "value": "SUPPORTER",
-      "group": "Supporters"
-    },
-    "FD_supporter-goal_barColor1": {
-      "type": "colorpicker",
-      "label": "SUPPORTER Bar Color 1",
-      "value": "rgba(0, 0, 0, 0.25)",
-      "group": "Supporters"
-    },
-    "FD_supporter-goal_barColor2": {
-      "type": "colorpicker",
-      "label": "SUPPORTER Bar Color 2",
-      "value": "rgba(0, 195, 255, 0.3)",
-      "group": "Supporters"
-    },
-
-    "_FD_videolike-goal_hidden": {
-      "type": "hidden",
-      "label": "VIDEOLIKE Options",
-      "group": "Video Likes"
-    },
-    "FD_videolike-goal_enabled": {
-        "type": "dropdown",
-        "label": "VIDEOLIKE Type",
-        "value": "off",
-        "options": {"off":"Off","videolike-goal":"Goal","videolike-session":"Session","videolike-week":"Week","videolike-month":"Month","videolike-total":"Total"},
-        "group": "Video Likes"
-    },
-    "FD_videolike-goal_target": {
-      "type": "number",
-      "label": "VIDEOLIKE Target Goal",
-      "step": 1,
-      "value": 10,
-      "min": 1,
-      "group": "Video Likes"
-    },
-
-    "FD_videolike-goal_icon": {
-        "type": "dropdown",
-        "label": "VIDEOLIKE Icon",
-        "value": "other",
-        "options": {
-          "none": "NONE",
-          "fab fa-twitch": "TWITCH",
-          "fab fa-youtube": "YOUTUBE",
-          "fab fa-facebook-f": "FACEBOOK",
-          "fas fa-crown": "CROWN",
-          "fas fa-chess-queen": "CHESS QUEEN",
-          "fas fa-donate": "DONATE",
-          "fas fa-coins": "COINS",
-          "fas fa-gem": "GEM SOLID",
-          "far fa-gem": "GEM",
-          "fas fa-tshirt": "TSHIRT",
-          "fas fa-puzzle-piece": "PUZZLE PIECE",
-          "fas fa-star": "STAR SOLID",
-          "far fa-star": "STAR",
-          "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
-        },
-        "group": "Video Likes"
-    },
-    "_FD_videolike-goal_hidden2": {
-      "type": "hidden",
-      "label": "Enter Icon Class Or Text",
-      "group": "Video Likes"
-    },
-    "FD_videolike-goal_iconOther": {
-      "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
-      "value": "fas fa-code",
-      "group": "Video Likes"
-    },
-    "FD_videolike-goal_label": {
-      "type": "text",
-      "label": "VIDEOLIKE Label",
-      "value": "VIDEOLIKE",
-      "group": "Video Likes"
-    },
-    "FD_videolike-goal_barColor1": {
-      "type": "colorpicker",
-      "label": "VIDEOLIKE Bar Color 1",
-      "value": "rgba(0, 0, 0, 0.25)",
-      "group": "Video Likes"
-    },
-    "FD_videolike-goal_barColor2": {
-      "type": "colorpicker",
-      "label": "VIDEOLIKE Bar Color 2",
-      "value": "rgba(0, 195, 255, 0.3)",
-      "group": "Video Likes"
+      "group": "Elixir"
     }}

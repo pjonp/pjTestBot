@@ -344,7 +344,7 @@ goals.map(i => {
     "label": "${formatName} Target Goal",
     "step": 1,
     "value": 100,
-    "min": 10,
+    "min": 1,
     "group": "${i[1]}"
   },
 
