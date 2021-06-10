@@ -405,9 +405,14 @@ platforms.forEach(p => {
       "label": "Enter Icon Class Or Text",
       "group": "${i[1]}"
     },
+    "_FD_${i[0]}_hidden3": {
+      "type": "hidden",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "group": "${i[1]}"
+    },
     "FD_${i[0]}_iconOther": {
       "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
+      "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
       "value": "fas fa-code",
       "group": "${i[1]}"
     },

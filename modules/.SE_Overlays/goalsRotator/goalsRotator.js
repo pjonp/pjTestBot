@@ -1,7 +1,7 @@
 /*
 RotatorS AKA Rotator-a-Saurus AKA Roar-A-Tator-Saurus AKA Goals-R-Saur-Us AKA Ruben's Rotating Thingy AKA
 
-AiO RotatoGoal 2.3.0 by pjonp
+AiO RotatoGoal 2.3.1 by pjonp
 
 inspired by RubenSaurus
 with help from JayniusGamingTV
@@ -215,7 +215,7 @@ function buildBarHTML() {
     //check if icon input is valid fontAweome or switch to text
     let textFitIcon = true;
     if(allGoals[goal].icon.includes('fa-')) b.innerHTML = `<i class="${allGoals[goal].icon.replace(/<i class=\"/g, '').replace(/\">/g, '').replace(/<\/i>/g, '')}"></i>`
-    else if(allGoals[goal].icon.includes('https://static-cdn.jtvnw.net/emoticons/')) {
+    else if(allGoals[goal].icon.includes('https://static-cdn.jtvnw.net/')) {
       b.innerHTML = `<img style="height:var(--iconSize);" src="${allGoals[goal].icon}">`
       textFitIcon = false;
     }

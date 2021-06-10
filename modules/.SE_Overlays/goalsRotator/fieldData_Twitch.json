@@ -348,9 +348,14 @@
       "label": "Enter Icon Class Or Text",
       "group": "Followers"
     },
+    "_FD_follower-goal_hidden3": {
+      "type": "hidden",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "group": "Followers"
+    },
     "FD_follower-goal_iconOther": {
       "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
+      "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
       "value": "fas fa-code",
       "group": "Followers"
     },
@@ -422,9 +427,14 @@
       "label": "Enter Icon Class Or Text",
       "group": "Tips"
     },
+    "_FD_tip-goal_hidden3": {
+      "type": "hidden",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "group": "Tips"
+    },
     "FD_tip-goal_iconOther": {
       "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
+      "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
       "value": "fas fa-code",
       "group": "Tips"
     },
@@ -496,9 +506,14 @@
       "label": "Enter Icon Class Or Text",
       "group": "Cheers"
     },
+    "_FD_cheer-goal_hidden3": {
+      "type": "hidden",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "group": "Cheers"
+    },
     "FD_cheer-goal_iconOther": {
       "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
+      "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
       "value": "fas fa-code",
       "group": "Cheers"
     },
@@ -570,9 +585,14 @@
       "label": "Enter Icon Class Or Text",
       "group": "Subscribers"
     },
+    "_FD_subscriber-goal_hidden3": {
+      "type": "hidden",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "group": "Subscribers"
+    },
     "FD_subscriber-goal_iconOther": {
       "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
+      "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
       "value": "fas fa-code",
       "group": "Subscribers"
     },
@@ -644,9 +664,14 @@
       "label": "Enter Icon Class Or Text",
       "group": "Merch Items"
     },
+    "_FD_merch-goal-items_hidden3": {
+      "type": "hidden",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "group": "Merch Items"
+    },
     "FD_merch-goal-items_iconOther": {
       "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
+      "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
       "value": "fas fa-code",
       "group": "Merch Items"
     },
@@ -718,9 +743,14 @@
       "label": "Enter Icon Class Or Text",
       "group": "Merch Orders"
     },
+    "_FD_merch-goal-orders_hidden3": {
+      "type": "hidden",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "group": "Merch Orders"
+    },
     "FD_merch-goal-orders_iconOther": {
       "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
+      "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
       "value": "fas fa-code",
       "group": "Merch Orders"
     },
@@ -792,9 +822,14 @@
       "label": "Enter Icon Class Or Text",
       "group": "Merch Total"
     },
+    "_FD_merch-goal-total_hidden3": {
+      "type": "hidden",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "group": "Merch Total"
+    },
     "FD_merch-goal-total_iconOther": {
       "type": "text",
-      "label": "Icons: fontawesome.com/icons?m=free",
+      "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
       "value": "fas fa-code",
       "group": "Merch Total"
     },
