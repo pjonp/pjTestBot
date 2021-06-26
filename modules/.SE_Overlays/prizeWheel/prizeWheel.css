@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family={{fontFamily}}&display=swap');
+* {
+margin: 0;
+padding: 0;
+}
+#errorText {
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  z-index: 5;
+}
+.errorText {
+  width: 100%;
+  height: 100px;
+  text-align: center;
+  font-size: 32px;
+  color: white;
+  background-color: red;
+  border-radius: 50px;
+  margin-top: 10px;
+}
+#container {
+  font-family: {{fontFamily}}, sans-serif;
+  opacity: 0;
+  position: absolute;
+  left: {wheelStartingPositionX}px;
+  top: {wheelStartingPositionY}px;
+}
+#canvas{
+ position: relative;
+ left: 0px;
+ top: 0px;
+}
+#video-center-piece video{
+  position: absolute;
+  width: {foregroundVideoSize}%;
+}
+#image-center-piece img{
+  position: absolute;
+  width: {foregroundImageSize}%;
+  border-radius: {foregroundImageRadius}%;
+}
+.show {
+    animation: fadein 1s forwards;
+}
+.hide {
+    animation: fadeout 1s forwards;
+}
+@keyframes fadein {
+    from {opacity: 0;left: 2000px}
+    to {opacity: 1;left: {wheelStartingPositionX}px}
+}
+@keyframes fadeout {
+    from {opacity: 1;left: {wheelStartingPositionX}px}
+    to {opacity: 0;left: 2000px}
+}
+#center-text{
+  color: {usernameColor};
+  font-size: {usernameFontSize}px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: {usernameOffset}px;
+  left: 0px;
+}
+#frame {
+    position: absolute;
+    mask-position: top left;
+  	-webkit-mask-position: top left;
+  	mask-repeat: no-repeat;
+  	-webkit-mask-repeat: no-repeat;
+  	mask-size: contain;
+  	-webkit-mask-size: contain;
+}
+#spin {
+    height: 100%;
+    width: 100%;
+  	background: linear-gradient(90deg, {{firstColor}} 0%, {{secondColor}} 50%);
+    animation:spin {{frameDuration}}s linear infinite;
+}
+@keyframes spin { 100% { -webkit-transform: rotate(360deg); transform:rotate(360deg); }}
