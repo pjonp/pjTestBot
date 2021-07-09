@@ -41,27 +41,22 @@ padding: 0;
   width: {foregroundImageSize}%;
   border-radius: {foregroundImageRadius}%;
 }
-.show {
-    animation: fadein 1s forwards;
-}
-.hide {
-    animation: fadeout 1s forwards;
-}
-@keyframes fadein {
-    from {opacity: 0;left: 2000px}
-    to {opacity: 1;left: {wheelStartingPositionX}px}
-}
-@keyframes fadeout {
-    from {opacity: 1;left: {wheelStartingPositionX}px}
-    to {opacity: 0;left: 2000px}
-}
-#center-text{
+#username-text{
   color: {usernameColor};
   font-size: {usernameFontSize}px;
   width: 100%;
   position: absolute;
   text-align: center;
   top: {usernameOffset}px;
+  left: 0px;
+}
+#wheelName-text{
+  color: {wheelNameColor};
+  font-size: {wheelNameFontSize}px;
+  width: 100%;
+  position: absolute;
+  text-align: center;
+  top: {wheelNameOffset}px;
   left: 0px;
 }
 #frame {

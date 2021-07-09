@@ -377,6 +377,34 @@
       "value": "rgba(0, 195, 255, 0.3)",
       "group": "Followers"
     },
+    "FD_follower-goal_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Followers"
+    },
+    "FD_follower-goal_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Followers"
+    },
+    "FD_follower-goal_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
+      "group": "Followers"
+    },
 
     "_FD_tip-goal_hidden": {
       "type": "hidden",
@@ -454,6 +482,34 @@
       "type": "colorpicker",
       "label": "TIP Bar Color 2",
       "value": "rgba(0, 195, 255, 0.3)",
+      "group": "Tips"
+    },
+    "FD_tip-goal_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Tips"
+    },
+    "FD_tip-goal_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Tips"
+    },
+    "FD_tip-goal_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
       "group": "Tips"
     },
 
@@ -535,6 +591,34 @@
       "value": "rgba(0, 195, 255, 0.3)",
       "group": "Merch Items"
     },
+    "FD_merch-goal-items_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Merch Items"
+    },
+    "FD_merch-goal-items_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Merch Items"
+    },
+    "FD_merch-goal-items_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
+      "group": "Merch Items"
+    },
 
     "_FD_merch-goal-orders_hidden": {
       "type": "hidden",
@@ -612,6 +696,34 @@
       "type": "colorpicker",
       "label": "MERCH ORDERS Bar Color 2",
       "value": "rgba(0, 195, 255, 0.3)",
+      "group": "Merch Orders"
+    },
+    "FD_merch-goal-orders_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Merch Orders"
+    },
+    "FD_merch-goal-orders_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Merch Orders"
+    },
+    "FD_merch-goal-orders_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
       "group": "Merch Orders"
     },
 
@@ -693,6 +805,34 @@
       "value": "rgba(0, 195, 255, 0.3)",
       "group": "Merch Total"
     },
+    "FD_merch-goal-total_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Merch Total"
+    },
+    "FD_merch-goal-total_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Merch Total"
+    },
+    "FD_merch-goal-total_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
+      "group": "Merch Total"
+    },
 
     "_FD_share-goal_hidden": {
       "type": "hidden",
@@ -770,6 +910,34 @@
       "type": "colorpicker",
       "label": "SHARE Bar Color 2",
       "value": "rgba(0, 195, 255, 0.3)",
+      "group": "Shares"
+    },
+    "FD_share-goal_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Shares"
+    },
+    "FD_share-goal_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Shares"
+    },
+    "FD_share-goal_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
       "group": "Shares"
     },
 
@@ -851,6 +1019,34 @@
       "value": "rgba(0, 195, 255, 0.3)",
       "group": "Stars"
     },
+    "FD_stars-goal_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Stars"
+    },
+    "FD_stars-goal_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Stars"
+    },
+    "FD_stars-goal_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
+      "group": "Stars"
+    },
 
     "_FD_supporter-goal_hidden": {
       "type": "hidden",
@@ -930,6 +1126,34 @@
       "value": "rgba(0, 195, 255, 0.3)",
       "group": "Supporters"
     },
+    "FD_supporter-goal_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Supporters"
+    },
+    "FD_supporter-goal_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Supporters"
+    },
+    "FD_supporter-goal_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
+      "group": "Supporters"
+    },
 
     "_FD_videolike-goal_hidden": {
       "type": "hidden",
@@ -1007,5 +1231,33 @@
       "type": "colorpicker",
       "label": "VIDEOLIKE Bar Color 2",
       "value": "rgba(0, 195, 255, 0.3)",
+      "group": "Video Likes"
+    },
+    "FD_videolike-goal_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Video Likes"
+    },
+    "FD_videolike-goal_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Video Likes"
+    },
+    "FD_videolike-goal_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
       "group": "Video Likes"
     }}

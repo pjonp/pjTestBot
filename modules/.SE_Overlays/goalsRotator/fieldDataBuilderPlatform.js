@@ -433,6 +433,34 @@ platforms.forEach(p => {
       "label": "${formatName} Bar Color 2",
       "value": "rgba(0, 195, 255, 0.3)",
       "group": "${i[1]}"
+    },
+    "FD_${i[0]}_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "${i[1]}"
+    },
+    "FD_${i[0]}_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "${i[1]}"
+    },
+    "FD_${i[0]}_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
+      "group": "${i[1]}"
     },`
 
   } else return;

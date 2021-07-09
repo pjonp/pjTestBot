@@ -1,7 +1,7 @@
 /*
 RotatorS AKA Rotator-a-Saurus AKA Roar-A-Tator-Saurus AKA Goals-R-Saur-Us AKA Ruben's Rotating Thingy AKA
 
-AiO RotatoGoal 2.3.1 by pjonp
+AiO RotatoGoal 3.0.0 by pjonp
 
 inspired by RubenSaurus
 with help from JayniusGamingTV
@@ -120,6 +120,9 @@ function buildHTML(data, fieldData) {
         currency: goalType.includes('tip') && goalType !== 'tip-count',
         barColor1: fieldData[`FD_${i}_barColor1`],
         barColor2: fieldData[`FD_${i}_barColor2`],
+        neverEndingGoal: fieldData[`FD_${i}_neverEndingGoal`] === 'yes',
+        neverEndingGoalAdder: fieldData[`FD_${i}_neverEndingGoalAdder`] || 25,
+        neverEndingGoalLimit: fieldData[`FD_${i}_neverEndingGoalLimit`] || 90
       };
 
 /*DELETE THIS LINE
@@ -158,9 +161,13 @@ DELETE THIS LINE */
       console.log("PROGRESS AMOUNT: ", goalAmount);
       allGoals[i].progress = goalAmount; //update local Object value
       let barTarget = document.getElementById(`${i}_bar`);
+
+  if(allGoals[i].neverEndingGoal && allGoals[i].progress/allGoals[i].target*100 > allGoals[i].neverEndingGoalLimit) allGoals[i].target = allGoals[i].progress * (1 + allGoals[i].neverEndingGoalAdder/100)
+
       barTarget.style.width = `${(allGoals[i].progress/allGoals[i].target)*100}%`;
       setTimeout( () => {
         document.getElementById(`${i}_amount`).querySelector('.textFitted').innerText = allGoals[i].currency ? formatCurrency(allGoals[i].progress) : allGoals[i].progress;
+        document.getElementById(`${i}_target`).querySelector('.textFitted').innerText = allGoals[i].currency ? formatCurrency(allGoals[i].target) : allGoals[i].target;
       },1000)
     };
   });
@@ -183,6 +190,8 @@ function buildBarHTML() {
   Object.keys(allGoals).forEach((goal, index) => {
 //make a new DOM node
     const goalContainer = document.createElement('div');
+//3.0 'never ending goal' add on
+if(allGoals[goal].neverEndingGoal && allGoals[goal].progress/allGoals[goal].target*100 > allGoals[goal].neverEndingGoalLimit) allGoals[goal].target = allGoals[goal].progress * (1 + allGoals[goal].neverEndingGoalAdder/100);
 //copy-pasta HTML code for each bar
     let barStyle = `
     width: ${(allGoals[goal].progress/allGoals[goal].target)*100}%;
