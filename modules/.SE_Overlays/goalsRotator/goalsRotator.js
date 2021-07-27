@@ -9,7 +9,7 @@ with help from JayniusGamingTV
 The MIT License (MIT)
 Copyright (c) 2021 pjonp
 */
-const currencySetting = ['{{FD_currencyLocale}}', 'Set_OnWidgetLoad', {{FD_currencyDecimals}}]; //example: ['en-US', 'USD', decimals] / ['de-DE', 'EUR', 2] / ['ja-JP', 'JPY', 2]
+const currencySetting = ['{{FD_currencyLocale}}', 'Set_OnWidgetLoad', `{{FD_currencyDecimals}}`]; //example: ['en-US', 'USD', decimals] / ['de-DE', 'EUR', 2] / ['ja-JP', 'JPY', 2]
 
 /*
 ['LOCALE', 'CURRECNYCODE', 'DECIMALS TO SHOW']
@@ -41,7 +41,7 @@ const card = document.getElementById('card'),
 
 //goalIndex[0] & [1] are prebuilt by buildBarHTML();
 function flip(goalIndex = 2, side = 1) {
-//if there is only 1 or 2 sides; there is no need to move things around... just flip.
+  //if there is only 1 or 2 sides; there is no need to move things around... just flip.
   if (goalList.length < 2) return
   else if (goalList.length > 2) {
 
@@ -74,29 +74,29 @@ window.addEventListener('onWidgetLoad', obj => {
   let data = obj.detail.session.data,
     fieldData = obj.detail.fieldData;
 
-    currencySetting[1] = obj.detail.currency.code || 'USD'; //set currency code
-    time = fieldData[`FD_showTime`] || 30;
-    maxFontSize = fieldData[`FD_maxFontSize`] || 100;
-    vertBar = fieldData[`FD_vertBar`] === 'yes';
+  currencySetting[1] = obj.detail.currency.code || 'USD'; //set currency code
+  time = fieldData[`FD_showTime`] || 30;
+  maxFontSize = fieldData[`FD_maxFontSize`] || 100;
+  vertBar = fieldData[`FD_vertBar`] === 'yes';
 
-    platformCheck(data,fieldData).then( () => buildHTML(data, fieldData)).catch( (e) => visualError(e));
+  platformCheck(data, fieldData).then(() => buildHTML(data, fieldData)).catch((e) => visualError(e));
 });
 
 function platformCheck(data, fieldData) {
-    return new Promise((resolve,reject) => {
-        let platformFilter = { //platform specific filter; i.e. only facebook has a 'stars' goal;
-          Facebook: 'stars-goal',
-          Twitch: 'cheer-goal',
-          Youtube: 'superchat-goal',
-          Trovo: 'elixir-goal'
-        },
-        fieldDataPlatform = fieldData[`FD_platform`]; //get expected platform from field data.
-        currentPlatform = Object.keys(platformFilter).filter(i => data[platformFilter[i]] )[0]; //Check each of the platformFilter goal against the goals that loaded into the data on widget load; and return the first element (platform or undefined)
+  return new Promise((resolve, reject) => {
+    let platformFilter = { //platform specific filter; i.e. only facebook has a 'stars' goal;
+        Facebook: 'stars-goal',
+        Twitch: 'cheer-goal',
+        Youtube: 'superchat-goal',
+        Trovo: 'elixir-goal'
+      },
+      fieldDataPlatform = fieldData[`FD_platform`]; //get expected platform from field data.
+    currentPlatform = Object.keys(platformFilter).filter(i => data[platformFilter[i]])[0]; //Check each of the platformFilter goal against the goals that loaded into the data on widget load; and return the first element (platform or undefined)
 
-        if(!fieldDataPlatform) reject('No Platform Set In Field Data. See Docs.') //error if no platform set in field data
-        else if(currentPlatform && fieldDataPlatform === currentPlatform) resolve() //if match build the widget
-        else reject(`The field data settings are for ${fieldDataPlatform} and you are logged into a ${currentPlatform} account`) //error if mismatch
-    });
+    if (!fieldDataPlatform) reject('No Platform Set In Field Data. See Docs.') //error if no platform set in field data
+    else if (currentPlatform && fieldDataPlatform === currentPlatform) resolve() //if match build the widget
+    else reject(`The field data settings are for ${fieldDataPlatform} and you are logged into a ${currentPlatform} account`) //error if mismatch
+  });
 };
 
 function buildHTML(data, fieldData) {
@@ -107,13 +107,24 @@ function buildHTML(data, fieldData) {
       let goalType = fieldData[`FD_${i}_enabled`]; //Redefine "GOAL" type to option in GUI
 
       const getIcon = selected => {
-        if(selected === 'none') return ''
-        else if(selected === 'other') return fieldData[`FD_${i}_iconOther`] || ''
+        if (selected === 'none') return ''
+        else if (selected === 'other') return fieldData[`FD_${i}_iconOther`] || ''
         else return selected
       };
 
+      if (!goalType) return;
+
+      let progress;
+      try {
+        progress = data[goalType].hasOwnProperty('amount') ? data[goalType].amount : data[goalType].count; //progress on load
+        console.log(`${goalType} Loaded!`);
+      } catch {
+        console.log(`Error loading data for ${goalType}, set to: NaN`);
+        progress = 'NaN';
+      };
+
       allGoals[goalType] = { //build goal object with key name of goal i.e. 'tip-goal'
-        progress: data[goalType].hasOwnProperty('amount') ? data[goalType].amount : data[goalType].count, //progress on load
+        progress: progress, //progress on load
         target: fieldData[`FD_${i}_target`] || 1000, //default 1000; get target goal amount from field data (use common FD names 'FD_tip-goal_target')
         label: fieldData[`FD_${i}_label`] || '', //default empty
         icon: getIcon(fieldData[`FD_${i}_icon`]),
@@ -125,12 +136,12 @@ function buildHTML(data, fieldData) {
         neverEndingGoalLimit: fieldData[`FD_${i}_neverEndingGoalLimit`] || 90
       };
 
-/*DELETE THIS LINE
-      if(goalType === 'tip-count') {
-      	allGoals[goalType].currency = false;
-        allGoals[goalType].progress = tipCount;
-      };
-DELETE THIS LINE */
+      /*DELETE THIS LINE
+            if(goalType === 'tip-count') {
+            	allGoals[goalType].currency = false;
+              allGoals[goalType].progress = tipCount;
+            };
+      DELETE THIS LINE */
 
       goalList.push(goalType);
     };
@@ -150,25 +161,25 @@ window.addEventListener('onSessionUpdate', obj => {
     if (allGoals.hasOwnProperty(i)) { //filter info for 'goal' & see if it is in master object (enabled)
       goalAmount = data[i].hasOwnProperty('amount') ? data[i].amount : data[i].count
 
-/*DELETE THIS LINE
-      if(i === 'tip-count') {
-      	tipCount++;
-        goalAmount = tipCount;
-      };
-DELETE THIS LINE */
+      /*DELETE THIS LINE
+            if(i === 'tip-count') {
+            	tipCount++;
+              goalAmount = tipCount;
+            };
+      DELETE THIS LINE */
 
       if (allGoals[i].progress === goalAmount) return; //stop if not changed
       console.log("PROGRESS AMOUNT: ", goalAmount);
       allGoals[i].progress = goalAmount; //update local Object value
       let barTarget = document.getElementById(`${i}_bar`);
 
-  if(allGoals[i].neverEndingGoal && allGoals[i].progress/allGoals[i].target*100 > allGoals[i].neverEndingGoalLimit) allGoals[i].target = allGoals[i].progress * (1 + allGoals[i].neverEndingGoalAdder/100)
+      if (allGoals[i].neverEndingGoal && allGoals[i].progress / allGoals[i].target * 100 > allGoals[i].neverEndingGoalLimit) allGoals[i].target = allGoals[i].progress * (1 + allGoals[i].neverEndingGoalAdder / 100)
 
       barTarget.style.width = `${(allGoals[i].progress/allGoals[i].target)*100}%`;
-      setTimeout( () => {
+      setTimeout(() => {
         document.getElementById(`${i}_amount`).querySelector('.textFitted').innerText = allGoals[i].currency ? formatCurrency(allGoals[i].progress) : allGoals[i].progress;
         document.getElementById(`${i}_target`).querySelector('.textFitted').innerText = allGoals[i].currency ? formatCurrency(allGoals[i].target) : allGoals[i].target;
-      },1000)
+      }, 1000)
     };
   });
 });
@@ -183,75 +194,77 @@ const formatCurrency = num => new Intl.NumberFormat(currencySetting[0], {
 
 //build the HTML (called onLoad to build ALL the bars)
 function buildBarHTML() {
-//where to hide the bars (if not on front or back... hide it)
+  //where to hide the bars (if not on front or back... hide it)
   let hiddenContainer = document.getElementById('hiddenBars'),
-     fontOptions = {minFontSize:10, maxFontSize: maxFontSize};
-//create each bar HTML based on the options. Only create the bars needed
+    fontOptions = {
+      minFontSize: 10,
+      maxFontSize: maxFontSize
+    };
+  //create each bar HTML based on the options. Only create the bars needed
   Object.keys(allGoals).forEach((goal, index) => {
-//make a new DOM node
+    //make a new DOM node
     const goalContainer = document.createElement('div');
-//3.0 'never ending goal' add on
-if(allGoals[goal].neverEndingGoal && allGoals[goal].progress/allGoals[goal].target*100 > allGoals[goal].neverEndingGoalLimit) allGoals[goal].target = allGoals[goal].progress * (1 + allGoals[goal].neverEndingGoalAdder/100);
-//copy-pasta HTML code for each bar
+    //3.0 'never ending goal' add on
+    if (allGoals[goal].neverEndingGoal && allGoals[goal].progress / allGoals[goal].target * 100 > allGoals[goal].neverEndingGoalLimit) allGoals[goal].target = allGoals[goal].progress * (1 + allGoals[goal].neverEndingGoalAdder / 100);
+    //copy-pasta HTML code for each bar
     let barStyle = `
     width: ${(allGoals[goal].progress/allGoals[goal].target)*100}%;
     background: linear-gradient(90deg, ${allGoals[goal].barColor1}, ${allGoals[goal].barColor2});
     background-size: 400% 400%;
     animation: barBgShift var(--glowTime) ease-out infinite;
     `,
-    barHTML = `
+      barHTML = `
       <div id='${goal}_bar' class='bar' style='${barStyle}'></div>
       <div id='${goal}_amount' class='content contentLeft'></div>
       <div id='${goal}_icon' class='content contentCenter'></div>
       <div id='${goal}_target' class='content contentRight'></div>
       <div id='${goal}_text' class='content goalText'></div>
 `;
-//set basic HTML/CSS values, id & class
+    //set basic HTML/CSS values, id & class
     goalContainer.setAttribute('id', `${goal}`);
     goalContainer.classList.add('goalContainer');
     goalContainer.innerHTML = barHTML;
-//add to DOM
+    //add to DOM
     document.getElementById(`main`).appendChild(goalContainer);
-//get target locations
+    //get target locations
     let a = document.getElementById(`${goal}_amount`),
       b = document.getElementById(`${goal}_icon`),
       c = document.getElementById(`${goal}_target`),
       d = document.getElementById(`${goal}_text`),
       //check if value should be a currency type
       goalAmountString = `${allGoals[goal].currency ? formatCurrency(allGoals[goal].target) : allGoals[goal].target}`;
-//set values from settings/progress
+    //set values from settings/progress
     a.innerText = goalAmountString; //set the amount to max goal to match size;
     //check if icon input is valid fontAweome or switch to text
     let textFitIcon = true;
-    if(allGoals[goal].icon.includes('fa-')) b.innerHTML = `<i class="${allGoals[goal].icon.replace(/<i class=\"/g, '').replace(/\">/g, '').replace(/<\/i>/g, '')}"></i>`
-    else if(allGoals[goal].icon.includes('https://static-cdn.jtvnw.net/')) {
+    if (allGoals[goal].icon.includes('fa-')) b.innerHTML = `<i class="${allGoals[goal].icon.replace(/<i class=\"/g, '').replace(/\">/g, '').replace(/<\/i>/g, '')}"></i>`
+    else if (allGoals[goal].icon.includes('https://static-cdn.jtvnw.net/')) {
       b.innerHTML = `<img style="height:var(--iconSize);" src="${allGoals[goal].icon}">`
       textFitIcon = false;
-    }
-    else b.innerText = allGoals[goal].icon;
+    } else b.innerText = allGoals[goal].icon;
     c.innerText = goalAmountString;
     d.innerText = allGoals[goal].label;
-//rotate stuff?
-if(vertBar) {
-  const main = document.getElementById('main')
-  a.classList.add('rot90');
-  b.classList.add('rot90');
-  c.classList.add('rot90');
-  main.classList.add('rot270');
-};
-//
-//fit values using textFit CDN (imported in HTML)
+    //rotate stuff?
+    if (vertBar) {
+      const main = document.getElementById('main')
+      a.classList.add('rot90');
+      b.classList.add('rot90');
+      c.classList.add('rot90');
+      main.classList.add('rot270');
+    };
+    //
+    //fit values using textFit CDN (imported in HTML)
     textFit(a, fontOptions);
-    if(textFitIcon) textFit(b, fontOptions);
+    if (textFitIcon) textFit(b, fontOptions);
     textFit(c, fontOptions);
     textFit(d, fontOptions);
-//update goal progress after sizing to max
+    //update goal progress after sizing to max
     a.querySelector('.textFitted').innerText = `${allGoals[goal].currency ? formatCurrency(allGoals[goal].progress) : allGoals[goal].progress}`;
-//move into position; front of card, back or in holding area
+    //move into position; front of card, back or in holding area
     if (index == 0) document.getElementById(`${sides[0]}`).appendChild(goalContainer);
     else if (index == 1 && goalList.length === 2) document.getElementById(`${sides[1]}`).appendChild(goalContainer);
     else hiddenContainer.appendChild(goalContainer);
   });
-//start the rotating
+  //start the rotating
   flip();
 };

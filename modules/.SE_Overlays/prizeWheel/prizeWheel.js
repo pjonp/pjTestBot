@@ -1,6 +1,7 @@
 console.log('LOAD');
 //Hidden Settings. These Are Fixed and will never change; (constant variables)
-const WheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call commands
+const LoadDelay = 1.5; //seconds to auto check image & video positioning; adjust as needed if miage or video are randomly inserted
+  WheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call commands
   tickSoundVolume = 0.5, //tick sound volume
   spinDelay = 1.5, //delay for wheel to start when off screen (sec)
   hideWheelAfterSpin = true, //hide the wheel when done spinning; default: true
@@ -20,9 +21,10 @@ let theWheel, wheelSpinning = false,
   wheelOnScreen = false,
   wheelAngle = 0,
   randomSpins, randomTime, fieldData, jebaitedAPI, platform, streamerUserId, waitingWheel, changeCenterImage = false,
-  centerImages = [];
+  onLoadPrizeList, segAudio;
+const MainContainer = document.getElementById('container');
 //MASTER WHEEL LIST; BUILT ON WIDGET LOAD
-let prizeWheelSegments = [];
+let defaultPrizeWheelSegments = [];
 //Widget functions
 const Widget = {
   wait: (ms) => new Promise(r => setTimeout(r, ms)),
@@ -58,22 +60,19 @@ const Widget = {
 //Test Button
 function onWidgetButton(data) {
   if (data.field === 'testButton') {
-    showWheel();
     startSpin({
       user: '💚 pjonp 🚀',
-      prizeList: prizeWheelSegments,
+      prizeList: defaultPrizeWheelSegments,
       isTest: true
-    }).then((i) => console.log('RESULT ', i));
+    }).then((i) => console.log('RESULT: ', i));
   };
 };
-//Broadcaster Commands
-//let fieldData.newWheelCmd = '!newwheel'; //hidden hard coded command
-//
+
 function onMessage(chatMessage) {
   //refactorage:
   let hasPerm = false,
     chatArgs = [],
-    spinCommand, showWheelCmd, hideWheelCmd, newWheelCmd;
+    spinCommand, showWheelCmd, hideWheelCmd;
   //
   if (platform === 'twitch') {
     chatArgs = chatMessage.getWordList();
@@ -81,29 +80,37 @@ function onMessage(chatMessage) {
     if (chatMessage.isCommand(fieldData.spinCommand)) spinCommand = true;
     else if (chatMessage.isCommand(fieldData.wheelShowCommand)) showWheelCmd = true;
     else if (chatMessage.isCommand(fieldData.wheelHideCommand)) hideWheelCmd = true;
-    else if (chatMessage.isCommand(fieldData.newWheelCmd)) newWheelCmd = true;
     else return;
   } else if (platform === 'trovo') {
+//"StreamElements" -> null
+    if (chatMessage.data.nick_name === "StreamElements" || chatMessage.data.roles.some(i => i === 'streamer') || chatMessage.data.nick_name === WheelBot) hasPerm = true;
+
+    //TROVO CATCH
+    try {
+      let trovoCatch = chatMessage.data.content_data.user_time;
+    } catch {
+      return;
+      //testing
+      //if(!hasPerm) return;
+    };
+    //TROVO CATCH
+
     chatArgs = chatMessage.data.content.split(' ');
-    if (chatMessage.data.roles.some(i => i === 'streamer') || chatMessage.data.nick_name === WheelBot) hasPerm = true;
     if (chatArgs[0] === fieldData.spinCommand) spinCommand = true;
     else if (chatArgs[0] === fieldData.wheelShowCommand) showWheelCmd = true;
     else if (chatArgs[0] === fieldData.wheelHideCommand) hideWheelCmd = true;
-    else if (chatArgs[0] === fieldData.newWheelCmd) newWheelCmd = true;
     else return;
   };
 
   if (hasPerm) {
     if (spinCommand) {
       const user = chatArgs.length > 1 ? chatArgs[1].replace('@', '') : '';
-      //  const user  = (words.length > 1 && Utils.isString(words[1])) ? words[1].replace('@', '') : '';
       startSpin({
         user: user,
-        prizeList: prizeWheelSegments
+        prizeList: defaultPrizeWheelSegments
       }).then((i) => console.log('RESULT ', i));
     } else if (showWheelCmd) showWheel();
-    else if (hideWheelCmd) hideWheel(true);
-    else if (newWheelCmd) buildPrizeList();
+    else if (hideWheelCmd) hideWheel();
   };
 };
 /*
@@ -111,7 +118,7 @@ ADD OTHER EVENTS HERE
 TRIGGER A SPIN WITH:
     startSpin({
       user: `USERNAME`,
-      prizeList: prizeWheelSegments, //PRIZE LIST OBJECT
+      prizeList: defaultPrizeWheelSegments, //PRIZE LIST OBJECT
       isTest: false //IS IT A TEST? THIS WILL DISABLE POINTS ADDING FOR EMULATIONS IF SET
     });
 */
@@ -131,7 +138,7 @@ function onSubBombComplete(data, receivers) {
     //start spin for the user that gifted the subs using the default prize list.
     startSpin({
       user: data.name,
-      prizeList: prizeWheelSegments, //PRIZE LIST OBJECT
+      prizeList: defaultPrizeWheelSegments, //PRIZE LIST OBJECT
       isTest: data.isTest //CHECK IF A TEST ALERT; WILL NOT GIVE POINTS IF SO
     }).then(result => {
       //if the result is has addPoints enabled
@@ -152,13 +159,15 @@ function onSubBombComplete(data, receivers) {
   };
 };
 /* EXAMPLE FOLLOWER SPIN */
+/*
 function onFollow(data) {
   startSpin({
     user: data.name,
-    prizeList: prizeWheelSegments,
+    prizeList: secretPrizeList,
     isTest: data.isTest
   });
 };
+*/
 
 
 function onWidgetLoad(obj) {
@@ -170,7 +179,7 @@ function onWidgetLoad(obj) {
 
   fieldData = obj.detail.fieldData;
   //set true/false dropdowns
-  ['sayToChat', 'showWheelOnLoad', 'playTickSound'].forEach(i => fieldData[i] = fieldData[i] === 'yes');
+  ['sayToChat', 'showWheelOnLoad', 'playTickSound', 'movingWheelSegImages', 'reverseSegments'].forEach(i => fieldData[i] = fieldData[i] === 'yes');
   //set audio
   if (fieldData.backgroundSound) fieldData.backgroundSound = new Audio(fieldData.backgroundSound);
 
@@ -184,15 +193,14 @@ function onWidgetLoad(obj) {
       Widget.displayError('A jebaited option is turned on but the token is not correct');
     } else {
       jebaitedAPI = new Jebaited(fieldData['jebaitedAPIToken']);
+      //small wait to prevent spamming jebaited API calls when adjusting settings
       if (fieldData.sayToChat) Widget.wait(obj.detail.overlay.isEditorMode ? 2000 : 0).then(Widget.verifyBotMsg()).catch(e => console.log('ummm... verify error?: ', e));
       if (fieldData.addPoints) Widget.wait(obj.detail.overlay.isEditorMode ? 2500 : 500).then(Widget.verifyAddPoints()).catch(e => console.log('ummm... verify error?: ', e));
     };
   };
   //Check background sound, and set volume
   if (!fieldData.backgroundSound) fieldData.backgroundSound = false; //Prevent audio call with no source;
-  else fieldData.backgroundSound.volume = fieldData.backgroundSoundVolume;
-  //show on screen?
-  if (fieldData.showWheelOnLoad) showWheel();
+  else fieldData.backgroundSound.volume = fieldData.backgroundSoundVolume / 100;
   //Set video/image position
   let updateCanvas = () => {
     let canvas = $("#canvas");
@@ -218,10 +226,17 @@ function onWidgetLoad(obj) {
       $("#image-center-piece img").css('left', `${(canvas.width() - $("#image-center-piece img").width())/2 + imageOffsetX}px`);
       $("#image-center-piece img").css('top', `${(canvas.height() - $("#image-center-piece img").height())/2 + imageOffsetY}px`);
     };
+
+    MainContainer.style.opacity = 1;
+
+    if (fieldData.showWheelOnLoad) showWheel();
+    else {
+      MainContainer.style.display = 'none';
+      document.getElementById('wheelCenterImage').src = '';
+      document.getElementById('wheelCenterVideo').src = '';
+    };
   };
-  //set video and image positions on DOM load; then update again in case code beats browser
-  $(() => updateCanvas()); //DOM ready
-  setTimeout(() => updateCanvas(), 10000); //force update after loaded for 10 seconds; fixes position error.
+  setTimeout(() => updateCanvas(), LoadDelay * 1000); //delay load; fixes position error.
   //"Animated gradient webcam frame" by Kagrayz
   if (fieldData.mask && fieldData.mask !== 'none') buildGradient();
   else $("#frame").html('');
@@ -230,7 +245,7 @@ function onWidgetLoad(obj) {
 
 function buildPrizeList() {
   //clear prizeList
-  prizeWheelSegments = [];
+  defaultPrizeWheelSegments = [];
   //Build Add-on FD objects (wheel segments)
   for (let i = 1; i <= 51; i++) { //get segment info
     if (!fieldData[`segment${i}_wheelText`]) continue; //skip empty segments
@@ -238,12 +253,12 @@ function buildPrizeList() {
     //SET COLORS
     if (styleMatchTarget > 0) { //try to match the settings from other segment if set
       try {
-        let targetSegment = prizeWheelSegments[styleMatchTarget - 1];
+        let targetSegment = defaultPrizeWheelSegments[styleMatchTarget - 1];
         bgColor = targetSegment.segmentBgColor;
         fontColor = targetSegment.fontColor;
       } catch {
         styleMatchTarget = 0;
-        console.error('Segment Target Does Not Exist');
+        console.error(`Segment Target Doesn't Exist`);
         Widget.displayError(`Target for Segment ${i} does not exist and has been set to a random color.`);
       };
     };
@@ -261,8 +276,14 @@ function buildPrizeList() {
       Widget.displayError(`Loyality Points for Trovo are not yet supported. Setting Disabled.`);
     };
     fieldData[`segment${i}_wheelText`] = fieldData[`segment${i}_wheelText`].replace(/\\n/g, '\n'); // 'de-escape the \ for multi-line' :) thanks Reboot0
+    //center images; first check if a default image is include. Required for canvas building!
+    if (!fieldData.foregroundImage) {
+      //if no default image AND user tried to use a custom image; show an error.
+      if (fieldData[`segment${i}_bgImage`]) Widget.displayError(`Custom Images For Segments Requires A Default Image In The Visual Settings Tab`);
+      changeCenterImage = false;
+    } else if (fieldData[`segment${i}_bgImage`]) changeCenterImage = true;
     //***** WHEEL OBJECT !!!!
-    prizeWheelSegments.push({ //build wheel object
+    defaultPrizeWheelSegments.push({ //build wheel object
       text: fieldData[`segment${i}_wheelText`],
       res: fieldData[`segment${i}_resText`],
       size: fieldData[`segment${i}_size`],
@@ -272,35 +293,42 @@ function buildPrizeList() {
       fontColor: fontColor,
       fontFamily: fieldData[`segment${i}_fontFamily`] || fieldData.fontFamily, //not used; all segments have same font
       fontSize: fieldData[`segment${i}_fontSize`] || fieldData.fontSize, //not used; all segments have same font size
+      bgImage: fieldData[`segment${i}_bgImage`] || fieldData.foregroundImage,
+      segSound: fieldData[`segment${i}_segSound`],
+      segSoundVolume: fieldData[`segment${i}_segSoundVolume`] / 100,
+      maxAmount: fieldData[`segment${i}_maxAmount`] || 9999,
     });
-    //build center images; first check if a default image is include. Required for canvas building!
-    if (!fieldData.foregroundImage) {
-      //if no default image AND user tried to use a custom image; show an error.
-      if (fieldData[`segment${i}_bgImage`]) Widget.displayError(`Custom Images For Segments Requires A Default Image In The Visual Settings Tab`);
-    } else {
-      //if there is a default image check if user wants default or override
-      //if there is an override, enable the image rotation and add the override image
-      if (fieldData[`segment${i}_bgImage`]) {
-        changeCenterImage = true;
-        centerImages.push(fieldData[`segment${i}_bgImage`]);
-        //otherwise set image to default
-      } else centerImages.push(fieldData.foregroundImage);
-    };
     //enable points if a segment is enabled
     if (!fieldData.addPoints && fieldData[`segment${i}_addPoints`] === 'yes') fieldData.addPoints = true;
   };
   //error check; wheel needs at least 1 thing :)
-  if (prizeWheelSegments.length < 2) Widget.displayError('2 segments are required!', true); //minimum 2 segments rquired.
+  if (defaultPrizeWheelSegments.length < 2) Widget.displayError('2 segments are required!', true); //minimum 2 segments rquired.
+  if (fieldData.reverseSegments) defaultPrizeWheelSegments.reverse();
+  onLoadPrizeList = [...defaultPrizeWheelSegments];
 };
 
 
 //build wheel function
 const buildWheel = (prizeList, realSpin = true) => {
+  console.log("BUILD START");
+  if (waitingWheel && !realSpin) return;
   //waiting is opposite of real spin
   waitingWheel = !realSpin;
-  if (prizeList.length < 0) return;
+  // !mutate! prize list (intentional); remove items that have hit max number of wins.
+  for (i = 0; i < prizeList.length; i++) {
+    if (prizeList[i].maxAmount < 1) prizeList.splice(i, 1);
+  };
+  if (prizeList.length < 1) {
+    Widget.displayError(`Error Building Wheel: This Prizelist Has No Segments Remaining!<br>Wheel Has Been Reset To Default`)
+    defaultPrizeWheelSegments = [];
+    for (i = 0; i < onLoadPrizeList.length; i++) defaultPrizeWheelSegments.push(onLoadPrizeList[i]);
+    for (i = 0; i < onLoadPrizeList.length; i++) prizeList.push(onLoadPrizeList[i]);
+    console.log('defaultPrizeWheelSegments    ? ', defaultPrizeWheelSegments);
+  };
+  setCurrentImage(prizeList, -1);
   //get wheel canvas, center point, and math the "segment size";
-  let canvas = document.getElementById('canvas'),
+  let prizeSegments = [],
+    canvas = document.getElementById('canvas'),
     ctx = canvas.getContext('2d'),
     canvasCenter = canvas.height / 2,
     defaultSegSize = prizeList.reduce((total, num) => total + (!num.size ? 1 : num.size), 0);
@@ -324,8 +352,8 @@ const buildWheel = (prizeList, realSpin = true) => {
     return segmentOBJ;
   });
   //randomize the power and duration
-  randomSpins = RandomInt((fieldData.spins - 3), (fieldData.spins + 4)),
-    randomTime = RandomInt((fieldData.duration - 3), (fieldData.duration + 4));
+  randomSpins = RandomInt((fieldData.spins - 1), (fieldData.spins + 1));
+  randomTime = RandomInt((fieldData.duration - 1), (fieldData.duration + 1));
   wheelAngle = theWheel ? parseInt(theWheel.rotationAngle % 360) : wheelAngle;
 
   let wheelAnimationObj;
@@ -335,6 +363,7 @@ const buildWheel = (prizeList, realSpin = true) => {
       'type': 'spinToStop',
       'duration': randomTime,
       'spins': randomSpins,
+      'direction': fieldData.wheelDirection || 'clockwise',
       'easing': 'Power4.easeOut'
     };
     //set 'waiting mode'
@@ -342,10 +371,10 @@ const buildWheel = (prizeList, realSpin = true) => {
     wheelAnimationObj = {
       'type': 'spinOngoing',
       'spins': fieldData.movingWheelSpeed,
+      'direction': fieldData.wheelDirection,
       'duration': 180,
     }
   };
-
   return new Winwheel({
     'outerRadius': fieldData.wheelSize / 2,
     'innerRadius': fieldData.innerRadius / 100 * (fieldData.wheelSize / 2),
@@ -367,22 +396,20 @@ const startSpin = (spinObj) => {
     if (wheelSpinning) gameQueue.push([spinObj, res, rej]);
     else {
       wheelSpinning = true;
-
       if (typeof spinObj[1] === 'function') {
         res = spinObj[1];
         rej = spinObj[2];
         spinObj = spinObj[0];
       };
-
-      showWheel().then(async () => {
-        theWheel = buildWheel(spinObj.prizeList);
+      showWheel(spinObj.prizeList, true).then(async () => {
         $('#username-text').html(spinObj.user);
         await Widget.wait(spinDelay * 1000);
         if (fieldData.playTickSound || changeCenterImage) theWheel.animation.callbackSound = onTick;
+        if (spinObj.isTest && fieldData.testAngle > 0) theWheel.animation.stopAngle = fieldData.testAngle;
         theWheel.startAnimation();
         if (fieldData.backgroundSound) playBackgroundSound();
         Widget.wait(randomTime * 1000 + 100).then(() => endSpin(spinObj)).then(res);
-      });
+      }).catch(e => console.log(e));
     };
   });
 };
@@ -410,14 +437,23 @@ const endSpin = (spinObj) => {
         };
       };
       theWheel.draw();
+      setCurrentImage(spinObj.prizeList, winningSegmentNumber - 1);
     } catch {
       wheelPrize = ':shrug: something broke.'
     };
     let segmentIndex = spinObj.prizeList.findIndex(i => i.text === wheelPrize),
       prizeRes = spinObj.prizeList[segmentIndex].res || wheelPrize.replace(/\\n/g, '\n'),
       chatMessage = fieldData.chatResponse.replace(/{res}/g, prizeRes).replace(/{user}/g, spinObj.user).replace(/{points}/g, spinObj.prizeList[segmentIndex].points);
+    spinObj.prizeList[segmentIndex].maxAmount -= 1;
     //add points
     if (spinObj.prizeList[segmentIndex].addPoints && spinObj.user) Widget.addPoints(spinObj.user, spinObj.prizeList[segmentIndex].points, spinObj.isTest);
+    //segment sound?
+    if (spinObj.prizeList[segmentIndex].segSound) {
+      if (fieldData.backgroundSound) fieldData.backgroundSound.pause();
+      segAudio = new Audio(spinObj.prizeList[segmentIndex].segSound);
+      segAudio.volume = spinObj.prizeList[segmentIndex].segSoundVolume;
+      segAudio.play();
+    };
 
     //delay chat response
     Widget.wait(fieldData.chatResponseDelay * 1000).then(() => {
@@ -430,20 +466,24 @@ const endSpin = (spinObj) => {
       if (fieldData.backgroundSound) {
         fieldData.backgroundSound.pause();
         fieldData.backgroundSound.currentTime = 0;
+        if (segAudio) {
+          segAudio.pause();
+          segAudio = null;
+        }
       };
       wheelSpinning = false;
       $('#username-text').html('');
       if (gameQueue.length === 0) {
         console.log('Games Over');
-        if (hideWheelAfterSpin) hideWheel()
+        if (hideWheelAfterSpin) res(hideWheel())
       } else startSpin(gameQueue.shift()).then(() => res(spinObj.prizeList[segmentIndex]));
     });
   });
 };
 //tick sound
-const onTick = () => {
+const onTick = (prizeList = defaultPrizeWheelSegments) => {
   //get wheel position (offset 1 for Array data); send that to the image set function to set the inner image
-  if (changeCenterImage) setCurrentImage(theWheel.getIndicatedSegmentNumber() - 1); //combine functions
+  if (changeCenterImage && fieldData.movingWheelSegImages) setCurrentImage(prizeList, theWheel.getIndicatedSegmentNumber() - 1);
   //is the tick sound enabled and is it NOT the 'waiting wheel'?
   if (fieldData.playTickSound && !waitingWheel) {
     tickSound.currentTime = 0;
@@ -452,10 +492,12 @@ const onTick = () => {
   return;
 };
 //changing center image
-function setCurrentImage(seg) {
-  let currentImg = document.getElementById('wheelCenterImage'); //refactor out
+function setCurrentImage(prizeList = defaultPrizeWheelSegments, seg) {
+  if (!changeCenterImage) return; //verify wasn't disabled during load check
+  let currentImg = document.getElementById('wheelCenterImage');
   //prevent gifs from restarting every tick if no change.
-  if (currentImg.src !== centerImages[seg]) currentImg.src = centerImages[seg];
+  if (seg < 0) currentImg.src = fieldData.foregroundImage;
+  else if (currentImg.src !== prizeList[seg].bgImage) currentImg.src = prizeList[seg].bgImage;
 };
 //background sound
 const playBackgroundSound = () => {
@@ -476,31 +518,52 @@ const buildGradient = () => {
       .css('-webkit-mask-image', 'url(' + maskUrl + ')');
   };
 };
+
 //show/hide wheel functions
-const showWheel = () => {
+const showWheel = (prizeList = defaultPrizeWheelSegments, realSpin = false) => {
   return new Promise((res, rej) => {
-    if (wheelOnScreen) res();
-    else {
-      document.getElementById('container').style.opacity = 1;
-      theWheel = buildWheel(prizeWheelSegments, false);
-      if (fieldData.movingWheelSpeed > 0) {
-        theWheel.startAnimation();
-        if (changeCenterImage) theWheel.animation.callbackSound = onTick;
-      };
+    if (wheelOnScreen && !realSpin) {
+      waitingWheel = true;
+      res();
+      return;
+    };
+    //build the wheel
+    theWheel = buildWheel(prizeList, realSpin);
+    //call function if changing images per segment
+    if (changeCenterImage) theWheel.animation.callbackSound = onTick;
+    if (!wheelOnScreen) theWheel.startAnimation();
+    //pause the spin if a real spin or setting isn't for the slow spin
+    if (realSpin || fieldData.movingWheelSpeed === 0) theWheel.pauseAnimation();
+    if (wheelOnScreen) {
+      // ?? place holder. no need for animation in.
+      res();
+    } else { //if wheel not on screen; do animation in
+      if (fieldData.foregroundImage) document.getElementById('wheelCenterImage').src = fieldData.foregroundImage;
+      if (fieldData.foregroundVideo) document.getElementById('wheelCenterVideo').src = fieldData.foregroundVideo;
+      MainContainer.style.display = 'block';
       animateCSS('#container', fieldData.animationIn).then(() => {
         wheelOnScreen = true;
-      }).then(res);
+        res();
+      }).catch(rej);
     };
   });
 };
-const hideWheel = (forceHide = false) => {
-  if (!wheelOnScreen) return;
+
+const hideWheel = () => {
+  if (!wheelOnScreen || wheelSpinning) return;
   wheelOnScreen = false
   animateCSS('#container', fieldData.animationOut).then(target => {
-    target.style.opacity = 0;
-    wheelOnScreen = false;
-    theWheel.clearCanvas();
-    if (wheelSpinning && !forceHide) showWheel(); //allows !hidewheel to work (force hide) but doesn't prevent respins when triggered during animation window
+    if (wheelSpinning) {
+      MainContainer.style.display = 'block';
+      animateCSS('#container', fieldData.animationIn);
+    } else {
+      waitingWheel = false;
+      theWheel.pauseAnimation();
+      theWheel.clearCanvas();
+      MainContainer.style.display = 'none';
+      document.getElementById('wheelCenterImage').src = '';
+      document.getElementById('wheelCenterVideo').src = '';
+    }
   });
 };
 //Animate.css library example :)
@@ -509,6 +572,7 @@ const animateCSS = (element, animation, prefix = 'animate__') => {
     const animationName = `${prefix}${animation}`;
     const node = document.querySelector(element);
     node.classList.add(`${prefix}animated`, animationName);
+    node.style.setProperty('--animate-duration', `${animation === fieldData.animationIn ? fieldData.animationInDuration : fieldData.animationOutDuration}s`);
 
     function handleAnimationEnd(event) {
       event.stopPropagation();
@@ -520,3 +584,6 @@ const animateCSS = (element, animation, prefix = 'animate__') => {
     });
   });
 };
+
+
+const secretPrizeList = [...defaultPrizeWheelSegments] //https://streamable.com/t80fny

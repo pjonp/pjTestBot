@@ -1260,4 +1260,111 @@
       "max": 99,
       "steps": 1,
       "group": "Video Likes"
+    },
+
+    "_FD_fan-goal_hidden": {
+      "type": "hidden",
+      "label": "FAN Options",
+      "group": "Fans"
+    },
+    "FD_fan-goal_enabled": {
+        "type": "dropdown",
+        "label": "FAN Type",
+        "value": "off",
+        "options": {"off":"Off","fan-goal":"Goal","fan-session":"Session","fan-week":"Week","fan-month":"Month","fan-total":"Total"},
+        "group": "Fans"
+    },
+    "FD_fan-goal_target": {
+      "type": "number",
+      "label": "FAN Target Goal",
+      "step": 1,
+      "value": 10,
+      "min": 1,
+      "group": "Fans"
+    },
+
+    "FD_fan-goal_icon": {
+        "type": "dropdown",
+        "label": "FAN Icon",
+        "value": "other",
+        "options": {
+          "none": "NONE",
+          "fab fa-twitch": "TWITCH",
+          "fab fa-youtube": "YOUTUBE",
+          "fab fa-facebook-f": "FACEBOOK",
+          "fas fa-crown": "CROWN",
+          "fas fa-chess-queen": "CHESS QUEEN",
+          "fas fa-donate": "DONATE",
+          "fas fa-coins": "COINS",
+          "fas fa-gem": "GEM SOLID",
+          "far fa-gem": "GEM",
+          "fas fa-tshirt": "TSHIRT",
+          "fas fa-puzzle-piece": "PUZZLE PIECE",
+          "fas fa-star": "STAR SOLID",
+          "far fa-star": "STAR",
+          "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+        },
+        "group": "Fans"
+    },
+    "_FD_fan-goal_hidden2": {
+      "type": "hidden",
+      "label": "Enter Icon Class Or Text",
+      "group": "Fans"
+    },
+    "_FD_fan-goal_hidden3": {
+      "type": "hidden",
+      "label": "Icons: fontawesome.com/icons?m=free",
+      "group": "Fans"
+    },
+    "FD_fan-goal_iconOther": {
+      "type": "text",
+      "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
+      "value": "fas fa-code",
+      "group": "Fans"
+    },
+    "FD_fan-goal_label": {
+      "type": "text",
+      "label": "FAN Label",
+      "value": "FAN",
+      "group": "Fans"
+    },
+    "FD_fan-goal_barColor1": {
+      "type": "colorpicker",
+      "label": "FAN Bar Color 1",
+      "value": "rgba(0, 0, 0, 0.25)",
+      "group": "Fans"
+    },
+    "FD_fan-goal_barColor2": {
+      "type": "colorpicker",
+      "label": "FAN Bar Color 2",
+      "value": "rgba(0, 195, 255, 0.3)",
+      "group": "Fans"
+    },
+    "FD_fan-goal_neverEndingGoal": {
+      "type": "dropdown",
+      "label": "Goal That Never Ends?",
+      "value": "no",
+      "options": {
+        "yes": "Yes",
+        "no": "No"
+      },
+      "group": "Fans"
+    },
+    "FD_fan-goal_neverEndingGoalAdder": {
+      "type": "slider",
+      "label": "% Adder At Limit",
+      "value": 25,
+      "min": 1,
+      "max": 50,
+      "steps": 1,
+      "group": "Fans"
+    },
+    "FD_fan-goal_neverEndingGoalLimit": {
+      "type": "slider",
+      "label": "Maximum Bar %",
+      "value": 90,
+      "min": 50,
+      "max": 99,
+      "steps": 1,
+      "group": "Fans"
     }}

@@ -39,7 +39,15 @@ padding: 0;
 #image-center-piece img{
   position: absolute;
   width: {foregroundImageSize}%;
+  height: {foregroundImageSize}%;
   border-radius: {foregroundImageRadius}%;
+  background-image: url("{foregroundImageBgImage}");
+  background-color: {foregroundImageBgColor};
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: {foregroundImageBgPadding}px;
+  margin: -{foregroundImageBgPadding}px;
 }
 #username-text{
   color: {usernameColor};

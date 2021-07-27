@@ -74,7 +74,6 @@ let FieldDataMaster = {
     gradientOverride: ['', 'Animated Gradient Frame', 'hidden', 40],
 
     movingWheelSpeed: ['Moving Wheel Speed', 'Advanced Settings', 'slider', 0,0,100,1],
-    movingWheelSegImages: ['Show Segment Images While Rotating?', 'Advanced Settings', 'dropdown', {yes: 'Yes', no: 'No; Show On Result'}],
     wheelSize: ['Wheel Size (Ø)', 'Advanced Settings', 'number', 900],
     innerRadius: ['Inner Radius (%)', 'Advanced Settings', 'slider', 5, 0, 90, 1],
     wheelStartingPositionX: ['Wheel Start X Position', 'Advanced Settings', 'number', 50],
@@ -87,7 +86,7 @@ let FieldDataMaster = {
   outputObject = {};
 //Inject Segments at end of Master List from the Main code
 let breakPoint = 1 //5; //not used (for breaking into groups i.e 1-5, 6-10, 11-15....)
-for(let i = 0; i < 25; i++) {
+for(let i = 0; i < 10; i++) {
   let segmentNumber = i+1,
       group = Math.floor(i/breakPoint), //not used
       groupText = `Segment ${segmentNumber}`;//`Segments ${group * breakPoint}-${(group+1) * breakPoint}` //not used "Segments 1-5" ... "Segments 6-10" ....
@@ -105,12 +104,6 @@ for(let i = 0; i < 25; i++) {
       FieldDataMaster[`segment${segmentNumber}_bgColor`] = [`Segment ${segmentNumber} Background Color`, groupText, 'colorpicker', ''];
       FieldDataMaster[`segment${segmentNumber}_fontColor_info`] = ['No color = Black/White (best contrast)', groupText, 'hidden'];
       FieldDataMaster[`segment${segmentNumber}_fontColor`] = [`Segment ${segmentNumber} Font Color`, groupText, 'colorpicker', ''];
-      FieldDataMaster[`segment${segmentNumber}_addPoints`] = ['Add Points To Targeted User?', groupText, 'dropdown', {no: 'No', yes:'Yes'}, i => i === 'yes'];
-      FieldDataMaster[`segment${segmentNumber}_points`] = ['Points', groupText, 'number'];
-      FieldDataMaster[`segment${segmentNumber}_maxAmount`] = [`Remove After X Results (0=never)`, groupText, 'slider', 0, 0,25,1];
-      FieldDataMaster[`segment${segmentNumber}_bgImage`] = ['Segment Image (Advanced)', groupText, 'image-input', ''];
-      FieldDataMaster[`segment${segmentNumber}_segSound`] = ['Segment Sound (Advanced)', groupText, 'sound-input', ''];
-      FieldDataMaster[`segment${segmentNumber}_segSoundVolume`] = ['Segment Sound Volume (Advanced)', groupText, 'slider', 50, 5, 100, 5];
 };
 //Make field data...
 for (const [key] of Object.entries(FieldDataMaster)) {
@@ -132,5 +125,5 @@ for (const [key] of Object.entries(FieldDataMaster)) {
   };
 };
 
-fs.writeFileSync(path.resolve(__dirname, './fieldDataMaster.json'),  JSON.stringify(outputObject), 'UTF-8')
+fs.writeFileSync(path.resolve(__dirname, './fieldDataMasterLite.json'),  JSON.stringify(outputObject), 'UTF-8')
 console.log(outputObject, ' done')
