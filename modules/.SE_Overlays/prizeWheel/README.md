@@ -5,6 +5,7 @@
 - Default setup is a 1000px X 1000px container, centered on the overlay editor
 - Overlay Video and Image attempt to center themselves on load/update and will sometimes not show correctly while adjusting the settings. They will force center after 10 seconds.
 - Having the bot respond in chat requires a 'botMsg' token from [jebaited.net](https://jebaited.net/)
+- Editing points requires jebaited Scope
 
 ***
 
