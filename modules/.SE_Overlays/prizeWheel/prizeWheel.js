@@ -76,22 +76,19 @@ function onMessage(chatMessage) {
   //
   if (platform === 'twitch') {
     chatArgs = chatMessage.getWordList();
-    if (chatMessage.hasUserId(streamerUserId) || chatMessage.hasUsername(WheelBot)) hasPerm = true;
+    if (chatMessage.hasUserId(streamerUserId) || chatMessage.hasUsername(WheelBot) || chatMessage.isModerator()) hasPerm = true;
     if (chatMessage.isCommand(fieldData.spinCommand)) spinCommand = true;
     else if (chatMessage.isCommand(fieldData.wheelShowCommand)) showWheelCmd = true;
     else if (chatMessage.isCommand(fieldData.wheelHideCommand)) hideWheelCmd = true;
     else return;
   } else if (platform === 'trovo') {
-//"StreamElements" -> null
     if (chatMessage.data.nick_name === "StreamElements" || chatMessage.data.roles.some(i => i === 'streamer') || chatMessage.data.nick_name === WheelBot) hasPerm = true;
 
-    //TROVO CATCH
+    //TROVO CATCH ... prevents reading of old messages when loaded
     try {
       let trovoCatch = chatMessage.data.content_data.user_time;
     } catch {
       return;
-      //testing
-      //if(!hasPerm) return;
     };
     //TROVO CATCH
 
@@ -124,14 +121,13 @@ TRIGGER A SPIN WITH:
 */
 
 // START Reboot0s's tools https://reboot0-de.github.io/se-tools/tutorial-Events.html
+
+/* EXAMPLE SUB BOMB; Points to 5+
+    Sub bomb > 4; then wheel spin for the gifter. if wheel result has 'add points', then give all the sub recievers the point value! (The gifter is also given the points in the main code)
 function onSubBomb(data) //function required to call the 'bombcomplete'?
 {
   //  console.log(`${data.sender} just gifted ${data.amount} subs to the community!`);
 };
-
-/* EXAMPLE
-    Sub bomb > 4; then wheel spin for the gifter. if wheel result has 'add points', then give all the sub recievers the point value! (The gifter is also given the points in the main code)
-*/
 function onSubBombComplete(data, receivers) {
   console.log(`${data.name} just gifted a sub to the following ${data.amount} people: ${receivers.join(', ')}`);
   if (data.amount >= 5) { //was the gift bomb greater or = to 5?
@@ -158,16 +154,40 @@ function onSubBombComplete(data, receivers) {
     });
   };
 };
+/*
+
 /* EXAMPLE FOLLOWER SPIN */
 /*
 function onFollow(data) {
   startSpin({
     user: data.name,
-    prizeList: secretPrizeList,
+    prizeList: defaultPrizeWheelSegments,
     isTest: data.isTest
   });
 };
 */
+
+/* EXAMPLE SUB SPIN  - USER's 1ST SUB. Does not work on resubs or gifts!*/
+/*
+function onSubscriber(data) {
+  startSpin({
+    user: data.name,
+    prizeList: defaultPrizeWheelSegments,
+    isTest: data.isTest
+  });
+};
+*/
+/* EXAMPLE RE-SUB SPIN  - USER's 2ND+ SUB. Will not trigger on */
+/*
+function onResub(data) {
+  startSpin({
+    user: data.name,
+    prizeList: defaultPrizeWheelSegments,
+    isTest: data.isTest
+  });
+};
+*/
+
 
 
 function onWidgetLoad(obj) {
