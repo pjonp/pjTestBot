@@ -295,7 +295,25 @@
     },
     "group": "Advanced"
 },
-
+"FD_formatLargeNumbers": {
+    "type": "dropdown",
+    "label": "Format Large # (1k)",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Advanced"
+},
+"FD_formatLargeNumbersDec": {
+  "type": "slider",
+  "label": "Large # Decimals (1.12k)",
+  "value": 1,
+  "min": 0,
+  "max": 3,
+  "steps": 1,
+    "group": "Advanced"
+},
 
 
 
@@ -319,7 +337,20 @@
       "min": 1,
       "group": "Followers"
     },
-
+    "_FD_follower-goal_hiddenFont": {
+      "type": "hidden",
+      "label": "Min Font Size for Progress/Goal",
+      "group": "Followers"
+    },
+    "FD_follower-goal_minFontSize": {
+      "type": "number",
+      "label": "0 for Auto",
+      "value": 0,
+      "step": 1,
+      "min": 0,
+      "max": 500,
+      "group": "Followers"
+    },
     "FD_follower-goal_icon": {
         "type": "dropdown",
         "label": "FOLLOWER Icon",
@@ -426,7 +457,20 @@
       "min": 1,
       "group": "Tips"
     },
-
+    "_FD_tip-goal_hiddenFont": {
+      "type": "hidden",
+      "label": "Min Font Size for Progress/Goal",
+      "group": "Tips"
+    },
+    "FD_tip-goal_minFontSize": {
+      "type": "number",
+      "label": "0 for Auto",
+      "value": 0,
+      "step": 1,
+      "min": 0,
+      "max": 500,
+      "group": "Tips"
+    },
     "FD_tip-goal_icon": {
         "type": "dropdown",
         "label": "TIP Icon",
@@ -533,7 +577,20 @@
       "min": 1,
       "group": "Subscribers"
     },
-
+    "_FD_subscriber-goal_hiddenFont": {
+      "type": "hidden",
+      "label": "Min Font Size for Progress/Goal",
+      "group": "Subscribers"
+    },
+    "FD_subscriber-goal_minFontSize": {
+      "type": "number",
+      "label": "0 for Auto",
+      "value": 0,
+      "step": 1,
+      "min": 0,
+      "max": 500,
+      "group": "Subscribers"
+    },
     "FD_subscriber-goal_icon": {
         "type": "dropdown",
         "label": "SUBSCRIBER Icon",
@@ -640,7 +697,20 @@
       "min": 1,
       "group": "Merch Items"
     },
-
+    "_FD_merch-goal-items_hiddenFont": {
+      "type": "hidden",
+      "label": "Min Font Size for Progress/Goal",
+      "group": "Merch Items"
+    },
+    "FD_merch-goal-items_minFontSize": {
+      "type": "number",
+      "label": "0 for Auto",
+      "value": 0,
+      "step": 1,
+      "min": 0,
+      "max": 500,
+      "group": "Merch Items"
+    },
     "FD_merch-goal-items_icon": {
         "type": "dropdown",
         "label": "MERCH ITEMS Icon",
@@ -747,7 +817,20 @@
       "min": 1,
       "group": "Merch Orders"
     },
-
+    "_FD_merch-goal-orders_hiddenFont": {
+      "type": "hidden",
+      "label": "Min Font Size for Progress/Goal",
+      "group": "Merch Orders"
+    },
+    "FD_merch-goal-orders_minFontSize": {
+      "type": "number",
+      "label": "0 for Auto",
+      "value": 0,
+      "step": 1,
+      "min": 0,
+      "max": 500,
+      "group": "Merch Orders"
+    },
     "FD_merch-goal-orders_icon": {
         "type": "dropdown",
         "label": "MERCH ORDERS Icon",
@@ -854,7 +937,20 @@
       "min": 1,
       "group": "Merch Total"
     },
-
+    "_FD_merch-goal-total_hiddenFont": {
+      "type": "hidden",
+      "label": "Min Font Size for Progress/Goal",
+      "group": "Merch Total"
+    },
+    "FD_merch-goal-total_minFontSize": {
+      "type": "number",
+      "label": "0 for Auto",
+      "value": 0,
+      "step": 1,
+      "min": 0,
+      "max": 500,
+      "group": "Merch Total"
+    },
     "FD_merch-goal-total_icon": {
         "type": "dropdown",
         "label": "MERCH TOTAL Icon",
@@ -961,7 +1057,20 @@
       "min": 1,
       "group": "Elixir"
     },
-
+    "_FD_elixir-goal_hiddenFont": {
+      "type": "hidden",
+      "label": "Min Font Size for Progress/Goal",
+      "group": "Elixir"
+    },
+    "FD_elixir-goal_minFontSize": {
+      "type": "number",
+      "label": "0 for Auto",
+      "value": 0,
+      "step": 1,
+      "min": 0,
+      "max": 500,
+      "group": "Elixir"
+    },
     "FD_elixir-goal_icon": {
         "type": "dropdown",
         "label": "ELIXIR Icon",

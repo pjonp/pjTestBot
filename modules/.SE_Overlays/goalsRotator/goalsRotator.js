@@ -1,7 +1,7 @@
 /*
 RotatorS AKA Rotator-a-Saurus AKA Roar-A-Tator-Saurus AKA Goals-R-Saur-Us AKA Ruben's Rotating Thingy AKA
 
-AiO RotatoGoal 3.0.0 by pjonp
+AiO RotatoGoal 4.0.0 by pjonp
 
 inspired by RubenSaurus
 with help from JayniusGamingTV
@@ -24,7 +24,9 @@ let allGoals = {}, //set empty goal object. KEYs: goal names; VALUES: progress, 
   goalList = [], //KEYs for above allGoals Object to rotate through
   maxFontSize = 100,
   vertBar = false,
-  tipCount = 0;
+  tipCount = 0,
+  formatLargeNumbers = false,
+  formatLargeNumbersDec = 0;
 
 //move to FIELDS
 let time = 10; //seconds
@@ -75,6 +77,8 @@ window.addEventListener('onWidgetLoad', obj => {
     fieldData = obj.detail.fieldData;
 
   currencySetting[1] = obj.detail.currency.code || 'USD'; //set currency code
+  formatLargeNumbers = fieldData[`FD_formatLargeNumbers`] === 'yes';
+  formatLargeNumbersDec = fieldData[`FD_formatLargeNumbersDec`] || 2;
   time = fieldData[`FD_showTime`] || 30;
   maxFontSize = fieldData[`FD_maxFontSize`] || 100;
   vertBar = fieldData[`FD_vertBar`] === 'yes';
@@ -133,7 +137,8 @@ function buildHTML(data, fieldData) {
         barColor2: fieldData[`FD_${i}_barColor2`],
         neverEndingGoal: fieldData[`FD_${i}_neverEndingGoal`] === 'yes',
         neverEndingGoalAdder: fieldData[`FD_${i}_neverEndingGoalAdder`] || 25,
-        neverEndingGoalLimit: fieldData[`FD_${i}_neverEndingGoalLimit`] || 90
+        neverEndingGoalLimit: fieldData[`FD_${i}_neverEndingGoalLimit`] || 90,
+        minFontSize: fieldData[`FD_${i}_minFontSize`] || 0,
       };
 
       /*DELETE THIS LINE
@@ -161,7 +166,7 @@ window.addEventListener('onSessionUpdate', obj => {
     if (allGoals.hasOwnProperty(i)) { //filter info for 'goal' & see if it is in master object (enabled)
       goalAmount = data[i].hasOwnProperty('amount') ? data[i].amount : data[i].count
 
-      /*DELETE THIS LINE
+      /*DELETE THIS LINE  //this is to do NUMBER of tips and not a total amount
             if(i === 'tip-count') {
             	tipCount++;
               goalAmount = tipCount;
@@ -177,12 +182,26 @@ window.addEventListener('onSessionUpdate', obj => {
 
       barTarget.style.width = `${(allGoals[i].progress/allGoals[i].target)*100}%`;
       setTimeout(() => {
-        document.getElementById(`${i}_amount`).querySelector('.textFitted').innerText = allGoals[i].currency ? formatCurrency(allGoals[i].progress) : allGoals[i].progress;
-        document.getElementById(`${i}_target`).querySelector('.textFitted').innerText = allGoals[i].currency ? formatCurrency(allGoals[i].target) : allGoals[i].target;
+        document.getElementById(`${i}_amount`).querySelector('.textFitted').innerText = allGoals[i].currency ? formatCurrency(allGoals[i].progress) : abbreviateNumber(allGoals[i].progress);
+        document.getElementById(`${i}_target`).querySelector('.textFitted').innerText = allGoals[i].currency ? formatCurrency(allGoals[i].target) : abbreviateNumber(allGoals[i].target);
       }, 1000)
     };
   });
 });
+//format Large Numbers
+const SI_SYMBOLS = ["", "k", "M", "B", "T", "Q"];
+const abbreviateNumber = (number) => {
+    if (number < 1000 || !formatLargeNumbers) return number;
+    // determines symbol
+    const tier = Math.floor(Math.log10(Math.abs(number)) / 3);
+    // get suffix and determine scale
+    const suffix = SI_SYMBOLS[tier];
+    const scale = 10 ** (tier * 3);
+    // scale the number
+    const scaled = number / scale;
+    // format number to 2 decimal places and add suffix
+    return scaled.toFixed(formatLargeNumbersDec) + suffix;
+};
 
 //format into currency if needed (called from bulidingHTML or updating a value)
 const formatCurrency = num => new Intl.NumberFormat(currencySetting[0], {
@@ -196,7 +215,7 @@ const formatCurrency = num => new Intl.NumberFormat(currencySetting[0], {
 function buildBarHTML() {
   //where to hide the bars (if not on front or back... hide it)
   let hiddenContainer = document.getElementById('hiddenBars'),
-    fontOptions = {
+    fontSizeDefault = {
       minFontSize: 10,
       maxFontSize: maxFontSize
     };
@@ -232,7 +251,7 @@ function buildBarHTML() {
       c = document.getElementById(`${goal}_target`),
       d = document.getElementById(`${goal}_text`),
       //check if value should be a currency type
-      goalAmountString = `${allGoals[goal].currency ? formatCurrency(allGoals[goal].target) : allGoals[goal].target}`;
+      goalAmountString = `${allGoals[goal].currency ? formatCurrency(allGoals[goal].target) : abbreviateNumber(allGoals[goal].target)}`;
     //set values from settings/progress
     a.innerText = goalAmountString; //set the amount to max goal to match size;
     //check if icon input is valid fontAweome or switch to text
@@ -253,13 +272,18 @@ function buildBarHTML() {
       main.classList.add('rot270');
     };
     //
+    //Font size Override; 4.0.0
+    let fontSizeOverride = {
+      minFontSize: allGoals[goal].minFontSize,
+      maxFontSize: allGoals[goal].minFontSize
+    };
     //fit values using textFit CDN (imported in HTML)
-    textFit(a, fontOptions);
-    if (textFitIcon) textFit(b, fontOptions);
-    textFit(c, fontOptions);
-    textFit(d, fontOptions);
+    textFit(a, allGoals[goal].minFontSize > 0 ? fontSizeOverride : fontSizeDefault);
+    if (textFitIcon) textFit(b, fontSizeDefault);
+    textFit(c, allGoals[goal].minFontSize > 0 ? fontSizeOverride : fontSizeDefault);
+    textFit(d, fontSizeDefault);
     //update goal progress after sizing to max
-    a.querySelector('.textFitted').innerText = `${allGoals[goal].currency ? formatCurrency(allGoals[goal].progress) : allGoals[goal].progress}`;
+    a.querySelector('.textFitted').innerText = `${allGoals[goal].currency ? formatCurrency(allGoals[goal].progress) : abbreviateNumber(allGoals[goal].progress)}`;
     //move into position; front of card, back or in holding area
     if (index == 0) document.getElementById(`${sides[0]}`).appendChild(goalContainer);
     else if (index == 1 && goalList.length === 2) document.getElementById(`${sides[1]}`).appendChild(goalContainer);

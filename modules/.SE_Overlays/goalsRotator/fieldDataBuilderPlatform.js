@@ -316,7 +316,25 @@ fieldStringAll = `
     },
     "group": "Advanced"
 },
-
+"FD_formatLargeNumbers": {
+    "type": "dropdown",
+    "label": "Format Large # (1k)",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Advanced"
+},
+"FD_formatLargeNumbersDec": {
+  "type": "slider",
+  "label": "Large # Decimals (1.12k)",
+  "value": 1,
+  "min": 0,
+  "max": 3,
+  "steps": 1,
+    "group": "Advanced"
+},
 
 `;
 
@@ -377,7 +395,20 @@ platforms.forEach(p => {
       "min": 1,
       "group": "${i[1]}"
     },
-
+    "_FD_${i[0]}_hiddenFont": {
+      "type": "hidden",
+      "label": "Min Font Size for Progress/Goal",
+      "group": "${i[1]}"
+    },
+    "FD_${i[0]}_minFontSize": {
+      "type": "number",
+      "label": "0 for Auto",
+      "value": 0,
+      "step": 1,
+      "min": 0,
+      "max": 500,
+      "group": "${i[1]}"
+    },
     "FD_${i[0]}_icon": {
         "type": "dropdown",
         "label": "${formatName} Icon",
