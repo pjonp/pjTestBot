@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family={{fontNameFD}}&display=swap');
+* {
+margin: 0;
+padding: 0;
+}
+#main{
+  width: 100%;
+  height: 100vh;
+  font-family: {{fontNameFD}}, sans-serif;
+  color: {{FDfontColor}};
+  background: {{FDbgColor}};
+  overflow: hidden;
+}
+#labelOther{
+  border:5px;
+  color: {{FDotherColor}}
+}
+
+#buttonContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: blue;
+  background: linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(0,0,0,0) 100%);
+  border-bottom: 5px solid white;
+  padding-bottom:2vh;
+}
+
+.msg {
+  border-bottom: 2px solid #ffffff33;
+  padding: 10px;
+  font-size: 15px;
+  font-size: 4.5vw;
+}
+.msg:nth-child(even){
+  background: {{FDbgAltColor}};
+}
+.msgUserChat {
+	margin-left: 15px;
+    margin-top: 1.5vmin;
+}
+.msgUser {
+    padding: 0px 5px;
+    padding: 2px 3vw;
+    border-radius: 8px;
+    color: {{FDfontColor}};
+    text-shadow: 1px 1px #000;
+    font-weight: bold;
+    font-size: 20px;
+    font-size: 5vw;
+    line-height: 7vmin;
+}
+
+.other {
+  background-color: {{FDotherColor}};
+  color: {{FDotherFontColor}};
+}
