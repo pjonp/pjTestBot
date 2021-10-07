@@ -76,7 +76,7 @@ class TwitchPubSub {
   emitPuSub(message) {
     const channelPointEvent = new CustomEvent("onEventReceived", {
       detail: {
-        "listener": message.type,
+        "listener": "reward-redeemed",
         "event": {
           "service": "twitch",
           "data": {
