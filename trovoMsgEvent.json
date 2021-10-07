@@ -1,0 +1,37 @@
+{
+  "detail": {
+      "listener": "message",
+      "event": {
+          "service": "trovo",
+          "data": {
+              "type": 0,
+              "content": "!spin",
+              "nick_name": "pjonp",
+              "avatar": "https://headicon.trovo.live/default/1.png",
+              "medals": [
+                  "creator"
+              ],
+              "roles": [
+                  "streamer"
+              ],
+              "message_id": "1625382854853745016_102798645_102798645_2886926347_1",
+              "sender_id": 102798645,
+              "uid": 102798645,
+              "user_name": "pjonp",
+              "content_data": {
+                  "custom_emote_enabled": [],
+                  "normal_emote_enabled": ""
+              },
+              "custom_role": "[{\"roleName\":\"streamer\",\"roleType\":100000}]",
+              "displayColor": "#2a9963",
+              "displayName": "pjonp",
+              "badges": [],
+              "username": "pjonp",
+              "userId": 102798645,
+              "messageId": "1625382854853745016_102798645_102798645_2886926347_1"
+          },
+          "renderedText": "<span class=\"emote\">!spin</span>"
+      }
+  },
+  "timeStamp": broken
+};

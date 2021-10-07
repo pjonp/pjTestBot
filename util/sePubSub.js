@@ -1,6 +1,19 @@
-console.log('load');
+/*
+Copyright 2021 pjonp
+This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
 
-/* Load via HTML <script> */
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
 class TwitchPubSub {
   constructor(channel) {
     this.topic = `dashboard-activity-feed.${channel}`;
@@ -21,7 +34,6 @@ class TwitchPubSub {
   };
 
   listen() {
-    console.log('PubSub Listen');
     this.connection.send(
       JSON.stringify({
         type: 'LISTEN',
@@ -33,19 +45,19 @@ class TwitchPubSub {
   };
 
   onClose() {
-    console.log('PubSub Closed');
+    console.log('PubSub Closed ', Date.now());
     clearInterval(this.heartbeat);
   };
 
   ping() {
-    console.log('PubSub Ping');
+    console.log('PubSub Ping ', Date.now());
     this.connection.send(JSON.stringify({
       type: 'PING'
     }));
   };
 
   reconnect() {
-    console.log('PubSub connection closed By Twitch!');
+    console.log('PubSub connection closed By Twitch ', Date.now());
     this.connection.close();
     //handle force reconnect... tbd
   };
@@ -85,17 +97,16 @@ class TwitchPubSub {
   };
 };
 
+/*
 window.addEventListener('onWidgetLoad', obj => {
-  console.log(obj);
-  //obj.detail.channel.providerId
-  let ps = new TwitchPubSub(160277275).connect();
+  new TwitchPubSub(obj.detail.channel.providerId).connect();
 });
-
 
 window.addEventListener('onEventReceived', obj => {
   const data = obj.detail.event;
-
-  //listener: reward-redeemed
-
-  console.log('SE Output ', data);
+  if (obj.detail.listener === 'reward-redeemed') {
+    console.log('SE Output ', data);
+    //do stuff
+  };
 });
+*/
