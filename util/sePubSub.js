@@ -20,10 +20,15 @@ class TwitchPubSub {
   };
 
   connect() {
-    this.connection = new WebSocket('wss://pubsub-edge.twitch.tv');
-    this.connection.onopen = this.onOpen.bind(this);
-    this.connection.onmessage = this.onRedeem.bind(this);
-    this.connection.onclose = this.onClose.bind(this);
+    return new Promise((res,rej) => {
+      setTimeout(_=> {
+        this.connection = new WebSocket('wss://pubsub-edge.twitch.tv');
+        this.connection.onopen = this.onOpen.bind(this);
+        this.connection.onmessage = this.onRedeem.bind(this);
+        this.connection.onclose = this.onClose.bind(this);
+        res();
+      },2500);
+    })
   };
 
   onOpen() {
@@ -103,10 +108,40 @@ window.addEventListener('onWidgetLoad', obj => {
 });
 
 window.addEventListener('onEventReceived', obj => {
-  const data = obj.detail.event;
+  const event = obj.detail.event;
   if (obj.detail.listener === 'reward-redeemed') {
-    console.log('SE Output ', data);
+    console.log('SE Output ', event);
     //do stuff
   };
 });
+
+let exampleEvent =
+{
+    "service": "twitch",
+    "data": {
+        "time": 1633579908448,
+        "tags": {
+            "id": "b7ae9286-01f1-4ea1-a0bc-f9ba66944ad5",
+            "timestamp": "2021-10-07T04:11:48.448Z",
+            "type": "channel_points_custom_reward_redemption",
+            "channel_points_redemption_id": "367e4ce2-d240-48d3-8ada-22c0a7aa2a7c",
+            "channel_points_redeeming_user": {
+                "id": "43165806",
+                "login": "pjonp",
+                "display_name": "pjonp"
+            },
+            "channel_points_reward_id": "e140a91b-7df1-4d11-a19e-e8e313e2e07d",
+            "channel_points_reward_title": "HP Bomb!",
+            "channel_points_user_input": ""
+        },
+        "nick": "pjonp",
+        "userId": "43165806",
+        "displayName": "pjonp",
+        "text": "",
+        "rewardId": "e140a91b-7df1-4d11-a19e-e8e313e2e07d",
+        "rewardTitle": "HP Bomb!",
+        "id": "367e4ce2-d240-48d3-8ada-22c0a7aa2a7c"
+    }
+}
+
 */
