@@ -1,0 +1,36 @@
+@font-face {
+  font-family: "color-emoji";
+  src:
+       local("Emoji One"),
+       local("Apple Color Emoji"),
+       local("Segoe UI Emoji"),
+       local("Segoe UI Symbol"),
+       local("Noto Color Emoji");
+}
+*{
+  padding: 0;
+  margin: 0;
+  font-family: color-emoji;
+}
+#info {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  background-color: black;
+  color: white;
+  display: none;
+}
+#main {
+  height: 339px;
+  width: 727px;
+  transition: opacity 0.5s;
+  text-align: center;
+  font-size: {emojiSize}px;
+}
+.show {
+  opacity: 1
+}
+.hide {
+  opacity: 0
+}
