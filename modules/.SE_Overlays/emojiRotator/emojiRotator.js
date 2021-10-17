@@ -1,13 +1,17 @@
 /*
-to do:
-[x] add widget test buttons
-[x] fix OBS black emojis? -255px max emoji size
-[x] error check that at least one reward is added
-[x] visual error container
-[x] visual for added rewards
-[x] visual error for duplicate reward names or missing emoji's
-maybe:
-[] jebaited support to start raffles
+Copyright 2021 pjonp
+This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 let eventTriggers = {}; //Object of reward Objects
 
@@ -92,19 +96,19 @@ const widget = { //main widget "module" code
     if (!critical) setTimeout(_ => newMsg.remove(), 5000); //remove the message after 5 seconds if not critical
   },
   loadJebaited: (token) => { //load jebaited
-        setTimeout(() => { //timer to limit API calls on all "state" changes
-          if(widget.jebaited) return; //prevent multiple instances.
-          widget.jebaited = new Jebaited(token); //lx's class
-          widget.jebaited.getAvailableScopes() //get scopes on load
-            .then(d => widget.info(`Jebaited Loaded with scopes: ${widget.jebaited.tokenScopes}`)) //message load is successful and list scopes
-            .catch(e => widget.info(`Jebaited Error: ${e.error ? e.error : e}`, true, true)); //message error
-        }, widget.isEditorMode ? 2500 : 0); //2.5 second delay when in editor mode
-    },
+    setTimeout(() => { //timer to limit API calls on all "state" changes
+      if (widget.jebaited) return; //prevent multiple instances.
+      widget.jebaited = new Jebaited(token); //lx's class
+      widget.jebaited.getAvailableScopes() //get scopes on load
+        .then(d => widget.info(`Jebaited Loaded with scopes: ${widget.jebaited.tokenScopes}`)) //message load is successful and list scopes
+        .catch(e => widget.info(`Jebaited Error: ${e.error ? e.error : e}`, true, true)); //message error
+    }, widget.isEditorMode ? 2500 : 0); //2.5 second delay when in editor mode
+  },
   jebaited: null, //created when loaded
   say: (msg) => {
-    if(!widget.jebaited) return widget.info('Jebaited not loaded');
-    else if(!widget.jebaited.tokenScopes) return widget.info('Error: no Jebaited Scopes', true);
-    widget.jebaited.sayMessage(msg).catch(e => widget.info(e,true));
+    if (!widget.jebaited) return widget.info('Jebaited not loaded');
+    else if (!widget.jebaited.tokenScopes) return widget.info('Error: no Jebaited Scopes', true);
+    widget.jebaited.sayMessage(msg).catch(e => widget.info(e, true));
   }
 };
 
