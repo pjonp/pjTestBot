@@ -199,7 +199,6 @@ class emojiRotator { //"emojiRotator" object class, to build different variation
     //!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
-
     const rotateEmoji = () => { //rotator for this module
       if (this.progess === this.emojis.length) this.progess = 0; //cycle through the emojis Array, restart at 0 when at the end
       widget.container.innerText = this.emojis[this.progess]; //put the emoji into the DOM

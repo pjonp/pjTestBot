@@ -57,9 +57,9 @@ let FieldDataMaster = {
     wheelNameFontSize: ['Wheel Label Size', 'Text Settings', 'number', 100, 5, 300],
     wheelNameOffset: ['Wheel Label Y Position', 'Text Settings', 'number', 800],
     _info6: ['Wheel Username Options', 'Text Settings', 'hidden'],
-    usernameColor: ['Username Font Color', 'Visual Settings', 'colorpicker', 'white'],
-    usernameFontSize: ['Username Font Size', 'Visual Settings', 'number', 50, 5, 300],
-    usernameOffset: ['Username Y Position', 'Visual Settings', 'number', 600],
+    usernameColor: ['Username Font Color', 'Text Settings', 'colorpicker', 'white'],
+    usernameFontSize: ['Username Font Size', 'Text Settings', 'number', 50, 5, 300],
+    usernameOffset: ['Username Y Position', 'Text Settings', 'number', 600],
 
     _info7: ['Animated gradient webcam frame', 'Animated Gradient Frame', 'hidden'],
     _info8: ['by Kagrayz', 'Animated Gradient Frame', 'hidden'],
