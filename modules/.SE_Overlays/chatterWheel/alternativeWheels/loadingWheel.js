@@ -1,14 +1,14 @@
-//MAIN LIST!
-let startNum = 0, //where to start in the Pokemon index (0 = first)
-  endNum = 40, //where to start in the Pokemon index (150 = last)
-  skipNum = [2,3]; //skip these number (index is "off by 1; so Bulbasaur = 0")
+//MAIN DATABASE
+let startNum = 0,
+    endNum = 10,
+    skipNum = [];
 
-//SECONDARY LIST //lazy copy pasta
-let startNum2 = 0, //add on list "start" same as above
-  endNum2 = 100, //add on list "end" same as above ()
-  skipNum2 = []; // ^^
+//ADD ON DATABASE
+let startNum2 = 0,
+    endNum2 = 5,
+    skipNum2 = [];
 
-
+//CODE
 const imagesContainer = document.getElementById('images'),
       wheelCenterImage = document.getElementById('wheelCenterImage'),
       selectionText = document.getElementById('center-text'),
@@ -126,11 +126,7 @@ let defaultPrizeList = [
       "text":"Fearow",
       "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/022.png?raw=true",
       "fillStyle":"{{seg2Color}}"
-   }
-
-   // /*
-
-  ,
+   },
    {
       "text":"Ekans",
       "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/023.png?raw=true",
@@ -776,176 +772,219 @@ let defaultPrizeList = [
       "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
       "fillStyle":"{{seg1Color}}"
    }
-//  */
 ].filter((i,index) => startNum <= index && index <= endNum && skipNum.indexOf(index) < 0);
 
 
-let secondaryList = [
-     {
-      "text":"A1",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"B1",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"C1",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"D1",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"E1",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
 
-   {
-      "text":"A2",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"B2",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"C2",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"D2",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"E2",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
 
-   {
-      "text":"A3",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"B3",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"C3",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"D3",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"E3",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-
-   {
-      "text":"A4",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"B4",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"C4",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"D4",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"E4",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-
-   {
-      "text":"A5",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"B5",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"C5",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"D5",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"E5",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-
-   {
-      "text":"A6",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"B6",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"C6",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"D6",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-   {
-      "text":"E6",
-      "image":"https://github.com/fanzeyi/pokemon.json/blob/master/images/151.png?raw=true",
-      "fillStyle":"white"
-   },
-  ].filter((i,index) => startNum2 <= index && index <= endNum2 && skipNum2.indexOf(index) < 0);
+let secondaryList = [{
+    "index": 0,
+    "text": "Bill",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Bill.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 1,
+    "text": "Clefairy Doll",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Clefairy%20Doll.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 2,
+    "text": "Computer Search",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Computer%20Search.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 3,
+    "text": "Defender",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Defender.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 4,
+    "text": "Devolution Spray",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Devolution%20Spray.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 5,
+    "text": "Energy Removal",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Energy%20Removal.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 6,
+    "text": "Energy Retrieval",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Energy%20Retrieval.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 7,
+    "text": "Fighting Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Fighting%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 8,
+    "text": "Fire Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Fire%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 9,
+    "text": "Full Heal",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Full%20Heal.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 10,
+    "text": "Grass Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Grass%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 11,
+    "text": "Gust of Wind",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Gust%20of%20Wind.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 12,
+    "text": "Imposter Professor Oak",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Imposter%20Professor%20Oak.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 13,
+    "text": "Item Finder",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Item%20Finder.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 14,
+    "text": "Lass",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Lass.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 15,
+    "text": "Lightning Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Lightning%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 16,
+    "text": "Maintenance",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Maintenance.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 17,
+    "text": "PlusPower",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/PlusPower.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 18,
+    "text": "Pokedex",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokedex.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 19,
+    "text": "Pokemon Breeder",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokemon%20Breeder.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 20,
+    "text": "Pokemon Center",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokemon%20Center.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 21,
+    "text": "Pokemon Flute",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokemon%20Flute.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 22,
+    "text": "Pokemon Trader",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokemon%20Trader.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 23,
+    "text": "Potion",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Potion.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 24,
+    "text": "Professor Oak",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Professor%20Oak.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 25,
+    "text": "Psychic Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Psychic%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 26,
+    "text": "Revive",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Revive.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 27,
+    "text": "Scoop Up",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Scoop%20Up.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 28,
+    "text": "Souble Colorless Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Souble%20Colorless%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 29,
+    "text": "Super Energy Removal",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Super%20Energy%20Removal.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 30,
+    "text": "Super Potion",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Super%20Potion.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 31,
+    "text": "Switch",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Switch.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 32,
+    "text": "Water Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Water%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  }
+].filter((i,index) => startNum2 <= index && index <= endNum2 && skipNum2.indexOf(index) < 0);
 
 
 let totalSegs = defaultPrizeList.length + secondaryList.length;
 secondaryList.forEach( (i,index) => {
   let math = Math.floor(totalSegs/secondaryList.length * index);
+  i.type = 'addOn';
   defaultPrizeList.splice(math, 0, i);
 });
 
-console.log('defaultPrizeList.length 2', defaultPrizeList.length)
 
 
 
@@ -1017,6 +1056,8 @@ const setCurrentImage = (wheelValue) => {
   let wheelElement = document.getElementById(`image_${wheelValue}`); //get current wheel value image
   wheelCenterImage.src = wheelElement.src;
   selectionText.innerHTML = dB[wheelValue].text;
+  if(dB[wheelValue].type == 'addOn') wheelCenterImage.style.borderRadius = "50%";
+  else wheelCenterImage.style.borderRadius = "0px";
  // document.getElementById(`images`).style.left = `${ (wheelValue + 1) * -200}px`;
 };
 

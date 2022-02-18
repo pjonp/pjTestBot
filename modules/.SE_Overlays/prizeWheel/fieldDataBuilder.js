@@ -23,6 +23,8 @@ let FieldDataMaster = {
     chatResponseDelay: ['Chat Response (stream) Delay (s)', 'Middleware Setup', 'slider', 5, 1, 10, 1],
 
     showWheelOnLoad: ['Show Wheel On Load', 'Main Settings', 'dropdown', {yes: 'Yes', no: 'No'}, i => i === 'yes'],
+    wheelBot: ['Username To Allow', 'Main Settings', 'text', 'StreamElements'],
+    allowMods: ['Allow Mods To Use', 'Main Settings', 'dropdown', {yes: 'Yes', no: 'No'}, i => i === 'yes'],
     spinCommand: ['Spin Command', 'Main Settings', 'text', '!spin'],
     wheelShowCommand: ['Show Wheel Command', 'Main Settings', 'text', '!showwheel'],
     wheelHideCommand: ['Hide Wheel Command', 'Main Settings', 'text', '!hidewheel'],
@@ -83,14 +85,20 @@ let FieldDataMaster = {
     foregroundImageSize: ['Image Overlay Size (%)', 'Advanced Settings', 'number', 25],
     foregroundImageRadius: ['Image Overlay Radius (%)', 'Advanced Settings', 'slider', 50,0,50,1],
     reverseSegments: ['Reverse Segments: ', 'Advanced Settings', 'dropdown', {no: 'No', yes: 'Yes'}],
+
+    _info9: ['Twitch Channel Points (Not official)', 'Twitch Channel Points', 'hidden'],
+    enableTwitchRewards: ['Enable Twitch Reward', 'Twitch Channel Points', 'dropdown', {no: 'No', yes: 'Yes'}],
+    twitchRewardTrigger: ['Reward Name', 'Twitch Channel Points', 'text', 'RewardName'],
+    testTwitchRewardButton: ['Reward Test Spin', 'Twitch Channel Points', 'button'],
   },
   outputObject = {};
 //Inject Segments at end of Master List from the Main code
-let breakPoint = 1 //5; //not used (for breaking into groups i.e 1-5, 6-10, 11-15....)
+let breakPoint = 5 //5; //not used (for breaking into groups i.e 1-5, 6-10, 11-15....)
 for(let i = 0; i < 25; i++) {
   let segmentNumber = i+1,
       group = Math.floor(i/breakPoint), //not used
       groupText = `Segment ${segmentNumber}`;//`Segments ${group * breakPoint}-${(group+1) * breakPoint}` //not used "Segments 1-5" ... "Segments 6-10" ....
+    //  groupText = `Segments ${group * breakPoint}-${(group+1) * breakPoint}` //not used "Segments 1-5" ... "Segments 6-10" ....
       //set common values
       FieldDataMaster[`segment${segmentNumber}_wheelText`] = [`Segment ${segmentNumber} Wheel Text`, groupText, 'text', `${segmentNumber < 5 ? groupText : ''}`];
       FieldDataMaster[`segment${segmentNumber}_resText`] = [`Segment ${segmentNumber} Chat Text`, groupText, 'text', `${segmentNumber < 5 ? groupText : ''}`];

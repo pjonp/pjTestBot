@@ -1,7 +1,13 @@
-console.log('LOAD');
+//Prize Wheel by pjonp
+/*2.0
+- Wheel Bot name moved to GUI settings
+- Allow Mods option added to GUI settings
+- Examples for Tip spin and Cheer spin added in code
+- Twitch Channel Points Added
+*/
+console.log('Prize Wheel Loading');
 //Hidden Settings. These Are Fixed and will never change; (constant variables)
-const LoadDelay = 1.5; //seconds to auto check image & video positioning; adjust as needed if miage or video are randomly inserted
-  WheelBot = 'yourbotname', //Lowercase name if wanting to use a bot to call commands
+const LoadDelay = 1.5; //seconds to auto check image & video positioning; adjust as needed if image or video are randomly inserted
   tickSoundVolume = 0.5, //tick sound volume
   spinDelay = 1.5, //delay for wheel to start when off screen (sec)
   hideWheelAfterSpin = true, //hide the wheel when done spinning; default: true
@@ -56,6 +62,23 @@ const Widget = {
     };
   }
 };
+/* 2.0 Channel Points */
+window.addEventListener("onEventReceived", obj => {
+  if(obj.detail.listener === 'reward-redeemed') onReward(obj.detail.event.data);
+});
+function onReward({displayName, rewardTitle, isTest}) {
+  console.log('Reward Event: ', rewardTitle);
+  if(rewardTitle === fieldData.twitchRewardTrigger) {
+    startSpin({
+      user: displayName,
+      prizeList: defaultPrizeWheelSegments,
+      isTest: isTest ? true : false
+    }).then((i) => console.log('RESULT: ', i));
+  };
+
+};
+/* end 2.0*/
+
 /* WIDGET EVENTS: https://reboot0-de.github.io/se-tools/module-Events.html */
 //Test Button
 function onWidgetButton(data) {
@@ -65,7 +88,7 @@ function onWidgetButton(data) {
       prizeList: defaultPrizeWheelSegments,
       isTest: true
     }).then((i) => console.log('RESULT: ', i));
-  };
+  } else if (data.field === 'testTwitchRewardButton' && fieldData.enableTwitchRewards) onReward({displayName: `${fieldData.twitchRewardTrigger} 🚀`, rewardTitle: fieldData.twitchRewardTrigger, isTest: true});
 };
 
 function onMessage(chatMessage) {
@@ -76,21 +99,19 @@ function onMessage(chatMessage) {
   //
   if (platform === 'twitch') {
     chatArgs = chatMessage.getWordList();
-    if (chatMessage.hasUserId(streamerUserId) || chatMessage.hasUsername(WheelBot) || chatMessage.isModerator()) hasPerm = true;
+    if (chatMessage.hasUserId(streamerUserId) || chatMessage.hasUsername(fieldData.wheelBot) || (chatMessage.isModerator() && fieldData.allowMods)) hasPerm = true;
     if (chatMessage.isCommand(fieldData.spinCommand)) spinCommand = true;
     else if (chatMessage.isCommand(fieldData.wheelShowCommand)) showWheelCmd = true;
     else if (chatMessage.isCommand(fieldData.wheelHideCommand)) hideWheelCmd = true;
     else return;
   } else if (platform === 'trovo') {
-    if (chatMessage.data.nick_name === "StreamElements" || chatMessage.data.roles.some(i => i === 'streamer') || chatMessage.data.nick_name === WheelBot) hasPerm = true;
-
+    if (chatMessage.data.roles.some(i => i === 'streamer' || (i === 'mod' && fieldData.allowMods)) || chatMessage.data.nick_name === fieldData.wheelBot) hasPerm = true;
     //TROVO CATCH ... prevents reading of old messages when loaded
     try {
       let trovoCatch = chatMessage.data.content_data.user_time;
     } catch {
       return;
     };
-    //TROVO CATCH
 
     chatArgs = chatMessage.data.content.split(' ');
     if (chatArgs[0] === fieldData.spinCommand) spinCommand = true;
@@ -121,6 +142,35 @@ TRIGGER A SPIN WITH:
 */
 
 // START Reboot0s's tools https://reboot0-de.github.io/se-tools/tutorial-Events.html
+
+
+/* EXAMPLE CHEER SPIN */
+/*
+function onCheer(data)
+{
+  if(data.amount > 99) {
+      startSpin({
+      user: data.name,
+      prizeList: defaultPrizeWheelSegments,
+      isTest: data.isTest
+    });
+  };
+};
+*/
+
+/* EXAMPLE TIP SPIN */
+/*
+function onTip(data)
+{
+    if(data.amount > 5) {
+      startSpin({
+      user: data.name,
+      prizeList: defaultPrizeWheelSegments,
+      isTest: data.isTest
+    });
+  };
+}
+*/
 
 /* EXAMPLE SUB BOMB; Points to 5+
     Sub bomb > 4; then wheel spin for the gifter. if wheel result has 'add points', then give all the sub recievers the point value! (The gifter is also given the points in the main code)
@@ -167,7 +217,8 @@ function onFollow(data) {
 };
 */
 
-/* EXAMPLE SUB SPIN  - USER's 1ST SUB. Does not work on resubs or gifts!*/
+/* EXAMPLE SUB SPIN  - USER's 1ST SUB. Does not work on resubs or gifts!
+may require function onSubBomb(data) ?*/
 /*
 function onSubscriber(data) {
   startSpin({
@@ -199,7 +250,7 @@ function onWidgetLoad(obj) {
 
   fieldData = obj.detail.fieldData;
   //set true/false dropdowns
-  ['sayToChat', 'showWheelOnLoad', 'playTickSound', 'movingWheelSegImages', 'reverseSegments'].forEach(i => fieldData[i] = fieldData[i] === 'yes');
+  ['sayToChat', 'showWheelOnLoad', 'playTickSound', 'movingWheelSegImages', 'reverseSegments', 'allowMods', 'enableTwitchRewards'].forEach(i => fieldData[i] = fieldData[i] === 'yes');
   //set audio
   if (fieldData.backgroundSound) fieldData.backgroundSound = new Audio(fieldData.backgroundSound);
 
@@ -260,6 +311,16 @@ function onWidgetLoad(obj) {
   //"Animated gradient webcam frame" by Kagrayz
   if (fieldData.mask && fieldData.mask !== 'none') buildGradient();
   else $("#frame").html('');
+//2.0 Channel Points
+  if(fieldData.enableTwitchRewards) {
+    if(!fieldData.twitchRewardTrigger) {
+      fieldData.enableTwitchRewards = false;
+      Widget.displayError(`Twitch Channel Points is enabled but no Reward Name is set`);
+      return;
+    };
+    console.log('Connecting to Twitch PubSub...');
+    new TwitchPubSub(obj.detail.channel.providerId).connect().catch(e => console.error('Unable to connect to PubSub: ', e)); //Twitch Channel Points. See HTML
+  };
 };
 // END Reboot0s's tools
 
