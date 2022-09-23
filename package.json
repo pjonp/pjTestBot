@@ -12,8 +12,8 @@
     "cryptr": "^6.0.2",
     "discord.js": "^12",
     "dotenv": "^8.2.0",
+    "socket.io": "^2.4.0",
     "node-fetch": "^2.6.7",
-    "socket.io": "^2.3.0",
     "tmi.js": "^1.5.0",
     "twitchps": "^1.5.0"
   }
