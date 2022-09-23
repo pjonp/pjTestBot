@@ -1,0 +1,345 @@
+{
+  "_mainInfo": {
+    "type": "hidden",
+    "label": "jebaited.net Token Required for Games!",
+    "group": "Main"
+  },
+  "FDjebaitedtoken": {
+    "type": "text",
+    "label": "jebaited token (botMag + Points!)",
+    "value": "xxxx",
+    "group": "Main"
+  },
+  "ignoredChattersFD": {
+    "type": "text",
+    "label": "Ignored Chatters (comma separated)",
+    "value": "streamelements,commanderroot",
+    "group": "Chatters Set Up"
+  },
+  "_vipInfo": {
+    "type": "hidden",
+    "label": "VIP Chatters:",
+    "group": "Chatters Set Up"
+  },
+  "FDenableVip": {
+    "type": "dropdown",
+    "label": "Show VIPs",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Chatters Set Up"
+  },
+  "FDvipColor": {
+    "type": "colorpicker",
+    "label": "VIP Color",
+    "value": "rgb(255, 212, 0)",
+    "group": "Chatters Set Up"
+  },
+  "FDvipFontColor": {
+    "type": "colorpicker",
+    "label": "VIP Font Color",
+    "value": "#fff",
+    "group": "Chatters Set Up"
+  },
+  "_modInfo": {
+    "type": "hidden",
+    "label": "Mod Chatters:",
+    "group": "Chatters Set Up"
+  },
+  "FDenableMod": {
+    "type": "dropdown",
+    "label": "Show Mods",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Chatters Set Up"
+  },
+  "FDmodColor": {
+    "type": "colorpicker",
+    "label": "Mod Color",
+    "value": "rgb(255, 128, 0)",
+    "group": "Chatters Set Up"
+  },
+  "FDmodFontColor": {
+    "type": "colorpicker",
+    "label": "Mod Font Color",
+    "value": "#fff",
+    "group": "Chatters Set Up"
+  },
+  "_subInfo": {
+    "type": "hidden",
+    "label": "Sub Chatters:",
+    "group": "Chatters Set Up"
+  },
+  "FDenableSub": {
+    "type": "dropdown",
+    "label": "Show Subs",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Chatters Set Up"
+  },
+  "FDsubColor": {
+    "type": "colorpicker",
+    "label": "Sub Color",
+    "value": "rgb(49, 122, 194)",
+    "group": "Chatters Set Up"
+  },
+  "FDsubFontColor": {
+    "type": "colorpicker",
+    "label": "Sub Font Color",
+    "value": "#fff",
+    "group": "Chatters Set Up"
+  },
+  "_othersInfo": {
+    "type": "hidden",
+    "label": "Other Chatters:",
+    "group": "Chatters Set Up"
+  },
+  "FDenableOther": {
+    "type": "dropdown",
+    "label": "Show Others",
+    "value": "yes",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Chatters Set Up"
+  },
+  "FDotherColor": {
+    "type": "colorpicker",
+    "label": "Other Color",
+    "value": "#ff0100",
+    "group": "Chatters Set Up"
+  },
+  "FDotherFontColor": {
+    "type": "colorpicker",
+    "label": "Other Font Color",
+    "value": "#fff",
+    "group": "Chatters Set Up"
+  },
+  "FDchatQuestionStartTrigger": {
+    "type": "text",
+    "label": "Question prefix text:",
+    "value": "Question :thinking:",
+    "group": "Chat Triva"
+  },
+  "FDchatQuestionEndText": {
+    "type": "text",
+    "label": "Winner text [{winner},{points}]",
+    "value": "{winner} got the answer! GivePLZ {points} points!",
+    "group": "Chat Triva"
+  },
+  "FDchatQuestionPoints": {
+    "type": "slider",
+    "label": "Points",
+    "value": 100,
+    "min": 10,
+    "max": 500,
+    "steps": 10,
+    "group": "Chat Triva"
+  },
+  "FDchatQuestionPointsAdder": {
+    "type": "slider",
+    "label": "Random Points Adder",
+    "value": 50,
+    "min": 0,
+    "max": 100,
+    "steps": 1,
+    "group": "Chat Triva"
+  },
+  "_chatQInfo": {
+    "type": "hidden",
+    "label": "Requires Google Sheets. See Info!",
+    "group": "Chat Triva"
+  },
+  "FDchatQuestionAutoPlay": {
+    "type": "dropdown",
+    "label": "Autostart Games",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Chat Triva"
+  },
+  "FDchatQuestionAutoTime": {
+    "type": "slider",
+    "label": "Autoplay time (minutes)",
+    "value": 30,
+    "min": 1,
+    "max": 90,
+    "steps": 1,
+    "group": "Chat Triva"
+  },
+  "FDchatQuestionSheetID": {
+    "type": "text",
+    "label": "Google Sheet ID #",
+    "value": "",
+    "group": "Chat Triva"
+  },
+  "FDchatQuestionSheetName": {
+    "type": "text",
+    "label": "Google Sheet Name",
+    "value": "Sheet1",
+    "group": "Chat Triva"
+  },
+  "FDchatQuestionGAPIKey": {
+    "type": "text",
+    "label": "Google API Key",
+    "value": "",
+    "group": "Chat Triva"
+  },
+  "FDrandomPinStartTrigger": {
+    "type": "text",
+    "label": "Pin prefix text:",
+    "value": "What's the 🔑? ",
+    "group": "Random Pin Game"
+  },
+  "FDrandomPinEndText": {
+    "type": "text",
+    "label": "Winner text [{winner},{points}]",
+    "value": "{winner} got the pin! GivePLZ {points} points!",
+    "group": "Random Pin Game"
+  },
+  "FDrandomPinPoints": {
+    "type": "slider",
+    "label": "Points",
+    "value": 100,
+    "min": 10,
+    "max": 500,
+    "steps": 10,
+    "group": "Random Pin Game"
+  },
+  "FDrandomPinPointsAdder": {
+    "type": "slider",
+    "label": "Random Points Adder",
+    "value": 50,
+    "min": 0,
+    "max": 100,
+    "steps": 1,
+    "group": "Random Pin Game"
+  },
+  "FDrandomPinAutoPlay": {
+    "type": "dropdown",
+    "label": "Autostart Games",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Random Pin Game"
+  },
+  "FDrandomPinAutoTime": {
+    "type": "slider",
+    "label": "Autoplay time (minutes)",
+    "value": 30,
+    "min": 1,
+    "max": 90,
+    "steps": 1,
+    "group": "Random Pin Game"
+  },
+  "FDscrambleWordStartTrigger": {
+    "type": "text",
+    "label": "Word prefix text:",
+    "value": "Unscramble me: ",
+    "group": "Scramble Word Game"
+  },
+  "FDscrambleWordEndText": {
+    "type": "text",
+    "label": "Winner text [{winner},{points}]",
+    "value": "{winner} unscrambled the word! GivePLZ {points} points!",
+    "group": "Scramble Word Game"
+  },
+  "FDscrambleWordPoints": {
+    "type": "slider",
+    "label": "Points",
+    "value": 100,
+    "min": 10,
+    "max": 500,
+    "steps": 10,
+    "group": "Scramble Word Game"
+  },
+  "FDscrambleWordPointsAdder": {
+    "type": "slider",
+    "label": "Random Points Adder",
+    "value": 50,
+    "min": 0,
+    "max": 100,
+    "steps": 1,
+    "group": "Scramble Word Game"
+  },
+  "FDscrambleWordAutoPlay": {
+    "type": "dropdown",
+    "label": "Autostart Games",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Scramble Word Game"
+  },
+  "FDscrambleWordAutoTime": {
+    "type": "slider",
+    "label": "Autoplay time (minutes)",
+    "value": 30,
+    "min": 1,
+    "max": 90,
+    "steps": 1,
+    "group": "Scramble Word Game"
+  },
+  "FDchatActivityTimeframe": {
+    "type": "slider",
+    "label": "Default Timeframe",
+    "value": 5,
+    "min": 5,
+    "max": 90,
+    "steps": 1,
+    "group": "Chat Activity"
+  },
+  "FDchatActivityChatMin": {
+    "type": "slider",
+    "label": "Default Chat Minimum",
+    "value": 2,
+    "min": 1,
+    "max": 50,
+    "steps": 1,
+    "group": "Chat Activity"
+  },
+  "FDchatActivityPoints": {
+    "type": "slider",
+    "label": "Default Points",
+    "value": 10,
+    "min": 1,
+    "max": 150,
+    "steps": 1,
+    "group": "Chat Activity"
+  },
+  "FDchatActivityAnnounceBonus": {
+    "type": "dropdown",
+    "label": "Announce Bonus To Chat",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Chat Activity"
+  },
+  "_FDchatActivityBonusMsgInfo": {
+    "type": "hidden",
+    "label": "Message To Send/Display",
+    "group": "Chat Activity"
+  },
+  "FDchatActivityBonusMsg": {
+    "type": "text",
+    "label": "[{points},{amount},{chats},{time}]",
+    "value": "{points} bonus points have been given to {amount} chatters for sending more than {chats} chats in the last {time} minutes!",
+    "group": "Chat Activity"
+  }
+}

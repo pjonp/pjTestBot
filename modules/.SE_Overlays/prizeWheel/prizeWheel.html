@@ -1,0 +1,23 @@
+<script src="https://jebaited.net/assets/js/widgets.js"></script>
+<script defer src="https://reboot0.de/hosted/js/se-tools.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/zarocknz/javascript-winwheel@2.8.0/Winwheel.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.0.2/TweenMax.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tinycolor/1.4.2/tinycolor.min.js"></script>
+<script src='https://cdn.jsdelivr.net/gh/pjonp/pjTestBot@master/modules/.SE_Overlays/emojiRotator/sePubSub_beta.min.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+<div id="errorText"></div>
+<div id="container">
+  <canvas id="canvas" width="{{wheelSize}}" height="{{wheelSize}}"></canvas>
+  <div id="video-center-piece">
+    <video id='wheelCenterVideo' src='{{foregroundVideo}}' autoplay loop />
+  </div>
+  <div id="frame">
+    <div id="spin"></div>
+  </div>
+  <div id='image-center-piece'>
+    <image id='wheelCenterImage' src='{{foregroundImage}}' />
+  </div>
+  <div id="username-text"></div>
+  <div id="wheelName-text">{{wheelName}}</div>
+</div>

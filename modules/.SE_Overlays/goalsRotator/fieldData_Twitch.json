@@ -1,0 +1,1196 @@
+{
+  "FD_platform": {
+    "type": "hidden",
+    "label": "AiO RotatoGoal for Twitch",
+    "value": "Twitch",
+    "group": "Main"
+  },
+  "FD_cardBgColor1": {
+    "type": "colorpicker",
+    "label": "Card Color 1",
+    "value": "rgba(255, 254, 254, 0)",
+    "group": "Main"
+  },
+  "FD_cardBgColor2": {
+    "type": "colorpicker",
+    "label": "Card Color 2",
+    "value": "rgba(0, 0, 0, 0.2)",
+    "group": "Main"
+  },
+  "FD_cardEdgeColor": {
+    "type": "colorpicker",
+    "label": "Card Edge Color",
+    "value": "rgba(0, 0, 0, 0.2)",
+    "group": "Main"
+  },
+  "FD_barOnTop": {
+    "type": "dropdown",
+    "label": "Bar Position",
+    "value": "0",
+    "options": {
+      "0": "Under Text",
+      "2": "Above Text"
+    },
+    "group": "Main"
+  },
+  "FD_direction": {
+    "type": "dropdown",
+    "label": "Flip Direction",
+    "value": "1",
+    "options": {
+      "-1": "Down",
+      "1": "Up"
+    },
+    "group": "Main"
+  },
+  "FD_animationTime": {
+    "type": "slider",
+    "label": "Animation Speed",
+    "value": 2,
+    "min": 0.5,
+    "max": 20,
+    "steps": 0.5,
+    "group": "Main"
+  },
+  "FD_showTime": {
+    "type": "slider",
+    "label": "Goal Duratation",
+    "value": 10,
+    "min": 1,
+    "max": 300,
+    "steps": 1,
+    "group": "Main"
+  },
+  "FD_glowTime": {
+    "type": "slider",
+    "label": "Gradient Transistion (Seconds)",
+    "value": 15,
+    "min": 1,
+    "max": 300,
+    "steps": 1,
+    "group": "Main"
+  },
+  "FD_fontName": {
+    "type": "googleFont",
+    "label": "Font Style",
+    "value": "Bangers",
+    "group": "Main"
+  },
+  "FD_fontColor": {
+    "type": "colorpicker",
+    "label": "Font Color",
+    "value": "rgba(255, 255, 255, 0.75)",
+    "group": "Main"
+  },
+  "FD_maxFontSize": {
+    "type": "slider",
+    "label": "Max Font Size",
+    "value": 145,
+    "min": 5,
+    "max": 300,
+    "steps": 1,
+    "group": "Main"
+  },
+  "FD_fontShadowColor": {
+    "type": "colorpicker",
+    "label": "Font Shadow Color",
+    "value": "rgb(0,0,0)",
+    "group": "Main"
+  },
+  "FD_fontShadowSize": {
+    "type": "slider",
+    "label": "Font Shadow Size",
+    "value": 1,
+    "min": -15,
+    "max": 15,
+    "steps": 1,
+    "group": "Main"
+  },
+  "FD_labelHeight": {
+    "type": "slider",
+    "label": "Label Height (Default: 20)",
+    "value": 20,
+    "min": 5,
+    "max": 100,
+    "steps": 1,
+    "group": "Main"
+  },
+  "FD_labelPosition": {
+    "type": "slider",
+    "label": "Label Vertical Offset (Default: 0)",
+    "value": 0,
+    "min": -75,
+    "max": 75,
+    "steps": 1,
+    "group": "Main"
+  },
+  "FD_labelColor": {
+    "type": "colorpicker",
+    "label": "Label Font Color",
+    "value": "rgba(0, 195, 255, 0.9)",
+    "group": "Main"
+  },
+  "FD_iconSize": {
+    "type": "slider",
+    "label": "Icon Size (Default: 100)",
+    "value": 100,
+    "min": 10,
+    "max": 100,
+    "steps": 1,
+    "group": "Main"
+  },
+  "FD_iconOffset": {
+    "type": "slider",
+    "label": "Icon Vertical Offset (Default: 0)",
+    "value": 0,
+    "min": -75,
+    "max": 75,
+    "steps": 1,
+    "group": "Main"
+  },
+  "FD_iconColor": {
+    "type": "colorpicker",
+    "label": "Icon Color",
+    "value": "rgba(0, 195, 255, 0.9)",
+    "group": "Main"
+  },
+  "FD_barGlowColor": {
+    "type": "colorpicker",
+    "label": "Bar Glow Color 1",
+    "value": "rgba(0, 0, 0, 0.2)",
+    "group": "Main"
+  },
+  "FD_barGlowColor2": {
+    "type": "colorpicker",
+    "label": "Bar Glow Color 2",
+    "value": "rgba(255, 255, 255, 0.75)",
+    "group": "Main"
+  },
+  "FD_barGlowWidth": {
+    "type": "slider",
+    "label": "Bar Glow Width",
+    "value": 10,
+    "min": 0,
+    "max": 50,
+    "steps": 1,
+    "group": "Main"
+  },
+
+  "FD_cardPerspective": {
+    "type": "slider",
+    "label": "Card Perspective (Default: 1500)",
+    "value": 1500,
+    "min": 0,
+    "max": 5000,
+    "steps": 100,
+    "group": "Advanced"
+  },
+  "FD_cardPerspectiveOrigin": {
+    "type": "dropdown",
+    "label": "Perspective Origin",
+    "value": "top left",
+    "options": {
+      "top left": "TOP LEFT",
+      "top": "TOP",
+      "top right": "TOP RIGHT",
+      "left": "LEFT",
+      "center": "CENTER",
+      "right": "RIGHT",
+      "bottom left": "BOTTOM LEFT",
+      "bottom": "BOTTOM",
+      "bottom right": "BOTTOM RIGHT"
+    },
+    "group": "Advanced"
+  },
+  "_FD_info1_hidden": {
+    "type": "hidden",
+    "label": "RADIUS OR THICKNESS | NOT BOTH!",
+    "group": "Advanced"
+  },
+  "FD_cardRadius": {
+    "type": "slider",
+    "label": "Card Radius (Pixels)",
+    "value": 0,
+    "min": 0,
+    "max": 500,
+    "steps": 1,
+    "group": "Advanced"
+  },
+  "FD_cardThickness": {
+    "type": "slider",
+    "label": "Card Thickness (Pixels)",
+    "value": 30,
+    "min": 0,
+    "max": 150,
+    "steps": 1,
+    "group": "Advanced"
+  },
+  "FD_cardWidth": {
+    "type": "slider",
+    "label": "Card Width Override (Default: 80)",
+    "value": 80,
+    "min": 5,
+    "max": 95,
+    "steps": 5,
+    "group": "Advanced"
+  },
+  "FD_cardHeight": {
+    "type": "slider",
+    "label": "Card Height Override (Default: 80)",
+    "value": 80,
+    "min": 5,
+    "max": 95,
+    "steps": 5,
+    "group": "Advanced"
+  },
+  "FD_currencyLocale": {
+    "type": "dropdown",
+    "label": "Currency Locale",
+    "value": "en-US",
+    "options": {
+      "de-DE": "de-DE",
+      "en-AU": "en-AU",
+      "en-CA": "en-CA",
+      "en-GB": "en-GB",
+      "en-IE": "en-IE",
+      "en-NZ": "en-NZ",
+      "en-US": "en-US",
+      "ja-JP": "ja-JP",
+      "nl-NL": "nl-NL",
+      "zh-HK": "zh-HK"
+    },
+    "group": "Advanced"
+  },
+  "FD_currencyDecimals": {
+    "type": "dropdown",
+    "label": "Currency Decimals",
+    "value": "2",
+    "options": {
+      "0": "$10",
+      "2": "$10.00"
+    },
+    "group": "Advanced"
+  },
+  "FD_currencyCode": {
+    "type": "hidden",
+    "label": "",
+    "value": "en-US",
+    "options": {
+      "EUR": "EUR",
+      "GBP": "GBP",
+      "HKD": "HKD",
+      "JPY": "JPY",
+      "USD": "USD"
+    },
+    "group": "Advanced"
+  },
+  "FD_vertBar": {
+    "type": "dropdown",
+    "label": "Vertical Bar",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Advanced"
+  },
+  "FD_formatLargeNumbers": {
+    "type": "dropdown",
+    "label": "Format Large # (1k)",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Advanced"
+  },
+  "FD_formatLargeNumbersDec": {
+    "type": "slider",
+    "label": "Large # Decimals (1.12k)",
+    "value": 1,
+    "min": 0,
+    "max": 3,
+    "steps": 1,
+    "group": "Advanced"
+  },
+
+
+
+  "_FD_follower-goal_hidden": {
+    "type": "hidden",
+    "label": "FOLLOWER Options",
+    "group": "Followers"
+  },
+  "FD_follower-goal_enabled": {
+    "type": "dropdown",
+    "label": "FOLLOWER Type",
+    "value": "off",
+    "options": {
+      "off": "Off",
+      "follower-goal": "Goal",
+      "follower-session": "Session",
+      "follower-week": "Week",
+      "follower-month": "Month",
+      "follower-total": "Total"
+    },
+    "group": "Followers"
+  },
+  "FD_follower-goal_target": {
+    "type": "number",
+    "label": "FOLLOWER Target Goal",
+    "step": 1,
+    "value": 10,
+    "min": 1,
+    "group": "Followers"
+  },
+  "_FD_follower-goal_hiddenFont": {
+    "type": "hidden",
+    "label": "Min Font Size for Progress/Goal",
+    "group": "Followers"
+  },
+  "FD_follower-goal_minFontSize": {
+    "type": "number",
+    "label": "0 for Auto",
+    "value": 0,
+    "step": 1,
+    "min": 0,
+    "max": 500,
+    "group": "Followers"
+  },
+  "FD_follower-goal_icon": {
+    "type": "dropdown",
+    "label": "FOLLOWER Icon",
+    "value": "other",
+    "options": {
+      "none": "NONE",
+      "fab fa-twitch": "TWITCH",
+      "fab fa-youtube": "YOUTUBE",
+      "fab fa-facebook-f": "FACEBOOK",
+      "fas fa-crown": "CROWN",
+      "fas fa-chess-queen": "CHESS QUEEN",
+      "fas fa-donate": "DONATE",
+      "fas fa-coins": "COINS",
+      "fas fa-gem": "GEM SOLID",
+      "far fa-gem": "GEM",
+      "fas fa-tshirt": "TSHIRT",
+      "fas fa-puzzle-piece": "PUZZLE PIECE",
+      "fas fa-star": "STAR SOLID",
+      "far fa-star": "STAR",
+      "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+    },
+    "group": "Followers"
+  },
+  "_FD_follower-goal_hidden2": {
+    "type": "hidden",
+    "label": "Enter Icon Class Or Text",
+    "group": "Followers"
+  },
+  "_FD_follower-goal_hidden3": {
+    "type": "hidden",
+    "label": "Icons: fontawesome.com/icons?m=free",
+    "group": "Followers"
+  },
+  "FD_follower-goal_iconOther": {
+    "type": "text",
+    "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
+    "value": "fas fa-code",
+    "group": "Followers"
+  },
+  "FD_follower-goal_label": {
+    "type": "text",
+    "label": "FOLLOWER Label",
+    "value": "FOLLOWER",
+    "group": "Followers"
+  },
+  "FD_follower-goal_barColor1": {
+    "type": "colorpicker",
+    "label": "FOLLOWER Bar Color 1",
+    "value": "rgba(0, 0, 0, 0.25)",
+    "group": "Followers"
+  },
+  "FD_follower-goal_barColor2": {
+    "type": "colorpicker",
+    "label": "FOLLOWER Bar Color 2",
+    "value": "rgba(0, 195, 255, 0.3)",
+    "group": "Followers"
+  },
+  "FD_follower-goal_neverEndingGoal": {
+    "type": "dropdown",
+    "label": "Goal That Never Ends?",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Followers"
+  },
+  "FD_follower-goal_neverEndingGoalAdder": {
+    "type": "slider",
+    "label": "% Adder At Limit",
+    "value": 25,
+    "min": 1,
+    "max": 50,
+    "steps": 1,
+    "group": "Followers"
+  },
+  "FD_follower-goal_neverEndingGoalLimit": {
+    "type": "slider",
+    "label": "Maximum Bar %",
+    "value": 90,
+    "min": 50,
+    "max": 99,
+    "steps": 1,
+    "group": "Followers"
+  },
+
+  "_FD_tip-goal_hidden": {
+    "type": "hidden",
+    "label": "TIP Options",
+    "group": "Tips"
+  },
+  "FD_tip-goal_enabled": {
+    "type": "dropdown",
+    "label": "TIP Type",
+    "value": "off",
+    "options": {
+      "off": "Off",
+      "tip-goal": "Goal",
+      "tip-session": "Session",
+      "tip-week": "Week",
+      "tip-month": "Month",
+      "tip-total": "Total",
+      "tip-count": "Count"
+    },
+    "group": "Tips"
+  },
+  "FD_tip-goal_target": {
+    "type": "number",
+    "label": "TIP Target Goal",
+    "step": 1,
+    "value": 10,
+    "min": 1,
+    "group": "Tips"
+  },
+  "_FD_tip-goal_hiddenFont": {
+    "type": "hidden",
+    "label": "Min Font Size for Progress/Goal",
+    "group": "Tips"
+  },
+  "FD_tip-goal_minFontSize": {
+    "type": "number",
+    "label": "0 for Auto",
+    "value": 0,
+    "step": 1,
+    "min": 0,
+    "max": 500,
+    "group": "Tips"
+  },
+  "FD_tip-goal_icon": {
+    "type": "dropdown",
+    "label": "TIP Icon",
+    "value": "other",
+    "options": {
+      "none": "NONE",
+      "fab fa-twitch": "TWITCH",
+      "fab fa-youtube": "YOUTUBE",
+      "fab fa-facebook-f": "FACEBOOK",
+      "fas fa-crown": "CROWN",
+      "fas fa-chess-queen": "CHESS QUEEN",
+      "fas fa-donate": "DONATE",
+      "fas fa-coins": "COINS",
+      "fas fa-gem": "GEM SOLID",
+      "far fa-gem": "GEM",
+      "fas fa-tshirt": "TSHIRT",
+      "fas fa-puzzle-piece": "PUZZLE PIECE",
+      "fas fa-star": "STAR SOLID",
+      "far fa-star": "STAR",
+      "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+    },
+    "group": "Tips"
+  },
+  "_FD_tip-goal_hidden2": {
+    "type": "hidden",
+    "label": "Enter Icon Class Or Text",
+    "group": "Tips"
+  },
+  "_FD_tip-goal_hidden3": {
+    "type": "hidden",
+    "label": "Icons: fontawesome.com/icons?m=free",
+    "group": "Tips"
+  },
+  "FD_tip-goal_iconOther": {
+    "type": "text",
+    "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
+    "value": "fas fa-code",
+    "group": "Tips"
+  },
+  "FD_tip-goal_label": {
+    "type": "text",
+    "label": "TIP Label",
+    "value": "TIP",
+    "group": "Tips"
+  },
+  "FD_tip-goal_barColor1": {
+    "type": "colorpicker",
+    "label": "TIP Bar Color 1",
+    "value": "rgba(0, 0, 0, 0.25)",
+    "group": "Tips"
+  },
+  "FD_tip-goal_barColor2": {
+    "type": "colorpicker",
+    "label": "TIP Bar Color 2",
+    "value": "rgba(0, 195, 255, 0.3)",
+    "group": "Tips"
+  },
+  "FD_tip-goal_neverEndingGoal": {
+    "type": "dropdown",
+    "label": "Goal That Never Ends?",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Tips"
+  },
+  "FD_tip-goal_neverEndingGoalAdder": {
+    "type": "slider",
+    "label": "% Adder At Limit",
+    "value": 25,
+    "min": 1,
+    "max": 50,
+    "steps": 1,
+    "group": "Tips"
+  },
+  "FD_tip-goal_neverEndingGoalLimit": {
+    "type": "slider",
+    "label": "Maximum Bar %",
+    "value": 90,
+    "min": 50,
+    "max": 99,
+    "steps": 1,
+    "group": "Tips"
+  },
+
+  "_FD_cheer-goal_hidden": {
+    "type": "hidden",
+    "label": "CHEER Options",
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_enabled": {
+    "type": "dropdown",
+    "label": "CHEER Type",
+    "value": "off",
+    "options": {
+      "off": "Off",
+      "cheer-goal": "Goal",
+      "cheer-session": "Session",
+      "cheer-week": "Week",
+      "cheer-month": "Month",
+      "cheer-total": "Total"
+    },
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_target": {
+    "type": "number",
+    "label": "CHEER Target Goal",
+    "step": 1,
+    "value": 10,
+    "min": 1,
+    "group": "Cheers"
+  },
+  "_FD_cheer-goal_hiddenFont": {
+    "type": "hidden",
+    "label": "Min Font Size for Progress/Goal",
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_minFontSize": {
+    "type": "number",
+    "label": "0 for Auto",
+    "value": 0,
+    "step": 1,
+    "min": 0,
+    "max": 500,
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_icon": {
+    "type": "dropdown",
+    "label": "CHEER Icon",
+    "value": "other",
+    "options": {
+      "none": "NONE",
+      "fab fa-twitch": "TWITCH",
+      "fab fa-youtube": "YOUTUBE",
+      "fab fa-facebook-f": "FACEBOOK",
+      "fas fa-crown": "CROWN",
+      "fas fa-chess-queen": "CHESS QUEEN",
+      "fas fa-donate": "DONATE",
+      "fas fa-coins": "COINS",
+      "fas fa-gem": "GEM SOLID",
+      "far fa-gem": "GEM",
+      "fas fa-tshirt": "TSHIRT",
+      "fas fa-puzzle-piece": "PUZZLE PIECE",
+      "fas fa-star": "STAR SOLID",
+      "far fa-star": "STAR",
+      "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+    },
+    "group": "Cheers"
+  },
+  "_FD_cheer-goal_hidden2": {
+    "type": "hidden",
+    "label": "Enter Icon Class Or Text",
+    "group": "Cheers"
+  },
+  "_FD_cheer-goal_hidden3": {
+    "type": "hidden",
+    "label": "Icons: fontawesome.com/icons?m=free",
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_iconOther": {
+    "type": "text",
+    "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
+    "value": "fas fa-code",
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_label": {
+    "type": "text",
+    "label": "CHEER Label",
+    "value": "CHEER",
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_barColor1": {
+    "type": "colorpicker",
+    "label": "CHEER Bar Color 1",
+    "value": "rgba(0, 0, 0, 0.25)",
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_barColor2": {
+    "type": "colorpicker",
+    "label": "CHEER Bar Color 2",
+    "value": "rgba(0, 195, 255, 0.3)",
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_neverEndingGoal": {
+    "type": "dropdown",
+    "label": "Goal That Never Ends?",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_neverEndingGoalAdder": {
+    "type": "slider",
+    "label": "% Adder At Limit",
+    "value": 25,
+    "min": 1,
+    "max": 50,
+    "steps": 1,
+    "group": "Cheers"
+  },
+  "FD_cheer-goal_neverEndingGoalLimit": {
+    "type": "slider",
+    "label": "Maximum Bar %",
+    "value": 90,
+    "min": 50,
+    "max": 99,
+    "steps": 1,
+    "group": "Cheers"
+  },
+
+  "_FD_subscriber-goal_hidden": {
+    "type": "hidden",
+    "label": "SUBSCRIBER Options",
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_enabled": {
+    "type": "dropdown",
+    "label": "SUBSCRIBER Type",
+    "value": "off",
+    "options": {
+      "off": "Off",
+      "subscriber-goal": "Goal",
+      "subscriber-session": "Session",
+      "subscriber-week": "Week",
+      "subscriber-month": "Month",
+      "subscriber-total": "Total"
+    },
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_target": {
+    "type": "number",
+    "label": "SUBSCRIBER Target Goal",
+    "step": 1,
+    "value": 10,
+    "min": 1,
+    "group": "Subscribers"
+  },
+  "_FD_subscriber-goal_hiddenFont": {
+    "type": "hidden",
+    "label": "Min Font Size for Progress/Goal",
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_minFontSize": {
+    "type": "number",
+    "label": "0 for Auto",
+    "value": 0,
+    "step": 1,
+    "min": 0,
+    "max": 500,
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_icon": {
+    "type": "dropdown",
+    "label": "SUBSCRIBER Icon",
+    "value": "other",
+    "options": {
+      "none": "NONE",
+      "fab fa-twitch": "TWITCH",
+      "fab fa-youtube": "YOUTUBE",
+      "fab fa-facebook-f": "FACEBOOK",
+      "fas fa-crown": "CROWN",
+      "fas fa-chess-queen": "CHESS QUEEN",
+      "fas fa-donate": "DONATE",
+      "fas fa-coins": "COINS",
+      "fas fa-gem": "GEM SOLID",
+      "far fa-gem": "GEM",
+      "fas fa-tshirt": "TSHIRT",
+      "fas fa-puzzle-piece": "PUZZLE PIECE",
+      "fas fa-star": "STAR SOLID",
+      "far fa-star": "STAR",
+      "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+    },
+    "group": "Subscribers"
+  },
+  "_FD_subscriber-goal_hidden2": {
+    "type": "hidden",
+    "label": "Enter Icon Class Or Text",
+    "group": "Subscribers"
+  },
+  "_FD_subscriber-goal_hidden3": {
+    "type": "hidden",
+    "label": "Icons: fontawesome.com/icons?m=free",
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_iconOther": {
+    "type": "text",
+    "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
+    "value": "fas fa-code",
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_label": {
+    "type": "text",
+    "label": "SUBSCRIBER Label",
+    "value": "SUBSCRIBER",
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_barColor1": {
+    "type": "colorpicker",
+    "label": "SUBSCRIBER Bar Color 1",
+    "value": "rgba(0, 0, 0, 0.25)",
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_barColor2": {
+    "type": "colorpicker",
+    "label": "SUBSCRIBER Bar Color 2",
+    "value": "rgba(0, 195, 255, 0.3)",
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_neverEndingGoal": {
+    "type": "dropdown",
+    "label": "Goal That Never Ends?",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_neverEndingGoalAdder": {
+    "type": "slider",
+    "label": "% Adder At Limit",
+    "value": 25,
+    "min": 1,
+    "max": 50,
+    "steps": 1,
+    "group": "Subscribers"
+  },
+  "FD_subscriber-goal_neverEndingGoalLimit": {
+    "type": "slider",
+    "label": "Maximum Bar %",
+    "value": 90,
+    "min": 50,
+    "max": 99,
+    "steps": 1,
+    "group": "Subscribers"
+  },
+
+  "_FD_merch-goal-items_hidden": {
+    "type": "hidden",
+    "label": "MERCH ITEMS Options",
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_enabled": {
+    "type": "dropdown",
+    "label": "MERCH ITEMS Type",
+    "value": "off",
+    "options": {
+      "off": "Disabled",
+      "merch-goal-items": "Goal"
+    },
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_target": {
+    "type": "number",
+    "label": "MERCH ITEMS Target Goal",
+    "step": 1,
+    "value": 10,
+    "min": 1,
+    "group": "Merch Items"
+  },
+  "_FD_merch-goal-items_hiddenFont": {
+    "type": "hidden",
+    "label": "Min Font Size for Progress/Goal",
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_minFontSize": {
+    "type": "number",
+    "label": "0 for Auto",
+    "value": 0,
+    "step": 1,
+    "min": 0,
+    "max": 500,
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_icon": {
+    "type": "dropdown",
+    "label": "MERCH ITEMS Icon",
+    "value": "other",
+    "options": {
+      "none": "NONE",
+      "fab fa-twitch": "TWITCH",
+      "fab fa-youtube": "YOUTUBE",
+      "fab fa-facebook-f": "FACEBOOK",
+      "fas fa-crown": "CROWN",
+      "fas fa-chess-queen": "CHESS QUEEN",
+      "fas fa-donate": "DONATE",
+      "fas fa-coins": "COINS",
+      "fas fa-gem": "GEM SOLID",
+      "far fa-gem": "GEM",
+      "fas fa-tshirt": "TSHIRT",
+      "fas fa-puzzle-piece": "PUZZLE PIECE",
+      "fas fa-star": "STAR SOLID",
+      "far fa-star": "STAR",
+      "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+    },
+    "group": "Merch Items"
+  },
+  "_FD_merch-goal-items_hidden2": {
+    "type": "hidden",
+    "label": "Enter Icon Class Or Text",
+    "group": "Merch Items"
+  },
+  "_FD_merch-goal-items_hidden3": {
+    "type": "hidden",
+    "label": "Icons: fontawesome.com/icons?m=free",
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_iconOther": {
+    "type": "text",
+    "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
+    "value": "fas fa-code",
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_label": {
+    "type": "text",
+    "label": "MERCH ITEMS Label",
+    "value": "MERCH ITEMS",
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_barColor1": {
+    "type": "colorpicker",
+    "label": "MERCH ITEMS Bar Color 1",
+    "value": "rgba(0, 0, 0, 0.25)",
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_barColor2": {
+    "type": "colorpicker",
+    "label": "MERCH ITEMS Bar Color 2",
+    "value": "rgba(0, 195, 255, 0.3)",
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_neverEndingGoal": {
+    "type": "dropdown",
+    "label": "Goal That Never Ends?",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_neverEndingGoalAdder": {
+    "type": "slider",
+    "label": "% Adder At Limit",
+    "value": 25,
+    "min": 1,
+    "max": 50,
+    "steps": 1,
+    "group": "Merch Items"
+  },
+  "FD_merch-goal-items_neverEndingGoalLimit": {
+    "type": "slider",
+    "label": "Maximum Bar %",
+    "value": 90,
+    "min": 50,
+    "max": 99,
+    "steps": 1,
+    "group": "Merch Items"
+  },
+
+  "_FD_merch-goal-orders_hidden": {
+    "type": "hidden",
+    "label": "MERCH ORDERS Options",
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_enabled": {
+    "type": "dropdown",
+    "label": "MERCH ORDERS Type",
+    "value": "off",
+    "options": {
+      "off": "Disabled",
+      "merch-goal-orders": "Goal"
+    },
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_target": {
+    "type": "number",
+    "label": "MERCH ORDERS Target Goal",
+    "step": 1,
+    "value": 10,
+    "min": 1,
+    "group": "Merch Orders"
+  },
+  "_FD_merch-goal-orders_hiddenFont": {
+    "type": "hidden",
+    "label": "Min Font Size for Progress/Goal",
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_minFontSize": {
+    "type": "number",
+    "label": "0 for Auto",
+    "value": 0,
+    "step": 1,
+    "min": 0,
+    "max": 500,
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_icon": {
+    "type": "dropdown",
+    "label": "MERCH ORDERS Icon",
+    "value": "other",
+    "options": {
+      "none": "NONE",
+      "fab fa-twitch": "TWITCH",
+      "fab fa-youtube": "YOUTUBE",
+      "fab fa-facebook-f": "FACEBOOK",
+      "fas fa-crown": "CROWN",
+      "fas fa-chess-queen": "CHESS QUEEN",
+      "fas fa-donate": "DONATE",
+      "fas fa-coins": "COINS",
+      "fas fa-gem": "GEM SOLID",
+      "far fa-gem": "GEM",
+      "fas fa-tshirt": "TSHIRT",
+      "fas fa-puzzle-piece": "PUZZLE PIECE",
+      "fas fa-star": "STAR SOLID",
+      "far fa-star": "STAR",
+      "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+    },
+    "group": "Merch Orders"
+  },
+  "_FD_merch-goal-orders_hidden2": {
+    "type": "hidden",
+    "label": "Enter Icon Class Or Text",
+    "group": "Merch Orders"
+  },
+  "_FD_merch-goal-orders_hidden3": {
+    "type": "hidden",
+    "label": "Icons: fontawesome.com/icons?m=free",
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_iconOther": {
+    "type": "text",
+    "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
+    "value": "fas fa-code",
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_label": {
+    "type": "text",
+    "label": "MERCH ORDERS Label",
+    "value": "MERCH ORDERS",
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_barColor1": {
+    "type": "colorpicker",
+    "label": "MERCH ORDERS Bar Color 1",
+    "value": "rgba(0, 0, 0, 0.25)",
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_barColor2": {
+    "type": "colorpicker",
+    "label": "MERCH ORDERS Bar Color 2",
+    "value": "rgba(0, 195, 255, 0.3)",
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_neverEndingGoal": {
+    "type": "dropdown",
+    "label": "Goal That Never Ends?",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_neverEndingGoalAdder": {
+    "type": "slider",
+    "label": "% Adder At Limit",
+    "value": 25,
+    "min": 1,
+    "max": 50,
+    "steps": 1,
+    "group": "Merch Orders"
+  },
+  "FD_merch-goal-orders_neverEndingGoalLimit": {
+    "type": "slider",
+    "label": "Maximum Bar %",
+    "value": 90,
+    "min": 50,
+    "max": 99,
+    "steps": 1,
+    "group": "Merch Orders"
+  },
+
+  "_FD_merch-goal-total_hidden": {
+    "type": "hidden",
+    "label": "MERCH TOTAL Options",
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_enabled": {
+    "type": "dropdown",
+    "label": "MERCH TOTAL Type",
+    "value": "off",
+    "options": {
+      "off": "Disabled",
+      "merch-goal-total": "Goal"
+    },
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_target": {
+    "type": "number",
+    "label": "MERCH TOTAL Target Goal",
+    "step": 1,
+    "value": 10,
+    "min": 1,
+    "group": "Merch Total"
+  },
+  "_FD_merch-goal-total_hiddenFont": {
+    "type": "hidden",
+    "label": "Min Font Size for Progress/Goal",
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_minFontSize": {
+    "type": "number",
+    "label": "0 for Auto",
+    "value": 0,
+    "step": 1,
+    "min": 0,
+    "max": 500,
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_icon": {
+    "type": "dropdown",
+    "label": "MERCH TOTAL Icon",
+    "value": "other",
+    "options": {
+      "none": "NONE",
+      "fab fa-twitch": "TWITCH",
+      "fab fa-youtube": "YOUTUBE",
+      "fab fa-facebook-f": "FACEBOOK",
+      "fas fa-crown": "CROWN",
+      "fas fa-chess-queen": "CHESS QUEEN",
+      "fas fa-donate": "DONATE",
+      "fas fa-coins": "COINS",
+      "fas fa-gem": "GEM SOLID",
+      "far fa-gem": "GEM",
+      "fas fa-tshirt": "TSHIRT",
+      "fas fa-puzzle-piece": "PUZZLE PIECE",
+      "fas fa-star": "STAR SOLID",
+      "far fa-star": "STAR",
+      "other": "OTHER/TEXT: ENTER ICON CLASS / TEXT BELOW"
+    },
+    "group": "Merch Total"
+  },
+  "_FD_merch-goal-total_hidden2": {
+    "type": "hidden",
+    "label": "Enter Icon Class Or Text",
+    "group": "Merch Total"
+  },
+  "_FD_merch-goal-total_hidden3": {
+    "type": "hidden",
+    "label": "Icons: fontawesome.com/icons?m=free",
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_iconOther": {
+    "type": "text",
+    "label": "Emotes: https://static-cdn.jtvnw.net/emoticons/v1/166263/3.0",
+    "value": "fas fa-code",
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_label": {
+    "type": "text",
+    "label": "MERCH TOTAL Label",
+    "value": "MERCH TOTAL",
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_barColor1": {
+    "type": "colorpicker",
+    "label": "MERCH TOTAL Bar Color 1",
+    "value": "rgba(0, 0, 0, 0.25)",
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_barColor2": {
+    "type": "colorpicker",
+    "label": "MERCH TOTAL Bar Color 2",
+    "value": "rgba(0, 195, 255, 0.3)",
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_neverEndingGoal": {
+    "type": "dropdown",
+    "label": "Goal That Never Ends?",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    },
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_neverEndingGoalAdder": {
+    "type": "slider",
+    "label": "% Adder At Limit",
+    "value": 25,
+    "min": 1,
+    "max": 50,
+    "steps": 1,
+    "group": "Merch Total"
+  },
+  "FD_merch-goal-total_neverEndingGoalLimit": {
+    "type": "slider",
+    "label": "Maximum Bar %",
+    "value": 90,
+    "min": 50,
+    "max": 99,
+    "steps": 1,
+    "group": "Merch Total"
+  }
+}

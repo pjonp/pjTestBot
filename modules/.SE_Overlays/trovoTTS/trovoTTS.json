@@ -1,0 +1,67 @@
+{
+ "_command": {
+ 	"type": "text",
+   	"label": "Command",
+   	"value": "!tts"
+ },
+ "_note_prefix": {
+ 	"type": "hidden",
+   	"label": "Variable: {user}"
+ },
+ "_prefix": {
+ 	"type": "text",
+   	"label": "Command Prefix",
+   	"value": "{user} says"
+ },
+  "_autoAnnounce": {
+    "type": "dropdown",
+    "label": "Auto Announce User's First Message",
+    "value": "no",
+    "options": {
+      "yes": "Yes",
+      "no": "No"
+    }
+  },
+ "_maxCharacters": {
+   "type": "slider",
+   "label": "Maximum Characters",
+   "value": 300,
+   "min": 50,
+   "max": 300,
+   "step": 5
+ },
+ "_coolDown": {
+   "type": "slider",
+   "label": "User / Same message cooldown",
+   "value": 30,
+   "min": 1,
+   "max": 300,
+   "step": 1
+ },
+ "_volume": {
+   "type": "slider",
+   "label": "Volume",
+   "value": 100,
+   "min": 0,
+   "max": 100,
+   "step": 2
+  },
+   "_note_voice": {
+ 	"type": "hidden",
+   	"label": "Not all voices work!"
+ },
+  "_voice": {
+	"type": "dropdown",
+    "label": "Voice",
+    "value": "Filiz",
+    "options":{"Filiz":"Filiz","Astrid":"Astrid","Tatyana":"Tatyana","Maxim":"Maxim","Carmen":"Carmen","Ines":"Ines","Cristiano":"Cristiano","Vitoria":"Vitoria","Ricardo":"Ricardo","Maja":"Maja","Jan":"Jan","Jacek":"Jacek","Ewa":"Ewa","Ruben":"Ruben","Lotte":"Lotte","Liv":"Liv","Seoyeon":"Seoyeon","Takumi":"Takumi","Mizuki":"Mizuki","Giorgio":"Giorgio","Carla":"Carla","Bianca":"Bianca","Karl":"Karl","Dora":"Dora","Mathieu":"Mathieu","Celine":"Celine","Chantal":"Chantal","Penelope":"Penelope","Miguel":"Miguel","Mia":"Mia","Enrique":"Enrique","Conchita":"Conchita","Geraint":"Geraint","Salli":"Salli","Matthew":"Matthew","Kimberly":"Kimberly","Kendra":"Kendra","Justin":"Justin","Joey":"Joey","Joanna":"Joanna","Ivy":"Ivy","Raveena":"Raveena","Aditi":"Aditi","Emma":"Emma","Brian":"Brian","Amy":"Amy","Russell":"Russell","Nicole":"Nicole","Vicki":"Vicki","Marlene":"Marlene","Hans":"Hans","Naja":"Naja","Mads":"Mads","Gwyneth":"Gwyneth","Zhiyu":"Zhiyu","en-US_MichaelVoice":"en-US_MichaelVoice","en-US_AllisonVoice":"en-US_AllisonVoice","en-US_LisaVoice":"en-US_LisaVoice","en-GB_KateVoice":"en-GB_KateVoice","en-US-Wavenet-A":"en-US-Wavenet-A","en-US-Wavenet-B":"en-US-Wavenet-B","en-US-Wavenet-C":"en-US-Wavenet-C","en-US-Wavenet-D":"en-US-Wavenet-D","en-US-Wavenet-E":"en-US-Wavenet-E","en-US-Wavenet-F":"en-US-Wavenet-F","en-GB-Standard-A":"en-GB-Standard-A","en-GB-Standard-B":"en-GB-Standard-B","en-GB-Standard-C":"en-GB-Standard-C","en-GB-Standard-D":"en-GB-Standard-D","en-GB-Wavenet-A":"en-GB-Wavenet-A","en-GB-Wavenet-B":"en-GB-Wavenet-B","en-GB-Wavenet-C":"en-GB-Wavenet-C","en-GB-Wavenet-D":"en-GB-Wavenet-D","en-US-Standard-B":"en-US-Standard-B","en-US-Standard-C":"en-US-Standard-C","en-US-Standard-D":"en-US-Standard-D","en-US-Standard-E":"en-US-Standard-E","en-AU-Standard-A":"en-AU-Standard-A","en-AU-Standard-B":"en-AU-Standard-B","en-AU-Wavenet-A":"en-AU-Wavenet-A","en-AU-Wavenet-B":"en-AU-Wavenet-B","en-AU-Wavenet-C":"en-AU-Wavenet-C","en-AU-Wavenet-D":"en-AU-Wavenet-D","en-AU-Standard-C":"en-AU-Standard-C","en-AU-Standard-D":"en-AU-Standard-D","en-IN-Wavenet-A":"en-IN-Wavenet-A","en-IN-Wavenet-B":"en-IN-Wavenet-B","en-IN-Wavenet-C":"en-IN-Wavenet-C","Tracy":"Tracy","Danny":"Danny","Huihui":"Huihui","Yaoyao":"Yaoyao","Kangkang":"Kangkang","HanHan":"HanHan","Zhiwei":"Zhiwei","Asaf":"Asaf","An":"An","Stefanos":"Stefanos","Filip":"Filip","Ivan":"Ivan","Heidi":"Heidi","Herena":"Herena","Kalpana":"Kalpana","Hemant":"Hemant","Matej":"Matej","Andika":"Andika","Rizwan":"Rizwan","Lado":"Lado","Valluvar":"Valluvar","Linda":"Linda","Heather":"Heather","Sean":"Sean","Michael":"Michael","Karsten":"Karsten","Guillaume":"Guillaume","Pattara":"Pattara","Jakub":"Jakub","Szabolcs":"Szabolcs","Hoda":"Hoda","Naayf":"Naayf"}
+  },
+    "_note_testbutton": {
+ 	"type": "hidden",
+   	"label": "Cooldown's apply for button testing!"
+ },
+  "_Ttstestbutton": {
+    "type": "button",
+    "label": "Test"
+  }
+}

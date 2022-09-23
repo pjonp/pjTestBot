@@ -1,0 +1,243 @@
+@import url('https://fonts.googleapis.com/css2?family={{FD_fontName}}&display=swap');
+:root{
+  --cardWidth: 80vw;
+  --cardHeight: 80vh; /*80vh*/
+  --cardThickness: 10px;
+  --cardRadius: 100px;
+  --cardEdgeColor: rgb(0, 120, 255);
+  --cardBgColor1: black;
+  --cardBgColor2: white;
+  --cardPerspective: 1500px;
+  --cardPerspectiveOrigin: 'top left';
+  --animationTime: 5s;
+  --showTime: 20s;
+  --glowTime: 10s;
+  --direction: -1; /*-1 or 1*/
+  --fontName: 'font';
+  --fontColor: rgb(0, 120, 255);
+  --fontShadowSize: 1px;
+  --fontShadowColor: rgb(0, 0, 0);
+  --labelHeight: 25%;
+  --labelPosition: 0vh;
+  --labelColor: rgba(0, 195, 255, 0.9);
+  --iconSize: 100%;
+  --iconOffset: 0vh;
+  --iconColor: rgba(0, 195, 255, 0.9);
+  --barColor1: rgb(0, 120, 120, 0.5);
+  --barColor2: rgb(0, 120, 0, 0.5);
+  --barGlowColor: black;
+  --barGlowColor2: white;
+  --barGlowWidth: 2px;
+  --barOnTop: 0; /*0 or 2*/
+
+/*SE OVER RIDE*/
+
+
+--cardWidth: {{FD_cardWidth}}vw;
+--cardHeight: {{FD_cardHeight}}vh;
+--cardBgColor1: {{FD_cardBgColor1}};
+--cardBgColor2: {{FD_cardBgColor2}};
+--cardEdgeColor: {{FD_cardEdgeColor}};
+--cardRadius: {{FD_cardRadius}}px;
+--cardThickness: {{FD_cardThickness}}px;
+--cardPerspective: {{FD_cardPerspective}}px;
+--cardPerspectiveOrigin: {{FD_cardPerspectiveOrigin}};
+--direction: {{FD_direction}};
+--animationTime: {{FD_animationTime}}s;
+--showTime: {{FD_showTime}}s;
+--glowTime: {{FD_glowTime}}s;
+--fontName: {{FD_fontName}};
+--fontColor: {{FD_fontColor}};
+--fontShadowSize: {{FD_fontShadowSize}}px;
+--fontShadowColor: {{FD_fontShadowColor}};
+--labelHeight: {{FD_labelHeight}}%;
+--labelPosition: {{FD_labelPosition}}vh;
+--labelColor: {{FD_labelColor}};
+--iconSize: {{FD_iconSize}}%;
+--iconOffset: {{FD_iconOffset}}vh;
+--iconColor: {{FD_iconColor}};
+--barOnTop: {{FD_barOnTop}};
+--barGlowWidth: {{FD_barGlowWidth}}px;
+--barGlowColor: {{FD_barGlowColor}};
+--barGlowColor2: {{FD_barGlowColor2}};
+
+
+}
+* {
+  margin: 0px;
+  padding: 0px;
+}
+#main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: var(--fontName), sans-serif;
+  perspective: var(--cardPerspective);
+  perspective-origin: var(--cardPerspectiveOrigin);
+}
+#hiddenBars {
+  display: none;
+}
+#card {
+  position: relative;
+  width: var(--cardWidth);
+  height: var(--cardHeight);
+  transform-style: preserve-3d;
+}
+
+.goalContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--fontColor);
+  text-shadow: var(--fontShadowSize) var(--fontShadowSize) var(--fontShadowColor);
+  background: linear-gradient(135deg, var(--cardBgColor1), var(--cardBgColor2));
+  background-size: 400% 400%;
+  animation: bgShift var(--glowTime) ease-out infinite;
+}
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30%;
+    height: 100%;
+    z-index: 1;
+}
+.contentCenter{
+    height: var(--iconSize);
+  	margin-bottom: var(--iconOffset);
+    color: var(--iconColor);
+}
+.goalText {
+  position: absolute;
+  bottom: var(--labelPosition);
+  left: 0;
+  width: 100%;
+  height: var(--labelHeight);
+  color: var(--labelColor);
+}
+
+/* 'cube' sides */
+.face {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-size: 36px;
+  border: 2px solid var(--cardEdgeColor);
+  backface-visibility: hidden;
+}
+.front, .back {
+  width: 100%;
+  height: 100%;
+  border-radius: var(--cardRadius);
+  box-sizing: border-box;
+}
+.top, .bottom {
+  width: calc(100% - (var(--cardRadius)*2));
+  height: var(--cardThickness);
+}
+.left, .right {
+  width: var(--cardThickness);
+  height: calc(100% - (var(--cardRadius)*2));
+}
+.front {
+  transform: translateZ(calc(var(--cardThickness)/2));
+  overflow: hidden;
+}
+.back {
+  overflow: hidden;
+  transform: translateZ(calc(-1*var(--cardThickness)/2)) rotateX(180deg);
+}
+.top {
+  transform: rotateX(90deg) translateZ(calc(var(--cardThickness) / 2)) translateX(var(--cardRadius));
+}
+.bottom {
+  transform: translateY(calc((var(--cardHeight)) - (var(--cardThickness)) / 2)) rotateX(-90deg) translateX(var(--cardRadius));
+}
+.left {
+   transform: translateX(calc(-1*var(--cardThickness)/2)) rotateY(-90deg)
+  translateY(var(--cardRadius));
+}
+.right {
+  transform: translateX(calc((var(--cardWidth)) - (var(--cardThickness)) / 2)) rotateY(90deg) translateY(var(--cardRadius));
+}
+.top, .bottom, .left, .right {
+ background-color: var(--cardEdgeColor);
+ border: none;
+}
+.rot90 {
+  transform: rotate(90deg)
+}
+.rot270 {
+  transform: rotate(270deg)
+}
+
+@keyframes bgShift {
+    0%{background-position: 50% 50%}
+    50%{background-position: 100% 100%}
+    100%{background-position: 50% 50%}
+}
+
+
+.rot-x-1 {
+  animation: rot-x-1 var(--animationTime) cubic-bezier(0.75, -0.25, 0.75, 0) forwards;
+}
+.rot-x-2 {
+  animation: rot-x-2 var(--animationTime) cubic-bezier(0.75, -0.25, 0.75, 0) forwards;
+}
+
+@keyframes rot-x-1 {
+  0%   { transform: rotateX(0deg) }
+  100% { transform:  rotateX(calc(180deg * var(--direction))) }
+}
+
+@keyframes rot-x-2 {
+  from { transform: rotateX(calc(180deg * var(--direction))) }
+  to { transform:  rotateX(calc(180deg * var(--direction) * 2)) }
+}
+
+/* rotate on y axis - not used */
+/*
+.rot-y-1 {
+  animation: rot-y-1 var(--animationTime) ease-out forwards;
+}
+.rot-y-2 {
+  animation: rot-y-2 var(--animationTime) ease-out forwards;
+}
+@keyframes rot-y-1 {
+  from { transform: rotateY(0deg) }
+  to { transform:  rotateY(calc(180deg * var(--direction))) }
+}
+@keyframes rot-y-2 {
+  from { transform: rotateY(calc(180deg * var(--direction))) }
+  to { transform:  rotateY(calc(180deg * var(--direction) * 2)) }
+}
+*/
+
+
+.bar {
+  position: absolute;
+  top: -100px; /* offset for top/bottom glow radius*/
+  left: 0;
+  background: linear-gradient(0deg, var(--barColor1), var(--barColor2));
+  background-size: 400% 400%;
+  animation: barBgShift var(--glowTime) ease-out infinite;
+  transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1) 0.75s;
+  height: calc(100% + 200px);
+  width: 25%; /* THIS IS SET BY JS AS PROGRESS*/
+  box-sizing: border-box;
+  z-index: var(--barOnTop);
+  box-shadow: inset calc(-1 * var(--barGlowWidth)) 0px var(--barGlowWidth) calc(-0.5 * var(--barGlowWidth)) var(--barGlowColor),
+    0px 0px calc(2 * var(--barGlowWidth)) calc(0.5 * var(--barGlowWidth)) var(--barGlowColor2);
+}
+@keyframes barBgShift {
+    0%{background-position:50% 50%}
+    50%{background-position:100% 100%}
+    100%{background-position:50% 50%}
+}

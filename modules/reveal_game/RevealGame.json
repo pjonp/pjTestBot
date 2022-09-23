@@ -55,7 +55,7 @@
     "jebaitedToken": {
     "type": "text",
     "label": "https://jebaited.net/tokens/ ->",
-    "value": "need: addPoints + botMsg",
+    "value": "need: addPoints+botMsg",
     "group": "Middleware Setup"
   },
   "reward": {

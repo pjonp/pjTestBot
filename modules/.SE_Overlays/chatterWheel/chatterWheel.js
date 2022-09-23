@@ -75,7 +75,7 @@ window.addEventListener('onEventReceived', function(obj) {
     if (!checkPrivileges(data)) {
       return;
     } else {
-      if (data.userId === data.tags['room-id']) { //Broadcaster
+      if (data.userId === data.tags['room-id'] || parseInt(data.tags.mod) === 1) { //Broadcaster or Mod
         if (data.text === spinCommand) {
           if (multipleSpins && wheelSpinning) {
             spinCommandOverrides++;
@@ -116,6 +116,8 @@ window.addEventListener('onEventReceived', function(obj) {
       };
 
       //Build Chatter List
+
+
       if (triggerToJoin && !data.text.toLowerCase().includes(triggerToJoinPhrase.toLowerCase())) {
         return;
       }
@@ -247,7 +249,7 @@ const buildWheel = () => {
     ctx = canvas.getContext('2d'),
     canvasCenter = canvas.height / 2,
     chatterSegments = chatters
-    .filter(i => (Date.now() - i.time) < 30*60*1000)
+    .filter(i => (Date.now() - i.time) < 9999*60*1000) //Must have chatted in the last 9999 minutes
     .map(i => {
       let radGradient = ctx.createRadialGradient(canvasCenter, canvasCenter, 0, canvasCenter, canvasCenter, wheelSize),
         hexColor = i.fillStyle ? i.fillStyle : i.fillStyle = tinycolor.random().toHexString();
@@ -346,6 +348,9 @@ const endSpin = () => {
 //delay chat response
   setTimeout(() => {
     sayMessage(`${chatResponse.replace('{chatter}', roundWinner).replace('{user}', roundWinner).replace('{prize}', spinPrize)}`)
+
+//    savePoints(roundWinner, 100); //Not Used
+
   }, chatResponseDelay * 1000);
 //remove winner if settting enabled
   if (removeWinners) {
@@ -378,10 +383,22 @@ const sayMessage = (message) => {
     console.log('API Token is not correct')
     return;
   };
-  message = encodeURIComponent(message);
-  fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/${message}`)
+  fetch(`https://api.jebaited.net/botMsg/${jebaitedAPIToken}/`,
+  {
+    method: 'post',
+    body: JSON.stringify({"message": message})
+  })
+    .catch(e => console.error(`Error sending message to chat`));
+};
+
+const savePoints = (username, points) => { //Not Used
+  if (jebaitedAPIToken.length !== 24) {
+    console.log('API Token is not correct')
+    return;
+  };
+  fetch(`https://api.jebaited.net/addPoints/${jebaitedAPIToken}/${username}/${points}`)
     .catch(error => {
-      console.error(`Error sending message to chat`)
+      console.error(`Error saving points`)
     });
 };
 
@@ -459,6 +476,8 @@ let testData = [{
     text: "LONG_USERNAME_TEST4"
   }
 ];
+
+testData.forEach((i) => i.time = Date.now());
 
 
 /*

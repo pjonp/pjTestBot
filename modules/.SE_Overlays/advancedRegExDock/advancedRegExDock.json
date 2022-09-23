@@ -1,0 +1,139 @@
+{
+  "_info1": {
+    "label": "Middleware provided by lx",
+    "type": "hidden",
+    "group": "Main"
+  },
+  "_info2": {
+    "label": "https://jebaited.net/tokens/ ->",
+    "type": "hidden",
+    "group": "Main"
+  },
+  "jebaitedAPIToken": {
+    "label": "Requires Scope: botSay",
+    "type": "text",
+    "value": "token",
+    "group": "Main"
+  },
+  "timeoutLength": {
+    "label": "Timeout Length",
+    "type": "slider",
+    "value": 5,
+    "min": 1,
+    "max": 600,
+    "steps": 1,
+    "group": "Main"
+  },
+  "_info3": {
+    "label": "Allowed List:",
+    "type": "hidden",
+    "group": "Main"
+  },
+  "allowedList": {
+    "label": "allowed List",
+    "type": "text",
+    "value": ".....allowed",
+    "group": "Main"
+  },
+  "_info4": {
+    "label": "Blocked List:",
+    "type": "hidden",
+    "group": "Main"
+  },
+  "blockedList": {
+    "label": "blockedList",
+    "type": "text",
+    "value": "blockedListblockedList",
+    "group": "Main"
+  },
+
+
+
+
+  "allowPreset_1": {
+    "type": "dropdown",
+    "label": "Spanish 1",
+    "value": "no",
+    "options": {
+      "off": "Off",
+      "áéíóúüñ¿¡": "á é í ó ú ü ñ ¿ ¡"
+    },
+    "group": "Allow Pressets"
+  },
+
+
+  "blockPreset_1": {
+    "type": "dropdown",
+    "label": "Regional Indicator Emojis",
+    "value": "\\p{RI}",
+    "options": {
+      "off": "Allow Regional Indicator Emojis",
+      "\\p{RI}": "Block All Regional Indicator Emojis"
+    },
+    "group": "Block Pressets"
+  },
+
+
+
+
+  "testMsg_0": {
+    "label": "Test Message #1",
+    "value": "What Is Crème Fraiche?",
+    "type": "text",
+    "group": "Testing (AutoLoad)"
+  },
+  "testMsg_1": {
+    "label": "Test Message #2",
+    "value": "Tú tienes un perro muy bonito.",
+    "type": "text",
+    "group": "Testing (AutoLoad)"
+  },
+  "testMsg_2": {
+    "label": "Test Message #3",
+    "value": "😀",
+    "type": "text",
+    "group": "Testing (AutoLoad)"
+  },
+  "testMsg_3": {
+    "label": "Test Message #4",
+    "value": "¡ :)",
+    "type": "text",
+    "group": "Testing (AutoLoad)"
+  },
+  "testMsg_4": {
+    "label": "Test Message #5",
+    "value": "pjoͥnͣpͫ",
+    "type": "text",
+    "group": "Testing (AutoLoad)"
+  },
+
+
+
+  "_info5": {
+    "label": "Block Users Requires Twitch Oauth",
+    "type": "hidden",
+    "group": "Twitch Blocking"
+  },
+  "_info6": {
+    "label": "twitchtokengenerator.com",
+    "type": "hidden",
+    "group": "Twitch Blocking"
+  },
+  "_info7": {
+    "label": "✅user:manage:blocked_users",
+    "type": "hidden",
+    "group": "Twitch Blocking"
+  },
+  "twitchAPIclient": {
+    "label": "CLIENT ID",
+    "value": "gp762nuuoqcoxypju8c569th9wz7q5",
+    "type": "text",
+    "group": "Twitch Blocking"
+  },
+  "twitchAPIOAuth": {
+    "label": "ACCESS TOKEN",
+    "value": "https://twitchtokengenerator.com/quick/0vHItXIzfk",
+    "type": "text",
+    "group": "Twitch Blocking"
+  }
+}

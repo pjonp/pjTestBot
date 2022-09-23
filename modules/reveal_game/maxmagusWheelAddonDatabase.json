@@ -1,0 +1,199 @@
+[{
+    "index": 0,
+    "text": "Bill",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Bill.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 1,
+    "text": "Clefairy Doll",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Clefairy%20Doll.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 2,
+    "text": "Computer Search",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Computer%20Search.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 3,
+    "text": "Defender",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Defender.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 4,
+    "text": "Devolution Spray",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Devolution%20Spray.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 5,
+    "text": "Energy Removal",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Energy%20Removal.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 6,
+    "text": "Energy Retrieval",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Energy%20Retrieval.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 7,
+    "text": "Fighting Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Fighting%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 8,
+    "text": "Fire Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Fire%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 9,
+    "text": "Full Heal",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Full%20Heal.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 10,
+    "text": "Grass Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Grass%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 11,
+    "text": "Gust of Wind",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Gust%20of%20Wind.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 12,
+    "text": "Imposter Professor Oak",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Imposter%20Professor%20Oak.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 13,
+    "text": "Item Finder",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Item%20Finder.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 14,
+    "text": "Lass",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Lass.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 15,
+    "text": "Lightning Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Lightning%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 16,
+    "text": "Maintenance",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Maintenance.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 17,
+    "text": "PlusPower",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/PlusPower.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 18,
+    "text": "Pokedex",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokedex.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 19,
+    "text": "Pokemon Breeder",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokemon%20Breeder.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 20,
+    "text": "Pokemon Center",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokemon%20Center.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 21,
+    "text": "Pokemon Flute",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokemon%20Flute.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 22,
+    "text": "Pokemon Trader",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Pokemon%20Trader.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 23,
+    "text": "Potion",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Potion.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 24,
+    "text": "Professor Oak",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Professor%20Oak.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 25,
+    "text": "Psychic Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Psychic%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 26,
+    "text": "Revive",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Revive.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 27,
+    "text": "Scoop Up",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Scoop%20Up.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 28,
+    "text": "Souble Colorless Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Souble%20Colorless%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 29,
+    "text": "Super Energy Removal",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Super%20Energy%20Removal.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 30,
+    "text": "Super Potion",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Super%20Potion.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 31,
+    "text": "Switch",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Switch.jpg",
+    "fillStyle": "{{seg3Color}}"
+  },
+  {
+    "index": 32,
+    "text": "Water Energy",
+    "image": "https://raw.githubusercontent.com/pjonp/pjTestBot/master/modules/reveal_game/images/trainers/Water%20Energy.jpg",
+    "fillStyle": "{{seg3Color}}"
+  }
+]
